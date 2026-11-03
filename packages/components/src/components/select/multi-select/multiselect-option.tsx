@@ -31,10 +31,12 @@ export class MultiselectOption {
 	@State() private searchTerm: string = "";
 	@State() private isSearchActive: boolean = false;
 	@State() private isSearchDisabled: boolean = false;
+	@State() private disabledByGroup: boolean = false;
 
 	componentWillLoad() {
 		this.hasChildren = this.el.children.length > 0;
 		this.depth = this.calculateDepth();
+		this.disabledByGroup = this.el.closest("ifx-multiselect-group")?.disabled ?? false;
 
 		this.el.setAttribute("data-level", this.depth.toString());
 
@@ -50,10 +52,20 @@ export class MultiselectOption {
     (this.el as any)['__stencil_instance'] = this;
     this.notifyMultiselect();
     this.el.addEventListener('ifx-search-filter', this.handleSearchFilter);
+		this.el.addEventListener('ifx-group-disabled-change', this.handleGroupDisabledChange);
   }
 
 	disconnectedCallback() {
 		this.el.removeEventListener("ifx-search-filter", this.handleSearchFilter);
+		this.el.removeEventListener("ifx-group-disabled-change", this.handleGroupDisabledChange);
+	}
+
+	private handleGroupDisabledChange = (event: CustomEvent) => {
+		this.disabledByGroup = event.detail.disabled;
+	};
+
+	private isEffectivelyDisabled(): boolean {
+		return this.disabled || this.disabledByGroup;
 	}
 
 	private handleSearchFilter = (event: CustomEvent) => {
@@ -244,7 +256,7 @@ export class MultiselectOption {
 
 	@Listen("click")
 	handleClick(event: Event) {
-		if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
+		if (this.isEffectivelyDisabled() || (this.isSearchActive && this.isSearchDisabled)) return;
 
 		event.stopPropagation();
 
@@ -282,7 +294,7 @@ export class MultiselectOption {
 
 	@Listen("keydown")
 	handleKeyDown(event: KeyboardEvent) {
-		if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
+		if (this.isEffectivelyDisabled() || (this.isSearchActive && this.isSearchDisabled)) return;
 
 		const target = event.target as HTMLElement;
 
@@ -391,11 +403,12 @@ export class MultiselectOption {
 	}
 
 	private toggleExpansion() {
+		if (this.isEffectivelyDisabled()) return;
 		this.isExpanded = !this.isExpanded;
 	}
 
 	private handleCheckboxClick = (event: Event) => {
-		if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
+		if (this.isEffectivelyDisabled() || (this.isSearchActive && this.isSearchDisabled)) return;
 		event.preventDefault();
 		event.stopPropagation();
 
@@ -425,7 +438,7 @@ export class MultiselectOption {
 
 	private handleHeaderClick = (event: Event) => {
 		event.stopPropagation();
-		if (!this.disabled && !(this.isSearchActive && this.isSearchDisabled)) {
+		if (!this.isEffectivelyDisabled() && !(this.isSearchActive && this.isSearchDisabled)) {
 			this.handleClick(event);
 		}
 	};
@@ -457,6 +470,7 @@ export class MultiselectOption {
 	}
 
 	render() {
+		const effectivelyDisabled = this.isEffectivelyDisabled();
 		let isFlatMultiselect = false;
 		const parentMultiselect = this.el.closest("ifx-multiselect");
 		if (parentMultiselect) {
@@ -483,7 +497,7 @@ export class MultiselectOption {
 						option: true,
 						"option--has-children": this.hasChildren,
 						"option--expanded": this.isExpanded,
-						"option--disabled": this.disabled,
+						"option--disabled": effectivelyDisabled,
 						"option--selected": this.selected,
 					}}
 					role="option"
@@ -491,7 +505,7 @@ export class MultiselectOption {
 						this.hasChildren ? (this.isExpanded ? "true" : "false") : undefined
 					}
 					aria-selected={this.selected ? "true" : "false"}
-					aria-disabled={this.disabled ? "true" : "false"}
+					aria-disabled={effectivelyDisabled ? "true" : "false"}
 					data-level={this.depth}
 					data-value={this.value}
 				>
@@ -544,7 +558,7 @@ export class MultiselectOption {
 								}
 								onClick={this.handleCheckboxClick}
 								disabled={
-									this.disabled ||
+									effectivelyDisabled ||
 									(this.isSearchActive && this.isSearchDisabled)
 								}
 								onKeyDown={(e) => {

@@ -73,6 +73,14 @@
   background-color: tokens.$ifxColorEngineering300;
 }
 
+.ifx-ag-grid.left .ag-cell {
+  justify-content: flex-start;
+}
+
+.ifx-ag-grid.center .ag-cell {
+  justify-content: center;
+}
+
 .ag-overlay-loading-center {
   border: none;
   background: none;

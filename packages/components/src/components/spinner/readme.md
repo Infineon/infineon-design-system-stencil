@@ -20,11 +20,13 @@
 ### Used by
 
  - [ifx-template](../templates/template)
+ - [ifx-toast](../toast)
 
 ### Graph
 ```mermaid
 graph TD;
   ifx-template --> ifx-spinner
+  ifx-toast --> ifx-spinner
   style ifx-spinner fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

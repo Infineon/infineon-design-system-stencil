@@ -7,6 +7,7 @@ import {
 	Prop,
 	State,
 } from "@stencil/core";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-navbar-profile",
@@ -166,6 +167,12 @@ export class NavbarProfile {
 		}
 	}
 
+	/** Closes the profile menu. */
+	@Method()
+	async closeMenu() {
+		this.closeItemMenu();
+	}
+
 	private toggleItemMenu() {
 		if (!this.internalHref) {
 			if (this.isMenuItem && this.hasChildNavItems) {
@@ -182,14 +189,25 @@ export class NavbarProfile {
 		}
 	}
 
+	private handleProfileMenuKeyDown = (event: KeyboardEvent) => {
+		if (event.key === "Enter" || event.key === " ") {
+			event.preventDefault();
+			this.toggleItemMenu();
+		}
+	};
+
 	render() {
 		return (
 			<div class="container">
 				<a
-					href={this.internalHref}
+					href={sanitizeHref(this.internalHref)}
 					target={this.target}
 					onClick={() => this.toggleItemMenu()}
 					class={`navbar__item ${!this.showLabel ? "removeLabel" : ""} ${this.hasChildNavItems ? "isParent" : ""}`}
+					role="button"
+					tabindex="0"
+					aria-label="Open profile menu"
+					onKeyDown={this.handleProfileMenuKeyDown}
 				>
 					<div class="inner__content-wrapper">
 						<div

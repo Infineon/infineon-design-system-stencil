@@ -21,6 +21,13 @@
 | `ifxChipItemSelect` | Emitted on chip select/deselect. | `CustomEvent<ChipItemSelectEvent>` |
 
 
+## Slots
+
+| Slot | Description      |
+| ---- | ---------------- |
+|      | The default slot |
+
+
 ## Dependencies
 
 ### Used by

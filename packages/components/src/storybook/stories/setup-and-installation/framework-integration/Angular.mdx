@@ -19,14 +19,14 @@ Standalone components are the modern Angular approach, introduced in Angular 14 
 
 **1. Install the package**
 
-<PackageManagerTabs packageName="@infineon/infineon-design-system-angular" />
+<PackageManagerTabs packageName="@infineon/design-system-angular" />
 
 **2. Import global styles**
 
 Add the following import to your `styles.css` or `styles.scss` file:
 
 ```css
-@import '@infineon/infineon-design-system-angular/styles.css';
+@import '@infineon/design-system-angular/styles.css';
 ```
 
 **3. Import components in your standalone component**
@@ -36,7 +36,7 @@ Import individual components directly where you need them:
 ```typescript
 // app.component.ts
 import { Component } from '@angular/core';
-import { IfxAlert, IfxButton, IfxSearchBar } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxAlert, IfxButton, IfxSearchBar } from '@infineon/design-system-angular/standalone';
 
 @Component({
   selector: 'app-root',
@@ -86,14 +86,14 @@ For applications using the traditional NgModule architecture.
 
 **1. Install the package**
 
-<PackageManagerTabs packageName="@infineon/infineon-design-system-angular" />
+<PackageManagerTabs packageName="@infineon/design-system-angular" />
 
 **2. Import global styles**
 
 Add the following import to your `styles.css` or `styles.scss` file:
 
 ```css
-@import '@infineon/infineon-design-system-angular/styles/infineon-design-system.css';
+@import '@infineon/design-system-angular/styles/infineon-design-system.css';
 ```
 
 **3. Import the module**
@@ -104,7 +104,7 @@ Add `InfineonDesignSystemModule` to your app module:
 // app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { InfineonDesignSystemModule } from '@infineon/infineon-design-system-angular';
+import { InfineonDesignSystemModule } from '@infineon/design-system-angular';
 
 import { AppComponent } from './app.component';
 
@@ -150,5 +150,4 @@ export class AppComponent {
   }
 }
 ```
-
 

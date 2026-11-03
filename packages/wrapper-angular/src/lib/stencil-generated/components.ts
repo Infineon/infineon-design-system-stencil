@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Even
 
 import { ProxyCmp } from './angular-component-lib/utils';
 
-import { Components } from '@infineon/infineon-design-system-stencil';
+import { Components } from '@infineon/design-system';
 
 
 @ProxyCmp({
@@ -53,7 +53,7 @@ export class IfxAccordionItem {
 }
 
 
-import type { IfxAccordionItemCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxAccordionItemCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxAccordionItem extends Components.IfxAccordionItem {
   /**
@@ -112,8 +112,8 @@ export class IfxActionListItem {
 }
 
 
-import type { IfxActionListItemCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { ActionListItemClickEvent as IIfxActionListItemActionListItemClickEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxActionListItemCustomEvent } from '@infineon/design-system';
+import type { ActionListItemClickEvent as IIfxActionListItemActionListItemClickEvent } from '@infineon/design-system';
 
 export declare interface IfxActionListItem extends Components.IfxActionListItem {
   /**
@@ -168,7 +168,7 @@ export class IfxAlert {
 }
 
 
-import type { IfxAlertCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxAlertCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxAlert extends Components.IfxAlert {
   /**
@@ -179,14 +179,14 @@ export declare interface IfxAlert extends Components.IfxAlert {
 
 
 @ProxyCmp({
-  inputs: ['cols', 'rowHeight', 'rows', 'tableHeight', 'variant']
+  inputs: ['cols', 'columnValuePosition', 'rowHeight', 'rows', 'tableHeight', 'variant']
 })
 @Component({
   selector: 'ifx-basic-table',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['cols', 'rowHeight', 'rows', 'tableHeight', 'variant'],
+  inputs: ['cols', 'columnValuePosition', 'rowHeight', 'rows', 'tableHeight', 'variant'],
   standalone: false
 })
 export class IfxBasicTable {
@@ -267,7 +267,7 @@ export class IfxBreadcrumbItemLabel {
 }
 
 
-import type { IfxBreadcrumbItemLabelCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxBreadcrumbItemLabelCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxBreadcrumbItemLabel extends Components.IfxBreadcrumbItemLabel {
   /**
@@ -368,7 +368,7 @@ export class IfxCardImage {
 }
 
 
-import type { IfxCardImageCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxCardImageCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxCardImage extends Components.IfxCardImage {
   /**
@@ -468,7 +468,7 @@ export class IfxCheckbox {
 }
 
 
-import type { IfxCheckboxCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxCheckboxCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxCheckbox extends Components.IfxCheckbox {
   /**
@@ -530,8 +530,8 @@ export class IfxChip {
 }
 
 
-import type { IfxChipCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { ChipItemSelectEvent as IIfxChipChipItemSelectEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxChipCustomEvent } from '@infineon/design-system';
+import type { ChipItemSelectEvent as IIfxChipChipItemSelectEvent } from '@infineon/design-system';
 
 export declare interface IfxChip extends Components.IfxChip {
   /**
@@ -563,8 +563,8 @@ export class IfxChipItem {
 }
 
 
-import type { IfxChipItemCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { ChipItemSelectEvent as IIfxChipItemChipItemSelectEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxChipItemCustomEvent } from '@infineon/design-system';
+import type { ChipItemSelectEvent as IIfxChipItemChipItemSelectEvent } from '@infineon/design-system';
 
 export declare interface IfxChipItem extends Components.IfxChipItem {
   /**
@@ -595,8 +595,8 @@ export class IfxContentSwitcher {
 }
 
 
-import type { IfxContentSwitcherCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { ChangeEvent as IIfxContentSwitcherChangeEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxContentSwitcherCustomEvent } from '@infineon/design-system';
+import type { ChangeEvent as IIfxContentSwitcherChangeEvent } from '@infineon/design-system';
 
 export declare interface IfxContentSwitcher extends Components.IfxContentSwitcher {
   /**
@@ -630,6 +630,38 @@ export declare interface IfxContentSwitcherItem extends Components.IfxContentSwi
 
 
 @ProxyCmp({
+  inputs: ['name', 'value']
+})
+@Component({
+  selector: 'ifx-counter',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['name', 'value'],
+  outputs: ['ifxChange'],
+  standalone: false
+})
+export class IfxCounter {
+  protected el: HTMLIfxCounterElement;
+  @Output() ifxChange = new EventEmitter<IfxCounterCustomEvent<number>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IfxCounterCustomEvent } from '@infineon/design-system';
+
+export declare interface IfxCounter extends Components.IfxCounter {
+  /**
+   * Emitted when the counter value changes. Returns the new value as a number.
+   */
+  ifxChange: EventEmitter<IfxCounterCustomEvent<number>>;
+}
+
+
+@ProxyCmp({
   inputs: ['ariaLabelText', 'autocomplete', 'caption', 'disabled', 'error', 'label', 'max', 'min', 'readOnly', 'required', 'size', 'success', 'type', 'value'],
   methods: ['clear']
 })
@@ -652,7 +684,7 @@ export class IfxDatePicker {
 }
 
 
-import type { IfxDatePickerCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxDatePickerCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxDatePicker extends Components.IfxDatePicker {
   /**
@@ -686,7 +718,7 @@ export declare interface IfxDownload extends Components.IfxDownload {}
 
 
 @ProxyCmp({
-  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'noCloseOnMenuClick', 'noCloseOnOutsideClick', 'placement'],
+  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'placement'],
   methods: ['isOpen', 'closeDropdown', 'openDropdown']
 })
 @Component({
@@ -694,7 +726,7 @@ export declare interface IfxDownload extends Components.IfxDownload {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'noCloseOnMenuClick', 'noCloseOnOutsideClick', 'placement'],
+  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'placement'],
   outputs: ['ifxOpen', 'ifxClose', 'ifxDropdown'],
   standalone: false
 })
@@ -710,7 +742,7 @@ export class IfxDropdown {
 }
 
 
-import type { IfxDropdownCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxDropdownCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxDropdown extends Components.IfxDropdown {
   /**
@@ -751,14 +783,14 @@ export declare interface IfxDropdownHeader extends Components.IfxDropdownHeader 
 
 
 @ProxyCmp({
-  inputs: ['error', 'hide', 'href', 'icon', 'target']
+  inputs: ['disabled', 'error', 'hide', 'href', 'icon', 'target']
 })
 @Component({
   selector: 'ifx-dropdown-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['error', 'hide', 'href', 'icon', 'target'],
+  inputs: ['disabled', 'error', 'hide', 'href', 'icon', 'target'],
   outputs: ['ifxDropdownItem'],
   standalone: false
 })
@@ -772,7 +804,7 @@ export class IfxDropdownItem {
 }
 
 
-import type { IfxDropdownItemCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxDropdownItemCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxDropdownItem extends Components.IfxDropdownItem {
   /**
@@ -805,7 +837,7 @@ export class IfxDropdownMenu {
 }
 
 
-import type { IfxDropdownMenuCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxDropdownMenuCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxDropdownMenu extends Components.IfxDropdownMenu {
   /**
@@ -946,7 +978,7 @@ export class IfxFileUpload {
 }
 
 
-import type { IfxFileUploadCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxFileUploadCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxFileUpload extends Components.IfxFileUpload {
   /**
@@ -1030,7 +1062,7 @@ export class IfxFilterAccordion {
 }
 
 
-import type { IfxFilterAccordionCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxFilterAccordionCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxFilterAccordion extends Components.IfxFilterAccordion {
   /**
@@ -1063,7 +1095,7 @@ export class IfxFilterBar {
 }
 
 
-import type { IfxFilterBarCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxFilterBarCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxFilterBar extends Components.IfxFilterBar {
   /**
@@ -1095,7 +1127,7 @@ export class IfxFilterSearch {
 }
 
 
-import type { IfxFilterSearchCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxFilterSearchCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxFilterSearch extends Components.IfxFilterSearch {
   /**
@@ -1106,19 +1138,21 @@ export declare interface IfxFilterSearch extends Components.IfxFilterSearch {
 
 
 @ProxyCmp({
+  inputs: ['showSidebarFiltersButton']
 })
 @Component({
   selector: 'ifx-filter-type-group',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-  outputs: ['ifxSidebarFilterChange'],
+  inputs: ['showSidebarFiltersButton'],
+  outputs: ['ifxSidebarFilterChange', 'ifxShowSidebarFiltersButtonChange'],
   standalone: false
 })
 export class IfxFilterTypeGroup {
   protected el: HTMLIfxFilterTypeGroupElement;
   @Output() ifxSidebarFilterChange = new EventEmitter<IfxFilterTypeGroupCustomEvent<any>>();
+  @Output() ifxShowSidebarFiltersButtonChange = new EventEmitter<IfxFilterTypeGroupCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1126,13 +1160,17 @@ export class IfxFilterTypeGroup {
 }
 
 
-import type { IfxFilterTypeGroupCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxFilterTypeGroupCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxFilterTypeGroup extends Components.IfxFilterTypeGroup {
   /**
    * Emitted when a sidebar filter is updated
    */
   ifxSidebarFilterChange: EventEmitter<IfxFilterTypeGroupCustomEvent<any>>;
+  /**
+   * Notifies the parent table about the button visibility configuration.
+   */
+  ifxShowSidebarFiltersButtonChange: EventEmitter<IfxFilterTypeGroupCustomEvent<boolean>>;
 }
 
 
@@ -1203,7 +1241,7 @@ export class IfxIcon {
 }
 
 
-import type { IfxIconCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxIconCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxIcon extends Components.IfxIcon {
   /**
@@ -1328,7 +1366,7 @@ export class IfxList {
 }
 
 
-import type { IfxListCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxListCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxList extends Components.IfxList {
   /**
@@ -1360,7 +1398,7 @@ export class IfxListEntry {
 }
 
 
-import type { IfxListEntryCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxListEntryCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxListEntry extends Components.IfxListEntry {
 
@@ -1393,7 +1431,7 @@ export class IfxModal {
 }
 
 
-import type { IfxModalCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxModalCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxModal extends Components.IfxModal {
   /**
@@ -1423,13 +1461,14 @@ Use this event for two-way binding (v-model in Vue, [(ngModel)] in Angular).
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaClearLabel', 'ariaCollapseAllLabel', 'ariaExpandAllLabel', 'ariaMultiSelectDescribedBy', 'ariaMultiSelectLabel', 'ariaMultiSelectLabelledBy', 'ariaSearchLabel', 'ariaSelectAllLabel', 'ariaToggleLabel', 'caption', 'collapseLabel', 'disabled', 'error', 'expandLabel', 'label', 'name', 'noResultsMessage', 'placeholder', 'readOnly', 'required', 'searchPlaceholder', 'selectAllLabel', 'showClearButton', 'showExpandCollapse', 'showNoResultsMessage', 'showSearch', 'showSelectAll'],
-  outputs: ['ifxSelect', 'ifxOpen'],
+  outputs: ['ifxSelect', 'ifxOpen', 'ifxClear'],
   standalone: false
 })
 export class IfxMultiselect {
   protected el: HTMLIfxMultiselectElement;
   @Output() ifxSelect = new EventEmitter<IfxMultiselectCustomEvent<any>>();
   @Output() ifxOpen = new EventEmitter<IfxMultiselectCustomEvent<any>>();
+  @Output() ifxClear = new EventEmitter<IfxMultiselectCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1437,7 +1476,7 @@ export class IfxMultiselect {
 }
 
 
-import type { IfxMultiselectCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxMultiselectCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxMultiselect extends Components.IfxMultiselect {
   /**
@@ -1448,7 +1487,35 @@ export declare interface IfxMultiselect extends Components.IfxMultiselect {
    * Fired when the multi-select dropdown is opened.
    */
   ifxOpen: EventEmitter<IfxMultiselectCustomEvent<any>>;
+  /**
+   * Fired before selections are cleared.
+Call `event.preventDefault()` to cancel clearing.
+   */
+  ifxClear: EventEmitter<IfxMultiselectCustomEvent<void>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'label']
+})
+@Component({
+  selector: 'ifx-multiselect-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'label'],
+  standalone: false
+})
+export class IfxMultiselectGroup {
+  protected el: HTMLIfxMultiselectGroupElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxMultiselectGroup extends Components.IfxMultiselectGroup {}
 
 
 @ProxyCmp({
@@ -1518,7 +1585,7 @@ export class IfxNavbar {
 }
 
 
-import type { IfxNavbarCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxNavbarCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxNavbar extends Components.IfxNavbar {
   /**
@@ -1530,7 +1597,7 @@ export declare interface IfxNavbar extends Components.IfxNavbar {
 
 @ProxyCmp({
   inputs: ['dotIndicator', 'hideOnMobile', 'href', 'icon', 'numberIndicator', 'showLabel', 'target'],
-  methods: ['hideComponent', 'showComponent', 'toggleChildren', 'moveChildComponentsIntoSubLayerMenu', 'toggleFirstLayerItem', 'addMenuItemClass', 'moveChildComponentsBackIntoNavbar', 'returnToFirstLayer', 'setMenuItemPosition', 'setItemSideSpecifications']
+  methods: ['hideComponent', 'showComponent', 'toggleChildren', 'closeMenu', 'moveChildComponentsIntoSubLayerMenu', 'toggleFirstLayerItem', 'addMenuItemClass', 'moveChildComponentsBackIntoNavbar', 'returnToFirstLayer', 'setMenuItemPosition', 'setItemSideSpecifications']
 })
 @Component({
   selector: 'ifx-navbar-item',
@@ -1551,7 +1618,7 @@ export class IfxNavbarItem {
 }
 
 
-import type { IfxNavbarItemCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxNavbarItemCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxNavbarItem extends Components.IfxNavbarItem {
   /**
@@ -1563,7 +1630,7 @@ export declare interface IfxNavbarItem extends Components.IfxNavbarItem {
 
 @ProxyCmp({
   inputs: ['alt', 'href', 'imageUrl', 'showLabel', 'target', 'userName'],
-  methods: ['hideComponent', 'showComponent']
+  methods: ['hideComponent', 'showComponent', 'closeMenu']
 })
 @Component({
   selector: 'ifx-navbar-profile',
@@ -1586,18 +1653,20 @@ export declare interface IfxNavbarProfile extends Components.IfxNavbarProfile {}
 
 
 @ProxyCmp({
-  inputs: ['icon', 'linkHref', 'linkTarget', 'linkText', 'variant']
+  inputs: ['closable', 'icon', 'linkHref', 'linkTarget', 'linkText', 'variant']
 })
 @Component({
   selector: 'ifx-notification',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'linkHref', 'linkTarget', 'linkText', 'variant'],
+  inputs: ['closable', 'icon', 'linkHref', 'linkTarget', 'linkText', 'variant'],
+  outputs: ['ifxClose'],
   standalone: false
 })
 export class IfxNotification {
   protected el: HTMLIfxNotificationElement;
+  @Output() ifxClose = new EventEmitter<IfxNotificationCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1605,7 +1674,14 @@ export class IfxNotification {
 }
 
 
-export declare interface IfxNotification extends Components.IfxNotification {}
+import type { IfxNotificationCustomEvent } from '@infineon/design-system';
+
+export declare interface IfxNotification extends Components.IfxNotification {
+  /**
+   * Event emitted when the notification is closed.
+   */
+  ifxClose: EventEmitter<IfxNotificationCustomEvent<any>>;
+}
 
 
 @ProxyCmp({
@@ -1653,7 +1729,7 @@ export class IfxPagination {
 }
 
 
-import type { IfxPaginationCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxPaginationCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxPagination extends Components.IfxPagination {
   /**
@@ -1691,7 +1767,7 @@ export class IfxPopover {
 }
 
 
-import type { IfxPopoverCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxPopoverCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxPopover extends Components.IfxPopover {
   /**
@@ -1729,7 +1805,7 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'disabled', 'error', 'name', 'readOnly', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'name', 'size', 'value'],
   methods: ['isChecked']
 })
 @Component({
@@ -1737,14 +1813,14 @@ export declare interface IfxProgressBar extends Components.IfxProgressBar {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'error', 'name', 'readOnly', 'size', 'value'],
+  inputs: ['checked', 'disabled', 'error', 'name', 'size', 'value'],
   outputs: ['ifxChange', 'ifxError'],
   standalone: false
 })
 export class IfxRadioButton {
   protected el: HTMLIfxRadioButtonElement;
-  @Output() ifxChange = new EventEmitter<IfxRadioButtonCustomEvent<any>>();
-  @Output() ifxError = new EventEmitter<IfxRadioButtonCustomEvent<any>>();
+  @Output() ifxChange = new EventEmitter<IfxRadioButtonCustomEvent<boolean>>();
+  @Output() ifxError = new EventEmitter<IfxRadioButtonCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1752,17 +1828,17 @@ export class IfxRadioButton {
 }
 
 
-import type { IfxRadioButtonCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxRadioButtonCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxRadioButton extends Components.IfxRadioButton {
   /**
    * Fired when the checked state of the checkbox changes.
    */
-  ifxChange: EventEmitter<IfxRadioButtonCustomEvent<any>>;
+  ifxChange: EventEmitter<IfxRadioButtonCustomEvent<boolean>>;
   /**
    * Fired when the checkbox enters or leaves an error state.
    */
-  ifxError: EventEmitter<IfxRadioButtonCustomEvent<any>>;
+  ifxError: EventEmitter<IfxRadioButtonCustomEvent<boolean>>;
 }
 
 
@@ -1814,7 +1890,7 @@ export class IfxSearchBar {
 }
 
 
-import type { IfxSearchBarCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSearchBarCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSearchBar extends Components.IfxSearchBar {
   /**
@@ -1831,7 +1907,7 @@ Payload is the new open state.
 
 @ProxyCmp({
   inputs: ['ariaDescribedBy', 'ariaLabelText', 'ariaLabelledBy', 'autocomplete', 'deleteIconAriaLabel', 'disabled', 'dropdownAriaLabel', 'enableHistory', 'historyDeleteAriaLabel', 'historyHeaderText', 'historyItemAriaLabel', 'historyKey', 'maxHistoryItems', 'maxSuggestions', 'maxlength', 'placeholder', 'showDeleteIcon', 'showSuggestions', 'size', 'suggestionAriaLabel', 'suggestions', 'value'],
-  methods: ['clearSearchHistory']
+  methods: ['setFocus', 'clearSearchHistory']
 })
 @Component({
   selector: 'ifx-search-field',
@@ -1856,8 +1932,8 @@ export class IfxSearchField {
 }
 
 
-import type { IfxSearchFieldCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { SuggestionItem as IIfxSearchFieldSuggestionItem } from '@infineon/infineon-design-system-stencil';
+import type { IfxSearchFieldCustomEvent } from '@infineon/design-system';
+import type { SuggestionItem as IIfxSearchFieldSuggestionItem } from '@infineon/design-system';
 
 export declare interface IfxSearchField extends Components.IfxSearchField {
   /**
@@ -1905,7 +1981,7 @@ export class IfxSegment {
 }
 
 
-import type { IfxSegmentCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSegmentCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSegment extends Components.IfxSegment {
   /**
@@ -1916,14 +1992,14 @@ export declare interface IfxSegment extends Components.IfxSegment {
 
 
 @ProxyCmp({
-  inputs: ['caption', 'error', 'label', 'required', 'size']
+  inputs: ['caption', 'error', 'label', 'name', 'required', 'size', 'value']
 })
 @Component({
   selector: 'ifx-segmented-control',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['caption', 'error', 'label', 'required', 'size'],
+  inputs: ['caption', 'error', 'label', 'name', 'required', 'size', 'value'],
   outputs: ['ifxChange'],
   standalone: false
 })
@@ -1937,7 +2013,7 @@ export class IfxSegmentedControl {
 }
 
 
-import type { IfxSegmentedControlCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSegmentedControlCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSegmentedControl extends Components.IfxSegmentedControl {
   /**
@@ -1948,22 +2024,24 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
 
 
 @ProxyCmp({
-  inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'caption', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'readOnly', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'required', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'separator', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
-  methods: ['clearSelection', 'handleChange', 'highlightItem', 'unhighlightItem', 'highlightAll', 'unhighlightAll', 'removeActiveItemsByValue', 'removeActiveItems', 'removeHighlightedItems', 'showDropdown', 'hideDropdown', 'getValue', 'setValue', 'setChoiceByValue', 'setChoices', 'clearChoices', 'clearStore', 'clearInput', 'ajax', 'handleDeleteIcon']
+  inputs: ['ariaClearLabel', 'ariaSearchLabel', 'ariaSelectDescribedBy', 'ariaSelectLabel', 'ariaSelectLabelledBy', 'caption', 'disabled', 'error', 'label', 'name', 'noResultsMessage', 'options', 'placeholder', 'placeholderValue', 'readOnly', 'required', 'searchPlaceholderValue', 'showClearButton', 'showSearch', 'size', 'value'],
+  methods: ['clearSelection', 'getValue', 'setValue', 'showDropdown', 'hideDropdown']
 })
 @Component({
   selector: 'ifx-select',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'caption', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'readOnly', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'required', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'separator', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
-  outputs: ['ifxSelect', 'ifxInput'],
+  inputs: ['ariaClearLabel', 'ariaSearchLabel', 'ariaSelectDescribedBy', 'ariaSelectLabel', 'ariaSelectLabelledBy', 'caption', 'disabled', 'error', 'label', 'name', 'noResultsMessage', 'options', 'placeholder', 'placeholderValue', 'readOnly', 'required', 'searchPlaceholderValue', 'showClearButton', 'showSearch', 'size', 'value'],
+  outputs: ['ifxSelect', 'ifxClear', 'ifxInput', 'ifxOpen'],
   standalone: false
 })
 export class IfxSelect {
   protected el: HTMLIfxSelectElement;
-  @Output() ifxSelect = new EventEmitter<IfxSelectCustomEvent<CustomEvent>>();
-  @Output() ifxInput = new EventEmitter<IfxSelectCustomEvent<CustomEvent>>();
+  @Output() ifxSelect = new EventEmitter<IfxSelectCustomEvent<IIfxSelectSelectChangeDetail | null>>();
+  @Output() ifxClear = new EventEmitter<IfxSelectCustomEvent<void>>();
+  @Output() ifxInput = new EventEmitter<IfxSelectCustomEvent<string>>();
+  @Output() ifxOpen = new EventEmitter<IfxSelectCustomEvent<boolean>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1971,18 +2049,74 @@ export class IfxSelect {
 }
 
 
-import type { IfxSelectCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSelectCustomEvent } from '@infineon/design-system';
+import type { SelectChangeDetail as IIfxSelectSelectChangeDetail } from '@infineon/design-system';
 
 export declare interface IfxSelect extends Components.IfxSelect {
   /**
-   * Fired when an option is selected.
+   * Fired when the selection changes. Emits `{ value, label }`, or `null` on clear.
    */
-  ifxSelect: EventEmitter<IfxSelectCustomEvent<CustomEvent>>;
+  ifxSelect: EventEmitter<IfxSelectCustomEvent<IIfxSelectSelectChangeDetail | null>>;
   /**
-   * Fired when the input / search value changes.
+   * Fired before the clear control removes the current selection.
+Call `event.preventDefault()` to cancel clearing.
    */
-  ifxInput: EventEmitter<IfxSelectCustomEvent<CustomEvent>>;
+  ifxClear: EventEmitter<IfxSelectCustomEvent<void>>;
+  /**
+   * Fired when the search input value changes.
+   */
+  ifxInput: EventEmitter<IfxSelectCustomEvent<string>>;
+  /**
+   * Fired when the dropdown opens (`true`) or closes (`false`).
+   */
+  ifxOpen: EventEmitter<IfxSelectCustomEvent<boolean>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'label']
+})
+@Component({
+  selector: 'ifx-select-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'label'],
+  standalone: false
+})
+export class IfxSelectGroup {
+  protected el: HTMLIfxSelectGroupElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSelectGroup extends Components.IfxSelectGroup {}
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'selected', 'value']
+})
+@Component({
+  selector: 'ifx-select-option',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'selected', 'value'],
+  standalone: false
+})
+export class IfxSelectOption {
+  protected el: HTMLIfxSelectOptionElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSelectOption extends Components.IfxSelectOption {}
 
 
 @ProxyCmp({
@@ -2007,7 +2141,7 @@ export class IfxSetFilter {
 }
 
 
-import type { IfxSetFilterCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSetFilterCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSetFilter extends Components.IfxSetFilter {
   /**
@@ -2041,7 +2175,7 @@ export class IfxSidebar {
 }
 
 
-import type { IfxSidebarCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSidebarCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSidebar extends Components.IfxSidebar {
   /**
@@ -2056,7 +2190,7 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
 
 
 @ProxyCmp({
-  inputs: ['active', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
+  inputs: ['active', 'fontWeight', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
   methods: ['setActiveClasses', 'expandMenu', 'isItemExpandable']
 })
 @Component({
@@ -2064,7 +2198,7 @@ export declare interface IfxSidebar extends Components.IfxSidebar {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
+  inputs: ['active', 'fontWeight', 'handleItemClick', 'href', 'icon', 'isActionItem', 'numberIndicator', 'target'],
   outputs: ['ifxSidebarMenu', 'ifxSidebarNavigationItem', 'ifxSidebarActionItem'],
   standalone: false
 })
@@ -2080,7 +2214,7 @@ export class IfxSidebarItem {
 }
 
 
-import type { IfxSidebarItemCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSidebarItemCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSidebarItem extends Components.IfxSidebarItem {
   /**
@@ -2096,6 +2230,28 @@ export declare interface IfxSidebarItem extends Components.IfxSidebarItem {
    */
   ifxSidebarActionItem: EventEmitter<IfxSidebarItemCustomEvent<any>>;
 }
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ifx-sidebar-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IfxSidebarSeparator {
+  protected el: HTMLIfxSidebarSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSidebarSeparator extends Components.IfxSidebarSeparator {}
 
 
 @ProxyCmp({
@@ -2122,14 +2278,14 @@ export declare interface IfxSidebarTitle extends Components.IfxSidebarTitle {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'readOnly', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value']
+  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'name', 'readOnly', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value']
 })
 @Component({
   selector: 'ifx-slider',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'readOnly', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value'],
+  inputs: ['ariaLabelText', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'name', 'readOnly', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value'],
   outputs: ['ifxChange'],
   standalone: false
 })
@@ -2143,7 +2299,7 @@ export class IfxSlider {
 }
 
 
-import type { IfxSliderCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSliderCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSlider extends Components.IfxSlider {
   /**
@@ -2244,7 +2400,7 @@ export class IfxStepper {
 }
 
 
-import type { IfxStepperCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxStepperCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxStepper extends Components.IfxStepper {
   /**
@@ -2277,7 +2433,7 @@ export class IfxSwitch {
 }
 
 
-import type { IfxSwitchCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxSwitchCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxSwitch extends Components.IfxSwitch {
   /**
@@ -2288,14 +2444,14 @@ export declare interface IfxSwitch extends Components.IfxSwitch {
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline']
+  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline', 'sublinePosition']
 })
 @Component({
   selector: 'ifx-tab',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline'],
+  inputs: ['disabled', 'header', 'icon', 'iconPosition', 'label', 'number', 'positionSticky', 'subline', 'sublinePosition'],
   outputs: ['tabHeaderChange'],
   standalone: false
 })
@@ -2309,7 +2465,7 @@ export class IfxTab {
 }
 
 
-import type { IfxTabCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTabCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTab extends Components.IfxTab {
   /**
@@ -2320,15 +2476,15 @@ export declare interface IfxTab extends Components.IfxTab {
 
 
 @ProxyCmp({
-  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
-  methods: ['onBtShowLoading']
+  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnValuePosition', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  methods: ['refreshCurrentPage', 'onBtShowLoading']
 })
 @Component({
   selector: 'ifx-table',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'columnMinWidth', 'columnValuePosition', 'columnWidth', 'enableSelection', 'filterOrientation', 'fitColumns', 'headline', 'headlineNumber', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
   outputs: ['ifxSortChange'],
   standalone: false
 })
@@ -2342,7 +2498,7 @@ export class IfxTable {
 }
 
 
-import type { IfxTableCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTableCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTable extends Components.IfxTable {
   /**
@@ -2353,14 +2509,14 @@ export declare interface IfxTable extends Components.IfxTable {
 
 
 @ProxyCmp({
-  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline']
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline', 'sublinePosition']
 })
 @Component({
   selector: 'ifx-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline'],
+  inputs: ['activeTabIndex', 'fullWidth', 'label', 'number', 'orientation', 'positionSticky', 'subline', 'sublinePosition'],
   outputs: ['ifxChange'],
   standalone: false
 })
@@ -2374,7 +2530,7 @@ export class IfxTabs {
 }
 
 
-import type { IfxTabsCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTabsCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTabs extends Components.IfxTabs {
   /**
@@ -2408,7 +2564,7 @@ export class IfxTemplate {
 }
 
 
-import type { IfxTemplateCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTemplateCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTemplate extends Components.IfxTemplate {
   /**
@@ -2467,7 +2623,7 @@ export class IfxTextField {
 }
 
 
-import type { IfxTextFieldCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTextFieldCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTextField extends Components.IfxTextField {
   /**
@@ -2500,7 +2656,7 @@ export class IfxTextarea {
 }
 
 
-import type { IfxTextareaCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTextareaCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTextarea extends Components.IfxTextarea {
   /**
@@ -2508,6 +2664,75 @@ export declare interface IfxTextarea extends Components.IfxTextarea {
    */
   ifxInput: EventEmitter<IfxTextareaCustomEvent<string>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['actionText', 'duration', 'message', 'status', 'toastId'],
+  methods: ['dismiss']
+})
+@Component({
+  selector: 'ifx-toast',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actionText', 'duration', 'message', 'status', 'toastId'],
+  outputs: ['ifxToastOpen', 'ifxToastClose', 'ifxToastAction'],
+  standalone: false
+})
+export class IfxToast {
+  protected el: HTMLIfxToastElement;
+  @Output() ifxToastOpen = new EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>();
+  @Output() ifxToastClose = new EventEmitter<IfxToastCustomEvent<IIfxToastToastCloseEventDetail>>();
+  @Output() ifxToastAction = new EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IfxToastCustomEvent } from '@infineon/design-system';
+import type { ToastEventDetail as IIfxToastToastEventDetail } from '@infineon/design-system';
+import type { ToastCloseEventDetail as IIfxToastToastCloseEventDetail } from '@infineon/design-system';
+
+export declare interface IfxToast extends Components.IfxToast {
+  /**
+   * Emitted once the toast has been shown (mounted and rendered).
+   */
+  ifxToastOpen: EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>;
+  /**
+   * Emitted after the toast finished dismissing (animation complete).
+   */
+  ifxToastClose: EventEmitter<IfxToastCustomEvent<IIfxToastToastCloseEventDetail>>;
+  /**
+   * Emitted when the action is activated (before the toast dismisses).
+   */
+  ifxToastAction: EventEmitter<IfxToastCustomEvent<IIfxToastToastEventDetail>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['max', 'navbarSelector', 'offset', 'placement'],
+  methods: ['addToast', 'dismissAll', 'enforceMax']
+})
+@Component({
+  selector: 'ifx-toast-container',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['max', 'navbarSelector', 'offset', 'placement'],
+  standalone: false
+})
+export class IfxToastContainer {
+  protected el: HTMLIfxToastContainerElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxToastContainer extends Components.IfxToastContainer {}
 
 
 @ProxyCmp({
@@ -2556,7 +2781,7 @@ export class IfxTreeView {
 }
 
 
-import type { IfxTreeViewCustomEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTreeViewCustomEvent } from '@infineon/design-system';
 
 export declare interface IfxTreeView extends Components.IfxTreeView {
   /**
@@ -2594,10 +2819,10 @@ export class IfxTreeViewItem {
 }
 
 
-import type { IfxTreeViewItemCustomEvent } from '@infineon/infineon-design-system-stencil';
-import type { TreeViewExpandChangeEvent as IIfxTreeViewItemTreeViewExpandChangeEvent } from '@infineon/infineon-design-system-stencil';
-import type { TreeViewCheckChangeEvent as IIfxTreeViewItemTreeViewCheckChangeEvent } from '@infineon/infineon-design-system-stencil';
-import type { TreeViewDisableChangeEvent as IIfxTreeViewItemTreeViewDisableChangeEvent } from '@infineon/infineon-design-system-stencil';
+import type { IfxTreeViewItemCustomEvent } from '@infineon/design-system';
+import type { TreeViewExpandChangeEvent as IIfxTreeViewItemTreeViewExpandChangeEvent } from '@infineon/design-system';
+import type { TreeViewCheckChangeEvent as IIfxTreeViewItemTreeViewCheckChangeEvent } from '@infineon/design-system';
+import type { TreeViewDisableChangeEvent as IIfxTreeViewItemTreeViewDisableChangeEvent } from '@infineon/design-system';
 
 export declare interface IfxTreeViewItem extends Components.IfxTreeViewItem {
   /**

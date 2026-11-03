@@ -9,23 +9,25 @@ import { ActionListItemClickEvent } from "./components/action-list/action-list-i
 import { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
 import { ChangeEvent } from "./components/content-switcher/content-switcher";
 import { Placement } from "./components/dropdown/dropdown";
-import { IOpenable } from "./components/dropdown/IOpenable";
 import { NotificationVariant } from "./components/notification/notification";
 import { SuggestionItem } from "./components/search-field/search-field";
-import { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
+import { SelectChangeDetail } from "./components/select/single-select/select";
 import { StepperState } from "./components/stepper/interfaces";
 import { Event } from "@stencil/core";
+import { ToastCloseEventDetail, ToastCloseReason, ToastEventDetail, ToastStatus } from "./components/toast/toast";
+import { ToastConfig, ToastPlacement } from "./components/toast/toast-container/toast-container";
 import { TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, TreeViewExpandChangeEvent } from "./components/tree-view/tree-view-item";
 export { ActionListItemClickEvent } from "./components/action-list/action-list-item";
 export { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
 export { ChangeEvent } from "./components/content-switcher/content-switcher";
 export { Placement } from "./components/dropdown/dropdown";
-export { IOpenable } from "./components/dropdown/IOpenable";
 export { NotificationVariant } from "./components/notification/notification";
 export { SuggestionItem } from "./components/search-field/search-field";
-export { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
+export { SelectChangeDetail } from "./components/select/single-select/select";
 export { StepperState } from "./components/stepper/interfaces";
 export { Event } from "@stencil/core";
+export { ToastCloseEventDetail, ToastCloseReason, ToastEventDetail, ToastStatus } from "./components/toast/toast";
+export { ToastConfig, ToastPlacement } from "./components/toast/toast-container/toast-container";
 export { TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, TreeViewExpandChangeEvent } from "./components/tree-view/tree-view-item";
 export namespace Components {
     interface IfxAccordion {
@@ -132,6 +134,11 @@ export namespace Components {
           * Column definitions for the table (array or JSON string).
          */
         "cols": any[] | string;
+        /**
+          * Position of the column values, either left or center.
+          * @default 'left'
+         */
+        "columnValuePosition": 'left' | 'center';
         /**
           * Row height preset (e.g. default, compact).
           * @default "default"
@@ -456,6 +463,18 @@ export namespace Components {
          */
         "value": string;
     }
+    interface IfxCounter {
+        /**
+          * Used as the form field name when the counter is in a form.
+          * @default ""
+         */
+        "name": string;
+        /**
+          * The current value of the counter. Must be a non-negative number.
+          * @default 0
+         */
+        "value": number;
+    }
     interface IfxDatePicker {
         /**
           * Aria label for the date picker input
@@ -545,6 +564,7 @@ export namespace Components {
         "defaultOpen": boolean;
         /**
           * If true, dropdown is disabled and cannot be opened.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -556,16 +576,6 @@ export namespace Components {
           * @default false
          */
         "noAppendToBody": boolean;
-        /**
-          * Id true, clicking inside the menu will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnMenuClick": boolean;
-        /**
-          * If true, clicking outside will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnOutsideClick": boolean;
         /**
           * Opens the dropdown and sets up the popper positioning.
          */
@@ -579,6 +589,11 @@ export namespace Components {
     interface IfxDropdownHeader {
     }
     interface IfxDropdownItem {
+        /**
+          * If true, this item is disabled and not interactive.
+          * @default false
+         */
+        "disabled": boolean;
         /**
           * If true, this item is shown in an error style.
           * @default false
@@ -596,6 +611,7 @@ export namespace Components {
         "href": string;
         /**
           * Icon to show in the dropdown item.
+          * @default ""
          */
         "icon": string;
         /**
@@ -628,6 +644,7 @@ export namespace Components {
     interface IfxDropdownTriggerButton {
         /**
           * If true, trigger is disabled and not clickable.
+          * @default false
          */
         "disabled": boolean;
         /**
@@ -652,6 +669,7 @@ export namespace Components {
         "theme": "default" | "danger" | "inverse";
         /**
           * Visual style variant.
+          * @default "primary"
          */
         "variant": "primary";
     }
@@ -902,6 +920,11 @@ export namespace Components {
         "placeholder": string;
     }
     interface IfxFilterTypeGroup {
+        /**
+          * Toggles the Show/hide filter button
+          * @default true
+         */
+        "showSidebarFiltersButton": boolean;
     }
     interface IfxFooter {
         /**
@@ -1242,6 +1265,21 @@ export namespace Components {
          */
         "showSelectAll": boolean;
     }
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
+    interface IfxMultiselectGroup {
+        /**
+          * Whether the group is disabled.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Label displayed above the group's options.
+         */
+        "label": string;
+    }
     interface IfxMultiselectOption {
         /**
           * Whether this tree item is disabled and not interactive.
@@ -1297,6 +1335,10 @@ export namespace Components {
           * Marks this item as a menu entry and shows the right-arrow icon if needed.
          */
         "addMenuItemClass": () => Promise<void>;
+        /**
+          * Closes this item's menu when a nested navigation item is selected.
+         */
+        "closeMenu": () => Promise<void>;
         /**
           * If true, shows a simple dot indicator instead of a number.
           * @default false
@@ -1375,6 +1417,10 @@ export namespace Components {
          */
         "alt": string;
         /**
+          * Closes the profile menu.
+         */
+        "closeMenu": () => Promise<void>;
+        /**
           * Hides this avatar item component.
          */
         "hideComponent": () => Promise<void>;
@@ -1409,6 +1455,11 @@ export namespace Components {
         "userName": string;
     }
     interface IfxNotification {
+        /**
+          * Shows a close button allowing the user to dismiss the notification.
+          * @default false
+         */
+        "closable": boolean;
         /**
           * Icon to display in the notification.
          */
@@ -1543,17 +1594,13 @@ export namespace Components {
          */
         "name": string;
         /**
-          * If true, the checkbox is shown in a read-only state.
-          * @default false
-         */
-        "readOnly": boolean;
-        /**
           * Size of the checkbox (small or medium).
           * @default "s"
          */
         "size": "s" | "m";
         /**
           * Value submitted when the checkbox is checked.
+          * @default "on"
          */
         "value": string;
     }
@@ -1711,7 +1758,7 @@ export namespace Components {
         "maxSuggestions": number;
         /**
           * Maximum number of characters allowed in the input.
-          * @default null
+          * @default undefined
          */
         "maxlength"?: number;
         /**
@@ -1719,6 +1766,10 @@ export namespace Components {
           * @default "Search"
          */
         "placeholder": string;
+        /**
+          * Focuses the search input.
+         */
+        "setFocus": () => Promise<void>;
         /**
           * Show the clear icon when there is a non-empty value.
           * @default false
@@ -1786,6 +1837,11 @@ export namespace Components {
          */
         "label": string;
         /**
+          * Name used for the segmented control when submitting a form.
+          * @default ""
+         */
+        "name": string;
+        /**
           * Whether choosing a value is required.
           * @default false
          */
@@ -1795,311 +1851,179 @@ export namespace Components {
           * @default "regular"
          */
         "size": "regular" | "small";
+        /**
+          * Value of the currently selected segment.
+          * @default ""
+         */
+        "value": string;
     }
+    /**
+     * A single-select dropdown. Options are provided as slotted `ifx-select-option`
+     * children, optionally grouped with `ifx-select-group` (flat optgroup). Native,
+     * slot-based architecture mirroring `ifx-multiselect`.
+     */
     interface IfxSelect {
         /**
-          * Filter used to validate items before they are added.
+          * ARIA label for the clear button.
+          * @default "Clear selection"
          */
-        "addItemFilter": string | RegExp | ItemFilterFn;
+        "ariaClearLabel": string;
         /**
-          * Text or function for the “add item” prompt.
+          * ARIA label for the search input.
+          * @default "Search options"
          */
-        "addItemText": string | AddItemTextFn;
+        "ariaSearchLabel": string;
         /**
-          * Whether new items can be added by the user.
+          * ID of an external element that describes the select (`aria-describedby`). Takes precedence over the caption.
+          * @default ""
          */
-        "addItems": boolean;
+        "ariaSelectDescribedBy": string;
         /**
-          * Performs an AJAX request using the provided function.
+          * ARIA label for the combobox.
+          * @default "Select"
          */
-        "ajax": (fn: AjaxFn) => Promise<this>;
+        "ariaSelectLabel": string;
         /**
-          * Text to append to each item’s value on output.
+          * ID of an external element that labels the select (`aria-labelledby`). Takes precedence over the visible label and `ariaSelectLabel`.
+          * @default ""
          */
-        "appendValue": string;
+        "ariaSelectLabelledBy": string;
         /**
-          * Callback used to create or override internal templates.
-         */
-        "callbackOnCreateTemplates": OnCreateTemplates;
-        /**
-          * Callback function invoked when the Choices instance is initialized.
-         */
-        "callbackOnInit": OnInit;
-        /**
-          * Helper text shown below the select field.
+          * Helper text shown below the select.
           * @default ""
          */
         "caption": string;
         /**
-          * Available choices; can be an array or a string (e.g. data source).
-          * @default undefined
-         */
-        "choices": Array<any> | string;
-        /**
-          * Custom CSS class names mapping for internal elements.
-         */
-        "classNames": ClassNames;
-        /**
-          * Removes all available choices from the dropdown.
-         */
-        "clearChoices": () => Promise<this>;
-        /**
-          * Clears the text input value.
-         */
-        "clearInput": () => Promise<this>;
-        /**
-          * Clears the current selection and closes the dropdown if not disabled or read-only.
+          * Public API — clears the selection.
          */
         "clearSelection": () => Promise<void>;
-        /**
-          * Clears the internal Choices.js store.
-         */
-        "clearStore": () => Promise<this>;
-        /**
-          * Configuration for customizing the “add item” text.
-         */
-        "customAddItemText": CustomAddItemText;
-        /**
-          * Delimiter used when parsing or joining item values (e.g. for paste).
-         */
-        "delimiter": string;
         /**
           * If true, the select is disabled and not interactive.
           * @default false
          */
         "disabled": boolean;
         /**
-          * Whether duplicate items are allowed.
-         */
-        "duplicateItemsAllowed": boolean;
-        /**
-          * Whether selected items can be edited in place.
-         */
-        "editItems": boolean;
-        /**
           * If true, shows the select in an error state.
           * @default false
          */
         "error": boolean;
         /**
-          * Fuse.js options for fuzzy searching choices.
+          * Public API — returns the currently selected value.
          */
-        "fuseOptions": FuseOptions;
+        "getValue": () => Promise<string | undefined>;
         /**
-          * Gets the current value(s); returns raw value or full item list.
+          * Public API — closes the dropdown.
          */
-        "getValue": (valueOnly?: boolean) => Promise<string | Array<string>>;
+        "hideDropdown": () => Promise<void>;
         /**
-          * Handles a selection change, updates state, and closes the dropdown.
-         */
-        "handleChange": (selectedOption: any) => Promise<void>;
-        /**
-          * Shows or hides the delete icon depending on component width and settings.
-         */
-        "handleDeleteIcon": () => Promise<void>;
-        /**
-          * Closes the dropdown, optionally blurring the input.
-         */
-        "hideDropdown": (blurInput?: boolean) => Promise<this>;
-        /**
-          * Highlights all items.
-         */
-        "highlightAll": () => Promise<this>;
-        /**
-          * Highlights a specific item in the dropdown.
-         */
-        "highlightItem": (item: HTMLElement, runEvent?: boolean) => Promise<this>;
-        /**
-          * Text shown on an item when it is selectable (kept as empty string here).
-         */
-        "itemSelectText": '';
-        /**
-          * Initial list of items to populate the component with.
-         */
-        "items": Array<any>;
-        /**
-          * Label text shown above the select field.
+          * Label shown above the select.
           * @default ""
          */
         "label": string;
         /**
-          * Text shown while data or choices are loading.
+          * Name of the select field (used in forms).
+          * @default ""
          */
-        "loadingText": string;
+        "name"?: string;
         /**
-          * Maximum number of items that can be selected.
+          * Message shown when a search yields no results.
+          * @default "No results found."
          */
-        "maxItemCount": number;
+        "noResultsMessage": string;
         /**
-          * Text or function used when the max item count is reached.
+          * @deprecated Removed. Provide options as slotted `<ifx-select-option>` children (optionally grouped with `<ifx-select-group>`) instead of an options array.
          */
-        "maxItemText": string | MaxItemTextFn;
+        "options": unknown;
         /**
-          * Name attribute used when submitting the field in a form.
+          * If false, hides the placeholder text when nothing is selected.
+          * @default true
          */
-        "name": string;
+        "placeholder": boolean;
         /**
-          * Text or function used when there are no choices to show.
-         */
-        "noChoicesText": string | NoChoicesTextFn;
-        /**
-          * Text or function used when no search results are found.
-         */
-        "noResultsText": string | NoResultsTextFn;
-        /**
-          * List of available options (array or string source).
-         */
-        "options": any[] | string;
-        /**
-          * Whether pasting values to create items is allowed.
-         */
-        "paste": boolean;
-        /**
-          * Placeholder configuration or text for the input.
-         */
-        "placeholder": boolean | string;
-        /**
-          * Placeholder text shown when no option is selected.
+          * Placeholder text shown when nothing is selected.
           * @default "Placeholder"
          */
         "placeholderValue": string;
         /**
-          * Position of the dropdown relative to the input.
-         */
-        "position": 'auto' | 'top' | 'bottom';
-        /**
-          * Text to prepend to each item’s value on output.
-         */
-        "prependValue": string;
-        /**
-          * If true, shows the select in a read-only state.
+          * If true, the select is read-only.
           * @default false
          */
         "readOnly": boolean;
         /**
-          * Removes all active items, optionally excluding one by ID.
-         */
-        "removeActiveItems": (excludedId?: number) => Promise<this>;
-        /**
-          * Removes active items that match a given value.
-         */
-        "removeActiveItemsByValue": (value: string) => Promise<this>;
-        /**
-          * Removes all currently highlighted items.
-         */
-        "removeHighlightedItems": (runEvent?: boolean) => Promise<this>;
-        /**
-          * Whether to show a remove button on each selected item.
-         */
-        "removeItemButton": boolean;
-        /**
-          * Whether items can be removed by the user.
-         */
-        "removeItems": boolean;
-        /**
-          * Maximum number of choices to render in the list at once.
-         */
-        "renderChoiceLimit": number;
-        /**
-          * When to render selected choices (always or only when needed).
-         */
-        "renderSelectedChoices": 'always' | 'auto';
-        /**
-          * Whether selecting a value is required.
+          * Whether a selection is required (marks the label with `*`).
           * @default false
          */
         "required": boolean;
         /**
-          * Whether to reset scroll position when opening the dropdown.
-         */
-        "resetScrollPosition": boolean;
-        /**
-          * Whether search filters the available choices.
-         */
-        "searchChoices": boolean;
-        /**
-          * Fields used when searching choices (array of field names or a string).
-         */
-        "searchFields": Array<string> | string;
-        /**
-          * Minimum number of characters before search is triggered.
-         */
-        "searchFloor": number;
-        /**
-          * Placeholder text shown inside the search input.
+          * Placeholder text for the search input.
+          * @default "Search..."
          */
         "searchPlaceholderValue": string;
         /**
-          * Maximum number of search results to display.
+          * Public API — programmatically sets the selected value.
          */
-        "searchResultLimit": number;
-        /**
-          * If true, shows a separator between options.
-          * @default false
-         */
-        "separator": boolean;
-        /**
-          * Selects choices that match the given value or values.
-         */
-        "setChoiceByValue": (value: string | Array<string>) => Promise<this>;
-        /**
-          * Sets the available choices from an array or JSON string.
-         */
-        "setChoices": (choices: any[] | string, value: string, label: string, replaceChoices?: boolean) => Promise<this>;
-        /**
-          * Sets the current value(s) programmatically.
-         */
-        "setValue": (args: Array<any>) => Promise<this>;
-        /**
-          * Whether available choices should be sorted.
-         */
-        "shouldSort": boolean;
-        /**
-          * Whether selected items should be sorted.
-         */
-        "shouldSortItems": boolean;
+        "setValue": (value: string) => Promise<void>;
         /**
           * If true, shows a button to clear the current selection.
           * @default true
          */
         "showClearButton": boolean;
         /**
-          * Opens the dropdown, optionally focusing the input.
+          * Public API — opens the dropdown.
          */
-        "showDropdown": (focusInput?: boolean) => Promise<this>;
+        "showDropdown": () => Promise<void>;
         /**
-          * Whether the search input is shown.
+          * If true, shows a search box inside the dropdown.
+          * @default false
          */
         "showSearch": boolean;
         /**
-          * Size of the select component (e.g. medium / 40px).
-          * @default "medium (40px)"
+          * Size of the select field: `'s'` (36px) or `'m'` (40px).
+          * @default "m"
          */
-        "size": string;
+        "size": "s" | "m";
         /**
-          * Custom sorting function for choices and/or items.
+          * The selected option value (source of truth).
+          * @default ""
          */
-        "sorter": SortFn;
+        "value"?: string;
+    }
+    /**
+     * A non-selectable, greyed group header (like HTML `<optgroup>`) that labels a set
+     * of slotted `ifx-select-option`s. Flat — no expand/collapse. Setting `disabled`
+     * disables every option in the group.
+     */
+    interface IfxSelectGroup {
         /**
-          * Removes highlight from all items.
+          * Disables every option within the group (like `<optgroup disabled>`).
+          * @default false
          */
-        "unhighlightAll": () => Promise<this>;
+        "disabled": boolean;
         /**
-          * Removes highlight from a specific item.
+          * The group heading text.
          */
-        "unhighlightItem": (item: HTMLElement) => Promise<this>;
+        "label": string;
+    }
+    /**
+     * A single selectable option inside an `ifx-select`. Provided as a slotted child
+     * (optionally wrapped in an `ifx-select-group`). Mirrors the multi-select option
+     * pattern but simplified for single selection — no checkbox, nesting or chevron.
+     */
+    interface IfxSelectOption {
         /**
-          * Text configuration for duplicate/unique item errors.
+          * Whether this option is disabled and not interactive.
+          * @default false
          */
-        "uniqueItemText": UniqueItemText;
+        "disabled": boolean;
         /**
-          * Initial value of the Choices instance.
+          * Whether this option is currently selected.
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * Value associated with this option (used for selection and events).
          */
         "value": string;
-        /**
-          * Custom function for comparing item/choice values.
-         */
-        "valueComparer": ValueCompareFunction;
     }
     interface IfxSetFilter {
         /**
@@ -2225,9 +2149,14 @@ export namespace Components {
          */
         "active": boolean;
         /**
-          * Expand submenu (adds 'open'); if ac=true, remove 'active-section'
+          * Expand submenu and keep the active section indicator visible.
          */
         "expandMenu": (ac: boolean) => Promise<void>;
+        /**
+          * Customize the font bold vs normal
+          * @default "normal"
+         */
+        "fontWeight": "normal" | "bold";
         /**
           * Click handler callback; receives the item HTMLElement
          */
@@ -2264,6 +2193,8 @@ export namespace Components {
           * @default "_self"
          */
         "target": string;
+    }
+    interface IfxSidebarSeparator {
     }
     interface IfxSidebarTitle {
         /**
@@ -2308,6 +2239,11 @@ export namespace Components {
           * Initial value of the left handle for a double slider.
          */
         "minValueHandle": number;
+        /**
+          * Optional name used when submitting the slider in a form.
+          * @default ""
+         */
+        "name": string;
         /**
           * If true, the slider is read-only.
           * @default false
@@ -2548,6 +2484,11 @@ export namespace Components {
           * Subline under the header, only for advanced variant.
          */
         "subline": string;
+        /**
+          * Subline position, either left or center.
+          * @default 'left'
+         */
+        "sublinePosition": 'left' | 'center';
     }
     interface IfxTable {
         /**
@@ -2570,6 +2511,11 @@ export namespace Components {
           * Minimum width for columns.
          */
         "columnMinWidth"?: number;
+        /**
+          * Position of the column values, either left or center.
+          * @default "left"
+         */
+        "columnValuePosition": "left" | "center";
         /**
           * Fixed width for columns.
          */
@@ -2620,6 +2566,11 @@ export namespace Components {
          */
         "paginationItemsPerPage": | string
 		| Array<{ value: number | string; selected?: boolean; label?: string }>;
+        /**
+          * Refreshes the current page data by re-calling the serverPageChangeHandler. Use this method to update the table after modifying data on the server side.
+          * @returns
+         */
+        "refreshCurrentPage": () => Promise<void>;
         /**
           * Height of each row.
           * @default "default"
@@ -2691,6 +2642,11 @@ export namespace Components {
           * Subline under the header, only for advanced variant.
          */
         "subline": string;
+        /**
+          * Subline position, either left or center.
+          * @default "left"
+         */
+        "sublinePosition": "left" | "center";
     }
     interface IfxTemplate {
         /**
@@ -2876,6 +2832,68 @@ export namespace Components {
          */
         "wrap": "hard" | "soft" | "off";
     }
+    interface IfxToast {
+        /**
+          * Text for the trailing action button that dismisses the toast. Hidden when empty.
+         */
+        "actionText": string;
+        /**
+          * Programmatically dismisses the toast. Runs the exit animation and then emits `ifxToastClose`.
+         */
+        "dismiss": (reason?: ToastCloseReason) => Promise<void>;
+        /**
+          * Auto-dismiss delay in ms. `0` disables auto-dismiss. The `loading` status never auto-dismisses.
+          * @default 5000
+         */
+        "duration": number;
+        /**
+          * Message text. Falls back to the default slot when empty.
+         */
+        "message": string;
+        /**
+          * Status variant controlling the status icon and accent color.
+          * @default "success"
+         */
+        "status": ToastStatus;
+        /**
+          * Stable id emitted with every toast event. Auto-generated when not set.
+         */
+        "toastId": string;
+    }
+    interface IfxToastContainer {
+        /**
+          * Creates an `ifx-toast`, appends it to the container, and removes it once dismissed. Returns the created element so callers can update or dismiss it.
+         */
+        "addToast": (config?: ToastConfig) => Promise<HTMLIfxToastElement>;
+        /**
+          * Dismisses every toast currently in the container.
+         */
+        "dismissAll": () => Promise<void>;
+        /**
+          * Dismisses the oldest toasts until at most `max` remain (`max <= 0` disables the limit). Public so the `ifxToast` controller can enforce the cap after appending a toast directly, not only via `addToast`.
+         */
+        "enforceMax": () => Promise<void>;
+        /**
+          * Maximum number of simultaneously visible toasts. `0` means unlimited.
+          * @default 0
+         */
+        "max": number;
+        /**
+          * CSS selector of the navbar/header to keep clear of on top placements. Empty disables measuring.
+          * @default "ifx-navbar"
+         */
+        "navbarSelector": string;
+        /**
+          * Distance in px from the viewport edge. Added on top of the navbar clearance for top placements.
+          * @default 16
+         */
+        "offset": number;
+        /**
+          * Placement of the container on desktop. Collapses to top/bottom on mobile.
+          * @default "bottom-right"
+         */
+        "placement": ToastPlacement;
+    }
     interface IfxTooltip {
         /**
           * If true, appends the tooltip element to document.body for positioning.
@@ -2998,6 +3016,10 @@ export interface IfxContentSwitcherCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxContentSwitcherElement;
 }
+export interface IfxCounterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxCounterElement;
+}
 export interface IfxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxDatePickerElement;
@@ -3061,6 +3083,10 @@ export interface IfxNavbarCustomEvent<T> extends CustomEvent<T> {
 export interface IfxNavbarItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxNavbarItemElement;
+}
+export interface IfxNotificationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxNotificationElement;
 }
 export interface IfxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3141,6 +3167,10 @@ export interface IfxTextFieldCustomEvent<T> extends CustomEvent<T> {
 export interface IfxTextareaCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxTextareaElement;
+}
+export interface IfxToastCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxToastElement;
 }
 export interface IfxTreeViewCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3394,6 +3424,23 @@ declare global {
         prototype: HTMLIfxContentSwitcherItemElement;
         new (): HTMLIfxContentSwitcherItemElement;
     };
+    interface HTMLIfxCounterElementEventMap {
+        "ifxChange": number;
+    }
+    interface HTMLIfxCounterElement extends Components.IfxCounter, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxCounterElementEventMap>(type: K, listener: (this: HTMLIfxCounterElement, ev: IfxCounterCustomEvent<HTMLIfxCounterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxCounterElementEventMap>(type: K, listener: (this: HTMLIfxCounterElement, ev: IfxCounterCustomEvent<HTMLIfxCounterElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIfxCounterElement: {
+        prototype: HTMLIfxCounterElement;
+        new (): HTMLIfxCounterElement;
+    };
     interface HTMLIfxDatePickerElementEventMap {
         "ifxDate": any;
     }
@@ -3602,6 +3649,7 @@ declare global {
     };
     interface HTMLIfxFilterTypeGroupElementEventMap {
         "ifxSidebarFilterChange": any;
+        "ifxShowSidebarFiltersButtonChange": boolean;
     }
     interface HTMLIfxFilterTypeGroupElement extends Components.IfxFilterTypeGroup, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxFilterTypeGroupElementEventMap>(type: K, listener: (this: HTMLIfxFilterTypeGroupElement, ev: IfxFilterTypeGroupCustomEvent<HTMLIfxFilterTypeGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3726,6 +3774,7 @@ declare global {
     interface HTMLIfxMultiselectElementEventMap {
         "ifxSelect": any;
         "ifxOpen": any;
+        "ifxClear": void;
     }
     interface HTMLIfxMultiselectElement extends Components.IfxMultiselect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxMultiselectElementEventMap>(type: K, listener: (this: HTMLIfxMultiselectElement, ev: IfxMultiselectCustomEvent<HTMLIfxMultiselectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3740,6 +3789,16 @@ declare global {
     var HTMLIfxMultiselectElement: {
         prototype: HTMLIfxMultiselectElement;
         new (): HTMLIfxMultiselectElement;
+    };
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
+    interface HTMLIfxMultiselectGroupElement extends Components.IfxMultiselectGroup, HTMLStencilElement {
+    }
+    var HTMLIfxMultiselectGroupElement: {
+        prototype: HTMLIfxMultiselectGroupElement;
+        new (): HTMLIfxMultiselectGroupElement;
     };
     interface HTMLIfxMultiselectOptionElement extends Components.IfxMultiselectOption, HTMLStencilElement {
     }
@@ -3793,7 +3852,18 @@ declare global {
         prototype: HTMLIfxNavbarProfileElement;
         new (): HTMLIfxNavbarProfileElement;
     };
+    interface HTMLIfxNotificationElementEventMap {
+        "ifxClose": any;
+    }
     interface HTMLIfxNotificationElement extends Components.IfxNotification, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxNotificationElementEventMap>(type: K, listener: (this: HTMLIfxNotificationElement, ev: IfxNotificationCustomEvent<HTMLIfxNotificationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxNotificationElementEventMap>(type: K, listener: (this: HTMLIfxNotificationElement, ev: IfxNotificationCustomEvent<HTMLIfxNotificationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIfxNotificationElement: {
         prototype: HTMLIfxNotificationElement;
@@ -3848,8 +3918,8 @@ declare global {
         new (): HTMLIfxProgressBarElement;
     };
     interface HTMLIfxRadioButtonElementEventMap {
-        "ifxChange": any;
-        "ifxError": any;
+        "ifxChange": boolean;
+        "ifxError": boolean;
     }
     interface HTMLIfxRadioButtonElement extends Components.IfxRadioButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxRadioButtonElementEventMap>(type: K, listener: (this: HTMLIfxRadioButtonElement, ev: IfxRadioButtonCustomEvent<HTMLIfxRadioButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3948,9 +4018,16 @@ declare global {
         new (): HTMLIfxSegmentedControlElement;
     };
     interface HTMLIfxSelectElementEventMap {
-        "ifxSelect": CustomEvent;
-        "ifxInput": CustomEvent;
+        "ifxSelect": SelectChangeDetail | null;
+        "ifxClear": void;
+        "ifxInput": string;
+        "ifxOpen": boolean;
     }
+    /**
+     * A single-select dropdown. Options are provided as slotted `ifx-select-option`
+     * children, optionally grouped with `ifx-select-group` (flat optgroup). Native,
+     * slot-based architecture mirroring `ifx-multiselect`.
+     */
     interface HTMLIfxSelectElement extends Components.IfxSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxSelectElementEventMap>(type: K, listener: (this: HTMLIfxSelectElement, ev: IfxSelectCustomEvent<HTMLIfxSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3964,6 +4041,28 @@ declare global {
     var HTMLIfxSelectElement: {
         prototype: HTMLIfxSelectElement;
         new (): HTMLIfxSelectElement;
+    };
+    /**
+     * A non-selectable, greyed group header (like HTML `<optgroup>`) that labels a set
+     * of slotted `ifx-select-option`s. Flat — no expand/collapse. Setting `disabled`
+     * disables every option in the group.
+     */
+    interface HTMLIfxSelectGroupElement extends Components.IfxSelectGroup, HTMLStencilElement {
+    }
+    var HTMLIfxSelectGroupElement: {
+        prototype: HTMLIfxSelectGroupElement;
+        new (): HTMLIfxSelectGroupElement;
+    };
+    /**
+     * A single selectable option inside an `ifx-select`. Provided as a slotted child
+     * (optionally wrapped in an `ifx-select-group`). Mirrors the multi-select option
+     * pattern but simplified for single selection — no checkbox, nesting or chevron.
+     */
+    interface HTMLIfxSelectOptionElement extends Components.IfxSelectOption, HTMLStencilElement {
+    }
+    var HTMLIfxSelectOptionElement: {
+        prototype: HTMLIfxSelectOptionElement;
+        new (): HTMLIfxSelectOptionElement;
     };
     interface HTMLIfxSetFilterElementEventMap {
         "ifxFilterSelect": any;
@@ -4018,6 +4117,12 @@ declare global {
     var HTMLIfxSidebarItemElement: {
         prototype: HTMLIfxSidebarItemElement;
         new (): HTMLIfxSidebarItemElement;
+    };
+    interface HTMLIfxSidebarSeparatorElement extends Components.IfxSidebarSeparator, HTMLStencilElement {
+    }
+    var HTMLIfxSidebarSeparatorElement: {
+        prototype: HTMLIfxSidebarSeparatorElement;
+        new (): HTMLIfxSidebarSeparatorElement;
     };
     interface HTMLIfxSidebarTitleElement extends Components.IfxSidebarTitle, HTMLStencilElement {
     }
@@ -4232,6 +4337,31 @@ declare global {
         prototype: HTMLIfxTextareaElement;
         new (): HTMLIfxTextareaElement;
     };
+    interface HTMLIfxToastElementEventMap {
+        "ifxToastOpen": ToastEventDetail;
+        "ifxToastClose": ToastCloseEventDetail;
+        "ifxToastAction": ToastEventDetail;
+    }
+    interface HTMLIfxToastElement extends Components.IfxToast, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxToastElementEventMap>(type: K, listener: (this: HTMLIfxToastElement, ev: IfxToastCustomEvent<HTMLIfxToastElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxToastElementEventMap>(type: K, listener: (this: HTMLIfxToastElement, ev: IfxToastCustomEvent<HTMLIfxToastElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIfxToastElement: {
+        prototype: HTMLIfxToastElement;
+        new (): HTMLIfxToastElement;
+    };
+    interface HTMLIfxToastContainerElement extends Components.IfxToastContainer, HTMLStencilElement {
+    }
+    var HTMLIfxToastContainerElement: {
+        prototype: HTMLIfxToastContainerElement;
+        new (): HTMLIfxToastContainerElement;
+    };
     interface HTMLIfxTooltipElement extends Components.IfxTooltip, HTMLStencilElement {
     }
     var HTMLIfxTooltipElement: {
@@ -4299,6 +4429,7 @@ declare global {
         "ifx-chip-item": HTMLIfxChipItemElement;
         "ifx-content-switcher": HTMLIfxContentSwitcherElement;
         "ifx-content-switcher-item": HTMLIfxContentSwitcherItemElement;
+        "ifx-counter": HTMLIfxCounterElement;
         "ifx-date-picker": HTMLIfxDatePickerElement;
         "ifx-download": HTMLIfxDownloadElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
@@ -4325,6 +4456,7 @@ declare global {
         "ifx-list-entry": HTMLIfxListEntryElement;
         "ifx-modal": HTMLIfxModalElement;
         "ifx-multiselect": HTMLIfxMultiselectElement;
+        "ifx-multiselect-group": HTMLIfxMultiselectGroupElement;
         "ifx-multiselect-option": HTMLIfxMultiselectOptionElement;
         "ifx-multiselect-separator": HTMLIfxMultiselectSeparatorElement;
         "ifx-navbar": HTMLIfxNavbarElement;
@@ -4342,9 +4474,12 @@ declare global {
         "ifx-segment": HTMLIfxSegmentElement;
         "ifx-segmented-control": HTMLIfxSegmentedControlElement;
         "ifx-select": HTMLIfxSelectElement;
+        "ifx-select-group": HTMLIfxSelectGroupElement;
+        "ifx-select-option": HTMLIfxSelectOptionElement;
         "ifx-set-filter": HTMLIfxSetFilterElement;
         "ifx-sidebar": HTMLIfxSidebarElement;
         "ifx-sidebar-item": HTMLIfxSidebarItemElement;
+        "ifx-sidebar-separator": HTMLIfxSidebarSeparatorElement;
         "ifx-sidebar-title": HTMLIfxSidebarTitleElement;
         "ifx-slider": HTMLIfxSliderElement;
         "ifx-spinner": HTMLIfxSpinnerElement;
@@ -4359,13 +4494,15 @@ declare global {
         "ifx-templates-ui": HTMLIfxTemplatesUiElement;
         "ifx-text-field": HTMLIfxTextFieldElement;
         "ifx-textarea": HTMLIfxTextareaElement;
+        "ifx-toast": HTMLIfxToastElement;
+        "ifx-toast-container": HTMLIfxToastContainerElement;
         "ifx-tooltip": HTMLIfxTooltipElement;
         "ifx-tree-view": HTMLIfxTreeViewElement;
         "ifx-tree-view-item": HTMLIfxTreeViewItemElement;
     }
 }
 declare namespace LocalJSX {
-    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K]?: never };
 
     interface IfxAccordion {
         /**
@@ -4487,6 +4624,11 @@ declare namespace LocalJSX {
           * Column definitions for the table (array or JSON string).
          */
         "cols"?: any[] | string;
+        /**
+          * Position of the column values, either left or center.
+          * @default 'left'
+         */
+        "columnValuePosition"?: 'left' | 'center';
         /**
           * Row height preset (e.g. default, compact).
           * @default "default"
@@ -4819,6 +4961,30 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface IfxCounter {
+        /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
+          * Used as the form field name when the counter is in a form.
+          * @default ""
+         */
+        "name"?: string;
+        /**
+          * Emitted when the counter value changes. Returns the new value as a number.
+         */
+        "onIfxChange"?: (event: IfxCounterCustomEvent<number>) => void;
+        /**
+          * The current value of the counter. Must be a non-negative number.
+          * @default 0
+         */
+        "value"?: number;
+    }
     interface IfxDatePicker {
         /**
           * Aria label for the date picker input
@@ -4904,6 +5070,7 @@ declare namespace LocalJSX {
         "defaultOpen"?: boolean;
         /**
           * If true, dropdown is disabled and cannot be opened.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -4911,16 +5078,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "noAppendToBody"?: boolean;
-        /**
-          * Id true, clicking inside the menu will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnMenuClick"?: boolean;
-        /**
-          * If true, clicking outside will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnOutsideClick"?: boolean;
         /**
           * Fired when dropdown closed.
          */
@@ -4943,6 +5100,11 @@ declare namespace LocalJSX {
     }
     interface IfxDropdownItem {
         /**
+          * If true, this item is disabled and not interactive.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
           * If true, this item is shown in an error style.
           * @default false
          */
@@ -4959,6 +5121,7 @@ declare namespace LocalJSX {
         "href"?: string;
         /**
           * Icon to show in the dropdown item.
+          * @default ""
          */
         "icon"?: string;
         /**
@@ -5003,6 +5166,7 @@ declare namespace LocalJSX {
     interface IfxDropdownTriggerButton {
         /**
           * If true, trigger is disabled and not clickable.
+          * @default false
          */
         "disabled"?: boolean;
         /**
@@ -5027,6 +5191,7 @@ declare namespace LocalJSX {
         "theme"?: "default" | "danger" | "inverse";
         /**
           * Visual style variant.
+          * @default "primary"
          */
         "variant"?: "primary";
     }
@@ -5352,9 +5517,18 @@ declare namespace LocalJSX {
     }
     interface IfxFilterTypeGroup {
         /**
+          * Notifies the parent table about the button visibility configuration.
+         */
+        "onIfxShowSidebarFiltersButtonChange"?: (event: IfxFilterTypeGroupCustomEvent<boolean>) => void;
+        /**
           * Emitted when a sidebar filter is updated
          */
         "onIfxSidebarFilterChange"?: (event: IfxFilterTypeGroupCustomEvent<any>) => void;
+        /**
+          * Toggles the Show/hide filter button
+          * @default true
+         */
+        "showSidebarFiltersButton"?: boolean;
     }
     interface IfxFooter {
         /**
@@ -5650,6 +5824,10 @@ declare namespace LocalJSX {
          */
         "noResultsMessage"?: string;
         /**
+          * Fired before selections are cleared. Call `event.preventDefault()` to cancel clearing.
+         */
+        "onIfxClear"?: (event: IfxMultiselectCustomEvent<void>) => void;
+        /**
           * Fired when the multi-select dropdown is opened.
          */
         "onIfxOpen"?: (event: IfxMultiselectCustomEvent<any>) => void;
@@ -5707,6 +5885,21 @@ declare namespace LocalJSX {
           * @default true
          */
         "showSelectAll"?: boolean;
+    }
+    /**
+     * Visually and semantically groups multiselect options under a heading.
+     * Unlike a multiselect option with children, a group is not selectable or expandable.
+     */
+    interface IfxMultiselectGroup {
+        /**
+          * Whether the group is disabled.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Label displayed above the group's options.
+         */
+        "label"?: string;
     }
     interface IfxMultiselectOption {
         /**
@@ -5836,6 +6029,11 @@ declare namespace LocalJSX {
     }
     interface IfxNotification {
         /**
+          * Shows a close button allowing the user to dismiss the notification.
+          * @default false
+         */
+        "closable"?: boolean;
+        /**
           * Icon to display in the notification.
          */
         "icon"?: string;
@@ -5852,6 +6050,10 @@ declare namespace LocalJSX {
           * Text for the optional action link.
          */
         "linkText"?: string;
+        /**
+          * Event emitted when the notification is closed.
+         */
+        "onIfxClose"?: (event: IfxNotificationCustomEvent<any>) => void;
         /**
           * Visual style of the notification (e.g. success, error).
           * @default "success"
@@ -5965,22 +6167,21 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Name attribute used when submitting the checkbox in a form.
          */
         "name"?: string;
         /**
           * Fired when the checked state of the checkbox changes.
          */
-        "onIfxChange"?: (event: IfxRadioButtonCustomEvent<any>) => void;
+        "onIfxChange"?: (event: IfxRadioButtonCustomEvent<boolean>) => void;
         /**
           * Fired when the checkbox enters or leaves an error state.
          */
-        "onIfxError"?: (event: IfxRadioButtonCustomEvent<any>) => void;
-        /**
-          * If true, the checkbox is shown in a read-only state.
-          * @default false
-         */
-        "readOnly"?: boolean;
+        "onIfxError"?: (event: IfxRadioButtonCustomEvent<boolean>) => void;
         /**
           * Size of the checkbox (small or medium).
           * @default "s"
@@ -5988,6 +6189,7 @@ declare namespace LocalJSX {
         "size"?: "s" | "m";
         /**
           * Value submitted when the checkbox is checked.
+          * @default "on"
          */
         "value"?: string;
     }
@@ -6137,7 +6339,7 @@ declare namespace LocalJSX {
         "maxSuggestions"?: number;
         /**
           * Maximum number of characters allowed in the input.
-          * @default null
+          * @default undefined
          */
         "maxlength"?: number;
         /**
@@ -6226,15 +6428,28 @@ declare namespace LocalJSX {
          */
         "caption"?: string;
         /**
+          * If `true`, the user cannot interact with the element.
+         */
+        "disabled"?: boolean;
+        /**
           * If true, shows the segmented control in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
+        /**
           * Label text shown above the segmented control.
           * @default ""
          */
         "label"?: string;
+        /**
+          * Name used for the segmented control when submitting a form.
+          * @default ""
+         */
+        "name"?: string;
         /**
           * Fired when the selected segment changes (previous and new value).
          */
@@ -6252,239 +6467,179 @@ declare namespace LocalJSX {
           * @default "regular"
          */
         "size"?: "regular" | "small";
+        /**
+          * Value of the currently selected segment.
+          * @default ""
+         */
+        "value"?: string;
     }
+    /**
+     * A single-select dropdown. Options are provided as slotted `ifx-select-option`
+     * children, optionally grouped with `ifx-select-group` (flat optgroup). Native,
+     * slot-based architecture mirroring `ifx-multiselect`.
+     */
     interface IfxSelect {
         /**
-          * Filter used to validate items before they are added.
+          * ARIA label for the clear button.
+          * @default "Clear selection"
          */
-        "addItemFilter"?: string | RegExp | ItemFilterFn;
+        "ariaClearLabel"?: string;
         /**
-          * Text or function for the “add item” prompt.
+          * ARIA label for the search input.
+          * @default "Search options"
          */
-        "addItemText"?: string | AddItemTextFn;
+        "ariaSearchLabel"?: string;
         /**
-          * Whether new items can be added by the user.
+          * ID of an external element that describes the select (`aria-describedby`). Takes precedence over the caption.
+          * @default ""
          */
-        "addItems"?: boolean;
+        "ariaSelectDescribedBy"?: string;
         /**
-          * Text to append to each item’s value on output.
+          * ARIA label for the combobox.
+          * @default "Select"
          */
-        "appendValue"?: string;
+        "ariaSelectLabel"?: string;
         /**
-          * Callback used to create or override internal templates.
+          * ID of an external element that labels the select (`aria-labelledby`). Takes precedence over the visible label and `ariaSelectLabel`.
+          * @default ""
          */
-        "callbackOnCreateTemplates"?: OnCreateTemplates;
+        "ariaSelectLabelledBy"?: string;
         /**
-          * Callback function invoked when the Choices instance is initialized.
-         */
-        "callbackOnInit"?: OnInit;
-        /**
-          * Helper text shown below the select field.
+          * Helper text shown below the select.
           * @default ""
          */
         "caption"?: string;
-        /**
-          * Available choices; can be an array or a string (e.g. data source).
-          * @default undefined
-         */
-        "choices"?: Array<any> | string;
-        /**
-          * Custom CSS class names mapping for internal elements.
-         */
-        "classNames"?: ClassNames;
-        /**
-          * Configuration for customizing the “add item” text.
-         */
-        "customAddItemText"?: CustomAddItemText;
-        /**
-          * Delimiter used when parsing or joining item values (e.g. for paste).
-         */
-        "delimiter"?: string;
         /**
           * If true, the select is disabled and not interactive.
           * @default false
          */
         "disabled"?: boolean;
         /**
-          * Whether duplicate items are allowed.
-         */
-        "duplicateItemsAllowed"?: boolean;
-        /**
-          * Whether selected items can be edited in place.
-         */
-        "editItems"?: boolean;
-        /**
           * If true, shows the select in an error state.
           * @default false
          */
         "error"?: boolean;
         /**
-          * Fuse.js options for fuzzy searching choices.
+          * The `id` of a `<form>` element to associate this element with.
          */
-        "fuseOptions"?: FuseOptions;
+        "form"?: string;
         /**
-          * Text shown on an item when it is selectable (kept as empty string here).
-         */
-        "itemSelectText"?: '';
-        /**
-          * Initial list of items to populate the component with.
-         */
-        "items"?: Array<any>;
-        /**
-          * Label text shown above the select field.
+          * Label shown above the select.
           * @default ""
          */
         "label"?: string;
         /**
-          * Text shown while data or choices are loading.
-         */
-        "loadingText"?: string;
-        /**
-          * Maximum number of items that can be selected.
-         */
-        "maxItemCount"?: number;
-        /**
-          * Text or function used when the max item count is reached.
-         */
-        "maxItemText"?: string | MaxItemTextFn;
-        /**
-          * Name attribute used when submitting the field in a form.
+          * Name of the select field (used in forms).
+          * @default ""
          */
         "name"?: string;
         /**
-          * Text or function used when there are no choices to show.
+          * Message shown when a search yields no results.
+          * @default "No results found."
          */
-        "noChoicesText"?: string | NoChoicesTextFn;
+        "noResultsMessage"?: string;
         /**
-          * Text or function used when no search results are found.
+          * Fired before the clear control removes the current selection. Call `event.preventDefault()` to cancel clearing.
          */
-        "noResultsText"?: string | NoResultsTextFn;
+        "onIfxClear"?: (event: IfxSelectCustomEvent<void>) => void;
         /**
-          * Fired when the input / search value changes.
+          * Fired when the search input value changes.
          */
-        "onIfxInput"?: (event: IfxSelectCustomEvent<CustomEvent>) => void;
+        "onIfxInput"?: (event: IfxSelectCustomEvent<string>) => void;
         /**
-          * Fired when an option is selected.
+          * Fired when the dropdown opens (`true`) or closes (`false`).
          */
-        "onIfxSelect"?: (event: IfxSelectCustomEvent<CustomEvent>) => void;
+        "onIfxOpen"?: (event: IfxSelectCustomEvent<boolean>) => void;
         /**
-          * List of available options (array or string source).
+          * Fired when the selection changes. Emits `{ value, label }`, or `null` on clear.
          */
-        "options"?: any[] | string;
+        "onIfxSelect"?: (event: IfxSelectCustomEvent<SelectChangeDetail | null>) => void;
         /**
-          * Whether pasting values to create items is allowed.
+          * @deprecated Removed. Provide options as slotted `<ifx-select-option>` children (optionally grouped with `<ifx-select-group>`) instead of an options array.
          */
-        "paste"?: boolean;
+        "options"?: unknown;
         /**
-          * Placeholder configuration or text for the input.
+          * If false, hides the placeholder text when nothing is selected.
+          * @default true
          */
-        "placeholder"?: boolean | string;
+        "placeholder"?: boolean;
         /**
-          * Placeholder text shown when no option is selected.
+          * Placeholder text shown when nothing is selected.
           * @default "Placeholder"
          */
         "placeholderValue"?: string;
         /**
-          * Position of the dropdown relative to the input.
-         */
-        "position"?: 'auto' | 'top' | 'bottom';
-        /**
-          * Text to prepend to each item’s value on output.
-         */
-        "prependValue"?: string;
-        /**
-          * If true, shows the select in a read-only state.
+          * If true, the select is read-only.
           * @default false
          */
         "readOnly"?: boolean;
         /**
-          * Whether to show a remove button on each selected item.
-         */
-        "removeItemButton"?: boolean;
-        /**
-          * Whether items can be removed by the user.
-         */
-        "removeItems"?: boolean;
-        /**
-          * Maximum number of choices to render in the list at once.
-         */
-        "renderChoiceLimit"?: number;
-        /**
-          * When to render selected choices (always or only when needed).
-         */
-        "renderSelectedChoices"?: 'always' | 'auto';
-        /**
-          * Whether selecting a value is required.
+          * Whether a selection is required (marks the label with `*`).
           * @default false
          */
         "required"?: boolean;
         /**
-          * Whether to reset scroll position when opening the dropdown.
-         */
-        "resetScrollPosition"?: boolean;
-        /**
-          * Whether search filters the available choices.
-         */
-        "searchChoices"?: boolean;
-        /**
-          * Fields used when searching choices (array of field names or a string).
-         */
-        "searchFields"?: Array<string> | string;
-        /**
-          * Minimum number of characters before search is triggered.
-         */
-        "searchFloor"?: number;
-        /**
-          * Placeholder text shown inside the search input.
+          * Placeholder text for the search input.
+          * @default "Search..."
          */
         "searchPlaceholderValue"?: string;
-        /**
-          * Maximum number of search results to display.
-         */
-        "searchResultLimit"?: number;
-        /**
-          * If true, shows a separator between options.
-          * @default false
-         */
-        "separator"?: boolean;
-        /**
-          * Whether available choices should be sorted.
-         */
-        "shouldSort"?: boolean;
-        /**
-          * Whether selected items should be sorted.
-         */
-        "shouldSortItems"?: boolean;
         /**
           * If true, shows a button to clear the current selection.
           * @default true
          */
         "showClearButton"?: boolean;
         /**
-          * Whether the search input is shown.
+          * If true, shows a search box inside the dropdown.
+          * @default false
          */
         "showSearch"?: boolean;
         /**
-          * Size of the select component (e.g. medium / 40px).
-          * @default "medium (40px)"
+          * Size of the select field: `'s'` (36px) or `'m'` (40px).
+          * @default "m"
          */
-        "size"?: string;
+        "size"?: "s" | "m";
         /**
-          * Custom sorting function for choices and/or items.
-         */
-        "sorter"?: SortFn;
-        /**
-          * Text configuration for duplicate/unique item errors.
-         */
-        "uniqueItemText"?: UniqueItemText;
-        /**
-          * Initial value of the Choices instance.
+          * The selected option value (source of truth).
+          * @default ""
          */
         "value"?: string;
+    }
+    /**
+     * A non-selectable, greyed group header (like HTML `<optgroup>`) that labels a set
+     * of slotted `ifx-select-option`s. Flat — no expand/collapse. Setting `disabled`
+     * disables every option in the group.
+     */
+    interface IfxSelectGroup {
         /**
-          * Custom function for comparing item/choice values.
+          * Disables every option within the group (like `<optgroup disabled>`).
+          * @default false
          */
-        "valueComparer"?: ValueCompareFunction;
+        "disabled"?: boolean;
+        /**
+          * The group heading text.
+         */
+        "label"?: string;
+    }
+    /**
+     * A single selectable option inside an `ifx-select`. Provided as a slotted child
+     * (optionally wrapped in an `ifx-select-group`). Mirrors the multi-select option
+     * pattern but simplified for single selection — no checkbox, nesting or chevron.
+     */
+    interface IfxSelectOption {
+        /**
+          * Whether this option is disabled and not interactive.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Whether this option is currently selected.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * Value associated with this option (used for selection and events).
+         */
+        "value"?: string;
     }
     interface IfxSetFilter {
         /**
@@ -6610,6 +6765,11 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
+          * Customize the font bold vs normal
+          * @default "normal"
+         */
+        "fontWeight"?: "normal" | "bold";
+        /**
           * Click handler callback; receives the item HTMLElement
          */
         "handleItemClick"?: (item: HTMLElement) => void;
@@ -6650,6 +6810,8 @@ declare namespace LocalJSX {
          */
         "target"?: string;
     }
+    interface IfxSidebarSeparator {
+    }
     interface IfxSidebarTitle {
         /**
           * Show item/content when the sidebar is collapsed
@@ -6667,6 +6829,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         /**
           * Optional icon displayed on the left side of the slider.
          */
@@ -6693,6 +6859,11 @@ declare namespace LocalJSX {
           * Initial value of the left handle for a double slider.
          */
         "minValueHandle"?: number;
+        /**
+          * Optional name used when submitting the slider in a form.
+          * @default ""
+         */
+        "name"?: string;
         /**
           * Fired when the slider value (or values) change.
          */
@@ -6939,6 +7110,11 @@ declare namespace LocalJSX {
           * Subline under the header, only for advanced variant.
          */
         "subline"?: string;
+        /**
+          * Subline position, either left or center.
+          * @default 'left'
+         */
+        "sublinePosition"?: 'left' | 'center';
     }
     interface IfxTable {
         /**
@@ -6961,6 +7137,11 @@ declare namespace LocalJSX {
           * Minimum width for columns.
          */
         "columnMinWidth"?: number;
+        /**
+          * Position of the column values, either left or center.
+          * @default "left"
+         */
+        "columnValuePosition"?: "left" | "center";
         /**
           * Fixed width for columns.
          */
@@ -7085,6 +7266,11 @@ declare namespace LocalJSX {
           * Subline under the header, only for advanced variant.
          */
         "subline"?: string;
+        /**
+          * Subline position, either left or center.
+          * @default "left"
+         */
+        "sublinePosition"?: "left" | "center";
     }
     interface IfxTemplate {
         /**
@@ -7282,6 +7468,64 @@ declare namespace LocalJSX {
          */
         "wrap"?: "hard" | "soft" | "off";
     }
+    interface IfxToast {
+        /**
+          * Text for the trailing action button that dismisses the toast. Hidden when empty.
+         */
+        "actionText"?: string;
+        /**
+          * Auto-dismiss delay in ms. `0` disables auto-dismiss. The `loading` status never auto-dismisses.
+          * @default 5000
+         */
+        "duration"?: number;
+        /**
+          * Message text. Falls back to the default slot when empty.
+         */
+        "message"?: string;
+        /**
+          * Emitted when the action is activated (before the toast dismisses).
+         */
+        "onIfxToastAction"?: (event: IfxToastCustomEvent<ToastEventDetail>) => void;
+        /**
+          * Emitted after the toast finished dismissing (animation complete).
+         */
+        "onIfxToastClose"?: (event: IfxToastCustomEvent<ToastCloseEventDetail>) => void;
+        /**
+          * Emitted once the toast has been shown (mounted and rendered).
+         */
+        "onIfxToastOpen"?: (event: IfxToastCustomEvent<ToastEventDetail>) => void;
+        /**
+          * Status variant controlling the status icon and accent color.
+          * @default "success"
+         */
+        "status"?: ToastStatus;
+        /**
+          * Stable id emitted with every toast event. Auto-generated when not set.
+         */
+        "toastId"?: string;
+    }
+    interface IfxToastContainer {
+        /**
+          * Maximum number of simultaneously visible toasts. `0` means unlimited.
+          * @default 0
+         */
+        "max"?: number;
+        /**
+          * CSS selector of the navbar/header to keep clear of on top placements. Empty disables measuring.
+          * @default "ifx-navbar"
+         */
+        "navbarSelector"?: string;
+        /**
+          * Distance in px from the viewport edge. Added on top of the navbar clearance for top placements.
+          * @default 16
+         */
+        "offset"?: number;
+        /**
+          * Placement of the container on desktop. Collapses to top/bottom on mobile.
+          * @default "bottom-right"
+         */
+        "placement"?: ToastPlacement;
+    }
     interface IfxTooltip {
         /**
           * If true, appends the tooltip element to document.body for positioning.
@@ -7425,6 +7669,7 @@ declare namespace LocalJSX {
         "rowHeight": string;
         "tableHeight": string;
         "variant": string;
+        "columnValuePosition": 'left' | 'center';
     }
     interface IfxBreadcrumbItemLabelAttributes {
         "icon": string;
@@ -7495,6 +7740,10 @@ declare namespace LocalJSX {
         "selected": boolean;
         "value": string;
     }
+    interface IfxCounterAttributes {
+        "value": number;
+        "name": string;
+    }
     interface IfxDatePickerAttributes {
         "size": string;
         "error": boolean;
@@ -7519,8 +7768,6 @@ declare namespace LocalJSX {
         "defaultOpen": boolean;
         "noAppendToBody": boolean;
         "disabled": boolean;
-        "noCloseOnOutsideClick": boolean;
-        "noCloseOnMenuClick": boolean;
     }
     interface IfxDropdownItemAttributes {
         "icon": string;
@@ -7528,6 +7775,7 @@ declare namespace LocalJSX {
         "target": string;
         "hide": boolean;
         "error": boolean;
+        "disabled": boolean;
     }
     interface IfxDropdownMenuAttributes {
         "isOpen": boolean;
@@ -7599,6 +7847,9 @@ declare namespace LocalJSX {
         "filterKey": string;
         "filterOrientation": string;
         "placeholder": string;
+    }
+    interface IfxFilterTypeGroupAttributes {
+        "showSidebarFiltersButton": boolean;
     }
     interface IfxFooterAttributes {
         "copyrightText": string;
@@ -7682,6 +7933,10 @@ declare namespace LocalJSX {
         "ariaExpandAllLabel": string;
         "ariaCollapseAllLabel": string;
     }
+    interface IfxMultiselectGroupAttributes {
+        "label": string;
+        "disabled": boolean;
+    }
     interface IfxMultiselectOptionAttributes {
         "value": string;
         "selected": boolean;
@@ -7718,6 +7973,7 @@ declare namespace LocalJSX {
         "linkText": string;
         "linkHref": string;
         "linkTarget": string;
+        "closable": boolean;
     }
     interface IfxPaginationAttributes {
         "currentPage": number;
@@ -7743,7 +7999,6 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "value": string;
         "error": boolean;
-        "readOnly": boolean;
         "size": "s" | "m";
         "name": string;
         "checked": boolean;
@@ -7801,54 +8056,39 @@ declare namespace LocalJSX {
         "size": "regular" | "small";
         "required": boolean;
         "error": boolean;
-    }
-    interface IfxSelectAttributes {
         "value": string;
         "name": string;
-        "choices": Array<any> | string;
-        "renderChoiceLimit": number;
-        "maxItemCount": number;
-        "addItems": boolean;
-        "removeItems": boolean;
-        "removeItemButton": boolean;
-        "editItems": boolean;
-        "duplicateItemsAllowed": boolean;
-        "delimiter": string;
-        "paste": boolean;
-        "showSearch": boolean;
-        "searchChoices": boolean;
-        "searchFields": Array<string> | string;
-        "searchFloor": number;
-        "searchResultLimit": number;
-        "position": 'auto' | 'top' | 'bottom';
-        "resetScrollPosition": boolean;
-        "shouldSort": boolean;
-        "shouldSortItems": boolean;
-        "placeholder": string;
-        "searchPlaceholderValue": string;
-        "prependValue": string;
-        "appendValue": string;
-        "renderSelectedChoices": 'always' | 'auto';
-        "loadingText": string;
-        "noResultsText": string | NoResultsTextFn;
-        "noChoicesText": string | NoChoicesTextFn;
-        "itemSelectText": '';
-        "addItemText": string | AddItemTextFn;
-        "maxItemText": string | MaxItemTextFn;
-        "uniqueItemText": UniqueItemText;
-        "addItemFilter": string | RegExp | ItemFilterFn;
-        "customAddItemText": CustomAddItemText;
-        "readOnly": boolean;
-        "error": boolean;
+    }
+    interface IfxSelectAttributes {
         "label": string;
         "caption": string;
+        "size": "s" | "m";
         "disabled": boolean;
+        "error": boolean;
+        "readOnly": boolean;
         "required": boolean;
+        "placeholder": boolean;
         "placeholderValue": string;
-        "options": any[] | string;
-        "size": string;
-        "separator": boolean;
+        "showSearch": boolean;
+        "searchPlaceholderValue": string;
         "showClearButton": boolean;
+        "name": string;
+        "value": string;
+        "noResultsMessage": string;
+        "ariaSelectLabel": string;
+        "ariaSearchLabel": string;
+        "ariaClearLabel": string;
+        "ariaSelectLabelledBy": string;
+        "ariaSelectDescribedBy": string;
+    }
+    interface IfxSelectGroupAttributes {
+        "label": string;
+        "disabled": boolean;
+    }
+    interface IfxSelectOptionAttributes {
+        "value": string;
+        "selected": boolean;
+        "disabled": boolean;
     }
     interface IfxSetFilterAttributes {
         "filterName": string;
@@ -7882,6 +8122,7 @@ declare namespace LocalJSX {
         "numberIndicator": number;
         "active": boolean;
         "isActionItem": boolean;
+        "fontWeight": "normal" | "bold";
     }
     interface IfxSidebarTitleAttributes {
         "showInCollapsed": boolean;
@@ -7902,6 +8143,7 @@ declare namespace LocalJSX {
         "rightText": string;
         "type": "single" | "double";
         "ariaLabelText": string | null;
+        "name": string;
     }
     interface IfxSpinnerAttributes {
         "size": "s" | "m";
@@ -7942,6 +8184,7 @@ declare namespace LocalJSX {
         "icon": string;
         "iconPosition": 'left' | 'right';
         "subline": string;
+        "sublinePosition": 'left' | 'center';
         "label": string;
         "number": number;
         "positionSticky": boolean;
@@ -7964,6 +8207,7 @@ declare namespace LocalJSX {
         "fitColumns": boolean;
         "columnMinWidth": number;
         "columnWidth": string;
+        "columnValuePosition": "left" | "center";
     }
     interface IfxTabsAttributes {
         "orientation": string;
@@ -7972,6 +8216,7 @@ declare namespace LocalJSX {
         "label": string;
         "number": number;
         "subline": string;
+        "sublinePosition": "left" | "center";
         "positionSticky": boolean;
     }
     interface IfxTemplateAttributes {
@@ -8014,6 +8259,19 @@ declare namespace LocalJSX {
         "wrap": "hard" | "soft" | "off";
         "fullWidth": string;
         "success": boolean;
+    }
+    interface IfxToastAttributes {
+        "toastId": string;
+        "status": ToastStatus;
+        "message": string;
+        "actionText": string;
+        "duration": number;
+    }
+    interface IfxToastContainerAttributes {
+        "placement": ToastPlacement;
+        "offset": number;
+        "navbarSelector": string;
+        "max": number;
     }
     interface IfxTooltipAttributes {
         "header": string;
@@ -8063,6 +8321,7 @@ declare namespace LocalJSX {
         "ifx-chip-item": Omit<IfxChipItem, keyof IfxChipItemAttributes> & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes]?: IfxChipItem[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `attr:${K}`]?: IfxChipItemAttributes[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `prop:${K}`]?: IfxChipItem[K] };
         "ifx-content-switcher": IfxContentSwitcher;
         "ifx-content-switcher-item": Omit<IfxContentSwitcherItem, keyof IfxContentSwitcherItemAttributes> & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes]?: IfxContentSwitcherItem[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `attr:${K}`]?: IfxContentSwitcherItemAttributes[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `prop:${K}`]?: IfxContentSwitcherItem[K] };
+        "ifx-counter": Omit<IfxCounter, keyof IfxCounterAttributes> & { [K in keyof IfxCounter & keyof IfxCounterAttributes]?: IfxCounter[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `attr:${K}`]?: IfxCounterAttributes[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `prop:${K}`]?: IfxCounter[K] };
         "ifx-date-picker": Omit<IfxDatePicker, keyof IfxDatePickerAttributes> & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes]?: IfxDatePicker[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `attr:${K}`]?: IfxDatePickerAttributes[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `prop:${K}`]?: IfxDatePicker[K] };
         "ifx-download": Omit<IfxDownload, keyof IfxDownloadAttributes> & { [K in keyof IfxDownload & keyof IfxDownloadAttributes]?: IfxDownload[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `attr:${K}`]?: IfxDownloadAttributes[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `prop:${K}`]?: IfxDownload[K] };
         "ifx-dropdown": Omit<IfxDropdown, keyof IfxDropdownAttributes> & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes]?: IfxDropdown[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `attr:${K}`]?: IfxDropdownAttributes[K] } & { [K in keyof IfxDropdown & keyof IfxDropdownAttributes as `prop:${K}`]?: IfxDropdown[K] };
@@ -8077,7 +8336,7 @@ declare namespace LocalJSX {
         "ifx-filter-accordion": Omit<IfxFilterAccordion, keyof IfxFilterAccordionAttributes> & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes]?: IfxFilterAccordion[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `attr:${K}`]?: IfxFilterAccordionAttributes[K] } & { [K in keyof IfxFilterAccordion & keyof IfxFilterAccordionAttributes as `prop:${K}`]?: IfxFilterAccordion[K] };
         "ifx-filter-bar": Omit<IfxFilterBar, keyof IfxFilterBarAttributes> & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes]?: IfxFilterBar[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `attr:${K}`]?: IfxFilterBarAttributes[K] } & { [K in keyof IfxFilterBar & keyof IfxFilterBarAttributes as `prop:${K}`]?: IfxFilterBar[K] };
         "ifx-filter-search": Omit<IfxFilterSearch, keyof IfxFilterSearchAttributes> & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes]?: IfxFilterSearch[K] } & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes as `attr:${K}`]?: IfxFilterSearchAttributes[K] } & { [K in keyof IfxFilterSearch & keyof IfxFilterSearchAttributes as `prop:${K}`]?: IfxFilterSearch[K] };
-        "ifx-filter-type-group": IfxFilterTypeGroup;
+        "ifx-filter-type-group": Omit<IfxFilterTypeGroup, keyof IfxFilterTypeGroupAttributes> & { [K in keyof IfxFilterTypeGroup & keyof IfxFilterTypeGroupAttributes]?: IfxFilterTypeGroup[K] } & { [K in keyof IfxFilterTypeGroup & keyof IfxFilterTypeGroupAttributes as `attr:${K}`]?: IfxFilterTypeGroupAttributes[K] } & { [K in keyof IfxFilterTypeGroup & keyof IfxFilterTypeGroupAttributes as `prop:${K}`]?: IfxFilterTypeGroup[K] };
         "ifx-footer": Omit<IfxFooter, keyof IfxFooterAttributes> & { [K in keyof IfxFooter & keyof IfxFooterAttributes]?: IfxFooter[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `attr:${K}`]?: IfxFooterAttributes[K] } & { [K in keyof IfxFooter & keyof IfxFooterAttributes as `prop:${K}`]?: IfxFooter[K] };
         "ifx-footer-column": IfxFooterColumn;
         "ifx-icon": Omit<IfxIcon, keyof IfxIconAttributes> & { [K in keyof IfxIcon & keyof IfxIconAttributes]?: IfxIcon[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `attr:${K}`]?: IfxIconAttributes[K] } & { [K in keyof IfxIcon & keyof IfxIconAttributes as `prop:${K}`]?: IfxIcon[K] };
@@ -8089,6 +8348,7 @@ declare namespace LocalJSX {
         "ifx-list-entry": Omit<IfxListEntry, keyof IfxListEntryAttributes> & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes]?: IfxListEntry[K] } & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes as `attr:${K}`]?: IfxListEntryAttributes[K] } & { [K in keyof IfxListEntry & keyof IfxListEntryAttributes as `prop:${K}`]?: IfxListEntry[K] };
         "ifx-modal": Omit<IfxModal, keyof IfxModalAttributes> & { [K in keyof IfxModal & keyof IfxModalAttributes]?: IfxModal[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `attr:${K}`]?: IfxModalAttributes[K] } & { [K in keyof IfxModal & keyof IfxModalAttributes as `prop:${K}`]?: IfxModal[K] };
         "ifx-multiselect": Omit<IfxMultiselect, keyof IfxMultiselectAttributes> & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes]?: IfxMultiselect[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `attr:${K}`]?: IfxMultiselectAttributes[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `prop:${K}`]?: IfxMultiselect[K] };
+        "ifx-multiselect-group": Omit<IfxMultiselectGroup, keyof IfxMultiselectGroupAttributes> & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes]?: IfxMultiselectGroup[K] } & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes as `attr:${K}`]?: IfxMultiselectGroupAttributes[K] } & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes as `prop:${K}`]?: IfxMultiselectGroup[K] };
         "ifx-multiselect-option": Omit<IfxMultiselectOption, keyof IfxMultiselectOptionAttributes> & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes]?: IfxMultiselectOption[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `attr:${K}`]?: IfxMultiselectOptionAttributes[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `prop:${K}`]?: IfxMultiselectOption[K] };
         "ifx-multiselect-separator": IfxMultiselectSeparator;
         "ifx-navbar": Omit<IfxNavbar, keyof IfxNavbarAttributes> & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes]?: IfxNavbar[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `attr:${K}`]?: IfxNavbarAttributes[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `prop:${K}`]?: IfxNavbar[K] };
@@ -8106,9 +8366,12 @@ declare namespace LocalJSX {
         "ifx-segment": Omit<IfxSegment, keyof IfxSegmentAttributes> & { [K in keyof IfxSegment & keyof IfxSegmentAttributes]?: IfxSegment[K] } & { [K in keyof IfxSegment & keyof IfxSegmentAttributes as `attr:${K}`]?: IfxSegmentAttributes[K] } & { [K in keyof IfxSegment & keyof IfxSegmentAttributes as `prop:${K}`]?: IfxSegment[K] } & OneOf<"value", IfxSegment["value"], IfxSegmentAttributes["value"]>;
         "ifx-segmented-control": Omit<IfxSegmentedControl, keyof IfxSegmentedControlAttributes> & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes]?: IfxSegmentedControl[K] } & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes as `attr:${K}`]?: IfxSegmentedControlAttributes[K] } & { [K in keyof IfxSegmentedControl & keyof IfxSegmentedControlAttributes as `prop:${K}`]?: IfxSegmentedControl[K] };
         "ifx-select": Omit<IfxSelect, keyof IfxSelectAttributes> & { [K in keyof IfxSelect & keyof IfxSelectAttributes]?: IfxSelect[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `attr:${K}`]?: IfxSelectAttributes[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `prop:${K}`]?: IfxSelect[K] };
+        "ifx-select-group": Omit<IfxSelectGroup, keyof IfxSelectGroupAttributes> & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes]?: IfxSelectGroup[K] } & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes as `attr:${K}`]?: IfxSelectGroupAttributes[K] } & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes as `prop:${K}`]?: IfxSelectGroup[K] };
+        "ifx-select-option": Omit<IfxSelectOption, keyof IfxSelectOptionAttributes> & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes]?: IfxSelectOption[K] } & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes as `attr:${K}`]?: IfxSelectOptionAttributes[K] } & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes as `prop:${K}`]?: IfxSelectOption[K] };
         "ifx-set-filter": Omit<IfxSetFilter, keyof IfxSetFilterAttributes> & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes]?: IfxSetFilter[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `attr:${K}`]?: IfxSetFilterAttributes[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `prop:${K}`]?: IfxSetFilter[K] };
         "ifx-sidebar": Omit<IfxSidebar, keyof IfxSidebarAttributes> & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes]?: IfxSidebar[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `attr:${K}`]?: IfxSidebarAttributes[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `prop:${K}`]?: IfxSidebar[K] };
         "ifx-sidebar-item": Omit<IfxSidebarItem, keyof IfxSidebarItemAttributes> & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes]?: IfxSidebarItem[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `attr:${K}`]?: IfxSidebarItemAttributes[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `prop:${K}`]?: IfxSidebarItem[K] };
+        "ifx-sidebar-separator": IfxSidebarSeparator;
         "ifx-sidebar-title": Omit<IfxSidebarTitle, keyof IfxSidebarTitleAttributes> & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes]?: IfxSidebarTitle[K] } & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes as `attr:${K}`]?: IfxSidebarTitleAttributes[K] } & { [K in keyof IfxSidebarTitle & keyof IfxSidebarTitleAttributes as `prop:${K}`]?: IfxSidebarTitle[K] };
         "ifx-slider": Omit<IfxSlider, keyof IfxSliderAttributes> & { [K in keyof IfxSlider & keyof IfxSliderAttributes]?: IfxSlider[K] } & { [K in keyof IfxSlider & keyof IfxSliderAttributes as `attr:${K}`]?: IfxSliderAttributes[K] } & { [K in keyof IfxSlider & keyof IfxSliderAttributes as `prop:${K}`]?: IfxSlider[K] };
         "ifx-spinner": Omit<IfxSpinner, keyof IfxSpinnerAttributes> & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes]?: IfxSpinner[K] } & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes as `attr:${K}`]?: IfxSpinnerAttributes[K] } & { [K in keyof IfxSpinner & keyof IfxSpinnerAttributes as `prop:${K}`]?: IfxSpinner[K] };
@@ -8123,6 +8386,8 @@ declare namespace LocalJSX {
         "ifx-templates-ui": IfxTemplatesUi;
         "ifx-text-field": Omit<IfxTextField, keyof IfxTextFieldAttributes> & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes]?: IfxTextField[K] } & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes as `attr:${K}`]?: IfxTextFieldAttributes[K] } & { [K in keyof IfxTextField & keyof IfxTextFieldAttributes as `prop:${K}`]?: IfxTextField[K] };
         "ifx-textarea": Omit<IfxTextarea, keyof IfxTextareaAttributes> & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes]?: IfxTextarea[K] } & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes as `attr:${K}`]?: IfxTextareaAttributes[K] } & { [K in keyof IfxTextarea & keyof IfxTextareaAttributes as `prop:${K}`]?: IfxTextarea[K] };
+        "ifx-toast": Omit<IfxToast, keyof IfxToastAttributes> & { [K in keyof IfxToast & keyof IfxToastAttributes]?: IfxToast[K] } & { [K in keyof IfxToast & keyof IfxToastAttributes as `attr:${K}`]?: IfxToastAttributes[K] } & { [K in keyof IfxToast & keyof IfxToastAttributes as `prop:${K}`]?: IfxToast[K] };
+        "ifx-toast-container": Omit<IfxToastContainer, keyof IfxToastContainerAttributes> & { [K in keyof IfxToastContainer & keyof IfxToastContainerAttributes]?: IfxToastContainer[K] } & { [K in keyof IfxToastContainer & keyof IfxToastContainerAttributes as `attr:${K}`]?: IfxToastContainerAttributes[K] } & { [K in keyof IfxToastContainer & keyof IfxToastContainerAttributes as `prop:${K}`]?: IfxToastContainer[K] };
         "ifx-tooltip": Omit<IfxTooltip, keyof IfxTooltipAttributes> & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes]?: IfxTooltip[K] } & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes as `attr:${K}`]?: IfxTooltipAttributes[K] } & { [K in keyof IfxTooltip & keyof IfxTooltipAttributes as `prop:${K}`]?: IfxTooltip[K] };
         "ifx-tree-view": Omit<IfxTreeView, keyof IfxTreeViewAttributes> & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes]?: IfxTreeView[K] } & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes as `attr:${K}`]?: IfxTreeViewAttributes[K] } & { [K in keyof IfxTreeView & keyof IfxTreeViewAttributes as `prop:${K}`]?: IfxTreeView[K] };
         "ifx-tree-view-item": Omit<IfxTreeViewItem, keyof IfxTreeViewItemAttributes> & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes]?: IfxTreeViewItem[K] } & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes as `attr:${K}`]?: IfxTreeViewItemAttributes[K] } & { [K in keyof IfxTreeViewItem & keyof IfxTreeViewItemAttributes as `prop:${K}`]?: IfxTreeViewItem[K] };
@@ -8155,6 +8420,7 @@ declare module "@stencil/core" {
             "ifx-chip-item": LocalJSX.IntrinsicElements["ifx-chip-item"] & JSXBase.HTMLAttributes<HTMLIfxChipItemElement>;
             "ifx-content-switcher": LocalJSX.IntrinsicElements["ifx-content-switcher"] & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherElement>;
             "ifx-content-switcher-item": LocalJSX.IntrinsicElements["ifx-content-switcher-item"] & JSXBase.HTMLAttributes<HTMLIfxContentSwitcherItemElement>;
+            "ifx-counter": LocalJSX.IntrinsicElements["ifx-counter"] & JSXBase.HTMLAttributes<HTMLIfxCounterElement>;
             "ifx-date-picker": LocalJSX.IntrinsicElements["ifx-date-picker"] & JSXBase.HTMLAttributes<HTMLIfxDatePickerElement>;
             "ifx-download": LocalJSX.IntrinsicElements["ifx-download"] & JSXBase.HTMLAttributes<HTMLIfxDownloadElement>;
             "ifx-dropdown": LocalJSX.IntrinsicElements["ifx-dropdown"] & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
@@ -8181,6 +8447,11 @@ declare module "@stencil/core" {
             "ifx-list-entry": LocalJSX.IntrinsicElements["ifx-list-entry"] & JSXBase.HTMLAttributes<HTMLIfxListEntryElement>;
             "ifx-modal": LocalJSX.IntrinsicElements["ifx-modal"] & JSXBase.HTMLAttributes<HTMLIfxModalElement>;
             "ifx-multiselect": LocalJSX.IntrinsicElements["ifx-multiselect"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectElement>;
+            /**
+             * Visually and semantically groups multiselect options under a heading.
+             * Unlike a multiselect option with children, a group is not selectable or expandable.
+             */
+            "ifx-multiselect-group": LocalJSX.IntrinsicElements["ifx-multiselect-group"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectGroupElement>;
             "ifx-multiselect-option": LocalJSX.IntrinsicElements["ifx-multiselect-option"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectOptionElement>;
             "ifx-multiselect-separator": LocalJSX.IntrinsicElements["ifx-multiselect-separator"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectSeparatorElement>;
             "ifx-navbar": LocalJSX.IntrinsicElements["ifx-navbar"] & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
@@ -8197,10 +8468,28 @@ declare module "@stencil/core" {
             "ifx-search-field": LocalJSX.IntrinsicElements["ifx-search-field"] & JSXBase.HTMLAttributes<HTMLIfxSearchFieldElement>;
             "ifx-segment": LocalJSX.IntrinsicElements["ifx-segment"] & JSXBase.HTMLAttributes<HTMLIfxSegmentElement>;
             "ifx-segmented-control": LocalJSX.IntrinsicElements["ifx-segmented-control"] & JSXBase.HTMLAttributes<HTMLIfxSegmentedControlElement>;
+            /**
+             * A single-select dropdown. Options are provided as slotted `ifx-select-option`
+             * children, optionally grouped with `ifx-select-group` (flat optgroup). Native,
+             * slot-based architecture mirroring `ifx-multiselect`.
+             */
             "ifx-select": LocalJSX.IntrinsicElements["ifx-select"] & JSXBase.HTMLAttributes<HTMLIfxSelectElement>;
+            /**
+             * A non-selectable, greyed group header (like HTML `<optgroup>`) that labels a set
+             * of slotted `ifx-select-option`s. Flat — no expand/collapse. Setting `disabled`
+             * disables every option in the group.
+             */
+            "ifx-select-group": LocalJSX.IntrinsicElements["ifx-select-group"] & JSXBase.HTMLAttributes<HTMLIfxSelectGroupElement>;
+            /**
+             * A single selectable option inside an `ifx-select`. Provided as a slotted child
+             * (optionally wrapped in an `ifx-select-group`). Mirrors the multi-select option
+             * pattern but simplified for single selection — no checkbox, nesting or chevron.
+             */
+            "ifx-select-option": LocalJSX.IntrinsicElements["ifx-select-option"] & JSXBase.HTMLAttributes<HTMLIfxSelectOptionElement>;
             "ifx-set-filter": LocalJSX.IntrinsicElements["ifx-set-filter"] & JSXBase.HTMLAttributes<HTMLIfxSetFilterElement>;
             "ifx-sidebar": LocalJSX.IntrinsicElements["ifx-sidebar"] & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
             "ifx-sidebar-item": LocalJSX.IntrinsicElements["ifx-sidebar-item"] & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;
+            "ifx-sidebar-separator": LocalJSX.IntrinsicElements["ifx-sidebar-separator"] & JSXBase.HTMLAttributes<HTMLIfxSidebarSeparatorElement>;
             "ifx-sidebar-title": LocalJSX.IntrinsicElements["ifx-sidebar-title"] & JSXBase.HTMLAttributes<HTMLIfxSidebarTitleElement>;
             "ifx-slider": LocalJSX.IntrinsicElements["ifx-slider"] & JSXBase.HTMLAttributes<HTMLIfxSliderElement>;
             "ifx-spinner": LocalJSX.IntrinsicElements["ifx-spinner"] & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
@@ -8244,6 +8533,8 @@ declare module "@stencil/core" {
             "ifx-templates-ui": LocalJSX.IntrinsicElements["ifx-templates-ui"] & JSXBase.HTMLAttributes<HTMLIfxTemplatesUiElement>;
             "ifx-text-field": LocalJSX.IntrinsicElements["ifx-text-field"] & JSXBase.HTMLAttributes<HTMLIfxTextFieldElement>;
             "ifx-textarea": LocalJSX.IntrinsicElements["ifx-textarea"] & JSXBase.HTMLAttributes<HTMLIfxTextareaElement>;
+            "ifx-toast": LocalJSX.IntrinsicElements["ifx-toast"] & JSXBase.HTMLAttributes<HTMLIfxToastElement>;
+            "ifx-toast-container": LocalJSX.IntrinsicElements["ifx-toast-container"] & JSXBase.HTMLAttributes<HTMLIfxToastContainerElement>;
             "ifx-tooltip": LocalJSX.IntrinsicElements["ifx-tooltip"] & JSXBase.HTMLAttributes<HTMLIfxTooltipElement>;
             "ifx-tree-view": LocalJSX.IntrinsicElements["ifx-tree-view"] & JSXBase.HTMLAttributes<HTMLIfxTreeViewElement>;
             "ifx-tree-view-item": LocalJSX.IntrinsicElements["ifx-tree-view-item"] & JSXBase.HTMLAttributes<HTMLIfxTreeViewItemElement>;

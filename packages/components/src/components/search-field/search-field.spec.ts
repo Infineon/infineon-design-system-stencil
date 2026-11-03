@@ -2,6 +2,17 @@ import { newSpecPage } from "jest-stencil-runner";
 import { SearchField } from "./search-field";
 
 describe("ifx-search-field", () => {
+	const waitForAnnouncement = async () => {
+		await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+	};
+
+	const setShadowActiveElement = (page: any, activeElement: Element | null) => {
+		Object.defineProperty(page.root.shadowRoot, "activeElement", {
+			configurable: true,
+			get: () => activeElement,
+		});
+	};
+
 	it("renders with default props", async () => {
 		const page = await newSpecPage({
 			components: [SearchField],
@@ -15,6 +26,10 @@ describe("ifx-search-field", () => {
 		// Check default placeholder
 		const input = page.root.shadowRoot.querySelector("input");
 		expect(input.getAttribute("placeholder")).toBe("Search");
+		expect(input.getAttribute("type")).toBe("search");
+		expect(input.getAttribute("role")).toBeNull();
+		expect(input.getAttribute("aria-autocomplete")).toBe("list");
+		expect(input.getAttribute("aria-haspopup")).toBe("listbox");
 
 		// Check default size (not small)
 		const wrapper = page.root.shadowRoot.querySelector(
@@ -94,6 +109,349 @@ describe("ifx-search-field", () => {
 		expect(inputEventSpy).toHaveBeenCalled();
 		const emittedEvent = inputEventSpy.mock.calls[0][0];
 		expect(emittedEvent.detail).toBe("test query");
+	});
+
+	it("updates visible suggestions while typing when consumer provides new suggestions", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "a";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.id)).toEqual([
+			"a1",
+		]);
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "b1", text: "Beta one", type: "suggestion" },
+			{ id: "b2", text: "Beta two", type: "suggestion" },
+		];
+		input.value = "ab";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.value).toBe("ab");
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.id)).toEqual([
+			"b1",
+			"b2",
+		]);
+	});
+
+	it("uses external suggestions as provided without internal includes filtering", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "1", text: "find matches", type: "suggestion" },
+			{ id: "2", text: "related concept", type: "suggestion" },
+			{ id: "3", text: "semantic result", type: "suggestion" },
+		];
+		page.root.value = "find";
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.id)).toEqual([
+			"1",
+			"2",
+			"3",
+		]);
+	});
+
+	it("shows external suggestions when query is empty", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "e1", text: "Top pick", type: "suggestion" },
+			{ id: "e2", text: "Trending", type: "suggestion" },
+		];
+		page.root.value = "";
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.id)).toEqual([
+			"e1",
+			"e2",
+		]);
+	});
+
+	it("announces the number of available suggestions", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+			{ id: "a2", text: "Alpha two", type: "suggestion" },
+		];
+		const input = page.root.shadowRoot.querySelector("input");
+		(page.rootInstance as any).focusInput();
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		const status = page.root.shadowRoot.querySelector(
+			".suggestion-status",
+		) as HTMLElement;
+		expect(status.tagName).toBe("OUTPUT");
+		expect(status.getAttribute("role")).toBeNull();
+		expect(status.getAttribute("aria-live")).toBe("polite");
+		expect(status.getAttribute("aria-atomic")).toBe("true");
+		expect(status.textContent).toBe("2 results available");
+	});
+
+	it("keeps native search semantics and active descendant state", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+		(page.rootInstance as any).focusInput();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(input.getAttribute("type")).toBe("search");
+		expect(input.getAttribute("role")).toBeNull();
+		expect(input.getAttribute("aria-autocomplete")).toBe("list");
+		expect(input.getAttribute("aria-haspopup")).toBe("listbox");
+		expect(input.getAttribute("aria-controls")).toBe("suggestions-dropdown");
+		expect(input.hasAttribute("aria-expanded")).toBe(false);
+		expect(input.hasAttribute("aria-owns")).toBe(false);
+
+		(page.rootInstance as any).handleKeyDown(
+			new KeyboardEvent("keydown", { key: "ArrowDown" }),
+		);
+		await page.waitForChanges();
+
+		expect(input.getAttribute("aria-activedescendant")).toBe("suggestion-0");
+		expect((page.rootInstance as any).selectedSuggestionIndex).toBe(0);
+		expect(page.root.shadowRoot.querySelector("#suggestion-0")).toBeTruthy();
+	});
+
+	it("updates the announcement when the suggestion count changes", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+		(page.rootInstance as any).focusInput();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+			{ id: "a2", text: "Alpha two", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("1 result available");
+	});
+
+	it("re-announces an equal result count for a new suggestion update", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+		(page.rootInstance as any).focusInput();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "b1", text: "Beta one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("");
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("1 result available");
+	});
+
+	it("clears stale announcements when the dropdown closes", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		(page.rootInstance as any).dismissSuggestions();
+		await page.waitForChanges();
+		await waitForAnnouncement();
+		await page.waitForChanges();
+
+		expect(
+			page.root.shadowRoot.querySelector(".suggestion-status").textContent,
+		).toBe("");
+	});
+
+	it("merges history and suggestions with history replacing duplicate suggestion data", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field></ifx-search-field>`,
+		});
+
+		(page.rootInstance as any).searchHistory = ["shared"];
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "s1", text: "shared", type: "suggestion" },
+			{ id: "s2", text: "external only", type: "suggestion" },
+		];
+		page.root.value = "";
+		(page.rootInstance as any).updateSuggestions();
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.text)).toEqual([
+			"shared",
+			"external only",
+		]);
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.type)).toEqual([
+			"history",
+			"suggestion",
+		]);
+	});
+
+	it("collects and displays history when suggestions are disabled", async () => {
+		const historyKey = "ifx-search-history-only-test";
+		localStorage.removeItem(historyKey);
+
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field history-key="${historyKey}"></ifx-search-field>`,
+		});
+
+		page.root.value = "history only query";
+		await page.waitForChanges();
+
+		(page.rootInstance as any).handleSearch();
+		await page.waitForChanges();
+
+		expect((page.rootInstance as any).searchHistory).toEqual([
+			"history only query",
+		]);
+
+		(page.rootInstance as any).focusInput();
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.text)).toEqual([
+			"history only query",
+		]);
+		expect(
+			page.rootInstance.filteredSuggestions.every(
+				(item) => item.type === "history",
+			),
+		).toBeTruthy();
+		expect(page.rootInstance.showDropdown).toBeTruthy();
+
+		localStorage.removeItem(historyKey);
+	});
+
+	it("shows external suggestions when history is disabled", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+
+		(page.root as HTMLIfxSearchFieldElement).enableHistory = false;
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "s1", text: "Search result one", type: "suggestion" },
+			{ id: "s2", text: "Search result two", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "search";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.id)).toEqual([
+			"s1",
+			"s2",
+		]);
+		expect(
+			page.rootInstance.filteredSuggestions.every(
+				(item) => item.type === "suggestion",
+			),
+		).toBeTruthy();
+
+		(page.rootInstance as any).handleSearch();
+		await page.waitForChanges();
+		expect((page.rootInstance as any).searchHistory).toEqual([]);
+	});
+
+	it("combines external suggestions and history when both are enabled", async () => {
+		const historyKey = "ifx-search-combined-test";
+		localStorage.removeItem(historyKey);
+
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions history-key="${historyKey}"></ifx-search-field>`,
+		});
+
+		(page.rootInstance as any).searchHistory = ["recent search"];
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "r1", text: "ranked result", type: "suggestion" },
+		];
+		page.root.value = "";
+		(page.rootInstance as any).updateSuggestions();
+		await page.waitForChanges();
+
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.text)).toEqual([
+			"ranked result",
+			"recent search",
+		]);
+		expect(page.rootInstance.filteredSuggestions.map((item) => item.type)).toEqual([
+			"suggestion",
+			"history",
+		]);
+
+		localStorage.removeItem(historyKey);
 	});
 
 	it("shows delete icon when showDeleteIcon is true and value is not empty", async () => {
@@ -181,11 +539,25 @@ describe("ifx-search-field", () => {
 		// Initially not focused
 		expect(page.rootInstance.isFocused).toBeFalsy();
 
-		// Click the wrapper to focus
+		const input = page.root.shadowRoot.querySelector(
+			"input",
+		) as HTMLInputElement;
 		const wrapper = page.root.shadowRoot.querySelector(
 			".search-field__wrapper",
 		) as HTMLElement;
-		wrapper.click();
+
+		// The label contains only the non-interactive search area and input.
+		expect(wrapper.tagName).toBe("DIV");
+		const label = wrapper.querySelector("label");
+		expect(label).toBeTruthy();
+		expect(label.contains(input)).toBeTruthy();
+		expect(label.querySelector(".search-icon")).toBeTruthy();
+		expect(label.querySelector(".delete-icon")).toBeFalsy();
+
+		// Native label activation focuses the input without a wrapper click handler.
+		label.click();
+		// The spec DOM does not implement label activation, so simulate its result.
+		input.focus();
 		await page.waitForChanges();
 
 		// Should now be focused
@@ -196,6 +568,363 @@ describe("ifx-search-field", () => {
 
 		// Wrapper should have focused class
 		expect(wrapper.classList.contains("focused")).toBeTruthy();
+	});
+
+	it("keeps isFocused true when Escape dismisses suggestions", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.rootInstance as any).focusInput();
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		const escapeEvent = new KeyboardEvent("keydown", {
+			key: "Escape",
+			cancelable: true,
+		});
+		(page.rootInstance as any).handleKeyDown(escapeEvent);
+		await page.waitForChanges();
+
+		expect(page.rootInstance.isFocused).toBe(true);
+		expect(page.rootInstance.showDropdown).toBe(false);
+		expect(escapeEvent.defaultPrevented).toBe(true);
+		expect(input.value).toBe("alpha");
+	});
+
+	it("clears the value explicitly when Escape is pressed with no dropdown", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+		input.value = "search term";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		const escapeEvent = new KeyboardEvent("keydown", {
+			key: "Escape",
+			cancelable: true,
+		});
+		(page.rootInstance as any).handleKeyDown(escapeEvent);
+		await page.waitForChanges();
+
+		expect(escapeEvent.defaultPrevented).toBe(true);
+		expect(input.value).toBe("");
+		expect(page.rootInstance.value).toBe("");
+	});
+
+	it("sets isFocused false after the input actually blurs", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		input.focus();
+		await page.waitForChanges();
+		input.blur();
+		await new Promise((resolve) => setTimeout(resolve, 200));
+
+		expect(page.rootInstance.isFocused).toBe(false);
+	});
+
+	it("keeps isFocused true when refocused during delayed blur", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		input.focus();
+		await page.waitForChanges();
+		input.blur();
+		await new Promise((resolve) => setTimeout(resolve, 50));
+		input.focus();
+		setShadowActiveElement(page, input);
+		await new Promise((resolve) => setTimeout(resolve, 200));
+
+		expect(page.rootInstance.isFocused).toBe(true);
+	});
+
+	it("keeps the dropdown open when focus moves to a suggestion", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		input.focus();
+		await page.waitForChanges();
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		const suggestion = page.root.shadowRoot.querySelector(
+			".suggestion-item",
+		) as HTMLElement;
+		input.blur();
+		suggestion.focus();
+		setShadowActiveElement(page, suggestion);
+		await new Promise((resolve) => setTimeout(resolve, 250));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.isFocused).toBe(false);
+		expect(page.rootInstance.isFocusWithin).toBe(true);
+		expect(page.rootInstance.showDropdown).toBe(true);
+	});
+
+	it("closes the dropdown when focus leaves a suggestion", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		input.focus();
+		await page.waitForChanges();
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		const suggestion = page.root.shadowRoot.querySelector(
+			".suggestion-item",
+		) as HTMLElement;
+		input.blur();
+		suggestion.focus();
+		setShadowActiveElement(page, suggestion);
+		const outside = document.createElement("button");
+		document.body.appendChild(outside);
+		outside.focus();
+		setShadowActiveElement(page, null);
+		await new Promise((resolve) => setTimeout(resolve, 250));
+		await page.waitForChanges();
+		outside.remove();
+
+		expect(page.rootInstance.isFocusWithin).toBe(false);
+		expect(page.rootInstance.showDropdown).toBe(false);
+	});
+
+	it("does not reopen after blur when asynchronous suggestions arrive", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		input.focus();
+		await page.waitForChanges();
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		input.blur();
+		await new Promise((resolve) => setTimeout(resolve, 200));
+		await page.waitForChanges();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		expect(page.rootInstance.isFocused).toBe(false);
+		expect(page.rootInstance.showDropdown).toBe(false);
+	});
+
+	it("opens when asynchronous suggestions arrive after input", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.rootInstance as any).focusInput();
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		expect(page.rootInstance.showDropdown).toBe(false);
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		expect(page.rootInstance.showDropdown).toBe(true);
+	});
+
+	it("does not reopen after Escape when asynchronous suggestions arrive", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+
+		(page.rootInstance as any).focusInput();
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		(page.rootInstance as any).handleKeyDown(
+			new KeyboardEvent("keydown", { key: "Escape" }),
+		);
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		expect(page.rootInstance.isFocused).toBe(true);
+		expect(page.rootInstance.showDropdown).toBe(false);
+	});
+
+	it("resets dismissal when typing again", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+		(page.rootInstance as any).focusInput();
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+		(page.rootInstance as any).dismissSuggestions();
+
+		input.value = "alpha again";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.suggestionsDismissed).toBe(false);
+		expect(page.rootInstance.showDropdown).toBe(true);
+	});
+
+	it("keeps late suggestions closed after outside interaction", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+		(page.rootInstance as any).focusInput();
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		page.rootInstance.inputElement = input;
+		page.rootInstance.dropdownElement = null;
+		page.rootInstance.wrapperElement = null;
+		const outsideClickEvent = new MouseEvent("mousedown");
+		Object.defineProperty(outsideClickEvent, "composedPath", {
+			value: () => [document.body],
+		});
+		(page.rootInstance as any).handleOutsideClick(outsideClickEvent);
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		expect(page.rootInstance.showDropdown).toBe(false);
+	});
+
+	it("keeps late suggestions closed after selection", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+		(page.rootInstance as any).focusInput();
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		(page.rootInstance as any).selectSuggestion(
+			page.rootInstance.filteredSuggestions[0],
+		);
+		expect(page.rootInstance.isFocused).toBe(true);
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a2", text: "Alpha two", type: "suggestion" },
+		];
+		await page.waitForChanges();
+
+		expect(page.rootInstance.showDropdown).toBe(false);
+	});
+
+	it("hides the dropdown when suggestions become empty", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-suggestions></ifx-search-field>`,
+		});
+		const input = page.root.shadowRoot.querySelector("input");
+		(page.rootInstance as any).focusInput();
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
+		input.value = "alpha";
+		input.dispatchEvent(new Event("input"));
+		await page.waitForChanges();
+
+		(page.root as HTMLIfxSearchFieldElement).suggestions = [];
+		await page.waitForChanges();
+
+		expect(page.rootInstance.showDropdown).toBe(false);
+	});
+
+	it("keeps the clear button outside the label and keyboard accessible", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field show-delete-icon value="test"></ifx-search-field>`,
+		});
+
+		page.rootInstance.showDeleteIconInternalState = true;
+		await page.waitForChanges();
+
+		const label = page.root.shadowRoot.querySelector("label");
+		const deleteIcon = page.root.shadowRoot.querySelector(
+			".delete-icon",
+		) as HTMLElement;
+		expect(label.contains(deleteIcon)).toBeFalsy();
+		expect(deleteIcon.getAttribute("role")).toBe("button");
+		expect(deleteIcon.getAttribute("tabindex")).toBe("0");
+
+		deleteIcon.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.value).toBe("");
+	});
+
+	it("does not clear a disabled search field", async () => {
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field disabled show-delete-icon value="test"></ifx-search-field>`,
+		});
+
+		page.rootInstance.showDeleteIconInternalState = true;
+		await page.waitForChanges();
+
+		const deleteIcon = page.root.shadowRoot.querySelector(
+			".delete-icon",
+		) as HTMLElement;
+		deleteIcon.click();
+		deleteIcon.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+		await page.waitForChanges();
+
+		expect(page.rootInstance.value).toBe("test");
+		expect(page.root.shadowRoot.querySelector("input").disabled).toBeTruthy();
 	});
 
 	it("watches value changes and updates input", async () => {
@@ -221,8 +950,12 @@ describe("ifx-search-field", () => {
 			html: `<ifx-search-field></ifx-search-field>`,
 		});
 
-		// Set the component as having a dropdown open
-		page.rootInstance.showDropdown = true;
+		// Establish the conditions that make the derived dropdown visible.
+		page.rootInstance.isFocused = true;
+		page.rootInstance.suggestionsDismissed = false;
+		page.rootInstance.filteredSuggestions = [
+			{ id: "a1", text: "Alpha one", type: "suggestion" },
+		];
 		await page.waitForChanges();
 
 		// Mock the input and dropdown elements
@@ -265,5 +998,33 @@ describe("ifx-search-field", () => {
 
 		const input = page.root.shadowRoot.querySelector("input");
 		expect(input.getAttribute("autocomplete")).toBe("off");
+	});
+
+	it("adds to history on Enter even when dropdown is closed", async () => {
+		const historyKey = "ifx-search-enter-submit-test";
+		localStorage.removeItem(historyKey);
+
+		const page = await newSpecPage({
+			components: [SearchField],
+			html: `<ifx-search-field history-key="${historyKey}" enable-history="true" show-suggestions="false"></ifx-search-field>`,
+		});
+
+		page.root.value = "submitted from enter";
+		await page.waitForChanges();
+		(page.rootInstance as any).focusInput();
+		await page.waitForChanges();
+
+		expect(page.rootInstance.showDropdown).toBeFalsy();
+
+		const enterEvent = new KeyboardEvent("keydown", { key: "Enter" });
+		(page.rootInstance as any).handleKeyDown(enterEvent);
+		await page.waitForChanges();
+
+		expect((page.rootInstance as any).searchHistory).toEqual([
+			"submitted from enter",
+		]);
+		expect(page.rootInstance.isFocused).toBe(true);
+
+		localStorage.removeItem(historyKey);
 	});
 });

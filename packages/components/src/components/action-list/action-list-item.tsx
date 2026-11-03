@@ -8,6 +8,7 @@ import {
 	Watch,
 } from "@stencil/core";
 import classNames from "classnames";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 
 export interface ActionListItemClickEvent {
 	value?: string;
@@ -102,15 +103,6 @@ export class ActionListItem {
 			component: this,
 		});
 
-		// If href is provided, automatically navigate (Link mode)
-		// If no href is provided, only the event is emitted (Event mode)
-		if (this.href) {
-			if (this.target === "_blank") {
-				window.open(this.href, this.target);
-			} else {
-				window.location.href = this.href;
-			}
-		}
 	};
 
 	private handleLeadingClick = (event: MouseEvent) => {
@@ -142,14 +134,6 @@ export class ActionListItem {
 			component: this,
 		});
 
-		// If href is provided, automatically navigate
-		if (this.href) {
-			if (this.target === "_blank") {
-				window.open(this.href, this.target);
-			} else {
-				window.location.href = this.href;
-			}
-		}
 	};
 
 	private handleTrailingClick = (event: MouseEvent) => {
@@ -181,14 +165,6 @@ export class ActionListItem {
 			component: this,
 		});
 
-		// If href is provided, automatically navigate
-		if (this.href) {
-			if (this.target === "_blank") {
-				window.open(this.href, this.target);
-			} else {
-				window.location.href = this.href;
-			}
-		}
 	};
 
 	private isInteractiveElement = (element: HTMLElement): boolean => {
@@ -310,6 +286,15 @@ export class ActionListItem {
 			element.removeAttribute("disabled");
 		}
 	};
+
+	private renderContent() {
+    return [
+        <div class="action-list-item__title">{this.itemTitle}</div>,
+        this.description && (
+            <div class="action-list-item__description">{this.description}</div>
+        )
+    ];
+}
 	render() {
 		const isClickable = !this.disabled && (this.href || this.value);
 		const ariaLabel =
@@ -344,12 +329,22 @@ export class ActionListItem {
 				)}
 
 				{/* Text Container */}
-				<div class="action-list-item__content">
-					<div class="action-list-item__title">{this.itemTitle}</div>
-					{this.description && (
-						<div class="action-list-item__description">{this.description}</div>
-					)}
-				</div>
+
+				{this.href && !this.disabled ? (
+					<a
+						class="action-list-item__content"
+						href={sanitizeHref(this.href)}
+						target={this.target}
+						rel={this.target === "_blank" ? "noopener noreferrer" : undefined}
+					>
+						{this.renderContent()}
+					</a>
+				) : (
+					<div class="action-list-item__content">
+						{this.renderContent()}
+					</div>
+				)}
+				
 
 				{/* Trailing Item Container - only render if content exists */}
 				{hasTrailingContent && (

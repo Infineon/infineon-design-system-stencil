@@ -10,6 +10,7 @@ import {
 	State,
 	Watch,
 } from "@stencil/core";
+import { sanitizeHref } from "../../../shared/utils/url-utils";
 
 @Component({
 	tag: "ifx-sidebar-item",
@@ -41,6 +42,8 @@ export class SidebarItem {
 	@Prop() readonly isActionItem: boolean = false; // if an item is an action item, it can not become active
 	/** Click handler callback; receives the item HTMLElement */
 	@Prop() readonly handleItemClick: (item: HTMLElement) => void;
+	/** Customize the font bold vs normal */
+	@Prop() readonly fontWeight: "normal" | "bold" = "normal";
 
 	@State() showIcon: boolean = true;
 	@State() showIconWrapper: boolean = false;
@@ -58,7 +61,6 @@ export class SidebarItem {
 
 	@Watch("active")
 	handleActiveChange(newValue: boolean, oldValue: boolean) {
-		// If the item is an action item, ignore the active prop
 		if (this.isActionItem) {
 			this.internalActiveState = false;
 			return;
@@ -66,12 +68,8 @@ export class SidebarItem {
 		this.internalActiveState = newValue;
 		if (newValue !== oldValue) {
 			const labelElement = this.getNavItem(this.el.shadowRoot);
-			if (!this.isExpandable && !newValue) {
-				this.handleClassList(labelElement, "remove", "active");
-			}
-			if (!this.isExpandable && newValue) {
-				this.handleClassList(labelElement, "add", "active");
-			}
+			this.handleClassList(labelElement, newValue ? "add" : "remove", "active");
+			if (newValue) this.ifxSidebarNavigationItem.emit(this.el); 
 		}
 	}
 
@@ -92,7 +90,6 @@ export class SidebarItem {
 	private handleEventEmission() {
 		// Get the active item section
 		this.ifxSidebarMenu.emit(this.el);
-		this.ifxSidebarNavigationItem.emit(this.el);
 	}
 
 	private handleClassList(el, type, className) {
@@ -204,17 +201,14 @@ export class SidebarItem {
 		this.handleClassList(activeMenuItem, "add", "active");
 	}
 
-	/** Expand submenu (adds 'open'); if ac=true, remove 'active-section' */
+	/** Expand submenu and keep the active section indicator visible. */
 	@Method()
 	async expandMenu(ac: boolean) {
+		void ac;
 		const menuItem = this.getSidebarMenuItem();
 		const expandableMenu = this.getExpandableMenu();
 		this.handleClassList(expandableMenu, "add", "open");
 		this.handleClassList(menuItem, "add", "open");
-		if (ac) {
-			this.handleClassList(expandableMenu, "remove", "active-section");
-			this.handleClassList(menuItem, "remove", "active-section");
-		}
 	}
 
 	/** Return whether the item is expandable */
@@ -304,48 +298,36 @@ export class SidebarItem {
 		}
 	}
 
-	componentWillUpdate() {
-		// If the active prop has been set to true and the internalActiveState has not been set to true yet
-		if (this.active && !this.internalActiveState) {
-			// Set the internal active state to true
-			this.internalActiveState = this.active;
-
-			// Emit the event to notify the parent Sidebar
-			this.ifxSidebarNavigationItem.emit(this.el);
-		}
-	}
-
 	render() {
 		const isCollapsed = this.el.hasAttribute("data-sidebar-collapsed");
-		const shouldHide = this.el.hasAttribute("data-hide-in-collapsed");
+		const hasMenuItems = !this.isNested && this.isExpandable;
 
 		return (
-			<div style={{ display: shouldHide ? "none" : "block" }}>
+			<div>
 				<a
 					tabIndex={1}
 					onKeyDown={(event) => this.handleKeyDown(event)}
-					href={this.internalHref}
+					href={sanitizeHref(this.internalHref)}
 					onClick={() => this.toggleSubmenu()}
 					target={this.target}
 					class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? "header__section" : ""} ${this.isSubMenuItem ? "submenu__item" : ""}`}
 					title={this.titleText}
 				>
-					{this.icon && (
+					{this.icon && !hasMenuItems && (
 						<div
 							class={`sidebar__nav-item-icon-wrapper ${!this.showIcon && !isCollapsed ? "noIcon" : ""}`}
 						>
 							<ifx-icon icon={this.icon}></ifx-icon>
 						</div>
 					)}
-					<div class="sidebar__nav-item-label">
+					<div
+						class={`sidebar__nav-item-label ${this.fontWeight === "bold" ? "font-weight-bold" : "font-weight-normal"}`}
+					>
 						<slot />
 					</div>
 					{(this.isExpandable || !isNaN(this.numberIndicator)) && (
 						<div
-							class="sidebar__nav-item-indicator"
-							style={{
-								display: !isCollapsed || this.icon ? "flex" : "none",
-							}}
+							class={`sidebar__nav-item-indicator ${!isCollapsed || this.icon ? "" : "indicator-hidden"}`}
 						>
 							{this.isExpandable && (
 								<span class="item__arrow-wrapper">

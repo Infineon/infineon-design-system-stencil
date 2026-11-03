@@ -1,0 +1,27 @@
+@use "@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.group-heading {
+  display: flex;
+  align-items: center;
+  padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
+  color: tokens.$ifxColorEngineering500;
+  font-family: var(--ifx-font-family);
+  font-size: tokens.$ifxFontSizeXxs;
+  font-weight: tokens.$ifxFontWeightSemibold;
+  line-height: tokens.$ifxLineHeightXxs;
+  letter-spacing: tokens.$ifxLetterSpacingIncreased;
+  text-transform: uppercase;
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
+}
+
+// When search hides every option in the group, hide the header too.
+:host(.group--empty) .group-heading {
+  display: none;
+}

@@ -57,7 +57,12 @@
     & ifx-icon:hover {
       cursor: pointer;
     }
-  }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
+    }
+}
 
   &.closed {
     .search-bar__icon-wrapper {

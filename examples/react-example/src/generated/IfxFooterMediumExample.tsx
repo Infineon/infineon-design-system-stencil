@@ -1,4 +1,4 @@
-import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-react';
+import { IfxFooter, IfxIcon, IfxLink } from '@infineon/design-system-react';
 
 export function IfxFooterMediumExample() {
   const handleConsoleError = (event: CustomEvent) => {
@@ -78,7 +78,7 @@ export function IfxFooterMediumExample() {
   );
 }
 
-const codeString = `import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxFooter, IfxIcon, IfxLink } from '@infineon/design-system-react';
 
 export function IfxFooterExample() {
   const handleConsoleError = (event: CustomEvent) => {

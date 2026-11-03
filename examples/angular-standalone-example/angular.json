@@ -66,7 +66,8 @@
 							"buildTarget": "angular-standalone-example:build:production"
 						},
 						"development": {
-							"buildTarget": "angular-standalone-example:build:development"
+							"buildTarget": "angular-standalone-example:build:development",
+							"prebundle": false
 						}
 					},
 					"defaultConfiguration": "development"

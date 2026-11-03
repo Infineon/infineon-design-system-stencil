@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxAccordion, IfxAccordionItem } from '@infineon/infineon-design-system-vue';
+import { IfxAccordion, IfxAccordionItem } from '@infineon/design-system-vue';
 
 const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event);

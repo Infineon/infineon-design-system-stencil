@@ -19,6 +19,16 @@
 
 ## Methods
 
+### `closeMenu() => Promise<void>`
+
+Closes the profile menu.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `hideComponent() => Promise<void>`
 
 Hides this avatar item component.
@@ -38,6 +48,14 @@ Shows this avatar item component.
 Type: `Promise<void>`
 
 
+
+
+## Slots
+
+| Slot             | Description      |
+| ---------------- | ---------------- |
+|                  | The default slot |
+| `"first__layer"` |                  |
 
 
 ----------------------------------------------

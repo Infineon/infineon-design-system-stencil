@@ -21,7 +21,7 @@ export interface SuggestionItem {
 	type?: "suggestion" | "history";
 	scope?: string;
 	resultCount?: number;
-	metadata?: any;
+	metadata?: unknown;
 }
 
 @Component({
@@ -31,11 +31,12 @@ export interface SuggestionItem {
 })
 export class SearchField {
 
-	private inputElement: HTMLInputElement;
-	private dropdownElement: HTMLDivElement;
+	private inputElement?: HTMLInputElement;
+	private dropdownElement?: HTMLDivElement;
+	private wrapperElement?: HTMLDivElement;
 	private focusEmitted: boolean = false;
 
-	@Element() el: HTMLIfxSearchFieldElement;
+	@Element() el!: HTMLIfxSearchFieldElement;
 
 	/**
 	 * Current input value. Mutates as the user types and can be set programmatically.
@@ -144,69 +145,91 @@ export class SearchField {
 	/**
 	 * Maximum number of characters allowed in the input. 
 	 */
-	@Prop() readonly maxlength?: number = null;
+	@Prop() readonly maxlength?: number = undefined;
 
 	
 	/**
 	 * Emitted on input change with the current value.
 	 */
-	@Event() ifxInput: EventEmitter<string>;
+	@Event() ifxInput!: EventEmitter<string>;
 
 	/**
 	 * Emitted to request external suggestions for the given query.
 	 */
-	@Event() ifxSuggestionRequested: EventEmitter<string>;
+	@Event() ifxSuggestionRequested!: EventEmitter<string>;
 
 	/**
 	 * Emitted when a suggestion or history item is selected.
 	 */
-	@Event() ifxSuggestionSelected: EventEmitter<SuggestionItem>;
+	@Event() ifxSuggestionSelected!: EventEmitter<SuggestionItem>;
 
 	/**
 	 * Emitted when the input gains focus.
 	 */
-	@Event() ifxFocus: EventEmitter<void>;
+	@Event() ifxFocus!: EventEmitter<void>;
 
 	/**
 	 * Emitted when the input loses focus.
 	 */
-	@Event() ifxBlur: EventEmitter<void>;
+	@Event() ifxBlur!: EventEmitter<void>;
 
 	@State() showDeleteIconInternalState: boolean = false;
 	@State() isFocused: boolean = false;
-	@State() showDropdown: boolean = false;
+	@State() isFocusWithin: boolean = false;
+	@State() suggestionsDismissed: boolean = false;
 	@State() filteredSuggestions: SuggestionItem[] = [];
 	@State() selectedSuggestionIndex: number = -1;
 	@State() searchHistory: string[] = [];
+	@State() suggestionAnnouncement: string = "";
+	private announcementToken: number = 0;
+
+	private get showDropdown(): boolean {
+		return (
+			this.isFocusWithin &&
+			!this.suggestionsDismissed &&
+			(this.showSuggestions || this.enableHistory) &&
+			this.filteredSuggestions.length > 0
+		);
+	}
 
 
 	@Listen("mousedown", { target: "document" })
 	handleOutsideClick(event: MouseEvent) {
 		const path = event.composedPath();
+		const clickedInput = this.inputElement
+			? path.includes(this.inputElement)
+			: false;
+		const clickedDropdown = this.dropdownElement
+			? path.includes(this.dropdownElement)
+			: false;
+		const clickedWrapper = this.wrapperElement
+			? path.includes(this.wrapperElement)
+			: false;
 		if (
-			!path.includes(this.inputElement) &&
-			!path.includes(this.dropdownElement)
+			!clickedInput &&
+			!clickedDropdown &&
+			!clickedWrapper
 		) {
-			this.hideDropdown();
+			this.dismissSuggestions();
 		}
 	}
 
 	@Listen("keydown")
 	handleKeyDown(event: KeyboardEvent) {
-		if (!this.showDropdown) return;
-
 		switch (event.key) {
 			case "ArrowDown":
+				if (!this.showDropdown) return;
 				event.preventDefault();
 				this.navigateSuggestions(1);
 				break;
 			case "ArrowUp":
+				if (!this.showDropdown) return;
 				event.preventDefault();
 				this.navigateSuggestions(-1);
 				break;
 			case "Enter":
 				event.preventDefault();
-				if (this.selectedSuggestionIndex >= 0) {
+				if (this.showDropdown && this.selectedSuggestionIndex >= 0) {
 					this.selectSuggestion(
 						this.filteredSuggestions[this.selectedSuggestionIndex],
 					);
@@ -215,7 +238,16 @@ export class SearchField {
 				}
 				break;
 			case "Escape":
-				this.hideDropdown();
+				// Browser default for type="search" clears the value.
+				// We use two escape steps:
+				// 1. Escape: dismisses open suggestions without clearing
+				// 2. Escape: clear explicitly for consistent cross-agent behavior.
+				event.preventDefault();
+				if (this.showDropdown) {
+					this.dismissSuggestions();
+				} else {
+					this.handleDelete();
+				}
 				break;
 		}
 	}
@@ -234,65 +266,90 @@ export class SearchField {
 	}
 
 	private handleInput = () => {
+		this.suggestionsDismissed = false;
+		if (!this.inputElement) return;
+
 		const query = this.inputElement.value;
 		this.value = query;
+		this.cancelSuggestionAnnouncement();
 		this.ifxInput.emit(this.value);
 
+		if (!this.showSuggestions && !this.enableHistory) return;
+
+		this.selectedSuggestionIndex = -1;
+
 		if (this.showSuggestions) {
-			this.showDropdown = true;
-			this.selectedSuggestionIndex = -1;
 			this.requestSuggestions(query);
+		} else {
+			this.updateSuggestions();
 		}
+
 	};
 
 	private handleDelete = () => {
-		if (!this.disabled) {
+		if (!this.disabled && this.inputElement) {
 			this.inputElement.value = "";
 			this.value = "";
 			this.ifxInput.emit(this.value);
-			this.hideDropdown();
+			this.dismissSuggestions();
 		}
 	};
 
 	private handleSearch = () => {
 		if (this.value.trim() && this.enableHistory) {
-			// Only add to history if there are actual results
-			if (this.filteredSuggestions.length > 0) {
-				this.addToHistory(this.value);
-			}
+			this.addToHistory(this.value);
 		}
-		this.hideDropdown();
+		this.dismissSuggestions();
 	};
 
 	private focusInput() {
+		this.isFocused = true;
+		this.isFocusWithin = true;
+		this.suggestionsDismissed = false;
 		// Only emit focus event if it hasn't been emitted already
 		if (!this.focusEmitted) {
 			this.focusEmitted = true;
-			this.isFocused = true;
 			this.ifxFocus.emit();
 		}
 
-		if (this.showSuggestions) {
+		if (this.showSuggestions || this.enableHistory) {
 			// On focus without input: Show only history
 			if (this.value.length === 0) {
 				this.showHistoryDropdown();
-				// Only show dropdown if history is actually present
-				this.showDropdown = this.enableHistory && this.searchHistory.length > 0;
+				if (this.showDropdown) {
+					this.announceSuggestionCount();
+				}
 			} else {
 				// With existing input: Normal suggestion logic
 				this.updateSuggestions();
-				this.showDropdown = this.filteredSuggestions.length > 0;
 			}
 		}
 	}
 
 	private blurInput() {
 		setTimeout(() => {
+			const activeElement = this.el.shadowRoot?.activeElement;
+			if (activeElement === this.inputElement) {
+				return;
+			}
 			this.isFocused = false;
+			if (!activeElement) {
+				this.isFocusWithin = false;
+			}
 			this.focusEmitted = false; // Reset focus flag when blur occurs
 			this.ifxBlur.emit();
 		}, 150);
 	}
+
+	private handleFocusIn = () => {
+		this.isFocusWithin = true;
+	};
+
+	private handleFocusOut = () => {
+		setTimeout(() => {
+			this.isFocusWithin = this.el.shadowRoot?.activeElement != null;
+		});
+	};
 
 	// Public method to update history from external sources
 	private loadSearchHistory() {
@@ -303,11 +360,19 @@ export class SearchField {
 			// Update suggestions when history is loaded
 			this.updateSuggestions();
 
-			// If no input and no history left, close dropdown
+			// If no input and no history left, close the suggestion interaction
 			if (this.value.length === 0 && this.searchHistory.length === 0) {
-				this.showDropdown = false;
+				this.dismissSuggestions();
 			}
 		}
+	}
+
+	/**
+	 * Focuses the search input.
+	 */
+	@Method()
+	public async setFocus(): Promise<void> {
+		this.inputElement?.focus();
 	}
 
 	/**
@@ -325,8 +390,7 @@ export class SearchField {
 
 			// Reset all dropdown-relevant states
 			this.filteredSuggestions = [];
-			this.selectedSuggestionIndex = -1;
-			this.showDropdown = false;
+			this.dismissSuggestions();
 
 			// Update suggestions after reset
 			this.updateSuggestions();
@@ -375,9 +439,9 @@ export class SearchField {
 			// Update suggestions after removal
 			this.updateSuggestions();
 
-			// Close dropdown if no history remains
+			// End the suggestion interaction if no history remains
 			if (this.searchHistory.length === 0 && this.value.length === 0) {
-				this.showDropdown = false;
+				this.dismissSuggestions();
 			}
 		}
 	}
@@ -395,70 +459,27 @@ export class SearchField {
 
 	private updateSuggestions() {
 		const query = this.value.toLowerCase();
-		let suggestions: SuggestionItem[] = [];
+		const externalSuggestions = Array.isArray(this.suggestions)
+			? this.suggestions
+			: [];
 
-		if (query.length > 0) {
-			// For text input: Mix external suggestions and relevant history
+		const historySuggestions: SuggestionItem[] =
+			this.enableHistory && this.searchHistory.length > 0
+				? this.searchHistory
+						.filter(
+							(term) => query.length === 0 || term.toLowerCase().includes(query),
+						)
+						.map((term, index): SuggestionItem => ({
+							id: `history-${index}`,
+							text: term,
+							type: "history" as const,
+						}))
+				: [];
 
-			// 1. Filter external suggestions
-			if (this.suggestions && this.suggestions.length > 0) {
-				const filteredExternal = this.suggestions.filter((s) =>
-					s.text.toLowerCase().includes(query),
-				);
-				suggestions = [...suggestions, ...filteredExternal];
-			}
-
-			// 2. Filter relevant history entries
-			if (this.enableHistory && this.searchHistory.length > 0) {
-				const filteredHistory = this.searchHistory
-					.filter((term) => term.toLowerCase().includes(query))
-					.map((term, index) => ({
-						id: `history-${index}`,
-						text: term,
-						type: "history" as const,
-					}));
-				suggestions = [...suggestions, ...filteredHistory];
-			}
-
-			// 3. Sort by relevance (exact matches first, then prefix matches)
-			suggestions.sort((a, b) => {
-				const aText = a.text.toLowerCase();
-				const bText = b.text.toLowerCase();
-
-				// Exact match has highest priority
-				if (aText === query && bText !== query) return -1;
-				if (bText === query && aText !== query) return 1;
-
-				// Prefix match has second highest priority
-				const aStartsWith = aText.startsWith(query);
-				const bStartsWith = bText.startsWith(query);
-
-				if (aStartsWith && !bStartsWith) return -1;
-				if (bStartsWith && !aStartsWith) return 1;
-
-				// With equal relevance: external suggestions before history
-				if (a.type === "suggestion" && b.type === "history") return -1;
-				if (a.type === "history" && b.type === "suggestion") return 1;
-
-				// Alphabetical sorting as last criterion
-				return aText.localeCompare(bText);
-			});
-		} else {
-			// For empty query: Show only history (no external suggestions)
-			if (this.enableHistory && this.searchHistory.length > 0) {
-				const historySuggestions = this.searchHistory.map((term, index) => ({
-					id: `history-${index}`,
-					text: term,
-					type: "history" as const,
-				}));
-
-				suggestions = historySuggestions;
-			}
-			// For empty query DO NOT show external suggestions
-		}
+		const combinedSuggestions = [...externalSuggestions, ...historySuggestions];
 
 		// Remove duplicates based on text and scope combination (history takes precedence over external)
-		const uniqueSuggestions = suggestions.reduce(
+		const uniqueSuggestions = combinedSuggestions.reduce(
 			(unique: SuggestionItem[], current) => {
 				const existingIndex = unique.findIndex(
 					(item) =>
@@ -483,6 +504,7 @@ export class SearchField {
 
 		this.filteredSuggestions = uniqueSuggestions.slice(0, this.maxSuggestions);
 		this.selectedSuggestionIndex = -1;
+		this.announceSuggestionCount();
 	}
 
 	private navigateSuggestions(direction: number) {
@@ -501,9 +523,21 @@ export class SearchField {
 		}
 	}
 
+	// Scroll the currently selected suggestion into view within the dropdown
+	private scrollSelectedSuggestionIntoView() {
+		if (!this.dropdownElement || this.selectedSuggestionIndex < 0) return;
+
+		const selectedSuggestion = this.dropdownElement.querySelector(
+			`#suggestion-${this.selectedSuggestionIndex}`,
+		) as HTMLElement | null;
+		selectedSuggestion?.scrollIntoView({ block: "nearest" });
+	}
+
 	private selectSuggestion(suggestion: SuggestionItem) {
 		this.value = suggestion.text;
-		this.inputElement.value = suggestion.text;
+		if (this.inputElement) {
+			this.inputElement.value = suggestion.text;
+		}
 		this.ifxSuggestionSelected.emit(suggestion);
 		this.ifxInput.emit(this.value);
 
@@ -512,13 +546,30 @@ export class SearchField {
 			this.addToHistory(suggestion.text);
 		}
 
-		this.hideDropdown();
+		this.dismissSuggestions();
 	}
 
-	private hideDropdown() {
-		this.showDropdown = false;
+	private dismissSuggestions() {
+		this.suggestionsDismissed = true;
 		this.selectedSuggestionIndex = -1;
-		this.isFocused = false;
+		this.cancelSuggestionAnnouncement();
+	}
+
+	private cancelSuggestionAnnouncement() {
+		this.announcementToken++;
+		this.suggestionAnnouncement = "";
+	}
+
+	private announceSuggestionCount() {
+		this.suggestionAnnouncement = "";
+		const token = ++this.announcementToken;
+		requestAnimationFrame(() => {
+			if (token !== this.announcementToken) return;
+			if (!this.showDropdown || this.filteredSuggestions.length === 0) return;
+
+			const resultCount = this.filteredSuggestions.length;
+			this.suggestionAnnouncement = `${resultCount} ${resultCount === 1 ? "result" : "results"} available`;
+		});
 	}
 
 	// Show only history in dropdown (e.g. on focus without input)
@@ -582,6 +633,10 @@ export class SearchField {
 		}
 	}
 
+	componentDidRender() {
+		this.scrollSelectedSuggestionIntoView();
+	}
+
 	componentWillUpdate() {
 		if (this.value !== "") {
 			this.showDeleteIconInternalState = true;
@@ -593,16 +648,25 @@ export class SearchField {
 			<div
 				aria-disabled={this.disabled}
 				class="search-field"
+				onFocusin={this.handleFocusIn}
+				onFocusout={this.handleFocusOut}
 			>
-				<div
-					class={this.getWrapperClassNames()}
-					tabindex={1}
-					onClick={() => this.focusInput()}
+				<output
+					aria-atomic="true"
+					aria-live="polite"
+					class="suggestion-status"
 				>
-					<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
+					{this.suggestionAnnouncement}
+				</output>
+				<div
+					ref={(el) => (this.wrapperElement = el)}
+					class={this.getWrapperClassNames()}
+				>
+					<label class="search-field__label">
+						<ifx-icon icon="search-16" class="search-icon"></ifx-icon>
 					<input
 						ref={(el) => (this.inputElement = el)}
-						type="text"
+						type="search"
 						autocomplete={this.autocomplete}
 						onInput={() => this.handleInput()}
 						onFocus={() => this.focusInput()}
@@ -611,23 +675,21 @@ export class SearchField {
 						disabled={this.disabled}
 						maxlength={this.maxlength}
 						value={this.value}
-						role="combobox"
 						aria-controls={
 							this.showDropdown ? "suggestions-dropdown" : undefined
 						}
-						aria-expanded={this.showDropdown}
 						aria-autocomplete="list"
 						aria-haspopup="listbox"
 						aria-label={this.ariaLabelText}
 						aria-labelledby={this.ariaLabelledBy}
 						aria-describedby={this.ariaDescribedBy}
-						aria-owns={this.showDropdown ? "suggestions-dropdown" : undefined}
 						aria-activedescendant={
 							this.selectedSuggestionIndex >= 0
 								? `suggestion-${this.selectedSuggestionIndex}`
 								: undefined
 						}
-					/>
+						/>
+					</label>
 					{this.showDeleteIcon && this.showDeleteIconInternalState ? (
 						<ifx-icon
 							icon="cRemove16"
@@ -666,9 +728,16 @@ export class SearchField {
 								id={`suggestion-${index}`}
 								class={this.getSuggestionClassNames(index)}
 								role="option"
+								tabIndex={0}
 								aria-selected={index === this.selectedSuggestionIndex}
 								aria-label={`${suggestion.type === "history" ? this.historyItemAriaLabel : this.suggestionAriaLabel}: ${suggestion.text}${suggestion.scope ? `, ${suggestion.scope}` : ""}${suggestion.resultCount ? `, ${suggestion.resultCount} results` : ""}`}
 								onClick={() => this.selectSuggestion(suggestion)}
+								onKeyDown={(event) => {
+									if (event.key === "Enter" || event.key === " ") {
+										event.preventDefault();
+										this.selectSuggestion(suggestion);
+									}
+								}}
 								onMouseEnter={() => (this.selectedSuggestionIndex = index)}
 							>
 								<div class="suggestion-content">
@@ -734,7 +803,7 @@ export class SearchField {
 	private getWrapperClassNames() {
 		return classNames(
 			`search-field__wrapper`,
-			`search-field__wrapper ${this.getSizeClass()}`,
+			`${this.getSizeClass()}`,
 			`${this.isFocused ? "focused" : ""}`,
 			`${this.showDropdown ? "dropdown-open" : ""}`,
 			`${this.disabled ? "disabled" : ""}`,

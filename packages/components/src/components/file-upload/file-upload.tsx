@@ -222,11 +222,15 @@ export class FileUpload {
 
 	private fileInputEl: HTMLInputElement | null = null;
 
-	private extensionToMimeMap: Record<string, string> = {
+	private extensionToMimeMap: Record<string, string | string[]> = {
 		/**
 		 * Maps file extensions to MIME types.
 		 * This is only used for translating `allowedFileTypes` (extensions) into MIME types,
 		 * and for labeling in the UI. It does NOT define which files are globally allowed.
+		 *
+		 * Some extensions can map to multiple MIME types (e.g. ZIP files may be reported
+		 * as `application/zip` on most systems, but as `application/x-zip-compressed`
+		 * on Windows). All listed MIME types are accepted during validation.
 		 */
 
 		// Images
@@ -245,6 +249,7 @@ export class FileUpload {
 		xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 		ppt: "application/vnd.ms-powerpoint",
 		pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+		tsv: "text/tab-separated-values",
 		txt: "text/plain",
 		csv: "text/csv",
 		json: "application/json",
@@ -257,7 +262,7 @@ export class FileUpload {
 		webm: "video/webm",
 
 		// Archive / Code
-		zip: "application/zip",
+		zip: ["application/zip", "application/x-zip-compressed"],
 		rar: "application/vnd.rar",
 		tar: "application/x-tar",
 		gz: "application/gzip",
@@ -312,7 +317,18 @@ export class FileUpload {
 
 		// If allowedFileTypes is not set and no allowedFileExtensions, use defaults
 		if (!this.allowedFileTypes) {
-			return ["jpg", "jpeg", "png", "pdf", "mov", "mp3", "mp4"];
+			return [
+				"jpg",
+				"jpeg",
+				"png",
+				"pdf",
+				"xls",
+				"xlsx",
+				"tsv",
+				"mov",
+				"mp3",
+				"mp4",
+			];
 		}
 
 		if (Array.isArray(this.allowedFileTypes)) {
@@ -355,10 +371,23 @@ export class FileUpload {
 		// Check against allowedFileTypes (predefined extensions)
 		const normalizedTypes = this.getNormalizedFileTypes();
 		const allowedMimes = normalizedTypes
-			.map((ext) => this.extensionToMimeMap[ext.toLowerCase()])
+			.flatMap((ext) => {
+				const mapped = this.extensionToMimeMap[ext.toLowerCase()];
+				if (!mapped) return [];
+				return Array.isArray(mapped) ? mapped : [mapped];
+			})
 			.filter(Boolean);
 
 		if (allowedMimes.includes(file.type)) {
+			return true;
+		}
+
+		if (
+			fileExtension &&
+			normalizedTypes.some(
+				(ext) => ext.replace(/^\./, "").toLowerCase() === fileExtension,
+			)
+		) {
 			return true;
 		}
 
@@ -397,7 +426,10 @@ export class FileUpload {
 
 	private getLabelFromMimeType(mime: string): string {
 		for (const [ext, knownMime] of Object.entries(this.extensionToMimeMap)) {
-			if (knownMime === mime) {
+			if (
+				(Array.isArray(knownMime) && knownMime.includes(mime)) ||
+				knownMime === mime
+			) {
 				return ext.toUpperCase();
 			}
 		}
@@ -834,7 +866,9 @@ export class FileUpload {
 		});
 		allTypes.push(...customExtensions);
 
-		const typesLabel = allTypes.join(", ");
+		// Deduplicate labels (e.g. `application/zip` and `application/x-zip-compressed`
+		// both map to "ZIP") while preserving order.
+		const typesLabel = [...new Set(allTypes)].join(", ");
 
 		let text = this.labelSupportedFormatsTemplate
 			.replace("{{types}}", typesLabel)

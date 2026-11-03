@@ -1,6 +1,6 @@
 {
-	"name": "@infineon/infineon-design-system-vue",
-	"version": "39.39.1",
+	"name": "@infineon/design-system-vue",
+	"version": "42.1.0",
 	"description": "Vue wrapper for Infineon Design System Web Components",
 	"keywords": [
 		"infineon",
@@ -37,7 +37,7 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@infineon/infineon-design-system-stencil": "workspace:*",
+		"@infineon/design-system": "workspace:*",
 		"@stencil/vue-output-target": "^0.11.8"
 	},
 	"devDependencies": {
@@ -49,6 +49,21 @@
 			"command": "cpy \"../components/build-wrapper/vue/lib/stencil-generated/**\" lib/stencil-generated --parents",
 			"dependencies": [
 				"../components:build"
+			],
+			"files": [
+				"../components/build-wrapper/vue/lib/stencil-generated/**"
+			],
+			"output": [
+				"lib/stencil-generated/**"
+			]
+		},
+		"sync-generated": {
+			"command": "cpy \"../components/build-wrapper/vue/lib/stencil-generated/**\" lib/stencil-generated --parents",
+			"dependencies": [
+				{
+					"script": "../components:dev:vue",
+					"cascade": false
+				}
 			],
 			"files": [
 				"../components/build-wrapper/vue/lib/stencil-generated/**"
@@ -79,10 +94,7 @@
 				}
 			},
 			"dependencies": [
-				{
-					"script": "../components:dev:vue",
-					"cascade": false
-				}
+				"sync-generated"
 			]
 		}
 	}

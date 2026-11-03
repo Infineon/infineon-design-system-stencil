@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxRadioButton } from '@infineon/infineon-design-system-vue';
+import { IfxRadioButton } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
@@ -32,7 +32,6 @@ ${'</'}script>
       value="radio"
       :error="false"
       :disabled="false"
-      :read-only="false"
       :checked="false"
       @ifxChange="handleChange"
       @ifxError="handleError">
@@ -51,7 +50,6 @@ ${'</'}template>`;
       value="radio"
       :error="false"
       :disabled="false"
-      :read-only="false"
       :checked="false"
       @ifxChange="handleChange"
       @ifxError="handleError">

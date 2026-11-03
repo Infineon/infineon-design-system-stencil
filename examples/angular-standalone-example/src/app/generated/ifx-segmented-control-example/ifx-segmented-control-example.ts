@@ -1,4 +1,4 @@
-import { IfxSegment, IfxSegmentedControl } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxSegment, IfxSegmentedControl } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-segmented-control-example.scss'
 })
 export class IfxSegmentedControlExample {
-  protected readonly tsCode = `import { IfxSegment, IfxSegmentedControl } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxSegment, IfxSegmentedControl } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -32,11 +32,15 @@ export class IfxSegmentedControlExample {
     caption=&quot;Caption text to describe the controls&quot;
     label=&quot;Group Label&quot;
     size=&quot;regular&quot;
+    name=&quot;segmented-control&quot;
+    value=&quot;&quot;
     [error]=&quot;false&quot;
-    [required]=&quot;false&quot;&gt;
+    [required]=&quot;false&quot;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
     &lt;ifx-segment
       value=&quot;Value1&quot;
-      icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;
+      icon=&quot;star-16&quot;
+      (segmentSelect)=&quot;handleSegmentSelect(\$any(\$event))&quot;&gt;&lt;/ifx-segment&gt;
     &lt;ifx-segment
       value=&quot;Value2&quot;
       icon=&quot;star-16&quot;&gt;&lt;/ifx-segment&gt;

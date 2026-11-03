@@ -1,4 +1,4 @@
-import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-react';
+import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/design-system-react';
 
 export function IfxDropdownExample() {
   const handleClose = (event: CustomEvent) => {
@@ -36,8 +36,6 @@ export function IfxDropdownExample() {
       <IfxDropdown
         placement="bottom-start"
         defaultOpen={false}
-        noCloseOnOutsideClick={false}
-        noCloseOnMenuClick={false}
         noAppendToBody={true}
         disabled={false}
         onIfxClose={handleClose}
@@ -52,37 +50,27 @@ export function IfxDropdownExample() {
           onMenuSize={handleMenuSize}>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}
             onIfxDropdownItem={handleDropdownItem}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
@@ -96,7 +84,7 @@ export function IfxDropdownExample() {
   );
 }
 
-const codeString = `import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/design-system-react';
 
 export function IfxDropdownExample() {
   const handleClose = (event: CustomEvent) => {
@@ -133,8 +121,6 @@ export function IfxDropdownExample() {
       <IfxDropdown
         placement="bottom-start"
         defaultOpen={false}
-        noCloseOnOutsideClick={false}
-        noCloseOnMenuClick={false}
         noAppendToBody={true}
         disabled={false}
         onIfxClose={handleClose}
@@ -149,37 +135,27 @@ export function IfxDropdownExample() {
           onMenuSize={handleMenuSize}>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}
             onIfxDropdownItem={handleDropdownItem}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>
           <IfxDropdownItem
             icon="c-info-16"
-            target="_self"
-            href=""
             error={false}>
             Menu Item
           </IfxDropdownItem>

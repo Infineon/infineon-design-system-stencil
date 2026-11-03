@@ -148,6 +148,154 @@ describe("ifx-file-upload", () => {
 		expect(fileUpload.rejectedTypeFiles[0]).toBe("test-file.exe");
 	});
 
+	it("should accept XLS files by default", async () => {
+		const page = await newSpecPage({
+			components: [FileUpload],
+			html: `<ifx-file-upload></ifx-file-upload>`,
+		});
+
+		const fileUpload = page.rootInstance;
+		const xlsFile = new File(["spreadsheet content"], "report.xls", {
+			type: "application/vnd.ms-excel",
+		});
+
+		const mockFileList = {
+			0: xlsFile,
+			length: 1,
+			item: () => xlsFile,
+			[Symbol.iterator]: function* () {
+				yield xlsFile;
+			},
+		} as unknown as FileList;
+
+		fileUpload.processFiles(mockFileList);
+		await page.waitForChanges();
+
+		expect(fileUpload.files).toHaveLength(1);
+		expect(fileUpload.files[0].name).toBe("report.xls");
+		expect(fileUpload.rejectedTypeFiles).toHaveLength(0);
+	});
+
+	it("should accept XLSX files by default", async () => {
+		const page = await newSpecPage({
+			components: [FileUpload],
+			html: `<ifx-file-upload></ifx-file-upload>`,
+		});
+
+		const fileUpload = page.rootInstance;
+		const xlsxFile = new File(["spreadsheet content"], "report.xlsx", {
+			type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+		});
+
+		const mockFileList = {
+			0: xlsxFile,
+			length: 1,
+			item: () => xlsxFile,
+			[Symbol.iterator]: function* () {
+				yield xlsxFile;
+			},
+		} as unknown as FileList;
+
+		fileUpload.processFiles(mockFileList);
+		await page.waitForChanges();
+
+		expect(fileUpload.files).toHaveLength(1);
+		expect(fileUpload.files[0].name).toBe("report.xlsx");
+		expect(fileUpload.rejectedTypeFiles).toHaveLength(0);
+	});
+
+	it("should accept explicitly allowed TSV files with a generic MIME type", async () => {
+		const page = await newSpecPage({
+			components: [FileUpload],
+			html: `<ifx-file-upload allowed-file-types="tsv"></ifx-file-upload>`,
+		});
+
+		const fileUpload = page.rootInstance;
+		const tsvFile = new File(["tsv content"], "data.tsv", {
+			type: "text/plain",
+		});
+
+		const mockFileList = {
+			0: tsvFile,
+			length: 1,
+			item: () => tsvFile,
+			[Symbol.iterator]: function* () {
+				yield tsvFile;
+			},
+		} as unknown as FileList;
+
+		fileUpload.processFiles(mockFileList);
+		await page.waitForChanges();
+
+		expect(fileUpload.files).toHaveLength(1);
+		expect(fileUpload.rejectedTypeFiles).toHaveLength(0);
+	});
+
+	it("should accept ZIP files with both standard and Windows MIME types", async () => {
+		const page = await newSpecPage({
+			components: [FileUpload],
+			html: `<ifx-file-upload allowed-file-types="zip"></ifx-file-upload>`,
+		});
+
+		const fileUpload = page.rootInstance;
+		const emitAddSpy = jest.spyOn(fileUpload.ifxFileUploadAdd, "emit");
+
+		const standardZip = new File(["zip content"], "standard.zip", {
+			type: "application/zip",
+		});
+		const windowsZip = new File(["zip content"], "windows.zip", {
+			type: "application/x-zip-compressed",
+		});
+
+		const mockFileList = {
+			0: standardZip,
+			1: windowsZip,
+			length: 2,
+			item: (i) => (i === 0 ? standardZip : windowsZip),
+			[Symbol.iterator]: function* () {
+				yield standardZip;
+				yield windowsZip;
+			},
+		} as unknown as FileList;
+
+		fileUpload.processFiles(mockFileList);
+		await page.waitForChanges();
+
+		expect(emitAddSpy).toHaveBeenCalled();
+		expect(fileUpload.files.length).toBe(2);
+		expect(fileUpload.files[0].name).toBe("standard.zip");
+		expect(fileUpload.files[1].name).toBe("windows.zip");
+		expect(fileUpload.rejectedTypeFiles.length).toBe(0);
+	});
+
+	it("should label both standard and Windows ZIP MIME types as ZIP", async () => {
+		const page = await newSpecPage({
+			components: [FileUpload],
+			html: `<ifx-file-upload additional-allowed-file-types="application/zip,application/x-zip-compressed"></ifx-file-upload>`,
+		});
+
+		const fileUpload = page.rootInstance;
+
+		expect(fileUpload.getLabelFromMimeType("application/zip")).toBe("ZIP");
+		expect(
+			fileUpload.getLabelFromMimeType("application/x-zip-compressed"),
+		).toBe("ZIP");
+	});
+
+	it("should not duplicate ZIP in supported file formats text", async () => {
+		const page = await newSpecPage({
+			components: [FileUpload],
+			html: `<ifx-file-upload allowed-file-types="zip" additional-allowed-file-types="application/zip,application/x-zip-compressed,text/csv"></ifx-file-upload>`,
+		});
+
+		const fileUpload = page.rootInstance;
+		const supportedText = fileUpload.getSupportedFileText();
+
+		expect(supportedText).toContain("ZIP");
+		expect(supportedText).not.toMatch(/ZIP,.*ZIP/);
+		expect(supportedText).toContain("CSV");
+	});
+
 	it("should reject files exceeding size limit", async () => {
 		const page = await newSpecPage({
 			components: [FileUpload],

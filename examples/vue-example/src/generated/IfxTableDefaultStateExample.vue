@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxTable } from '@infineon/infineon-design-system-vue';
+import { IfxTable } from '@infineon/design-system-vue';
 
 const handleSortChange = (event: CustomEvent) => {
   console.log('ifxSortChange:', event);
@@ -30,6 +30,7 @@ ${'</'}script>
       :column-width=100
       headline="Matching results"
       :headline-number=0
+      column-value-position="left"
       :server-side-pagination="false"
       :show-loading="false"
       :enable-selection="false"
@@ -56,6 +57,7 @@ ${'</'}template>`;
       :column-width=100
       headline="Matching results"
       :headline-number=0
+      column-value-position="left"
       :server-side-pagination="false"
       :show-loading="false"
       :enable-selection="false"

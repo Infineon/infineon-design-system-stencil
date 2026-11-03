@@ -1,4 +1,4 @@
-import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-navbar-example.scss'
 })
 export class IfxNavbarExample {
-  protected readonly tsCode = `import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -43,17 +43,15 @@ export class IfxNavbarExample {
     application-name=&quot;Application name&quot;
     [fixed]=&quot;false&quot;
     logo-href=&quot;http://google.com&quot;
-    logo-href-target=&quot;_self&quot;&gt;
+    logo-href-target=&quot;_self&quot;
+    (ifxNavbarMobileMenuIsOpen)=&quot;handleNavbarMobileMenuIsOpen(\$any(\$event))&quot;&gt;
     &lt;ifx-navbar-item
       icon=&quot;&quot;
       slot=&quot;left-item&quot;
       target=&quot;_self&quot;
       href=&quot;&quot;
       [hideOnMobile]=&quot;true&quot;
-      (ifxNavbarMobileMenuIsOpen)=&quot;handleNavbarMobileMenuIsOpen(\$any(\$event))&quot;
-      (ifxNavItem)=&quot;handleNavItem(\$any(\$event))&quot;
-      (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;
+      (ifxNavItem)=&quot;handleNavItem(\$any(\$event))&quot;&gt;
       &lt;ifx-navbar-item icon=&quot;&quot;&gt;
         &lt;ifx-navbar-item&gt;
           &lt;ifx-navbar-item
@@ -89,7 +87,9 @@ export class IfxNavbarExample {
     &lt;/ifx-navbar-item&gt;
     &lt;ifx-search-bar
       slot=&quot;search-bar-left&quot;
-      [isOpen]=&quot;false&quot;&gt;&lt;/ifx-search-bar&gt;
+      [isOpen]=&quot;false&quot;
+      (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
+      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;&lt;/ifx-search-bar&gt;
     &lt;ifx-navbar-item
       number-indicator=&quot;&quot;
       slot=&quot;right-item&quot;
@@ -111,11 +111,7 @@ export class IfxNavbarExample {
       [showLabel]=&quot;true&quot;
       href=&quot;&quot;
       target=&quot;_self&quot;
-      alt=&quot;profile image&quot;
-      (ifxNavbarMobileMenuIsOpen)=&quot;handleNavbarMobileMenuIsOpen(\$any(\$event))&quot;
-      (ifxNavItem)=&quot;handleNavItem(\$any(\$event))&quot;
-      (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
-      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;&lt;/ifx-navbar-profile&gt;
+      alt=&quot;profile image&quot;&gt;&lt;/ifx-navbar-profile&gt;
   &lt;/ifx-navbar&gt;`;
 
   protected handleNavbarMobileMenuIsOpen(event: CustomEvent) {

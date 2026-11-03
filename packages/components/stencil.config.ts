@@ -5,7 +5,7 @@ import { reactOutputTarget } from "@stencil/react-output-target";
 import { sass } from "@stencil/sass";
 import { type ComponentModelConfig, vueOutputTarget } from "@stencil/vue-output-target";
 
-const componentCorePackage = "@infineon/infineon-design-system-stencil";
+const componentCorePackage = "@infineon/design-system";
 
 const isDevMode = process.argv.includes('--dev') || process.argv.includes('--watch');
 const buildTarget = process.env.BUILD_TARGET;
@@ -22,7 +22,7 @@ const buildTarget = process.env.BUILD_TARGET;
  */
 const componentModels: ComponentModelConfig[] = [
 	{
-		elements: ["ifx-switch", "ifx-checkbox"],
+		elements: ["ifx-switch", "ifx-checkbox", "ifx-radio-button"],
 		event: "ifxChange",
 		targetAttr: "checked",
 	},
@@ -32,10 +32,26 @@ const componentModels: ComponentModelConfig[] = [
 		targetAttr: "value",
 	},
 	{
+		elements: ["ifx-counter", "ifx-slider"],
+		event: "ifxChange",
+		targetAttr: "value",
+	},
+	{
+		elements: ["ifx-segmented-control"],
+		event: "ifxChange",
+		targetAttr: "value",
+	},
+	{
 		elements: ["ifx-modal"],
 		event: "ifxOpenedChange",
 		targetAttr: "opened",
 	},
+	{
+		elements: ["ifx-select"],
+		event: "ifxSelect",
+		targetAttr: "value",
+		eventAttr: "detail.value",
+	}
 ];
 
 /**
@@ -50,7 +66,7 @@ const componentModels: ComponentModelConfig[] = [
  */
 const valueAccessorConfigs: ValueAccessorConfig[] = [
 	{
-		elementSelectors: ["ifx-switch", "ifx-checkbox"],
+		elementSelectors: ["ifx-switch", "ifx-checkbox", "ifx-radio-button"],
 		event: "ifxChange",
 		targetAttr: "checked",
 		type: "boolean",
@@ -61,6 +77,14 @@ const valueAccessorConfigs: ValueAccessorConfig[] = [
 		targetAttr: "value",
 		type: "text",
 	},
+	{
+		elementSelectors: ["ifx-select"],
+		event: "ifxSelect",
+		targetAttr: "value",
+		type: "select",
+	},
+	// Note: ifx-counter and ifx-slider use custom value accessors to read $event.detail
+	// and avoid selector collisions with generated TextValueAccessor.
 	// Note: ifx-modal uses a custom IfxModalValueAccessor (standalone/src/lib/ifx-modal-value-accessor.ts)
 	// because of Stencil limitation: https://github.com/stenciljs/output-targets/issues/87
 	// Different targetAttr values in the same type group are not supported by code generation.
@@ -108,19 +132,18 @@ const docsOutputs = [
  * It enables users to use the components from CDN or importing them in a bootstrap script.
  * Usage:
  * ```javascript
- * import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
+ * import { defineCustomElements } from '@infineon/design-system/loader';
  * defineCustomElements(window);
  * ```
- * or
  * ```html
- * <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
+ * <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system"></script>
  * ```
- * See https://stenciljs.com/docs/distribution and https://stenciljs.com/docs/publishing#lazy-loading
- *
- * This is also required by the Angular-module output target.
  */
 const distOutput: OutputTarget = {
 	type: "dist",
+	esmLoaderPath: "loader",
+	empty: false,
+	copy: isDevMode ? [] : undefined,
 };
 
 /**

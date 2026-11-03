@@ -23,7 +23,7 @@
 | `historyKey`             | `history-key`               | localStorage key used to persist search history. This is needed to allow multiple instances of the search field to maintain separate histories if desired, but can be left as default for a shared history across the application. | `string`           | `"ifx-search-history"`             |
 | `maxHistoryItems`        | `max-history-items`         | Maximum number of stored history entries.                                                                                                                                                                                          | `number`           | `5`                                |
 | `maxSuggestions`         | `max-suggestions`           | Maximum number of items shown in the dropdown (suggestions + history).                                                                                                                                                             | `number`           | `10`                               |
-| `maxlength`              | `maxlength`                 | Maximum number of characters allowed in the input.                                                                                                                                                                                 | `number`           | `null`                             |
+| `maxlength`              | `maxlength`                 | Maximum number of characters allowed in the input.                                                                                                                                                                                 | `number`           | `undefined`                        |
 | `placeholder`            | `placeholder`               | Placeholder text for the input.                                                                                                                                                                                                    | `string`           | `"Search"`                         |
 | `showDeleteIcon`         | `show-delete-icon`          | Show the clear icon when there is a non-empty value.                                                                                                                                                                               | `boolean`          | `false`                            |
 | `showSuggestions`        | `show-suggestions`          | Enable the suggestion dropdown and request events while typing.                                                                                                                                                                    | `boolean`          | `false`                            |
@@ -57,6 +57,16 @@ Type: `Promise<void>`
 
 
 
+### `setFocus() => Promise<void>`
+
+Focuses the search input.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 
 ## Dependencies
 
@@ -66,6 +76,7 @@ Type: `Promise<void>`
  - [ifx-icons-preview](../icons-preview)
  - [ifx-multiselect](../select/multi-select)
  - [ifx-search-bar](../search-bar)
+ - [ifx-select](../select/single-select)
 
 ### Depends on
 
@@ -79,6 +90,7 @@ graph TD;
   ifx-icons-preview --> ifx-search-field
   ifx-multiselect --> ifx-search-field
   ifx-search-bar --> ifx-search-field
+  ifx-select --> ifx-search-field
   style ifx-search-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

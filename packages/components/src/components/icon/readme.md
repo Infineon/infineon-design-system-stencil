@@ -31,6 +31,7 @@
  - [ifx-checkbox-group](../checkbox-group)
  - [ifx-chip](../chip)
  - [ifx-chip-item](../chip/chip-item)
+ - [ifx-counter](../counter)
  - [ifx-date-picker](../date-picker)
  - [ifx-dropdown-item](../dropdown/dropdown-item)
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
@@ -54,6 +55,7 @@
  - [ifx-segment](../segmented-control/segment)
  - [ifx-segmented-control](../segmented-control)
  - [ifx-select](../select/single-select)
+ - [ifx-select-option](../select/single-select)
  - [ifx-sidebar](../navigation/sidebar)
  - [ifx-sidebar-item](../navigation/sidebar)
  - [ifx-slider](../slider)
@@ -61,6 +63,7 @@
  - [ifx-table](../table-advanced-version)
  - [ifx-tabs](../tabs)
  - [ifx-text-field](../text-field)
+ - [ifx-toast](../toast)
  - [ifx-tooltip](../tooltip)
  - [ifx-tree-view-item](../tree-view)
 
@@ -75,6 +78,7 @@ graph TD;
   ifx-checkbox-group --> ifx-icon
   ifx-chip --> ifx-icon
   ifx-chip-item --> ifx-icon
+  ifx-counter --> ifx-icon
   ifx-date-picker --> ifx-icon
   ifx-dropdown-item --> ifx-icon
   ifx-dropdown-trigger-button --> ifx-icon
@@ -98,6 +102,7 @@ graph TD;
   ifx-segment --> ifx-icon
   ifx-segmented-control --> ifx-icon
   ifx-select --> ifx-icon
+  ifx-select-option --> ifx-icon
   ifx-sidebar --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
@@ -105,6 +110,7 @@ graph TD;
   ifx-table --> ifx-icon
   ifx-tabs --> ifx-icon
   ifx-text-field --> ifx-icon
+  ifx-toast --> ifx-icon
   ifx-tooltip --> ifx-icon
   ifx-tree-view-item --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px

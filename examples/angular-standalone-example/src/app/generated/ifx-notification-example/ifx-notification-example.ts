@@ -1,4 +1,4 @@
-import { IfxNotification } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxNotification } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-notification-example.scss'
 })
 export class IfxNotificationExample {
-  protected readonly tsCode = `import { IfxNotification } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxNotification } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -17,11 +17,23 @@ import { Component } from &#039;@angular/core&#039;;
   templateUrl: &#039;./ifx-notification-example.html&#039;,
 	styleUrl: &#039;./ifx-notification-example.scss&#039;
 })
-export class IfxNotificationExample {}`;
+export class IfxNotificationExample {
+  protected handleClose(event: CustomEvent) {
+    console.log(&#039;ifxClose:&#039;, event);
+    // Add your handler logic here
+  }
+}`;
   protected readonly htmlCode = `  &lt;ifx-notification
     icon=&quot;c-check-16&quot;
     variant=&quot;success&quot;
     link-text=&quot;Link&quot;
     link-href=&quot;https://www.example.com&quot;
-    link-target=&quot;_blank&quot;&gt;Sample Notification&lt;/ifx-notification&gt;`;
+    link-target=&quot;_blank&quot;
+    [closable]=&quot;false&quot;
+    (ifxClose)=&quot;handleClose(\$any(\$event))&quot;&gt;Sample Notification&lt;/ifx-notification&gt;`;
+
+  protected handleClose(event: CustomEvent) {
+    console.log('ifxClose:', event);
+    // Add your handler logic here
+  }
 }

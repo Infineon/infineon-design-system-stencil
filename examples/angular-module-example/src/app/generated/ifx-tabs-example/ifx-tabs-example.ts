@@ -32,21 +32,26 @@ export class IfxTabsExample {
     [fullWidth]=&quot;false&quot;
     [positionSticky]=&quot;false&quot;
     subline=&quot;&quot;
+    subline-position=&quot;left&quot;
     label=&quot;&quot;
-    number=&quot;0&quot;&gt;
+    number=&quot;0&quot;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
     &lt;ifx-tab
       header=&quot;Tab 1&quot;
       icon=&quot;&quot;
       icon-position=&quot;left&quot;
       subline=&quot;&quot;
+      subline-position=&quot;left&quot;
       label=&quot;&quot;
-      number=&quot;0&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
+      number=&quot;0&quot;
+      (tabHeaderChange)=&quot;handleTabHeaderChange(\$any(\$event))&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
     &lt;ifx-tab
       header=&quot;Tab 2&quot;
       [disabled]=&quot;false&quot;
       icon=&quot;&quot;
       icon-position=&quot;left&quot;
       subline=&quot;&quot;
+      subline-position=&quot;left&quot;
       label=&quot;&quot;
       number=&quot;0&quot;&gt;Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
     &lt;ifx-tab
@@ -54,6 +59,7 @@ export class IfxTabsExample {
       icon=&quot;&quot;
       icon-position=&quot;left&quot;
       subline=&quot;&quot;
+      subline-position=&quot;left&quot;
       label=&quot;&quot;
       number=&quot;0&quot;&gt;Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
   &lt;/ifx-tabs&gt;`;

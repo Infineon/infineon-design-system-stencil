@@ -1,4 +1,4 @@
-import { icons } from "@infineon/infineon-icons";
+import { icons } from "@infineon/design-system-icons";
 import { action } from "storybook/actions";
 
 export default {
@@ -8,8 +8,6 @@ export default {
     label: 'Dropdown',
     disabled: false,
     defaultOpen: false,
-    noCloseOnOutsideClick: false,
-    noCloseOnMenuClick: false,
     noAppendToBody: true,
     variant: 'primary',
     placement: 'bottom-start',
@@ -18,6 +16,7 @@ export default {
     target: '_self',
     icon: 'c-info-16',
     error: false,
+    itemDisabled: false,
   },
   argTypes: {
     placement: {
@@ -96,6 +95,7 @@ export default {
       description: 'Determines where to open the linked document when the dropdown item is clicked.',
       options: ['_self', '_blank'],
       control: 'radio',
+      if: { arg: 'href', truthy: true },
       table: {
         category: 'ifx-dropdown-item props',
         defaultValue: {
@@ -131,28 +131,19 @@ export default {
         }
       }
     },
+    itemDisabled: {
+      name: 'disabled',
+      description: 'Disables the dropdown item, making it non-interactive.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-dropdown-item props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
     defaultOpen: {
       description: 'Determines if the dropdown should be open by default.',
-      control: 'boolean',
-      table: {
-        category: 'ifx-dropdown props',
-        defaultValue: {
-          summary: false
-        }
-      }
-    },
-    noCloseOnOutsideClick: {
-      description: 'Determines if the dropdown should not close when a click outside the dropdown happens.',
-      control: 'boolean',
-      table: {
-        category: 'ifx-dropdown props',
-        defaultValue: {
-          summary: false
-        }
-      }
-    },
-    noCloseOnMenuClick: {
-      description: 'Determines if the dropdown should not close when a click inside the dropdown menu happens.',
       control: 'boolean',
       table: {
         category: 'ifx-dropdown props',
@@ -210,13 +201,19 @@ export default {
   },
 };
 
+const dropdownItemAttributes = (args: any, includeDisabled = false) => {
+  const icon = args.icon === 'none' ? '' : args.icon;
+  const link = args.href ? ` href="${args.href}" target="${args.target}"` : '';
+  const disabled = includeDisabled && args.itemDisabled ? ' disabled' : '';
+
+  return `icon="${icon}" error="${args.error}"${link}${disabled}`;
+};
+
 const DefaultTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-dropdown placement="${args.placement}" 
   ${args.disabled ? "disabled" : ""}
   default-open="${args.defaultOpen}"
-  no-close-on-outside-click="${args.noCloseOnOutsideClick}"
-  no-close-on-menu-click="${args.noCloseOnOutsideClick}"
   no-append-to-body="${args.noAppendToBody}">
 
     <ifx-dropdown-trigger-button variant="${args.variant}">
@@ -224,11 +221,11 @@ const DefaultTemplate = (args:any) => {
     </ifx-dropdown-trigger-button>
 
   <ifx-dropdown-menu size="${args.size}">
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args, true)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args, true)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args, true)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args, true)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args, true)}>Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
@@ -252,8 +249,6 @@ const LabelTriggerTemplate = (args:any) => {
 	wrapper.innerHTML = `<ifx-dropdown
     placement="${args.placement}"
     default-open="${args.defaultOpen}"
-    no-close-on-outside-click="${args.noCloseOnOutsideClick}"
-    no-close-on-menu-click="${args.noCloseOnOutsideClick}"
     disabled="${args.disabled}"
     no-append-to-body="${args.noAppendToBody}"
   >
@@ -263,11 +258,11 @@ const LabelTriggerTemplate = (args:any) => {
     </ifx-dropdown-trigger>
     Some more text
   <ifx-dropdown-menu size="${args.size}">
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
@@ -303,8 +298,6 @@ const HeaderTemplate = (args:any) => {
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
   default-open="${args.defaultOpen}"
-  no-close-on-outside-click="${args.noCloseOnOutsideClick}"
-  no-close-on-menu-click="${args.noCloseOnOutsideClick}"
   no-append-to-body="${args.noAppendToBody}">
   <ifx-dropdown-header>Dropdown Header</ifx-dropdown-header>
    <ifx-dropdown-trigger-button variant="${args.variant}">
@@ -312,11 +305,11 @@ const HeaderTemplate = (args:any) => {
     </ifx-dropdown-trigger-button>
      <ifx-dropdown-menu size="${args.size}">
     <ifx-dropdown-header>Header Text</ifx-dropdown-header>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
@@ -352,19 +345,17 @@ const SearchTemplate = (args:any) => {
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
   default-open="${args.defaultOpen}"
-  no-close-on-outside-click="${args.noCloseOnOutsideClick}"
-  no-close-on-menu-click="${args.noCloseOnOutsideClick}"
   no-append-to-body="${args.noAppendToBody}">
    <ifx-dropdown-trigger-button variant="${args.variant}">
       ${args.label}
     </ifx-dropdown-trigger-button>
      <ifx-dropdown-menu size="${args.size}">
-    <ifx-search-field show-delete-icon="false"></ifx-search-field>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
+    <ifx-search-field show-delete-icon="true" enable-history="false"></ifx-search-field>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
@@ -388,19 +379,17 @@ const SeparatorTemplate = (args:any) => {
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
   default-open="${args.defaultOpen}"
-   no-close-on-outside-click="${args.noCloseOnOutsideClick}"
-  no-close-on-menu-click="${args.noCloseOnOutsideClick}"
   no-append-to-body="${args.noAppendToBody}">
    <ifx-dropdown-trigger-button variant="${args.variant}">
       ${args.label}
     </ifx-dropdown-trigger-button>
      <ifx-dropdown-menu size="${args.size}">
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
     <ifx-dropdown-separator></ifx-dropdown-separator>
-    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}" error="${args.error}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 

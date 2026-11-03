@@ -15,53 +15,60 @@
     logo-href-target="_self"
     footer-target="_blank"
     hide-menu-label="Hide Menu"
-    footer-href-target="_blank">
-    <ifx-sidebar-title
-      (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
-      (ifxSidebarLogoClick)="handleSidebarLogoClick($any($event))"
-      (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
-      (ifxSidebarMenu)="handleSidebarMenu($any($event))"
-      (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))">Menu Items</ifx-sidebar-title>
+    footer-href-target="_blank"
+    (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
+    (ifxSidebarLogoClick)="handleSidebarLogoClick($any($event))">
+    <ifx-sidebar-title>Menu Items</ifx-sidebar-title>
     <ifx-sidebar-item
+      font-weight="normal"
       href="https://google.com"
       target="_blank"
       icon="image-16"
-      (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))"
-      (ifxSidebarLogoClick)="handleSidebarLogoClick($any($event))"
       (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
       (ifxSidebarMenu)="handleSidebarMenu($any($event))"
       (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item
+      font-weight="normal"
       href="https://google.com"
       target="_blank"
       icon="image-16">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item
+      font-weight="normal"
       href="https://google.com"
       target="_blank"
       icon="image-16">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item
+      font-weight="normal"
       href="https://google.com"
       target="_blank"
       icon="image-16">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank"
         icon="image-16">Menu Item</ifx-sidebar-item>
-      <ifx-sidebar-item icon="image-16">
-        <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
-        <ifx-sidebar-item [active]="true">Sub menu item</ifx-sidebar-item>
-        <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
+      <ifx-sidebar-item
+        font-weight="normal"
+        icon="image-16">
+        <ifx-sidebar-item font-weight="normal">Sub menu item</ifx-sidebar-item>
+        <ifx-sidebar-item
+          font-weight="normal"
+          [active]="true">Sub menu item</ifx-sidebar-item>
+        <ifx-sidebar-item font-weight="normal">Sub menu item</ifx-sidebar-item>
       </ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank">Menu Item</ifx-sidebar-item>
       <ifx-sidebar-item
+        font-weight="normal"
         href="https://google.com"
         target="_blank">Menu Item</ifx-sidebar-item>
     </ifx-sidebar-item>
     <ifx-sidebar-title>Items group</ifx-sidebar-title>
     <ifx-sidebar-item
+      font-weight="normal"
       href="https://google.com"
       target="_self"
       icon="image-16"
@@ -69,6 +76,7 @@
       isactionitem="false"
       [active]="false">Item 1</ifx-sidebar-item>
     <ifx-sidebar-item
+      font-weight="normal"
       href="https://google.com"
       target="_blank"
       icon="image-16">Item 2</ifx-sidebar-item>
