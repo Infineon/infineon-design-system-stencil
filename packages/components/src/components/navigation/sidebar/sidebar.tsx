@@ -80,7 +80,7 @@ export class Sidebar {
 	/** Emitted when logo image is clicked */
 	@Event({ bubbles: true, composed: true }) ifxSidebarLogoClick: EventEmitter;
 
-	private expandActiveItems() {
+	private async expandActiveItems() {
 		const expandRecursively = async (parent) => {
 			if ((await parent.isItemExpandable()) !== true) {
 				if (parent.active) return 1;
@@ -93,9 +93,9 @@ export class Sidebar {
 			}
 			if (currRes > 0) {
 				if (currRes == 1) {
-					parent.expandMenu(false);
+					await parent.expandMenu(false);
 				} else {
-					parent.expandMenu(true);
+					await parent.expandMenu(true);
 				}
 			}
 
@@ -104,7 +104,7 @@ export class Sidebar {
 
 		const topLevelItems = this.getSidebarMenuItems(this.el);
 		for (let i = 0; i < topLevelItems.length; i++) {
-			expandRecursively(topLevelItems[i]);
+			await expandRecursively(topLevelItems[i]);
 		}
 	}
 
@@ -149,7 +149,7 @@ export class Sidebar {
 		trackComponent("ifx-sidebar", await framework);
 		this.setInitialActiveItem();
 		if (!this.initialCollapse) {
-			this.expandActiveItems();
+			await this.expandActiveItems();
 		}
 		this.adjustItemsPadding();
 		this.applyActiveSectionToParent(this.el);
@@ -316,24 +316,40 @@ export class Sidebar {
 	}
 
 	private applyActiveSectionToParent(el): boolean {
-		// Get all submenus of the given element
+		this.clearActiveSectionIndicators(el);
+		return this.updateActiveSectionToParent(el);
+	}
+
+	private clearActiveSectionIndicators(el) {
+		const subMenus = this.getSidebarMenuItems(el);
+
+		subMenus?.forEach((menu) => {
+			const menuItemSection = this.getActiveItemSection(menu);
+			this.handleClassList(menuItemSection, "remove", ACTIVE_SECTION);
+			this.clearActiveSectionIndicators(menu.shadowRoot);
+		});
+	}
+
+	private updateActiveSectionToParent(el): boolean {
 		const subMenus = this.getSidebarMenuItems(el);
 		let hasActiveSectionIndicator = false;
 
 		subMenus?.forEach((menu) => {
 			const menuItemSection = this.getActiveItemSection(menu);
-			this.handleClassList(menuItemSection, "remove", ACTIVE_SECTION);
-			const hasActiveSectionInSubmenu = this.applyActiveSectionToParent(
-				menu.shadowRoot,
-			);
 
 			if (!this.hasActiveChild(menu.shadowRoot)) {
 				return;
 			}
 
-			if (hasActiveSectionInSubmenu) {
-				hasActiveSectionIndicator = true;
-				return;
+			const isOpen = menuItemSection.classList.contains("open");
+			if (isOpen) {
+				const hasActiveSectionInSubmenu = this.updateActiveSectionToParent(
+					menu.shadowRoot,
+				);
+				if (hasActiveSectionInSubmenu) {
+					hasActiveSectionIndicator = true;
+					return;
+				}
 			}
 
 			this.handleClassList(menuItemSection, "add", ACTIVE_SECTION);

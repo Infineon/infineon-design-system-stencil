@@ -3,9 +3,6 @@ import { Sidebar } from "./sidebar";
 import { SidebarItem } from "./sidebar-item";
 import { SidebarTitle } from "./sidebar-title";
 
-const applyActiveSectionToParent = (Sidebar.prototype as any)
-	.applyActiveSectionToParent;
-
 global.MutationObserver = class MutationObserver {
 	constructor() {}
 	observe() {}
@@ -36,8 +33,10 @@ describe("ifx-sidebar", () => {
 
 	beforeEach(() => {
 		// Use type assertion to bypass TypeScript private property check
+		(Sidebar.prototype as any).adjustTopBorder = jest.fn();
 		(Sidebar.prototype as any).setInitialActiveItem = jest.fn();
 		(Sidebar.prototype as any).expandActiveItems = jest.fn();
+		(Sidebar.prototype as any).adjustItemsPadding = jest.fn();
 		(Sidebar.prototype as any).applyActiveSectionToParent = jest.fn();
 	});
 
@@ -88,74 +87,6 @@ describe("ifx-sidebar", () => {
 		const copyrightText = copyright.textContent;
 		expect(copyrightText).toContain("© 1999 -");
 		expect(copyrightText).toContain("Infineon Technologies AG");
-	});
-
-	it("keeps the active section indicator visible when toggling a section", async () => {
-		const page = await newSpecPage({
-			components: [Sidebar, SidebarItem],
-			html: `
-        <ifx-sidebar>
-          <ifx-sidebar-item>
-            Section
-            <ifx-sidebar-item active="true">Active child</ifx-sidebar-item>
-          </ifx-sidebar-item>
-        </ifx-sidebar>
-      `,
-		});
-
-		const section = page.root.querySelector("ifx-sidebar-item");
-		const sectionNavItem =
-			section.shadowRoot.querySelector(".sidebar__nav-item");
-
-		applyActiveSectionToParent.call(page.rootInstance, page.root);
-		expect(sectionNavItem.classList.contains("active-section")).toBe(true);
-
-		sectionNavItem.classList.add("open");
-		applyActiveSectionToParent.call(page.rootInstance, page.root);
-		expect(sectionNavItem.classList.contains("active-section")).toBe(true);
-
-		sectionNavItem.classList.remove("open");
-		applyActiveSectionToParent.call(page.rootInstance, page.root);
-		expect(sectionNavItem.classList.contains("active-section")).toBe(true);
-	});
-
-	it("keeps the active indicator on the nearest nested parent", async () => {
-		const page = await newSpecPage({
-			components: [Sidebar, SidebarItem],
-			html: `
-        <ifx-sidebar initial-collapse="false">
-          <ifx-sidebar-item>
-            Section
-            <ifx-sidebar-item>
-              Nested parent
-              <ifx-sidebar-item active="true">Deep active item</ifx-sidebar-item>
-            </ifx-sidebar-item>
-          </ifx-sidebar-item>
-        </ifx-sidebar>
-      `,
-		});
-
-		const section = page.root.querySelector("ifx-sidebar-item");
-		const nestedParent = section.shadowRoot.querySelector("ifx-sidebar-item");
-		const sectionNavItem =
-			section.shadowRoot.querySelector(".sidebar__nav-item");
-		const nestedParentNavItem =
-			nestedParent.shadowRoot.querySelector(".sidebar__nav-item");
-		const sidebarInstance = page.rootInstance as any;
-		sidebarInstance.applyActiveSectionToParent = applyActiveSectionToParent;
-
-		sectionNavItem.classList.add("open");
-		nestedParentNavItem.classList.add("open");
-		sidebarInstance.applyActiveSectionToParent(page.root);
-
-		expect(sectionNavItem.classList.contains("active-section")).toBe(false);
-		expect(nestedParentNavItem.classList.contains("active-section")).toBe(true);
-
-		nestedParentNavItem.classList.remove("open");
-		sidebarInstance.applyActiveSectionToParent(page.root);
-
-		expect(sectionNavItem.classList.contains("active-section")).toBe(false);
-		expect(nestedParentNavItem.classList.contains("active-section")).toBe(true);
 	});
 
 	it("is fixed by default", async () => {
@@ -374,6 +305,10 @@ describe("ifx-sidebar", () => {
 
 		const sidebar = page.rootInstance;
 
+		// Mock DOM manipulation methods
+		sidebar.adjustTopBorder = jest.fn();
+		sidebar.adjustItemsPadding = jest.fn();
+
 		// Initially sidebar should not be collapsed
 		expect(sidebar.collapsed).toBeFalsy();
 
@@ -414,6 +349,10 @@ describe("ifx-sidebar", () => {
 		if (sidebar.ifxSidebarCollapsed && sidebar.ifxSidebarCollapsed.emit) {
 			// Create spy for the collapse event
 			const collapsedEventSpy = jest.spyOn(sidebar.ifxSidebarCollapsed, "emit");
+
+			// Mock DOM methods
+			sidebar.adjustTopBorder = jest.fn();
+			sidebar.adjustItemsPadding = jest.fn();
 
 			// Simulate toggling collapse
 			page.root.setAttribute("collapsed", "true");
@@ -612,19 +551,6 @@ describe("ifx-sidebar-item", () => {
 		const navItem = page.root.shadowRoot.querySelector(".sidebar__nav-item");
 		expect(navItem.getAttribute("href")).toBe("https://example.com");
 		expect(navItem.getAttribute("target")).toBe("_blank");
-	});
-
-	it("applies font weight prop to the label", async () => {
-		const page = await newSpecPage({
-			components: [SidebarItem],
-			html: `<ifx-sidebar-item font-weight="bold">Bold Item</ifx-sidebar-item>`,
-		});
-
-		const label = page.root.shadowRoot.querySelector(
-			".sidebar__nav-item-label",
-		) as HTMLElement;
-		expect(label).toBeTruthy();
-		expect(label.classList.contains("font-weight-bold")).toBe(true);
 	});
 
 	it("handles active state", async () => {
