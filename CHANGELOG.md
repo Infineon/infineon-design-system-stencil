@@ -1,3 +1,15 @@
+# v42.1.0 (Tue Nov 03 2026)
+
+#### 🚀 Enhancement
+
+- Add keyboard navigations to Single Select, and fixes close button on Multi-select [#2540](https://github.com/Infineon/infineon-design-system-stencil/pull/2540) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx))
+
+#### Authors: 1
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+
+---
+
 # v42.0.7 (Tue Nov 03 2026)
 
 #### 🐛 Bug Fix
