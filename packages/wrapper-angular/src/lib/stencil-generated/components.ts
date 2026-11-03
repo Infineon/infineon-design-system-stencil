@@ -2033,7 +2033,7 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaClearLabel', 'ariaSearchLabel', 'ariaSelectDescribedBy', 'ariaSelectLabel', 'ariaSelectLabelledBy', 'caption', 'disabled', 'error', 'label', 'name', 'noResultsMessage', 'options', 'placeholder', 'placeholderValue', 'readOnly', 'required', 'searchPlaceholderValue', 'showClearButton', 'showSearch', 'size', 'value'],
-  outputs: ['ifxSelect', 'ifxInput', 'ifxOpen'],
+  outputs: ['ifxSelect', 'ifxClear', 'ifxInput', 'ifxOpen'],
   standalone: false
 })
 export class IfxSelect {
