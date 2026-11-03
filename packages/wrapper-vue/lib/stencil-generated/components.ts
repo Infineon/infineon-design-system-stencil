@@ -335,8 +335,6 @@ export const IfxDropdown: StencilVueComponent<JSX.IfxDropdown> = /*@__PURE__*/ d
   'defaultOpen',
   'noAppendToBody',
   'disabled',
-  'noCloseOnOutsideClick',
-  'noCloseOnMenuClick',
   'ifxOpen',
   'ifxClose',
   'ifxDropdown'

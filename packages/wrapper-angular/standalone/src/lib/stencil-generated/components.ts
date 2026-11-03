@@ -810,7 +810,7 @@ export declare interface IfxDownload extends Components.IfxDownload {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxDropdown,
-  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'noCloseOnMenuClick', 'noCloseOnOutsideClick', 'placement'],
+  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'placement'],
   methods: ['isOpen', 'closeDropdown', 'openDropdown']
 })
 @Component({
@@ -818,7 +818,7 @@ export declare interface IfxDownload extends Components.IfxDownload {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'noCloseOnMenuClick', 'noCloseOnOutsideClick', 'placement'],
+  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'placement'],
   outputs: ['ifxOpen', 'ifxClose', 'ifxDropdown'],
 })
 export class IfxDropdown {

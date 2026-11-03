@@ -577,16 +577,6 @@ export namespace Components {
          */
         "noAppendToBody": boolean;
         /**
-          * Id true, clicking inside the menu will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnMenuClick": boolean;
-        /**
-          * If true, clicking outside will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnOutsideClick": boolean;
-        /**
           * Opens the dropdown and sets up the popper positioning.
          */
         "openDropdown": () => Promise<void>;
@@ -5080,16 +5070,6 @@ declare namespace LocalJSX {
          */
         "noAppendToBody"?: boolean;
         /**
-          * Id true, clicking inside the menu will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnMenuClick"?: boolean;
-        /**
-          * If true, clicking outside will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnOutsideClick"?: boolean;
-        /**
           * Fired when dropdown closed.
          */
         "onIfxClose"?: (event: IfxDropdownCustomEvent<any>) => void;
@@ -7777,8 +7757,6 @@ declare namespace LocalJSX {
         "defaultOpen": boolean;
         "noAppendToBody": boolean;
         "disabled": boolean;
-        "noCloseOnOutsideClick": boolean;
-        "noCloseOnMenuClick": boolean;
     }
     interface IfxDropdownItemAttributes {
         "icon": string;
