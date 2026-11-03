@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxMultiselect, IfxMultiselectGroup, IfxMultiselectOption } from '@infineon/infineon-design-system-vue';
+import { IfxMultiselect, IfxMultiselectGroup, IfxMultiselectOption } from '@infineon/design-system-vue';
 
 const handleClear = (event: CustomEvent) => {
   console.log('ifxClear:', event);

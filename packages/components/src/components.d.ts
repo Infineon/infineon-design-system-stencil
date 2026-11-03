@@ -1344,6 +1344,10 @@ export namespace Components {
          */
         "addMenuItemClass": () => Promise<void>;
         /**
+          * Closes this item's menu when a nested navigation item is selected.
+         */
+        "closeMenu": () => Promise<void>;
+        /**
           * If true, shows a simple dot indicator instead of a number.
           * @default false
          */
@@ -1420,6 +1424,10 @@ export namespace Components {
           * @default ""
          */
         "alt": string;
+        /**
+          * Closes the profile menu.
+         */
+        "closeMenu": () => Promise<void>;
         /**
           * Hides this avatar item component.
          */
@@ -2149,7 +2157,7 @@ export namespace Components {
          */
         "active": boolean;
         /**
-          * Expand submenu (adds 'open'); if ac=true, remove 'active-section'
+          * Expand submenu and keep the active section indicator visible.
          */
         "expandMenu": (ac: boolean) => Promise<void>;
         /**

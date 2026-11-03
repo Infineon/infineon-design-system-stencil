@@ -1,4 +1,4 @@
-import { IfxSegment, IfxSegmentedControl } from '@infineon/infineon-design-system-react';
+import { IfxSegment, IfxSegmentedControl } from '@infineon/design-system-react';
 
 export function IfxSegmentedControlExample() {
   const handleChange = (event: CustomEvent) => {
@@ -47,7 +47,7 @@ export function IfxSegmentedControlExample() {
   );
 }
 
-const codeString = `import { IfxSegment, IfxSegmentedControl } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxSegment, IfxSegmentedControl } from '@infineon/design-system-react';
 
 export function IfxSegmentedControlExample() {
   const handleChange = (event: CustomEvent) => {

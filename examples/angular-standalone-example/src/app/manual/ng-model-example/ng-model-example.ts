@@ -19,7 +19,7 @@ import {
   IfxSliderValueAccessor,
 	SelectValueAccessor,
   TextValueAccessor,
-} from '@infineon/infineon-design-system-angular/standalone';
+} from '@infineon/design-system-angular/standalone';
 
 @Component({
   selector: 'app-ng-model-example',

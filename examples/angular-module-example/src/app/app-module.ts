@@ -6,7 +6,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import {
 	InfineonDesignSystemModule,
-} from "@infineon/infineon-design-system-angular";
+} from "@infineon/design-system-angular";
 
 import { App } from "./app";
 
@@ -52,7 +52,7 @@ import { IfxTextFieldExample } from './generated/ifx-text-field-example/ifx-text
 import { IfxTextareaExample } from './generated/ifx-textarea-example/ifx-textarea-example';
 import { IfxTooltipExample } from './generated/ifx-tooltip-example/ifx-tooltip-example';
 /* </AUTO-GENERATED-IMPORTS> */
-import { IfxModal } from "@infineon/infineon-design-system-angular";
+import { IfxModal } from "@infineon/design-system-angular";
 
 import { ModalExample } from "./manual/modal-example/modal-example";
 import { NgModelExample } from "./manual/ng-model-example/ng-model-example";

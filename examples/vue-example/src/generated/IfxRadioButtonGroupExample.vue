@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-vue';
+import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);

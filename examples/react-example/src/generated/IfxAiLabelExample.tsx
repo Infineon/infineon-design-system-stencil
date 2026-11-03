@@ -1,4 +1,4 @@
-import { IfxAiLabel } from '@infineon/infineon-design-system-react';
+import { IfxAiLabel } from '@infineon/design-system-react';
 
 export function IfxAiLabelExample() {
   return (
@@ -14,7 +14,7 @@ export function IfxAiLabelExample() {
   );
 }
 
-const codeString = `import { IfxAiLabel } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxAiLabel } from '@infineon/design-system-react';
 
 export function IfxAiLabelExample() {
   return (

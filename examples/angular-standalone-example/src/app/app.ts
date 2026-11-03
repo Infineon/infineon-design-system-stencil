@@ -6,7 +6,7 @@ import {
 	type OnInit,
 	signal,
 } from "@angular/core";
-import { IfxNavbar } from "@infineon/infineon-design-system-angular/standalone";
+import { IfxNavbar } from "@infineon/design-system-angular/standalone";
 import Prism from "prismjs";
 import "prismjs/components/prism-markup.js";
 import "prismjs/components/prism-javascript.js";
@@ -15,9 +15,9 @@ import "prismjs/components/prism-typescript.js";
 import packageJson from "../../package.json";
 
 const declaredVersion =
-	packageJson.dependencies["@infineon/infineon-design-system-angular"];
+	packageJson.dependencies["@infineon/design-system-angular"];
 
-import { version as installedVersion } from "@infineon/infineon-design-system-angular/package.json";
+import { version as installedVersion } from "@infineon/design-system-angular/package.json";
 
 declare const PACKAGE_VERSION: string | undefined;
 

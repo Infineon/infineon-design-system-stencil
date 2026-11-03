@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-design-system-vue';
+import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/design-system-vue';
 
 const handleSidebarCollapseChange = (event: CustomEvent) => {
   console.log('ifxSidebarCollapseChange:', event);

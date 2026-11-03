@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-vue';
+import { IfxFooter, IfxIcon, IfxLink } from '@infineon/design-system-vue';
 
 const handleConsoleError = (event: CustomEvent) => {
   console.log('consoleError:', event);

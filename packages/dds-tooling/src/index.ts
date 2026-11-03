@@ -15,7 +15,6 @@ export { VueCodeFormatter } from "./formatters/vue-formatter.js";
 export {
 	extractComponentInfo,
 	parseElement,
-	renderStoriesToHTML,
 } from "./story-parser.js";
 // Story rendering and parsing
 export {
@@ -27,7 +26,6 @@ export type {
 	ComponentEvent,
 	ComponentInfo,
 	ComponentStructure,
-	ParsedStory,
 	StoryExport,
 	StoryMetadata,
 } from "./types.js";

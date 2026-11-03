@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-vue';
+import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/design-system-vue';
 
 const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event);

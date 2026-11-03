@@ -93,7 +93,7 @@ export class VueCodeFormatter implements ICodeFormatter {
 		const ifxComponents = this.extractIfxComponents(component.structure);
 		const componentImports =
 			ifxComponents.size > 0
-				? `\nimport { ${Array.from(ifxComponents).sort().join(", ")} } from '@infineon/infineon-design-system-vue';`
+				? `\nimport { ${Array.from(ifxComponents).sort().join(", ")} } from '@infineon/design-system-vue';`
 				: "";
 
 		// Generate the code string for display

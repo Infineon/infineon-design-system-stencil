@@ -1,4 +1,4 @@
-import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/infineon-design-system-react';
+import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/design-system-react';
 
 export function IfxCheckboxGroupExample() {
   const handleChange = (event: CustomEvent) => {
@@ -48,7 +48,7 @@ export function IfxCheckboxGroupExample() {
   );
 }
 
-const codeString = `import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/design-system-react';
 
 export function IfxCheckboxGroupExample() {
   const handleChange = (event: CustomEvent) => {

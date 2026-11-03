@@ -1,4 +1,4 @@
-import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-navbar-example.scss'
 })
 export class IfxNavbarExample {
-  protected readonly tsCode = `import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({

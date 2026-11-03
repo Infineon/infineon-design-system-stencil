@@ -38,8 +38,3 @@ export interface StoryExport {
 	args?: Record<string, unknown>;
 	render?: (args: Record<string, unknown>) => unknown;
 }
-
-export interface ParsedStory {
-	name: string;
-	html: string;
-}
