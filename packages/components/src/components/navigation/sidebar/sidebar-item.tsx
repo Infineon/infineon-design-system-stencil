@@ -61,7 +61,6 @@ export class SidebarItem {
 
 	@Watch("active")
 	handleActiveChange(newValue: boolean, oldValue: boolean) {
-		// If the item is an action item, ignore the active prop
 		if (this.isActionItem) {
 			this.internalActiveState = false;
 			return;
@@ -69,12 +68,8 @@ export class SidebarItem {
 		this.internalActiveState = newValue;
 		if (newValue !== oldValue) {
 			const labelElement = this.getNavItem(this.el.shadowRoot);
-			if (!this.isExpandable && !newValue) {
-				this.handleClassList(labelElement, "remove", "active");
-			}
-			if (!this.isExpandable && newValue) {
-				this.handleClassList(labelElement, "add", "active");
-			}
+			this.handleClassList(labelElement, newValue ? "add" : "remove", "active");
+			if (newValue) this.ifxSidebarNavigationItem.emit(this.el); 
 		}
 	}
 
@@ -300,17 +295,6 @@ export class SidebarItem {
 			this.isExpandable = true;
 		} else {
 			this.isExpandable = false;
-		}
-	}
-
-	componentWillUpdate() {
-		// If the active prop has been set to true and the internalActiveState has not been set to true yet
-		if (this.active && !this.internalActiveState) {
-			// Set the internal active state to true
-			this.internalActiveState = this.active;
-
-			// Emit the event to notify the parent Sidebar
-			this.ifxSidebarNavigationItem.emit(this.el);
 		}
 	}
 
