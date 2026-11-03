@@ -16,7 +16,7 @@
   background: tokens.$ifxColorBaseWhite;
   box-shadow: tokens.$ifxShadow100;
   border: 1px solid tokens.$ifxColorEngineering200;
-  padding: 8px 4px;
+  padding: 8px 0;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
   &.small {
@@ -25,8 +25,16 @@
     overflow-y: auto;
   }
 
-  &.hideTopPadding {
-    padding-top: 0px;
+  &.has-top-content {
+    padding-top: 0;
+  }
+
+  & ::slotted(ifx-search-field) {
+    padding: 16px;
+  }
+
+  & ::slotted(ifx-dropdown-header) {
+    margin-bottom: 8px;
   }
 }
 

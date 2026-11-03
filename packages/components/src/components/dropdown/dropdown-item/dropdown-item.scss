@@ -7,11 +7,11 @@
   align-items: center;
   padding: 8px 16px;
   gap: tokens.$ifxSize100;
-  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+  font-family: tokens.$ifxFontFamilyBody;
 
   &:focus{
     outline: none;
-    box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
+    box-shadow: inset 0 0 0 2px tokens.$ifxColorOcean500;
   }
 
   &.hide {
@@ -28,8 +28,11 @@
   }
 
   &.small {
+    padding: 0 16px;
+
     & span {
       font-size: 14px;
+      line-height: tokens.$ifxLineHeightS;
     }
   }
 
@@ -64,7 +67,12 @@
 
 button.dropdown-item {
   width: 100%;
+  height: 40px;
   border: 0;
   background-color: transparent;
   text-align: left;
+
+  &.small{
+    height: 32px;
+  }
 }
