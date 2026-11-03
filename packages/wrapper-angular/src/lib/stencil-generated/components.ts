@@ -2033,7 +2033,7 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['ariaClearLabel', 'ariaSearchLabel', 'ariaSelectDescribedBy', 'ariaSelectLabel', 'ariaSelectLabelledBy', 'caption', 'disabled', 'error', 'label', 'name', 'noResultsMessage', 'options', 'placeholder', 'placeholderValue', 'readOnly', 'required', 'searchPlaceholderValue', 'showClearButton', 'showSearch', 'size', 'value'],
-  outputs: ['ifxSelect', 'ifxClear', 'ifxInput', 'ifxOpen'],
+  outputs: ['ifxSelect', 'ifxInput', 'ifxOpen'],
   standalone: false
 })
 export class IfxSelect {
@@ -2117,6 +2117,28 @@ export class IfxSelectOption {
 
 
 export declare interface IfxSelectOption extends Components.IfxSelectOption {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ifx-select-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IfxSelectSeparator {
+  protected el: HTMLIfxSelectSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSelectSeparator extends Components.IfxSelectSeparator {}
 
 
 @ProxyCmp({

@@ -2025,6 +2025,8 @@ export namespace Components {
          */
         "value": string;
     }
+    interface IfxSelectSeparator {
+    }
     interface IfxSetFilter {
         /**
           * User-visible label for the filter control
@@ -4064,6 +4066,12 @@ declare global {
         prototype: HTMLIfxSelectOptionElement;
         new (): HTMLIfxSelectOptionElement;
     };
+    interface HTMLIfxSelectSeparatorElement extends Components.IfxSelectSeparator, HTMLStencilElement {
+    }
+    var HTMLIfxSelectSeparatorElement: {
+        prototype: HTMLIfxSelectSeparatorElement;
+        new (): HTMLIfxSelectSeparatorElement;
+    };
     interface HTMLIfxSetFilterElementEventMap {
         "ifxFilterSelect": any;
     }
@@ -4476,6 +4484,7 @@ declare global {
         "ifx-select": HTMLIfxSelectElement;
         "ifx-select-group": HTMLIfxSelectGroupElement;
         "ifx-select-option": HTMLIfxSelectOptionElement;
+        "ifx-select-separator": HTMLIfxSelectSeparatorElement;
         "ifx-set-filter": HTMLIfxSetFilterElement;
         "ifx-sidebar": HTMLIfxSidebarElement;
         "ifx-sidebar-item": HTMLIfxSidebarItemElement;
@@ -6641,6 +6650,8 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface IfxSelectSeparator {
+    }
     interface IfxSetFilter {
         /**
           * User-visible label for the filter control
@@ -8368,6 +8379,7 @@ declare namespace LocalJSX {
         "ifx-select": Omit<IfxSelect, keyof IfxSelectAttributes> & { [K in keyof IfxSelect & keyof IfxSelectAttributes]?: IfxSelect[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `attr:${K}`]?: IfxSelectAttributes[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `prop:${K}`]?: IfxSelect[K] };
         "ifx-select-group": Omit<IfxSelectGroup, keyof IfxSelectGroupAttributes> & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes]?: IfxSelectGroup[K] } & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes as `attr:${K}`]?: IfxSelectGroupAttributes[K] } & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes as `prop:${K}`]?: IfxSelectGroup[K] };
         "ifx-select-option": Omit<IfxSelectOption, keyof IfxSelectOptionAttributes> & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes]?: IfxSelectOption[K] } & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes as `attr:${K}`]?: IfxSelectOptionAttributes[K] } & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes as `prop:${K}`]?: IfxSelectOption[K] };
+        "ifx-select-separator": IfxSelectSeparator;
         "ifx-set-filter": Omit<IfxSetFilter, keyof IfxSetFilterAttributes> & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes]?: IfxSetFilter[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `attr:${K}`]?: IfxSetFilterAttributes[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `prop:${K}`]?: IfxSetFilter[K] };
         "ifx-sidebar": Omit<IfxSidebar, keyof IfxSidebarAttributes> & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes]?: IfxSidebar[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `attr:${K}`]?: IfxSidebarAttributes[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `prop:${K}`]?: IfxSidebar[K] };
         "ifx-sidebar-item": Omit<IfxSidebarItem, keyof IfxSidebarItemAttributes> & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes]?: IfxSidebarItem[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `attr:${K}`]?: IfxSidebarItemAttributes[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `prop:${K}`]?: IfxSidebarItem[K] };
@@ -8486,6 +8498,7 @@ declare module "@stencil/core" {
              * pattern but simplified for single selection — no checkbox, nesting or chevron.
              */
             "ifx-select-option": LocalJSX.IntrinsicElements["ifx-select-option"] & JSXBase.HTMLAttributes<HTMLIfxSelectOptionElement>;
+            "ifx-select-separator": LocalJSX.IntrinsicElements["ifx-select-separator"] & JSXBase.HTMLAttributes<HTMLIfxSelectSeparatorElement>;
             "ifx-set-filter": LocalJSX.IntrinsicElements["ifx-set-filter"] & JSXBase.HTMLAttributes<HTMLIfxSetFilterElement>;
             "ifx-sidebar": LocalJSX.IntrinsicElements["ifx-sidebar"] & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
             "ifx-sidebar-item": LocalJSX.IntrinsicElements["ifx-sidebar-item"] & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;
