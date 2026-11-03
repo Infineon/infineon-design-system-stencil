@@ -668,6 +668,7 @@ export class Multiselect {
 			option.dispatchEvent(searchEvent);
 		});
 		this.updateGroupVisibility(false);
+		this.showSeparators();
 	}
 
 	private clearEnabledSelection() {

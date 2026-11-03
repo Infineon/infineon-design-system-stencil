@@ -442,6 +442,7 @@ export class Select {
 				}),
 			);
 		});
+		this.showSeparators();
 	}
 
 	// --- keyboard navigation (roving focus over options) -----------------------
