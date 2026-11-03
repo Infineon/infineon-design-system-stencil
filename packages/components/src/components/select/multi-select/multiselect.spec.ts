@@ -226,6 +226,62 @@ describe("ifx-multiselect", () => {
 		expect(group.classList.contains("empty-group")).toBe(false);
 	});
 
+	it("opens the overflow indicator with selected options and their parent context", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-group label="Region">
+						<ifx-multiselect-option value="region">
+							Region
+							<ifx-multiselect-option value="selected" selected slot="children">Selected</ifx-multiselect-option>
+							<ifx-multiselect-option value="sibling" slot="children">Sibling</ifx-multiselect-option>
+						</ifx-multiselect-option>
+					</ifx-multiselect-group>
+					<ifx-multiselect-group label="Unselected">
+						<ifx-multiselect-option value="unselected">Unselected</ifx-multiselect-option>
+					</ifx-multiselect-group>
+					<ifx-multiselect-option value="other" selected>Other</ifx-multiselect-option>
+				</ifx-multiselect>
+			`,
+		});
+		const component = page.rootInstance as any;
+		component.persistentSelectedOptions = [
+			{ value: "selected", label: "Selected", selected: true },
+			{ value: "other", label: "Other", selected: true },
+		];
+		component.visibleSelectedCount = 1;
+		await page.waitForChanges();
+
+		const indicator = page.root.shadowRoot.querySelector(
+			".ifx-multiselect-indicator[role='button']",
+		) as HTMLElement;
+		indicator.click();
+		await new Promise((resolve) => setTimeout(resolve, 0));
+		await new Promise((resolve) =>
+			requestAnimationFrame(() => requestAnimationFrame(resolve)),
+		);
+		await page.waitForChanges();
+
+		const options = Array.from(
+			page.root.querySelectorAll("ifx-multiselect-option"),
+		) as HTMLIfxMultiselectOptionElement[];
+		const optionClass = (option: HTMLIfxMultiselectOptionElement) =>
+			option.shadowRoot.querySelector(".option").classList;
+
+		expect(component.dropdownOpen).toBe(true);
+		expect(optionClass(options[0]).contains("search-parent")).toBe(true);
+		expect(optionClass(options[1]).contains("search-match")).toBe(true);
+		expect(optionClass(options[2]).contains("search-hidden")).toBe(true);
+		expect(optionClass(options[3]).contains("search-hidden")).toBe(true);
+		expect(optionClass(options[4]).contains("search-match")).toBe(true);
+		const groups = Array.from(
+			page.root.querySelectorAll("ifx-multiselect-group"),
+		) as HTMLElement[];
+		expect(groups[0].classList.contains("empty-group")).toBe(false);
+		expect(groups[1].classList.contains("empty-group")).toBe(true);
+	});
+
 	it("shows only groups containing visible search results and restores them on reset", () => {
 		const revenueGroup = document.createElement("ifx-multiselect-group");
 		const costsGroup = document.createElement("ifx-multiselect-group");

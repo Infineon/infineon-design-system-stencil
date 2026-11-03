@@ -120,6 +120,7 @@ export class Multiselect {
 	@State() dropdownFlipped: boolean;
 	@State() searchTerm: string = "";
 	@State() visibleSelectedCount = 0;
+	@State() selectedOnlyFilter = false;
 
 	/** Fired when an option is selected in the multi-select. */
 	@Event() ifxSelect!: EventEmitter;
@@ -303,6 +304,7 @@ export class Multiselect {
 		const searchTerm = targetElement.value.toLowerCase();
 		const isSearchActive = searchTerm !== "";
 
+		this.selectedOnlyFilter = false;
 		this.searchTerm = searchTerm;
 
 		const wrapper = this.el.shadowRoot.querySelector(
@@ -496,6 +498,9 @@ export class Multiselect {
 			const optionInstance = (event.target as any)?.__stencil_instance;
 			if (optionInstance && !optionInstance.hasChildren) {
 				this.updateSlotBasedSelections(true);
+				if (this.selectedOnlyFilter) {
+					this.applySelectedOptionsFilter();
+				}
 			}
 		});
 
@@ -621,6 +626,7 @@ export class Multiselect {
 	}
 
 	private resetSearch() {
+		this.selectedOnlyFilter = false;
 		this.searchTerm = "";
 
 		const searchField = this.el.shadowRoot.querySelector(
@@ -646,6 +652,54 @@ export class Multiselect {
 		});
 		this.updateGroupVisibility(false);
 	}
+
+	private applySelectedOptionsFilter() {
+		this.getAllOptionElements().forEach((option) => {
+			option.dispatchEvent(
+				new CustomEvent("ifx-selected-filter", {
+					detail: { isActive: this.selectedOnlyFilter },
+				}),
+			);
+		});
+		const filterIsActive = this.selectedOnlyFilter;
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				if (this.selectedOnlyFilter === filterIsActive) {
+					this.updateGroupVisibility(filterIsActive);
+				}
+			});
+		});
+	}
+
+	private handleSelectedIndicatorClick = (event: Event) => {
+		event.stopPropagation();
+		this.selectedOnlyFilter = true;
+		this.searchTerm = "";
+
+		const searchField = this.el.shadowRoot.querySelector(
+			"ifx-search-field",
+		) as any;
+		if (searchField) {
+			searchField.value = "";
+		}
+
+		const optionsContainer = this.el.shadowRoot.querySelector(
+			".ifx-multiselect-options",
+		);
+		optionsContainer?.classList.remove("has-search-filter", "show-no-results");
+
+		this.applySelectedOptionsFilter();
+		if (!this.dropdownOpen) {
+			this.toggleDropdown();
+		}
+	};
+
+	private handleSelectedIndicatorKeyDown = (event: KeyboardEvent) => {
+		if (event.key === "Enter" || event.key === " ") {
+			event.preventDefault();
+			this.handleSelectedIndicatorClick(event);
+		}
+	};
 
 	private clearEnabledSelection() {
 		this.getEnabledLeafOptionElements().forEach((optionEl: any) => {
@@ -892,6 +946,10 @@ export class Multiselect {
 				<span
 					class="ifx-multiselect-indicator"
 					aria-label={`+${hiddenOptionsCount} more selections`}
+					role="button"
+					tabIndex={0}
+					onClick={this.handleSelectedIndicatorClick}
+					onKeyDown={this.handleSelectedIndicatorKeyDown}
 				>
 					+{hiddenOptionsCount}
 				</span>
