@@ -1,3 +1,16 @@
+# v42.0.6 (Tue Nov 03 2026)
+
+#### 🐛 Bug Fix
+
+- Sidebar: fixes inconsistent active indicator behavior [#2529](https://github.com/Infineon/infineon-design-system-stencil/pull/2529) ([@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@sofiacarvalho-ifx](https://github.com/sofiacarvalho-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.0.5 (Mon Nov 02 2026)
 
 #### 🐛 Bug Fix
