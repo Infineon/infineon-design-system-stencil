@@ -1,3 +1,15 @@
+# v42.0.7 (Tue Nov 03 2026)
+
+#### 🐛 Bug Fix
+
+- Dropdown: improves keyboard navigation, aligns design with Figma and removes noCloseOnOutsideClick, noCloseOnMenuClick props [#2574](https://github.com/Infineon/infineon-design-system-stencil/pull/2574) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
 # v42.0.6 (Tue Nov 03 2026)
 
 #### 🐛 Bug Fix
