@@ -58,6 +58,7 @@ import { defineCustomElement as defineIfxModal } from '@infineon/design-system/c
 import { defineCustomElement as defineIfxMultiselect } from '@infineon/design-system/components/ifx-multiselect.js';
 import { defineCustomElement as defineIfxMultiselectGroup } from '@infineon/design-system/components/ifx-multiselect-group.js';
 import { defineCustomElement as defineIfxMultiselectOption } from '@infineon/design-system/components/ifx-multiselect-option.js';
+import { defineCustomElement as defineIfxMultiselectSeparator } from '@infineon/design-system/components/ifx-multiselect-separator.js';
 import { defineCustomElement as defineIfxNavbar } from '@infineon/design-system/components/ifx-navbar.js';
 import { defineCustomElement as defineIfxNavbarItem } from '@infineon/design-system/components/ifx-navbar-item.js';
 import { defineCustomElement as defineIfxNavbarProfile } from '@infineon/design-system/components/ifx-navbar-profile.js';
@@ -75,6 +76,7 @@ import { defineCustomElement as defineIfxSegmentedControl } from '@infineon/desi
 import { defineCustomElement as defineIfxSelect } from '@infineon/design-system/components/ifx-select.js';
 import { defineCustomElement as defineIfxSelectGroup } from '@infineon/design-system/components/ifx-select-group.js';
 import { defineCustomElement as defineIfxSelectOption } from '@infineon/design-system/components/ifx-select-option.js';
+import { defineCustomElement as defineIfxSelectSeparator } from '@infineon/design-system/components/ifx-select-separator.js';
 import { defineCustomElement as defineIfxSetFilter } from '@infineon/design-system/components/ifx-set-filter.js';
 import { defineCustomElement as defineIfxSidebar } from '@infineon/design-system/components/ifx-sidebar.js';
 import { defineCustomElement as defineIfxSidebarItem } from '@infineon/design-system/components/ifx-sidebar-item.js';
@@ -1633,6 +1635,28 @@ export declare interface IfxMultiselectOption extends Components.IfxMultiselectO
 
 
 @ProxyCmp({
+  defineCustomElementFn: defineIfxMultiselectSeparator
+})
+@Component({
+  selector: 'ifx-multiselect-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IfxMultiselectSeparator {
+  protected el: HTMLIfxMultiselectSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxMultiselectSeparator extends Components.IfxMultiselectSeparator {}
+
+
+@ProxyCmp({
   defineCustomElementFn: defineIfxNavbar,
   inputs: ['applicationName', 'fixed', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname']
 })
@@ -2186,6 +2210,28 @@ export class IfxSelectOption {
 
 
 export declare interface IfxSelectOption extends Components.IfxSelectOption {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIfxSelectSeparator
+})
+@Component({
+  selector: 'ifx-select-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IfxSelectSeparator {
+  protected el: HTMLIfxSelectSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSelectSeparator extends Components.IfxSelectSeparator {}
 
 
 @ProxyCmp({
