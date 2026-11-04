@@ -1,3 +1,17 @@
+# v42.2.0 (Wed Nov 04 2026)
+
+#### 🚀 Enhancement
+
+- Adds a separator option to Single and Multi select components [#2307](https://github.com/Infineon/infineon-design-system-stencil/pull/2307) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.1.0 (Tue Nov 03 2026)
 
 #### 🚀 Enhancement
