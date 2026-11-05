@@ -1,3 +1,27 @@
+# v42.3.0 (Thu Nov 05 2026)
+
+#### 🚀 Enhancement
+
+- Navbar: adds logoAriaLabel prop for customization of the Logo aria label [#2598](https://github.com/Infineon/infineon-design-system-stencil/pull/2598) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
+# v42.2.1 (Thu Nov 05 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: Renders related label as selected item instead of Value attribute [#2600](https://github.com/Infineon/infineon-design-system-stencil/pull/2600) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.2.0 (Wed Nov 04 2026)
 
 #### 🚀 Enhancement

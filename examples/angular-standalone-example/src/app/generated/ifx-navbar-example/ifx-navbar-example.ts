@@ -44,6 +44,7 @@ export class IfxNavbarExample {
     [fixed]=&quot;false&quot;
     logo-href=&quot;http://google.com&quot;
     logo-href-target=&quot;_self&quot;
+    logo-aria-label=&quot;Go to application home&quot;
     (ifxNavbarMobileMenuIsOpen)=&quot;handleNavbarMobileMenuIsOpen(\$any(\$event))&quot;&gt;
     &lt;ifx-navbar-item
       icon=&quot;&quot;

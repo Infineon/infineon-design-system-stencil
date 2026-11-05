@@ -1564,14 +1564,14 @@ export declare interface IfxMultiselectSeparator extends Components.IfxMultisele
 
 
 @ProxyCmp({
-  inputs: ['applicationName', 'fixed', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname']
+  inputs: ['applicationName', 'fixed', 'logoAriaLabel', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname']
 })
 @Component({
   selector: 'ifx-navbar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'fixed', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname'],
+  inputs: ['applicationName', 'fixed', 'logoAriaLabel', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname'],
   outputs: ['ifxNavbarMobileMenuIsOpen'],
   standalone: false
 })
