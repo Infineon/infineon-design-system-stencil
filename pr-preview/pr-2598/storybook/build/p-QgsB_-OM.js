@@ -1,1 +1,0 @@
-const t=new Set(["javascript:","vbscript:"]);function c(c){if(void 0!==c)try{const e=new URL(c,"https://example.com/").protocol;return t.has(e)?void 0:c}catch{return c}}export{c as s}
