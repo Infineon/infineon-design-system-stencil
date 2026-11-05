@@ -660,6 +660,7 @@ export const IfxNavbar: StencilVueComponent<JSX.IfxNavbar> = /*@__PURE__*/ defin
   'showLogoAndAppname',
   'logoHref',
   'logoHrefTarget',
+  'logoAriaLabel',
   'ifxNavbarMobileMenuIsOpen'
 ], [
   'ifxNavbarMobileMenuIsOpen'
