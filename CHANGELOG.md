@@ -1,3 +1,16 @@
+# v42.3.1 (Thu Nov 05 2026)
+
+#### 🐛 Bug Fix
+
+- Updates Chip component documentation, and Stencil documentation link in GitHub repository [#2597](https://github.com/Infineon/infineon-design-system-stencil/pull/2597) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.3.0 (Thu Nov 05 2026)
 
 #### 🚀 Enhancement
