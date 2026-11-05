@@ -369,22 +369,24 @@ export class Chip {
 		this.syncSelectedOptionsWithProp(this.value);
 	}
 
-	async componentDidLoad() {
-		this.refreshLabels();
-		this.observer = new MutationObserver(() => {
-			this.syncChipState();
-			this.refreshLabels();
-		});
-		this.observer.observe(this.chip, {
-			childList: true,
-			subtree: true,
-			characterData: true,
-		});
-		if (!isNestedInIfxComponent(this.chip)) {
-			const framework = detectFramework();
-			trackComponent("ifx-chip", await framework);
-		}
-	}
+async componentDidLoad() {
+    this.refreshLabels();
+    if (typeof MutationObserver !== "undefined") {
+        this.observer = new MutationObserver(() => {
+            this.syncChipState();
+            this.refreshLabels();
+        });
+        this.observer.observe(this.chip, {
+            childList: true,
+            subtree: true,
+            characterData: true,
+        });
+    }
+    if (!isNestedInIfxComponent(this.chip)) {
+        const framework = detectFramework();
+        trackComponent("ifx-chip", await framework);
+    }
+}
 
 	disconnectedCallback() {
 		this.observer?.disconnect();
