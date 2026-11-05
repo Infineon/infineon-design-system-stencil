@@ -1315,6 +1315,11 @@ export namespace Components {
          */
         "fixed": boolean;
         /**
+          * Accessible label for the logo link.
+          * @default "Go to application home"
+         */
+        "logoAriaLabel": string;
+        /**
           * Link URL for the logo click action.
           * @default ""
          */
@@ -5945,6 +5950,11 @@ declare namespace LocalJSX {
          */
         "fixed"?: boolean;
         /**
+          * Accessible label for the logo link.
+          * @default "Go to application home"
+         */
+        "logoAriaLabel"?: string;
+        /**
           * Link URL for the logo click action.
           * @default ""
          */
@@ -7960,6 +7970,7 @@ declare namespace LocalJSX {
         "showLogoAndAppname": boolean;
         "logoHref": string;
         "logoHrefTarget": string;
+        "logoAriaLabel": string;
     }
     interface IfxNavbarItemAttributes {
         "showLabel": boolean;
