@@ -196,7 +196,7 @@ For security concerns, please see our [Security Policy](./SECURITY.md).
 
 ## 🔗 Links
 
-- [Stencil Documentation](https://stenciljs.com/)
+- [Stencil Documentation](https://stenciljs.com/docs/introduction)
 - [Web Components Standards](https://www.webcomponents.org/)
 
 ## 📞 Contact
