@@ -31,6 +31,7 @@ export class MultiselectOption {
 	@State() private searchTerm: string = "";
 	@State() private isSearchActive: boolean = false;
 	@State() private isSearchDisabled: boolean = false;
+	@State() private isSelectedFilterActive: boolean = false;
 	@State() private disabledByGroup: boolean = false;
 
 	componentWillLoad() {
@@ -53,11 +54,13 @@ export class MultiselectOption {
     this.notifyMultiselect();
     this.el.addEventListener('ifx-search-filter', this.handleSearchFilter);
 		this.el.addEventListener('ifx-group-disabled-change', this.handleGroupDisabledChange);
+		this.el.addEventListener("ifx-selected-filter", this.handleSelectedFilter);
   }
 
 	disconnectedCallback() {
 		this.el.removeEventListener("ifx-search-filter", this.handleSearchFilter);
 		this.el.removeEventListener("ifx-group-disabled-change", this.handleGroupDisabledChange);
+		this.el.removeEventListener("ifx-selected-filter", this.handleSelectedFilter);
 	}
 
 	private handleGroupDisabledChange = (event: CustomEvent) => {
@@ -70,6 +73,7 @@ export class MultiselectOption {
 
 	private handleSearchFilter = (event: CustomEvent) => {
 		const { searchTerm, isActive } = event.detail;
+		this.isSelectedFilterActive = false;
 		this.searchTerm = searchTerm.toLowerCase();
 		this.isSearchActive = isActive;
 
@@ -78,9 +82,58 @@ export class MultiselectOption {
 		});
 	};
 
+	private handleSelectedFilter = (event: CustomEvent) => {
+		this.isSelectedFilterActive = event.detail.isActive;
+		this.searchTerm = "";
+		this.isSearchActive = event.detail.isActive;
+
+		requestAnimationFrame(() => {
+			this.updateSearchClasses();
+		});
+	};
+
+	private hasSelectedDescendant(): boolean {
+		if (!this.hasChildren) return false;
+
+		const childOptions = Array.from(this.el.children).filter(
+			(child) => child.tagName === "IFX-MULTISELECT-OPTION",
+		) as HTMLElement[];
+
+		return childOptions.some((child) => {
+			const childInstance = (child as any)["__stencil_instance"];
+			return (
+				childInstance &&
+				(childInstance.selected || childInstance.hasSelectedDescendant())
+			);
+		});
+	}
+
 	private updateSearchClasses() {
 		const optionDiv = this.el.shadowRoot?.querySelector(".option");
 		if (!optionDiv) return;
+
+		if (this.isSelectedFilterActive) {
+			const hasSelectedDescendant = this.hasSelectedDescendant();
+			optionDiv.classList.remove(
+				"search-hidden",
+				"search-parent",
+				"search-match",
+			);
+			this.removeHighlighting();
+
+			if (this.selected && !this.hasChildren) {
+				optionDiv.classList.add("search-match");
+				this.isSearchDisabled = false;
+			} else if (hasSelectedDescendant) {
+				optionDiv.classList.add("search-parent");
+				this.isExpanded = true;
+				this.isSearchDisabled = true;
+			} else {
+				optionDiv.classList.add("search-hidden");
+				this.isSearchDisabled = false;
+			}
+			return;
+		}
 
 		if (!this.isSearchActive) {
 			optionDiv.classList.remove(
