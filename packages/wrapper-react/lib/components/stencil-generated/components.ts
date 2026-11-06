@@ -7,105 +7,106 @@
 
 /* eslint-disable */
 
-import React from 'react';
+import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
-import type { Components } from '@infineon/design-system/dist/components';
-import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from '@infineon/design-system/dist/components/ifx-accordion.js';
-import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from '@infineon/design-system/dist/components/ifx-accordion-item.js';
-import { IfxActionList as IfxActionListElement, defineCustomElement as defineIfxActionList } from '@infineon/design-system/dist/components/ifx-action-list.js';
-import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from '@infineon/design-system/dist/components/ifx-action-list-item.js';
-import { IfxAiLabel as IfxAiLabelElement, defineCustomElement as defineIfxAiLabel } from '@infineon/design-system/dist/components/ifx-ai-label.js';
-import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from '@infineon/design-system/dist/components/ifx-alert.js';
-import { IfxBasicTable as IfxBasicTableElement, defineCustomElement as defineIfxBasicTable } from '@infineon/design-system/dist/components/ifx-basic-table.js';
-import { IfxBreadcrumb as IfxBreadcrumbElement, defineCustomElement as defineIfxBreadcrumb } from '@infineon/design-system/dist/components/ifx-breadcrumb.js';
-import { IfxBreadcrumbItem as IfxBreadcrumbItemElement, defineCustomElement as defineIfxBreadcrumbItem } from '@infineon/design-system/dist/components/ifx-breadcrumb-item.js';
-import { IfxBreadcrumbItemLabel as IfxBreadcrumbItemLabelElement, defineCustomElement as defineIfxBreadcrumbItemLabel } from '@infineon/design-system/dist/components/ifx-breadcrumb-item-label.js';
-import { IfxButton as IfxButtonElement, defineCustomElement as defineIfxButton } from '@infineon/design-system/dist/components/ifx-button.js';
-import { IfxCard as IfxCardElement, defineCustomElement as defineIfxCard } from '@infineon/design-system/dist/components/ifx-card.js';
-import { IfxCardHeadline as IfxCardHeadlineElement, defineCustomElement as defineIfxCardHeadline } from '@infineon/design-system/dist/components/ifx-card-headline.js';
-import { IfxCardImage as IfxCardImageElement, defineCustomElement as defineIfxCardImage } from '@infineon/design-system/dist/components/ifx-card-image.js';
-import { IfxCardLinks as IfxCardLinksElement, defineCustomElement as defineIfxCardLinks } from '@infineon/design-system/dist/components/ifx-card-links.js';
-import { IfxCardOverline as IfxCardOverlineElement, defineCustomElement as defineIfxCardOverline } from '@infineon/design-system/dist/components/ifx-card-overline.js';
-import { IfxCardText as IfxCardTextElement, defineCustomElement as defineIfxCardText } from '@infineon/design-system/dist/components/ifx-card-text.js';
-import { IfxCheckbox as IfxCheckboxElement, defineCustomElement as defineIfxCheckbox } from '@infineon/design-system/dist/components/ifx-checkbox.js';
-import { IfxCheckboxGroup as IfxCheckboxGroupElement, defineCustomElement as defineIfxCheckboxGroup } from '@infineon/design-system/dist/components/ifx-checkbox-group.js';
-import { IfxChip as IfxChipElement, defineCustomElement as defineIfxChip } from '@infineon/design-system/dist/components/ifx-chip.js';
-import { IfxChipItem as IfxChipItemElement, defineCustomElement as defineIfxChipItem } from '@infineon/design-system/dist/components/ifx-chip-item.js';
-import { IfxContentSwitcher as IfxContentSwitcherElement, defineCustomElement as defineIfxContentSwitcher } from '@infineon/design-system/dist/components/ifx-content-switcher.js';
-import { IfxContentSwitcherItem as IfxContentSwitcherItemElement, defineCustomElement as defineIfxContentSwitcherItem } from '@infineon/design-system/dist/components/ifx-content-switcher-item.js';
-import { IfxCounter as IfxCounterElement, defineCustomElement as defineIfxCounter } from '@infineon/design-system/dist/components/ifx-counter.js';
-import { IfxDatePicker as IfxDatePickerElement, defineCustomElement as defineIfxDatePicker } from '@infineon/design-system/dist/components/ifx-date-picker.js';
-import { IfxDownload as IfxDownloadElement, defineCustomElement as defineIfxDownload } from '@infineon/design-system/dist/components/ifx-download.js';
-import { IfxDropdown as IfxDropdownElement, defineCustomElement as defineIfxDropdown } from '@infineon/design-system/dist/components/ifx-dropdown.js';
-import { IfxDropdownHeader as IfxDropdownHeaderElement, defineCustomElement as defineIfxDropdownHeader } from '@infineon/design-system/dist/components/ifx-dropdown-header.js';
-import { IfxDropdownItem as IfxDropdownItemElement, defineCustomElement as defineIfxDropdownItem } from '@infineon/design-system/dist/components/ifx-dropdown-item.js';
-import { IfxDropdownMenu as IfxDropdownMenuElement, defineCustomElement as defineIfxDropdownMenu } from '@infineon/design-system/dist/components/ifx-dropdown-menu.js';
-import { IfxDropdownSeparator as IfxDropdownSeparatorElement, defineCustomElement as defineIfxDropdownSeparator } from '@infineon/design-system/dist/components/ifx-dropdown-separator.js';
-import { IfxDropdownTrigger as IfxDropdownTriggerElement, defineCustomElement as defineIfxDropdownTrigger } from '@infineon/design-system/dist/components/ifx-dropdown-trigger.js';
-import { IfxDropdownTriggerButton as IfxDropdownTriggerButtonElement, defineCustomElement as defineIfxDropdownTriggerButton } from '@infineon/design-system/dist/components/ifx-dropdown-trigger-button.js';
-import { IfxErrorPage as IfxErrorPageElement, defineCustomElement as defineIfxErrorPage } from '@infineon/design-system/dist/components/ifx-error-page.js';
-import { IfxFileUpload as IfxFileUploadElement, defineCustomElement as defineIfxFileUpload } from '@infineon/design-system/dist/components/ifx-file-upload.js';
-import { IfxFilterAccordion as IfxFilterAccordionElement, defineCustomElement as defineIfxFilterAccordion } from '@infineon/design-system/dist/components/ifx-filter-accordion.js';
-import { IfxFilterBar as IfxFilterBarElement, defineCustomElement as defineIfxFilterBar } from '@infineon/design-system/dist/components/ifx-filter-bar.js';
-import { IfxFilterSearch as IfxFilterSearchElement, defineCustomElement as defineIfxFilterSearch } from '@infineon/design-system/dist/components/ifx-filter-search.js';
-import { IfxFilterTypeGroup as IfxFilterTypeGroupElement, defineCustomElement as defineIfxFilterTypeGroup } from '@infineon/design-system/dist/components/ifx-filter-type-group.js';
-import { IfxFooter as IfxFooterElement, defineCustomElement as defineIfxFooter } from '@infineon/design-system/dist/components/ifx-footer.js';
-import { IfxFooterColumn as IfxFooterColumnElement, defineCustomElement as defineIfxFooterColumn } from '@infineon/design-system/dist/components/ifx-footer-column.js';
-import { IfxIcon as IfxIconElement, defineCustomElement as defineIfxIcon } from '@infineon/design-system/dist/components/ifx-icon.js';
-import { IfxIconButton as IfxIconButtonElement, defineCustomElement as defineIfxIconButton } from '@infineon/design-system/dist/components/ifx-icon-button.js';
-import { IfxIconsPreview as IfxIconsPreviewElement, defineCustomElement as defineIfxIconsPreview } from '@infineon/design-system/dist/components/ifx-icons-preview.js';
-import { IfxIndicator as IfxIndicatorElement, defineCustomElement as defineIfxIndicator } from '@infineon/design-system/dist/components/ifx-indicator.js';
-import { IfxLink as IfxLinkElement, defineCustomElement as defineIfxLink } from '@infineon/design-system/dist/components/ifx-link.js';
-import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from '@infineon/design-system/dist/components/ifx-list.js';
-import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxListEntry } from '@infineon/design-system/dist/components/ifx-list-entry.js';
-import { IfxModal as IfxModalElement, defineCustomElement as defineIfxModal } from '@infineon/design-system/dist/components/ifx-modal.js';
-import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineIfxMultiselect } from '@infineon/design-system/dist/components/ifx-multiselect.js';
-import { IfxMultiselectGroup as IfxMultiselectGroupElement, defineCustomElement as defineIfxMultiselectGroup } from '@infineon/design-system/dist/components/ifx-multiselect-group.js';
-import { IfxMultiselectOption as IfxMultiselectOptionElement, defineCustomElement as defineIfxMultiselectOption } from '@infineon/design-system/dist/components/ifx-multiselect-option.js';
-import { IfxMultiselectSeparator as IfxMultiselectSeparatorElement, defineCustomElement as defineIfxMultiselectSeparator } from '@infineon/design-system/dist/components/ifx-multiselect-separator.js';
-import { IfxNavbar as IfxNavbarElement, defineCustomElement as defineIfxNavbar } from '@infineon/design-system/dist/components/ifx-navbar.js';
-import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfxNavbarItem } from '@infineon/design-system/dist/components/ifx-navbar-item.js';
-import { IfxNavbarProfile as IfxNavbarProfileElement, defineCustomElement as defineIfxNavbarProfile } from '@infineon/design-system/dist/components/ifx-navbar-profile.js';
-import { IfxNotification as IfxNotificationElement, defineCustomElement as defineIfxNotification } from '@infineon/design-system/dist/components/ifx-notification.js';
-import { IfxOverviewTable as IfxOverviewTableElement, defineCustomElement as defineIfxOverviewTable } from '@infineon/design-system/dist/components/ifx-overview-table.js';
-import { IfxPagination as IfxPaginationElement, defineCustomElement as defineIfxPagination } from '@infineon/design-system/dist/components/ifx-pagination.js';
-import { IfxPopover as IfxPopoverElement, defineCustomElement as defineIfxPopover } from '@infineon/design-system/dist/components/ifx-popover.js';
-import { IfxProgressBar as IfxProgressBarElement, defineCustomElement as defineIfxProgressBar } from '@infineon/design-system/dist/components/ifx-progress-bar.js';
-import { IfxRadioButton as IfxRadioButtonElement, defineCustomElement as defineIfxRadioButton } from '@infineon/design-system/dist/components/ifx-radio-button.js';
-import { IfxRadioButtonGroup as IfxRadioButtonGroupElement, defineCustomElement as defineIfxRadioButtonGroup } from '@infineon/design-system/dist/components/ifx-radio-button-group.js';
-import { IfxSearchBar as IfxSearchBarElement, defineCustomElement as defineIfxSearchBar } from '@infineon/design-system/dist/components/ifx-search-bar.js';
-import { IfxSearchField as IfxSearchFieldElement, defineCustomElement as defineIfxSearchField } from '@infineon/design-system/dist/components/ifx-search-field.js';
-import { IfxSegment as IfxSegmentElement, defineCustomElement as defineIfxSegment } from '@infineon/design-system/dist/components/ifx-segment.js';
-import { IfxSegmentedControl as IfxSegmentedControlElement, defineCustomElement as defineIfxSegmentedControl } from '@infineon/design-system/dist/components/ifx-segmented-control.js';
-import { IfxSelect as IfxSelectElement, defineCustomElement as defineIfxSelect } from '@infineon/design-system/dist/components/ifx-select.js';
-import { IfxSelectGroup as IfxSelectGroupElement, defineCustomElement as defineIfxSelectGroup } from '@infineon/design-system/dist/components/ifx-select-group.js';
-import { IfxSelectOption as IfxSelectOptionElement, defineCustomElement as defineIfxSelectOption } from '@infineon/design-system/dist/components/ifx-select-option.js';
-import { IfxSelectSeparator as IfxSelectSeparatorElement, defineCustomElement as defineIfxSelectSeparator } from '@infineon/design-system/dist/components/ifx-select-separator.js';
-import { IfxSetFilter as IfxSetFilterElement, defineCustomElement as defineIfxSetFilter } from '@infineon/design-system/dist/components/ifx-set-filter.js';
-import { IfxSidebar as IfxSidebarElement, defineCustomElement as defineIfxSidebar } from '@infineon/design-system/dist/components/ifx-sidebar.js';
-import { IfxSidebarItem as IfxSidebarItemElement, defineCustomElement as defineIfxSidebarItem } from '@infineon/design-system/dist/components/ifx-sidebar-item.js';
-import { IfxSidebarSeparator as IfxSidebarSeparatorElement, defineCustomElement as defineIfxSidebarSeparator } from '@infineon/design-system/dist/components/ifx-sidebar-separator.js';
-import { IfxSidebarTitle as IfxSidebarTitleElement, defineCustomElement as defineIfxSidebarTitle } from '@infineon/design-system/dist/components/ifx-sidebar-title.js';
-import { IfxSlider as IfxSliderElement, defineCustomElement as defineIfxSlider } from '@infineon/design-system/dist/components/ifx-slider.js';
-import { IfxSpinner as IfxSpinnerElement, defineCustomElement as defineIfxSpinner } from '@infineon/design-system/dist/components/ifx-spinner.js';
-import { IfxStatus as IfxStatusElement, defineCustomElement as defineIfxStatus } from '@infineon/design-system/dist/components/ifx-status.js';
-import { IfxStep as IfxStepElement, defineCustomElement as defineIfxStep } from '@infineon/design-system/dist/components/ifx-step.js';
-import { IfxStepper as IfxStepperElement, defineCustomElement as defineIfxStepper } from '@infineon/design-system/dist/components/ifx-stepper.js';
-import { IfxSwitch as IfxSwitchElement, defineCustomElement as defineIfxSwitch } from '@infineon/design-system/dist/components/ifx-switch.js';
-import { IfxTab as IfxTabElement, defineCustomElement as defineIfxTab } from '@infineon/design-system/dist/components/ifx-tab.js';
-import { IfxTable as IfxTableElement, defineCustomElement as defineIfxTable } from '@infineon/design-system/dist/components/ifx-table.js';
-import { IfxTabs as IfxTabsElement, defineCustomElement as defineIfxTabs } from '@infineon/design-system/dist/components/ifx-tabs.js';
-import { IfxTemplate as IfxTemplateElement, defineCustomElement as defineIfxTemplate } from '@infineon/design-system/dist/components/ifx-template.js';
-import { IfxTemplatesUi as IfxTemplatesUiElement, defineCustomElement as defineIfxTemplatesUi } from '@infineon/design-system/dist/components/ifx-templates-ui.js';
-import { IfxTextField as IfxTextFieldElement, defineCustomElement as defineIfxTextField } from '@infineon/design-system/dist/components/ifx-text-field.js';
-import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxTextarea } from '@infineon/design-system/dist/components/ifx-textarea.js';
-import { IfxToast as IfxToastElement, defineCustomElement as defineIfxToast } from '@infineon/design-system/dist/components/ifx-toast.js';
-import { IfxToastContainer as IfxToastContainerElement, defineCustomElement as defineIfxToastContainer } from '@infineon/design-system/dist/components/ifx-toast-container.js';
-import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from '@infineon/design-system/dist/components/ifx-tooltip.js';
-import { IfxTreeView as IfxTreeViewElement, defineCustomElement as defineIfxTreeView } from '@infineon/design-system/dist/components/ifx-tree-view.js';
-import { IfxTreeViewItem as IfxTreeViewItemElement, defineCustomElement as defineIfxTreeViewItem } from '@infineon/design-system/dist/components/ifx-tree-view-item.js';
-import type { IfxAccordionItemCustomEvent, ActionListItemClickEvent, IfxActionListItemCustomEvent, IfxAlertCustomEvent, IfxBreadcrumbItemLabelCustomEvent, IfxCardImageCustomEvent, IfxCheckboxCustomEvent, ChipItemSelectEvent, IfxChipCustomEvent, IfxChipItemCustomEvent, ChangeEvent, IfxContentSwitcherCustomEvent, IfxCounterCustomEvent, IfxDatePickerCustomEvent, IfxDropdownCustomEvent, IfxDropdownItemCustomEvent, IfxDropdownMenuCustomEvent, IfxFileUploadCustomEvent, IfxFilterAccordionCustomEvent, IfxFilterBarCustomEvent, IfxFilterSearchCustomEvent, IfxFilterTypeGroupCustomEvent, IfxIconCustomEvent, IfxListCustomEvent, IfxListEntryCustomEvent, IfxModalCustomEvent, IfxMultiselectCustomEvent, IfxNavbarCustomEvent, IfxNavbarItemCustomEvent, IfxNotificationCustomEvent, IfxPaginationCustomEvent, IfxPopoverCustomEvent, IfxRadioButtonCustomEvent, IfxSearchBarCustomEvent, SuggestionItem, IfxSearchFieldCustomEvent, IfxSegmentCustomEvent, IfxSegmentedControlCustomEvent, SelectChangeDetail, IfxSelectCustomEvent, IfxSetFilterCustomEvent, IfxSidebarCustomEvent, IfxSidebarItemCustomEvent, IfxSliderCustomEvent, IfxStepperCustomEvent, IfxSwitchCustomEvent, IfxTabCustomEvent, IfxTableCustomEvent, IfxTabsCustomEvent, IfxTemplateCustomEvent, IfxTextFieldCustomEvent, IfxTextareaCustomEvent, ToastEventDetail, ToastCloseEventDetail, IfxToastCustomEvent, IfxTreeViewCustomEvent, TreeViewExpandChangeEvent, TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, IfxTreeViewItemCustomEvent } from '@infineon/design-system';
-import type { StencilReactComponent, EventName } from '@stencil/react-output-target/runtime';
+import React from 'react';
+
+import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxAccordionItemCustomEvent, type IfxActionListItemCustomEvent, type IfxAlertCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxCardImageCustomEvent, type IfxCheckboxCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxCounterCustomEvent, type IfxDatePickerCustomEvent, type IfxDropdownCustomEvent, type IfxDropdownItemCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxFilterAccordionCustomEvent, type IfxFilterBarCustomEvent, type IfxFilterSearchCustomEvent, type IfxFilterTypeGroupCustomEvent, type IfxIconCustomEvent, type IfxListCustomEvent, type IfxListEntryCustomEvent, type IfxModalCustomEvent, type IfxMultiselectCustomEvent, type IfxNavbarCustomEvent, type IfxNavbarItemCustomEvent, type IfxNotificationCustomEvent, type IfxPaginationCustomEvent, type IfxPopoverCustomEvent, type IfxRadioButtonCustomEvent, type IfxSearchBarCustomEvent, type IfxSearchFieldCustomEvent, type IfxSegmentCustomEvent, type IfxSegmentedControlCustomEvent, type IfxSelectCustomEvent, type IfxSetFilterCustomEvent, type IfxSidebarCustomEvent, type IfxSidebarItemCustomEvent, type IfxSliderCustomEvent, type IfxStepperCustomEvent, type IfxSwitchCustomEvent, type IfxTabCustomEvent, type IfxTableCustomEvent, type IfxTabsCustomEvent, type IfxTemplateCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxToastCustomEvent, type IfxTreeViewCustomEvent, type IfxTreeViewItemCustomEvent, type SelectChangeDetail, type SuggestionItem, type ToastCloseEventDetail, type ToastEventDetail, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/design-system";
+import type { Components } from "@infineon/design-system/dist/components";
+import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/design-system/dist/components/ifx-accordion-item.js";
+import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/design-system/dist/components/ifx-accordion.js";
+import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from "@infineon/design-system/dist/components/ifx-action-list-item.js";
+import { IfxActionList as IfxActionListElement, defineCustomElement as defineIfxActionList } from "@infineon/design-system/dist/components/ifx-action-list.js";
+import { IfxAiLabel as IfxAiLabelElement, defineCustomElement as defineIfxAiLabel } from "@infineon/design-system/dist/components/ifx-ai-label.js";
+import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/design-system/dist/components/ifx-alert.js";
+import { IfxBasicTable as IfxBasicTableElement, defineCustomElement as defineIfxBasicTable } from "@infineon/design-system/dist/components/ifx-basic-table.js";
+import { IfxBreadcrumbItemLabel as IfxBreadcrumbItemLabelElement, defineCustomElement as defineIfxBreadcrumbItemLabel } from "@infineon/design-system/dist/components/ifx-breadcrumb-item-label.js";
+import { IfxBreadcrumbItem as IfxBreadcrumbItemElement, defineCustomElement as defineIfxBreadcrumbItem } from "@infineon/design-system/dist/components/ifx-breadcrumb-item.js";
+import { IfxBreadcrumb as IfxBreadcrumbElement, defineCustomElement as defineIfxBreadcrumb } from "@infineon/design-system/dist/components/ifx-breadcrumb.js";
+import { IfxButton as IfxButtonElement, defineCustomElement as defineIfxButton } from "@infineon/design-system/dist/components/ifx-button.js";
+import { IfxCardHeadline as IfxCardHeadlineElement, defineCustomElement as defineIfxCardHeadline } from "@infineon/design-system/dist/components/ifx-card-headline.js";
+import { IfxCardImage as IfxCardImageElement, defineCustomElement as defineIfxCardImage } from "@infineon/design-system/dist/components/ifx-card-image.js";
+import { IfxCardLinks as IfxCardLinksElement, defineCustomElement as defineIfxCardLinks } from "@infineon/design-system/dist/components/ifx-card-links.js";
+import { IfxCardOverline as IfxCardOverlineElement, defineCustomElement as defineIfxCardOverline } from "@infineon/design-system/dist/components/ifx-card-overline.js";
+import { IfxCardText as IfxCardTextElement, defineCustomElement as defineIfxCardText } from "@infineon/design-system/dist/components/ifx-card-text.js";
+import { IfxCard as IfxCardElement, defineCustomElement as defineIfxCard } from "@infineon/design-system/dist/components/ifx-card.js";
+import { IfxCheckboxGroup as IfxCheckboxGroupElement, defineCustomElement as defineIfxCheckboxGroup } from "@infineon/design-system/dist/components/ifx-checkbox-group.js";
+import { IfxCheckbox as IfxCheckboxElement, defineCustomElement as defineIfxCheckbox } from "@infineon/design-system/dist/components/ifx-checkbox.js";
+import { IfxChipItem as IfxChipItemElement, defineCustomElement as defineIfxChipItem } from "@infineon/design-system/dist/components/ifx-chip-item.js";
+import { IfxChip as IfxChipElement, defineCustomElement as defineIfxChip } from "@infineon/design-system/dist/components/ifx-chip.js";
+import { IfxContentSwitcherItem as IfxContentSwitcherItemElement, defineCustomElement as defineIfxContentSwitcherItem } from "@infineon/design-system/dist/components/ifx-content-switcher-item.js";
+import { IfxContentSwitcher as IfxContentSwitcherElement, defineCustomElement as defineIfxContentSwitcher } from "@infineon/design-system/dist/components/ifx-content-switcher.js";
+import { IfxCounter as IfxCounterElement, defineCustomElement as defineIfxCounter } from "@infineon/design-system/dist/components/ifx-counter.js";
+import { IfxDatePicker as IfxDatePickerElement, defineCustomElement as defineIfxDatePicker } from "@infineon/design-system/dist/components/ifx-date-picker.js";
+import { IfxDownload as IfxDownloadElement, defineCustomElement as defineIfxDownload } from "@infineon/design-system/dist/components/ifx-download.js";
+import { IfxDropdownHeader as IfxDropdownHeaderElement, defineCustomElement as defineIfxDropdownHeader } from "@infineon/design-system/dist/components/ifx-dropdown-header.js";
+import { IfxDropdownItem as IfxDropdownItemElement, defineCustomElement as defineIfxDropdownItem } from "@infineon/design-system/dist/components/ifx-dropdown-item.js";
+import { IfxDropdownMenu as IfxDropdownMenuElement, defineCustomElement as defineIfxDropdownMenu } from "@infineon/design-system/dist/components/ifx-dropdown-menu.js";
+import { IfxDropdownSeparator as IfxDropdownSeparatorElement, defineCustomElement as defineIfxDropdownSeparator } from "@infineon/design-system/dist/components/ifx-dropdown-separator.js";
+import { IfxDropdownTriggerButton as IfxDropdownTriggerButtonElement, defineCustomElement as defineIfxDropdownTriggerButton } from "@infineon/design-system/dist/components/ifx-dropdown-trigger-button.js";
+import { IfxDropdownTrigger as IfxDropdownTriggerElement, defineCustomElement as defineIfxDropdownTrigger } from "@infineon/design-system/dist/components/ifx-dropdown-trigger.js";
+import { IfxDropdown as IfxDropdownElement, defineCustomElement as defineIfxDropdown } from "@infineon/design-system/dist/components/ifx-dropdown.js";
+import { IfxErrorPage as IfxErrorPageElement, defineCustomElement as defineIfxErrorPage } from "@infineon/design-system/dist/components/ifx-error-page.js";
+import { IfxFileUpload as IfxFileUploadElement, defineCustomElement as defineIfxFileUpload } from "@infineon/design-system/dist/components/ifx-file-upload.js";
+import { IfxFilterAccordion as IfxFilterAccordionElement, defineCustomElement as defineIfxFilterAccordion } from "@infineon/design-system/dist/components/ifx-filter-accordion.js";
+import { IfxFilterBar as IfxFilterBarElement, defineCustomElement as defineIfxFilterBar } from "@infineon/design-system/dist/components/ifx-filter-bar.js";
+import { IfxFilterSearch as IfxFilterSearchElement, defineCustomElement as defineIfxFilterSearch } from "@infineon/design-system/dist/components/ifx-filter-search.js";
+import { IfxFilterTypeGroup as IfxFilterTypeGroupElement, defineCustomElement as defineIfxFilterTypeGroup } from "@infineon/design-system/dist/components/ifx-filter-type-group.js";
+import { IfxFooterColumn as IfxFooterColumnElement, defineCustomElement as defineIfxFooterColumn } from "@infineon/design-system/dist/components/ifx-footer-column.js";
+import { IfxFooter as IfxFooterElement, defineCustomElement as defineIfxFooter } from "@infineon/design-system/dist/components/ifx-footer.js";
+import { IfxIconButton as IfxIconButtonElement, defineCustomElement as defineIfxIconButton } from "@infineon/design-system/dist/components/ifx-icon-button.js";
+import { IfxIcon as IfxIconElement, defineCustomElement as defineIfxIcon } from "@infineon/design-system/dist/components/ifx-icon.js";
+import { IfxIconsPreview as IfxIconsPreviewElement, defineCustomElement as defineIfxIconsPreview } from "@infineon/design-system/dist/components/ifx-icons-preview.js";
+import { IfxIndicator as IfxIndicatorElement, defineCustomElement as defineIfxIndicator } from "@infineon/design-system/dist/components/ifx-indicator.js";
+import { IfxLink as IfxLinkElement, defineCustomElement as defineIfxLink } from "@infineon/design-system/dist/components/ifx-link.js";
+import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxListEntry } from "@infineon/design-system/dist/components/ifx-list-entry.js";
+import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from "@infineon/design-system/dist/components/ifx-list.js";
+import { IfxModal as IfxModalElement, defineCustomElement as defineIfxModal } from "@infineon/design-system/dist/components/ifx-modal.js";
+import { IfxMultiselectGroup as IfxMultiselectGroupElement, defineCustomElement as defineIfxMultiselectGroup } from "@infineon/design-system/dist/components/ifx-multiselect-group.js";
+import { IfxMultiselectOption as IfxMultiselectOptionElement, defineCustomElement as defineIfxMultiselectOption } from "@infineon/design-system/dist/components/ifx-multiselect-option.js";
+import { IfxMultiselectSeparator as IfxMultiselectSeparatorElement, defineCustomElement as defineIfxMultiselectSeparator } from "@infineon/design-system/dist/components/ifx-multiselect-separator.js";
+import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineIfxMultiselect } from "@infineon/design-system/dist/components/ifx-multiselect.js";
+import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfxNavbarItem } from "@infineon/design-system/dist/components/ifx-navbar-item.js";
+import { IfxNavbarProfile as IfxNavbarProfileElement, defineCustomElement as defineIfxNavbarProfile } from "@infineon/design-system/dist/components/ifx-navbar-profile.js";
+import { IfxNavbar as IfxNavbarElement, defineCustomElement as defineIfxNavbar } from "@infineon/design-system/dist/components/ifx-navbar.js";
+import { IfxNotification as IfxNotificationElement, defineCustomElement as defineIfxNotification } from "@infineon/design-system/dist/components/ifx-notification.js";
+import { IfxOverviewTable as IfxOverviewTableElement, defineCustomElement as defineIfxOverviewTable } from "@infineon/design-system/dist/components/ifx-overview-table.js";
+import { IfxPagination as IfxPaginationElement, defineCustomElement as defineIfxPagination } from "@infineon/design-system/dist/components/ifx-pagination.js";
+import { IfxPopover as IfxPopoverElement, defineCustomElement as defineIfxPopover } from "@infineon/design-system/dist/components/ifx-popover.js";
+import { IfxProgressBar as IfxProgressBarElement, defineCustomElement as defineIfxProgressBar } from "@infineon/design-system/dist/components/ifx-progress-bar.js";
+import { IfxRadioButtonGroup as IfxRadioButtonGroupElement, defineCustomElement as defineIfxRadioButtonGroup } from "@infineon/design-system/dist/components/ifx-radio-button-group.js";
+import { IfxRadioButton as IfxRadioButtonElement, defineCustomElement as defineIfxRadioButton } from "@infineon/design-system/dist/components/ifx-radio-button.js";
+import { IfxSearchBar as IfxSearchBarElement, defineCustomElement as defineIfxSearchBar } from "@infineon/design-system/dist/components/ifx-search-bar.js";
+import { IfxSearchField as IfxSearchFieldElement, defineCustomElement as defineIfxSearchField } from "@infineon/design-system/dist/components/ifx-search-field.js";
+import { IfxSegment as IfxSegmentElement, defineCustomElement as defineIfxSegment } from "@infineon/design-system/dist/components/ifx-segment.js";
+import { IfxSegmentedControl as IfxSegmentedControlElement, defineCustomElement as defineIfxSegmentedControl } from "@infineon/design-system/dist/components/ifx-segmented-control.js";
+import { IfxSelectGroup as IfxSelectGroupElement, defineCustomElement as defineIfxSelectGroup } from "@infineon/design-system/dist/components/ifx-select-group.js";
+import { IfxSelectOption as IfxSelectOptionElement, defineCustomElement as defineIfxSelectOption } from "@infineon/design-system/dist/components/ifx-select-option.js";
+import { IfxSelectSeparator as IfxSelectSeparatorElement, defineCustomElement as defineIfxSelectSeparator } from "@infineon/design-system/dist/components/ifx-select-separator.js";
+import { IfxSelect as IfxSelectElement, defineCustomElement as defineIfxSelect } from "@infineon/design-system/dist/components/ifx-select.js";
+import { IfxSetFilter as IfxSetFilterElement, defineCustomElement as defineIfxSetFilter } from "@infineon/design-system/dist/components/ifx-set-filter.js";
+import { IfxSidebarItem as IfxSidebarItemElement, defineCustomElement as defineIfxSidebarItem } from "@infineon/design-system/dist/components/ifx-sidebar-item.js";
+import { IfxSidebarSeparator as IfxSidebarSeparatorElement, defineCustomElement as defineIfxSidebarSeparator } from "@infineon/design-system/dist/components/ifx-sidebar-separator.js";
+import { IfxSidebarTitle as IfxSidebarTitleElement, defineCustomElement as defineIfxSidebarTitle } from "@infineon/design-system/dist/components/ifx-sidebar-title.js";
+import { IfxSidebar as IfxSidebarElement, defineCustomElement as defineIfxSidebar } from "@infineon/design-system/dist/components/ifx-sidebar.js";
+import { IfxSlider as IfxSliderElement, defineCustomElement as defineIfxSlider } from "@infineon/design-system/dist/components/ifx-slider.js";
+import { IfxSpinner as IfxSpinnerElement, defineCustomElement as defineIfxSpinner } from "@infineon/design-system/dist/components/ifx-spinner.js";
+import { IfxStatus as IfxStatusElement, defineCustomElement as defineIfxStatus } from "@infineon/design-system/dist/components/ifx-status.js";
+import { IfxStep as IfxStepElement, defineCustomElement as defineIfxStep } from "@infineon/design-system/dist/components/ifx-step.js";
+import { IfxStepper as IfxStepperElement, defineCustomElement as defineIfxStepper } from "@infineon/design-system/dist/components/ifx-stepper.js";
+import { IfxSwitch as IfxSwitchElement, defineCustomElement as defineIfxSwitch } from "@infineon/design-system/dist/components/ifx-switch.js";
+import { IfxTab as IfxTabElement, defineCustomElement as defineIfxTab } from "@infineon/design-system/dist/components/ifx-tab.js";
+import { IfxTable as IfxTableElement, defineCustomElement as defineIfxTable } from "@infineon/design-system/dist/components/ifx-table.js";
+import { IfxTabs as IfxTabsElement, defineCustomElement as defineIfxTabs } from "@infineon/design-system/dist/components/ifx-tabs.js";
+import { IfxTemplate as IfxTemplateElement, defineCustomElement as defineIfxTemplate } from "@infineon/design-system/dist/components/ifx-template.js";
+import { IfxTemplatesUi as IfxTemplatesUiElement, defineCustomElement as defineIfxTemplatesUi } from "@infineon/design-system/dist/components/ifx-templates-ui.js";
+import { IfxTextField as IfxTextFieldElement, defineCustomElement as defineIfxTextField } from "@infineon/design-system/dist/components/ifx-text-field.js";
+import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxTextarea } from "@infineon/design-system/dist/components/ifx-textarea.js";
+import { IfxToastContainer as IfxToastContainerElement, defineCustomElement as defineIfxToastContainer } from "@infineon/design-system/dist/components/ifx-toast-container.js";
+import { IfxToast as IfxToastElement, defineCustomElement as defineIfxToast } from "@infineon/design-system/dist/components/ifx-toast.js";
+import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/design-system/dist/components/ifx-tooltip.js";
+import { IfxTreeViewItem as IfxTreeViewItemElement, defineCustomElement as defineIfxTreeViewItem } from "@infineon/design-system/dist/components/ifx-tree-view-item.js";
+import { IfxTreeView as IfxTreeViewElement, defineCustomElement as defineIfxTreeView } from "@infineon/design-system/dist/components/ifx-tree-view.js";
 
 export type IfxAccordionEvents = NonNullable<unknown>;
 
@@ -115,12 +116,12 @@ export const IfxAccordion: StencilReactComponent<IfxAccordionElement, IfxAccordi
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxAccordionEvents,
-    defineCustomElement: defineIfxAccordion,
+    defineCustomElement: defineIfxAccordion
 });
 
 export type IfxAccordionItemEvents = {
-  onIfxOpen: EventName<IfxAccordionItemCustomEvent<any>>,
-  onIfxClose: EventName<IfxAccordionItemCustomEvent<any>>
+    onIfxOpen: EventName<IfxAccordionItemCustomEvent<any>>,
+    onIfxClose: EventName<IfxAccordionItemCustomEvent<any>>
 };
 
 export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, IfxAccordionItemEvents, Components.IfxAccordionItem> = /*@__PURE__*/ createComponent<IfxAccordionItemElement, IfxAccordionItemEvents, Components.IfxAccordionItem>({
@@ -129,10 +130,10 @@ export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, If
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxOpen: 'ifxOpen',
-      onIfxClose: 'ifxClose'
+        onIfxOpen: 'ifxOpen',
+        onIfxClose: 'ifxClose'
     } as IfxAccordionItemEvents,
-    defineCustomElement: defineIfxAccordionItem,
+    defineCustomElement: defineIfxAccordionItem
 });
 
 export type IfxActionListEvents = NonNullable<unknown>;
@@ -143,22 +144,18 @@ export const IfxActionList: StencilReactComponent<IfxActionListElement, IfxActio
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxActionListEvents,
-    defineCustomElement: defineIfxActionList,
+    defineCustomElement: defineIfxActionList
 });
 
-export type IfxActionListItemEvents = {
-  onIfxActionListItemClick: EventName<IfxActionListItemCustomEvent<ActionListItemClickEvent>>
-};
+export type IfxActionListItemEvents = { onIfxActionListItemClick: EventName<IfxActionListItemCustomEvent<ActionListItemClickEvent>> };
 
 export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, IfxActionListItemEvents, Components.IfxActionListItem> = /*@__PURE__*/ createComponent<IfxActionListItemElement, IfxActionListItemEvents, Components.IfxActionListItem>({
     tagName: 'ifx-action-list-item',
     elementClass: IfxActionListItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxActionListItemClick: 'ifxActionListItemClick'
-    } as IfxActionListItemEvents,
-    defineCustomElement: defineIfxActionListItem,
+    events: { onIfxActionListItemClick: 'ifxActionListItemClick' } as IfxActionListItemEvents,
+    defineCustomElement: defineIfxActionListItem
 });
 
 export type IfxAiLabelEvents = NonNullable<unknown>;
@@ -169,22 +166,18 @@ export const IfxAiLabel: StencilReactComponent<IfxAiLabelElement, IfxAiLabelEven
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxAiLabelEvents,
-    defineCustomElement: defineIfxAiLabel,
+    defineCustomElement: defineIfxAiLabel
 });
 
-export type IfxAlertEvents = {
-  onIfxClose: EventName<IfxAlertCustomEvent<any>>
-};
+export type IfxAlertEvents = { onIfxClose: EventName<IfxAlertCustomEvent<any>> };
 
 export const IfxAlert: StencilReactComponent<IfxAlertElement, IfxAlertEvents, Components.IfxAlert> = /*@__PURE__*/ createComponent<IfxAlertElement, IfxAlertEvents, Components.IfxAlert>({
     tagName: 'ifx-alert',
     elementClass: IfxAlertElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxClose: 'ifxClose'
-    } as IfxAlertEvents,
-    defineCustomElement: defineIfxAlert,
+    events: { onIfxClose: 'ifxClose' } as IfxAlertEvents,
+    defineCustomElement: defineIfxAlert
 });
 
 export type IfxBasicTableEvents = NonNullable<unknown>;
@@ -195,7 +188,7 @@ export const IfxBasicTable: StencilReactComponent<IfxBasicTableElement, IfxBasic
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxBasicTableEvents,
-    defineCustomElement: defineIfxBasicTable,
+    defineCustomElement: defineIfxBasicTable
 });
 
 export type IfxBreadcrumbEvents = NonNullable<unknown>;
@@ -206,7 +199,7 @@ export const IfxBreadcrumb: StencilReactComponent<IfxBreadcrumbElement, IfxBread
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxBreadcrumbEvents,
-    defineCustomElement: defineIfxBreadcrumb,
+    defineCustomElement: defineIfxBreadcrumb
 });
 
 export type IfxBreadcrumbItemEvents = NonNullable<unknown>;
@@ -217,22 +210,18 @@ export const IfxBreadcrumbItem: StencilReactComponent<IfxBreadcrumbItemElement, 
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxBreadcrumbItemEvents,
-    defineCustomElement: defineIfxBreadcrumbItem,
+    defineCustomElement: defineIfxBreadcrumbItem
 });
 
-export type IfxBreadcrumbItemLabelEvents = {
-  onBreadcrumbMenuIconWrapper: EventName<IfxBreadcrumbItemLabelCustomEvent<HTMLElement>>
-};
+export type IfxBreadcrumbItemLabelEvents = { onBreadcrumbMenuIconWrapper: EventName<IfxBreadcrumbItemLabelCustomEvent<HTMLElement>> };
 
 export const IfxBreadcrumbItemLabel: StencilReactComponent<IfxBreadcrumbItemLabelElement, IfxBreadcrumbItemLabelEvents, Components.IfxBreadcrumbItemLabel> = /*@__PURE__*/ createComponent<IfxBreadcrumbItemLabelElement, IfxBreadcrumbItemLabelEvents, Components.IfxBreadcrumbItemLabel>({
     tagName: 'ifx-breadcrumb-item-label',
     elementClass: IfxBreadcrumbItemLabelElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onBreadcrumbMenuIconWrapper: 'breadcrumbMenuIconWrapper'
-    } as IfxBreadcrumbItemLabelEvents,
-    defineCustomElement: defineIfxBreadcrumbItemLabel,
+    events: { onBreadcrumbMenuIconWrapper: 'breadcrumbMenuIconWrapper' } as IfxBreadcrumbItemLabelEvents,
+    defineCustomElement: defineIfxBreadcrumbItemLabel
 });
 
 export type IfxButtonEvents = NonNullable<unknown>;
@@ -243,7 +232,7 @@ export const IfxButton: StencilReactComponent<IfxButtonElement, IfxButtonEvents,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxButtonEvents,
-    defineCustomElement: defineIfxButton,
+    defineCustomElement: defineIfxButton
 });
 
 export type IfxCardEvents = NonNullable<unknown>;
@@ -254,7 +243,7 @@ export const IfxCard: StencilReactComponent<IfxCardElement, IfxCardEvents, Compo
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxCardEvents,
-    defineCustomElement: defineIfxCard,
+    defineCustomElement: defineIfxCard
 });
 
 export type IfxCardHeadlineEvents = NonNullable<unknown>;
@@ -265,22 +254,18 @@ export const IfxCardHeadline: StencilReactComponent<IfxCardHeadlineElement, IfxC
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxCardHeadlineEvents,
-    defineCustomElement: defineIfxCardHeadline,
+    defineCustomElement: defineIfxCardHeadline
 });
 
-export type IfxCardImageEvents = {
-  onImgPosition: EventName<IfxCardImageCustomEvent<any>>
-};
+export type IfxCardImageEvents = { onImgPosition: EventName<IfxCardImageCustomEvent<any>> };
 
 export const IfxCardImage: StencilReactComponent<IfxCardImageElement, IfxCardImageEvents, Components.IfxCardImage> = /*@__PURE__*/ createComponent<IfxCardImageElement, IfxCardImageEvents, Components.IfxCardImage>({
     tagName: 'ifx-card-image',
     elementClass: IfxCardImageElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onImgPosition: 'imgPosition'
-    } as IfxCardImageEvents,
-    defineCustomElement: defineIfxCardImage,
+    events: { onImgPosition: 'imgPosition' } as IfxCardImageEvents,
+    defineCustomElement: defineIfxCardImage
 });
 
 export type IfxCardLinksEvents = NonNullable<unknown>;
@@ -291,7 +276,7 @@ export const IfxCardLinks: StencilReactComponent<IfxCardLinksElement, IfxCardLin
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxCardLinksEvents,
-    defineCustomElement: defineIfxCardLinks,
+    defineCustomElement: defineIfxCardLinks
 });
 
 export type IfxCardOverlineEvents = NonNullable<unknown>;
@@ -302,7 +287,7 @@ export const IfxCardOverline: StencilReactComponent<IfxCardOverlineElement, IfxC
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxCardOverlineEvents,
-    defineCustomElement: defineIfxCardOverline,
+    defineCustomElement: defineIfxCardOverline
 });
 
 export type IfxCardTextEvents = NonNullable<unknown>;
@@ -313,12 +298,12 @@ export const IfxCardText: StencilReactComponent<IfxCardTextElement, IfxCardTextE
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxCardTextEvents,
-    defineCustomElement: defineIfxCardText,
+    defineCustomElement: defineIfxCardText
 });
 
 export type IfxCheckboxEvents = {
-  onIfxChange: EventName<IfxCheckboxCustomEvent<boolean>>,
-  onIfxError: EventName<IfxCheckboxCustomEvent<boolean>>
+    onIfxChange: EventName<IfxCheckboxCustomEvent<boolean>>,
+    onIfxError: EventName<IfxCheckboxCustomEvent<boolean>>
 };
 
 export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxEvents, Components.IfxCheckbox> = /*@__PURE__*/ createComponent<IfxCheckboxElement, IfxCheckboxEvents, Components.IfxCheckbox>({
@@ -327,10 +312,10 @@ export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxE
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxChange: 'ifxChange',
-      onIfxError: 'ifxError'
+        onIfxChange: 'ifxChange',
+        onIfxError: 'ifxError'
     } as IfxCheckboxEvents,
-    defineCustomElement: defineIfxCheckbox,
+    defineCustomElement: defineIfxCheckbox
 });
 
 export type IfxCheckboxGroupEvents = NonNullable<unknown>;
@@ -341,52 +326,40 @@ export const IfxCheckboxGroup: StencilReactComponent<IfxCheckboxGroupElement, If
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxCheckboxGroupEvents,
-    defineCustomElement: defineIfxCheckboxGroup,
+    defineCustomElement: defineIfxCheckboxGroup
 });
 
-export type IfxChipEvents = {
-  onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>; currentSelection: Array<ChipItemSelectEvent>; name: string; }>>
-};
+export type IfxChipEvents = { onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>; currentSelection: Array<ChipItemSelectEvent>; name: string; }>> };
 
 export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents, Components.IfxChip> = /*@__PURE__*/ createComponent<IfxChipElement, IfxChipEvents, Components.IfxChip>({
     tagName: 'ifx-chip',
     elementClass: IfxChipElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxChange: 'ifxChange'
-    } as IfxChipEvents,
-    defineCustomElement: defineIfxChip,
+    events: { onIfxChange: 'ifxChange' } as IfxChipEvents,
+    defineCustomElement: defineIfxChip
 });
 
-export type IfxChipItemEvents = {
-  onIfxChipItemSelect: EventName<IfxChipItemCustomEvent<ChipItemSelectEvent>>
-};
+export type IfxChipItemEvents = { onIfxChipItemSelect: EventName<IfxChipItemCustomEvent<ChipItemSelectEvent>> };
 
 export const IfxChipItem: StencilReactComponent<IfxChipItemElement, IfxChipItemEvents, Components.IfxChipItem> = /*@__PURE__*/ createComponent<IfxChipItemElement, IfxChipItemEvents, Components.IfxChipItem>({
     tagName: 'ifx-chip-item',
     elementClass: IfxChipItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxChipItemSelect: 'ifxChipItemSelect'
-    } as IfxChipItemEvents,
-    defineCustomElement: defineIfxChipItem,
+    events: { onIfxChipItemSelect: 'ifxChipItemSelect' } as IfxChipItemEvents,
+    defineCustomElement: defineIfxChipItem
 });
 
-export type IfxContentSwitcherEvents = {
-  onIfxChange: EventName<IfxContentSwitcherCustomEvent<ChangeEvent>>
-};
+export type IfxContentSwitcherEvents = { onIfxChange: EventName<IfxContentSwitcherCustomEvent<ChangeEvent>> };
 
 export const IfxContentSwitcher: StencilReactComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents, Components.IfxContentSwitcher> = /*@__PURE__*/ createComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents, Components.IfxContentSwitcher>({
     tagName: 'ifx-content-switcher',
     elementClass: IfxContentSwitcherElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxChange: 'ifxChange'
-    } as IfxContentSwitcherEvents,
-    defineCustomElement: defineIfxContentSwitcher,
+    events: { onIfxChange: 'ifxChange' } as IfxContentSwitcherEvents,
+    defineCustomElement: defineIfxContentSwitcher
 });
 
 export type IfxContentSwitcherItemEvents = NonNullable<unknown>;
@@ -397,37 +370,29 @@ export const IfxContentSwitcherItem: StencilReactComponent<IfxContentSwitcherIte
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxContentSwitcherItemEvents,
-    defineCustomElement: defineIfxContentSwitcherItem,
+    defineCustomElement: defineIfxContentSwitcherItem
 });
 
-export type IfxCounterEvents = {
-  onIfxChange: EventName<IfxCounterCustomEvent<number>>
-};
+export type IfxCounterEvents = { onIfxChange: EventName<IfxCounterCustomEvent<number>> };
 
 export const IfxCounter: StencilReactComponent<IfxCounterElement, IfxCounterEvents, Components.IfxCounter> = /*@__PURE__*/ createComponent<IfxCounterElement, IfxCounterEvents, Components.IfxCounter>({
     tagName: 'ifx-counter',
     elementClass: IfxCounterElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxChange: 'ifxChange'
-    } as IfxCounterEvents,
-    defineCustomElement: defineIfxCounter,
+    events: { onIfxChange: 'ifxChange' } as IfxCounterEvents,
+    defineCustomElement: defineIfxCounter
 });
 
-export type IfxDatePickerEvents = {
-  onIfxDate: EventName<IfxDatePickerCustomEvent<any>>
-};
+export type IfxDatePickerEvents = { onIfxDate: EventName<IfxDatePickerCustomEvent<any>> };
 
 export const IfxDatePicker: StencilReactComponent<IfxDatePickerElement, IfxDatePickerEvents, Components.IfxDatePicker> = /*@__PURE__*/ createComponent<IfxDatePickerElement, IfxDatePickerEvents, Components.IfxDatePicker>({
     tagName: 'ifx-date-picker',
     elementClass: IfxDatePickerElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxDate: 'ifxDate'
-    } as IfxDatePickerEvents,
-    defineCustomElement: defineIfxDatePicker,
+    events: { onIfxDate: 'ifxDate' } as IfxDatePickerEvents,
+    defineCustomElement: defineIfxDatePicker
 });
 
 export type IfxDownloadEvents = NonNullable<unknown>;
@@ -438,13 +403,13 @@ export const IfxDownload: StencilReactComponent<IfxDownloadElement, IfxDownloadE
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxDownloadEvents,
-    defineCustomElement: defineIfxDownload,
+    defineCustomElement: defineIfxDownload
 });
 
 export type IfxDropdownEvents = {
-  onIfxOpen: EventName<IfxDropdownCustomEvent<any>>,
-  onIfxClose: EventName<IfxDropdownCustomEvent<any>>,
-  onIfxDropdown: EventName<IfxDropdownCustomEvent<any>>
+    onIfxOpen: EventName<IfxDropdownCustomEvent<any>>,
+    onIfxClose: EventName<IfxDropdownCustomEvent<any>>,
+    onIfxDropdown: EventName<IfxDropdownCustomEvent<any>>
 };
 
 export const IfxDropdown: StencilReactComponent<IfxDropdownElement, IfxDropdownEvents, Components.IfxDropdown> = /*@__PURE__*/ createComponent<IfxDropdownElement, IfxDropdownEvents, Components.IfxDropdown>({
@@ -453,11 +418,11 @@ export const IfxDropdown: StencilReactComponent<IfxDropdownElement, IfxDropdownE
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxOpen: 'ifxOpen',
-      onIfxClose: 'ifxClose',
-      onIfxDropdown: 'ifxDropdown'
+        onIfxOpen: 'ifxOpen',
+        onIfxClose: 'ifxClose',
+        onIfxDropdown: 'ifxDropdown'
     } as IfxDropdownEvents,
-    defineCustomElement: defineIfxDropdown,
+    defineCustomElement: defineIfxDropdown
 });
 
 export type IfxDropdownHeaderEvents = NonNullable<unknown>;
@@ -468,27 +433,23 @@ export const IfxDropdownHeader: StencilReactComponent<IfxDropdownHeaderElement, 
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxDropdownHeaderEvents,
-    defineCustomElement: defineIfxDropdownHeader,
+    defineCustomElement: defineIfxDropdownHeader
 });
 
-export type IfxDropdownItemEvents = {
-  onIfxDropdownItem: EventName<IfxDropdownItemCustomEvent<any>>
-};
+export type IfxDropdownItemEvents = { onIfxDropdownItem: EventName<IfxDropdownItemCustomEvent<any>> };
 
 export const IfxDropdownItem: StencilReactComponent<IfxDropdownItemElement, IfxDropdownItemEvents, Components.IfxDropdownItem> = /*@__PURE__*/ createComponent<IfxDropdownItemElement, IfxDropdownItemEvents, Components.IfxDropdownItem>({
     tagName: 'ifx-dropdown-item',
     elementClass: IfxDropdownItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxDropdownItem: 'ifxDropdownItem'
-    } as IfxDropdownItemEvents,
-    defineCustomElement: defineIfxDropdownItem,
+    events: { onIfxDropdownItem: 'ifxDropdownItem' } as IfxDropdownItemEvents,
+    defineCustomElement: defineIfxDropdownItem
 });
 
 export type IfxDropdownMenuEvents = {
-  onMenuSize: EventName<IfxDropdownMenuCustomEvent<any>>,
-  onIfxDropdownMenuItem: EventName<IfxDropdownMenuCustomEvent<CustomEvent>>
+    onMenuSize: EventName<IfxDropdownMenuCustomEvent<any>>,
+    onIfxDropdownMenuItem: EventName<IfxDropdownMenuCustomEvent<CustomEvent>>
 };
 
 export const IfxDropdownMenu: StencilReactComponent<IfxDropdownMenuElement, IfxDropdownMenuEvents, Components.IfxDropdownMenu> = /*@__PURE__*/ createComponent<IfxDropdownMenuElement, IfxDropdownMenuEvents, Components.IfxDropdownMenu>({
@@ -497,10 +458,10 @@ export const IfxDropdownMenu: StencilReactComponent<IfxDropdownMenuElement, IfxD
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onMenuSize: 'menuSize',
-      onIfxDropdownMenuItem: 'ifxDropdownMenuItem'
+        onMenuSize: 'menuSize',
+        onIfxDropdownMenuItem: 'ifxDropdownMenuItem'
     } as IfxDropdownMenuEvents,
-    defineCustomElement: defineIfxDropdownMenu,
+    defineCustomElement: defineIfxDropdownMenu
 });
 
 export type IfxDropdownSeparatorEvents = NonNullable<unknown>;
@@ -511,7 +472,7 @@ export const IfxDropdownSeparator: StencilReactComponent<IfxDropdownSeparatorEle
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxDropdownSeparatorEvents,
-    defineCustomElement: defineIfxDropdownSeparator,
+    defineCustomElement: defineIfxDropdownSeparator
 });
 
 export type IfxDropdownTriggerEvents = NonNullable<unknown>;
@@ -522,7 +483,7 @@ export const IfxDropdownTrigger: StencilReactComponent<IfxDropdownTriggerElement
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxDropdownTriggerEvents,
-    defineCustomElement: defineIfxDropdownTrigger,
+    defineCustomElement: defineIfxDropdownTrigger
 });
 
 export type IfxDropdownTriggerButtonEvents = NonNullable<unknown>;
@@ -533,7 +494,7 @@ export const IfxDropdownTriggerButton: StencilReactComponent<IfxDropdownTriggerB
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxDropdownTriggerButtonEvents,
-    defineCustomElement: defineIfxDropdownTriggerButton,
+    defineCustomElement: defineIfxDropdownTriggerButton
 });
 
 export type IfxErrorPageEvents = NonNullable<unknown>;
@@ -544,24 +505,24 @@ export const IfxErrorPage: StencilReactComponent<IfxErrorPageElement, IfxErrorPa
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxErrorPageEvents,
-    defineCustomElement: defineIfxErrorPage,
+    defineCustomElement: defineIfxErrorPage
 });
 
 export type IfxFileUploadEvents = {
-  onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[]; }>>,
-  onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{ removedFile: File; files: File[]; }>>,
-  onIfxFileUploadChange: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
-  onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>,
-  onIfxFileUploadInvalid: EventName<IfxFileUploadCustomEvent<{ file: File; reason: string }>>,
-  onIfxFileUploadStart: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
-  onIfxFileUploadComplete: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
-  onIfxFileUploadAllComplete: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
-  onIfxFileUploadAbort: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
-  onIfxFileUploadDrop: EventName<IfxFileUploadCustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>,
-  onIfxFileUploadClick: EventName<IfxFileUploadCustomEvent<void>>,
-  onIfxFileUploadMaxFilesExceeded: EventName<IfxFileUploadCustomEvent<{ maxFiles: number; attempted: number; }>>,
-  onIfxFileUploadValidation: EventName<IfxFileUploadCustomEvent<{ valid: boolean }>>,
-  onIfxFileUploadRetry: EventName<IfxFileUploadCustomEvent<{ file: File }>>
+    onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[]; }>>,
+    onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{ removedFile: File; files: File[]; }>>,
+    onIfxFileUploadChange: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
+    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>,
+    onIfxFileUploadInvalid: EventName<IfxFileUploadCustomEvent<{ file: File; reason: string }>>,
+    onIfxFileUploadStart: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
+    onIfxFileUploadComplete: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
+    onIfxFileUploadAllComplete: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
+    onIfxFileUploadAbort: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
+    onIfxFileUploadDrop: EventName<IfxFileUploadCustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>,
+    onIfxFileUploadClick: EventName<IfxFileUploadCustomEvent<void>>,
+    onIfxFileUploadMaxFilesExceeded: EventName<IfxFileUploadCustomEvent<{ maxFiles: number; attempted: number; }>>,
+    onIfxFileUploadValidation: EventName<IfxFileUploadCustomEvent<{ valid: boolean }>>,
+    onIfxFileUploadRetry: EventName<IfxFileUploadCustomEvent<{ file: File }>>
 };
 
 export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileUploadEvents, Components.IfxFileUpload> = /*@__PURE__*/ createComponent<IfxFileUploadElement, IfxFileUploadEvents, Components.IfxFileUpload>({
@@ -570,72 +531,60 @@ export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileU
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxFileUploadAdd: 'ifxFileUploadAdd',
-      onIfxFileUploadRemove: 'ifxFileUploadRemove',
-      onIfxFileUploadChange: 'ifxFileUploadChange',
-      onIfxFileUploadError: 'ifxFileUploadError',
-      onIfxFileUploadInvalid: 'ifxFileUploadInvalid',
-      onIfxFileUploadStart: 'ifxFileUploadStart',
-      onIfxFileUploadComplete: 'ifxFileUploadComplete',
-      onIfxFileUploadAllComplete: 'ifxFileUploadAllComplete',
-      onIfxFileUploadAbort: 'ifxFileUploadAbort',
-      onIfxFileUploadDrop: 'ifxFileUploadDrop',
-      onIfxFileUploadClick: 'ifxFileUploadClick',
-      onIfxFileUploadMaxFilesExceeded: 'ifxFileUploadMaxFilesExceeded',
-      onIfxFileUploadValidation: 'ifxFileUploadValidation',
-      onIfxFileUploadRetry: 'ifxFileUploadRetry'
+        onIfxFileUploadAdd: 'ifxFileUploadAdd',
+        onIfxFileUploadRemove: 'ifxFileUploadRemove',
+        onIfxFileUploadChange: 'ifxFileUploadChange',
+        onIfxFileUploadError: 'ifxFileUploadError',
+        onIfxFileUploadInvalid: 'ifxFileUploadInvalid',
+        onIfxFileUploadStart: 'ifxFileUploadStart',
+        onIfxFileUploadComplete: 'ifxFileUploadComplete',
+        onIfxFileUploadAllComplete: 'ifxFileUploadAllComplete',
+        onIfxFileUploadAbort: 'ifxFileUploadAbort',
+        onIfxFileUploadDrop: 'ifxFileUploadDrop',
+        onIfxFileUploadClick: 'ifxFileUploadClick',
+        onIfxFileUploadMaxFilesExceeded: 'ifxFileUploadMaxFilesExceeded',
+        onIfxFileUploadValidation: 'ifxFileUploadValidation',
+        onIfxFileUploadRetry: 'ifxFileUploadRetry'
     } as IfxFileUploadEvents,
-    defineCustomElement: defineIfxFileUpload,
+    defineCustomElement: defineIfxFileUpload
 });
 
-export type IfxFilterAccordionEvents = {
-  onIfxFilterAccordionChange: EventName<IfxFilterAccordionCustomEvent<any>>
-};
+export type IfxFilterAccordionEvents = { onIfxFilterAccordionChange: EventName<IfxFilterAccordionCustomEvent<any>> };
 
 export const IfxFilterAccordion: StencilReactComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents, Components.IfxFilterAccordion> = /*@__PURE__*/ createComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents, Components.IfxFilterAccordion>({
     tagName: 'ifx-filter-accordion',
     elementClass: IfxFilterAccordionElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxFilterAccordionChange: 'ifxFilterAccordionChange'
-    } as IfxFilterAccordionEvents,
-    defineCustomElement: defineIfxFilterAccordion,
+    events: { onIfxFilterAccordionChange: 'ifxFilterAccordionChange' } as IfxFilterAccordionEvents,
+    defineCustomElement: defineIfxFilterAccordion
 });
 
-export type IfxFilterBarEvents = {
-  onIfxTopbarFilterChange: EventName<IfxFilterBarCustomEvent<any>>
-};
+export type IfxFilterBarEvents = { onIfxTopbarFilterChange: EventName<IfxFilterBarCustomEvent<any>> };
 
 export const IfxFilterBar: StencilReactComponent<IfxFilterBarElement, IfxFilterBarEvents, Components.IfxFilterBar> = /*@__PURE__*/ createComponent<IfxFilterBarElement, IfxFilterBarEvents, Components.IfxFilterBar>({
     tagName: 'ifx-filter-bar',
     elementClass: IfxFilterBarElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxTopbarFilterChange: 'ifxTopbarFilterChange'
-    } as IfxFilterBarEvents,
-    defineCustomElement: defineIfxFilterBar,
+    events: { onIfxTopbarFilterChange: 'ifxTopbarFilterChange' } as IfxFilterBarEvents,
+    defineCustomElement: defineIfxFilterBar
 });
 
-export type IfxFilterSearchEvents = {
-  onIfxFilterSearchChange: EventName<IfxFilterSearchCustomEvent<any>>
-};
+export type IfxFilterSearchEvents = { onIfxFilterSearchChange: EventName<IfxFilterSearchCustomEvent<any>> };
 
 export const IfxFilterSearch: StencilReactComponent<IfxFilterSearchElement, IfxFilterSearchEvents, Components.IfxFilterSearch> = /*@__PURE__*/ createComponent<IfxFilterSearchElement, IfxFilterSearchEvents, Components.IfxFilterSearch>({
     tagName: 'ifx-filter-search',
     elementClass: IfxFilterSearchElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxFilterSearchChange: 'ifxFilterSearchChange'
-    } as IfxFilterSearchEvents,
-    defineCustomElement: defineIfxFilterSearch,
+    events: { onIfxFilterSearchChange: 'ifxFilterSearchChange' } as IfxFilterSearchEvents,
+    defineCustomElement: defineIfxFilterSearch
 });
 
 export type IfxFilterTypeGroupEvents = {
-  onIfxSidebarFilterChange: EventName<IfxFilterTypeGroupCustomEvent<any>>,
-  onIfxShowSidebarFiltersButtonChange: EventName<IfxFilterTypeGroupCustomEvent<boolean>>
+    onIfxSidebarFilterChange: EventName<IfxFilterTypeGroupCustomEvent<any>>,
+    onIfxShowSidebarFiltersButtonChange: EventName<IfxFilterTypeGroupCustomEvent<boolean>>
 };
 
 export const IfxFilterTypeGroup: StencilReactComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents, Components.IfxFilterTypeGroup> = /*@__PURE__*/ createComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents, Components.IfxFilterTypeGroup>({
@@ -644,10 +593,10 @@ export const IfxFilterTypeGroup: StencilReactComponent<IfxFilterTypeGroupElement
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxSidebarFilterChange: 'ifxSidebarFilterChange',
-      onIfxShowSidebarFiltersButtonChange: 'ifxShowSidebarFiltersButtonChange'
+        onIfxSidebarFilterChange: 'ifxSidebarFilterChange',
+        onIfxShowSidebarFiltersButtonChange: 'ifxShowSidebarFiltersButtonChange'
     } as IfxFilterTypeGroupEvents,
-    defineCustomElement: defineIfxFilterTypeGroup,
+    defineCustomElement: defineIfxFilterTypeGroup
 });
 
 export type IfxFooterEvents = NonNullable<unknown>;
@@ -658,7 +607,7 @@ export const IfxFooter: StencilReactComponent<IfxFooterElement, IfxFooterEvents,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxFooterEvents,
-    defineCustomElement: defineIfxFooter,
+    defineCustomElement: defineIfxFooter
 });
 
 export type IfxFooterColumnEvents = NonNullable<unknown>;
@@ -669,22 +618,18 @@ export const IfxFooterColumn: StencilReactComponent<IfxFooterColumnElement, IfxF
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxFooterColumnEvents,
-    defineCustomElement: defineIfxFooterColumn,
+    defineCustomElement: defineIfxFooterColumn
 });
 
-export type IfxIconEvents = {
-  onConsoleError: EventName<IfxIconCustomEvent<boolean>>
-};
+export type IfxIconEvents = { onConsoleError: EventName<IfxIconCustomEvent<boolean>> };
 
 export const IfxIcon: StencilReactComponent<IfxIconElement, IfxIconEvents, Components.IfxIcon> = /*@__PURE__*/ createComponent<IfxIconElement, IfxIconEvents, Components.IfxIcon>({
     tagName: 'ifx-icon',
     elementClass: IfxIconElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onConsoleError: 'consoleError'
-    } as IfxIconEvents,
-    defineCustomElement: defineIfxIcon,
+    events: { onConsoleError: 'consoleError' } as IfxIconEvents,
+    defineCustomElement: defineIfxIcon
 });
 
 export type IfxIconButtonEvents = NonNullable<unknown>;
@@ -695,7 +640,7 @@ export const IfxIconButton: StencilReactComponent<IfxIconButtonElement, IfxIconB
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxIconButtonEvents,
-    defineCustomElement: defineIfxIconButton,
+    defineCustomElement: defineIfxIconButton
 });
 
 export type IfxIconsPreviewEvents = NonNullable<unknown>;
@@ -706,7 +651,7 @@ export const IfxIconsPreview: StencilReactComponent<IfxIconsPreviewElement, IfxI
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxIconsPreviewEvents,
-    defineCustomElement: defineIfxIconsPreview,
+    defineCustomElement: defineIfxIconsPreview
 });
 
 export type IfxIndicatorEvents = NonNullable<unknown>;
@@ -717,7 +662,7 @@ export const IfxIndicator: StencilReactComponent<IfxIndicatorElement, IfxIndicat
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxIndicatorEvents,
-    defineCustomElement: defineIfxIndicator,
+    defineCustomElement: defineIfxIndicator
 });
 
 export type IfxLinkEvents = NonNullable<unknown>;
@@ -728,43 +673,35 @@ export const IfxLink: StencilReactComponent<IfxLinkElement, IfxLinkEvents, Compo
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxLinkEvents,
-    defineCustomElement: defineIfxLink,
+    defineCustomElement: defineIfxLink
 });
 
-export type IfxListEvents = {
-  onIfxListUpdate: EventName<IfxListCustomEvent<any>>
-};
+export type IfxListEvents = { onIfxListUpdate: EventName<IfxListCustomEvent<any>> };
 
 export const IfxList: StencilReactComponent<IfxListElement, IfxListEvents, Components.IfxList> = /*@__PURE__*/ createComponent<IfxListElement, IfxListEvents, Components.IfxList>({
     tagName: 'ifx-list',
     elementClass: IfxListElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxListUpdate: 'ifxListUpdate'
-    } as IfxListEvents,
-    defineCustomElement: defineIfxList,
+    events: { onIfxListUpdate: 'ifxListUpdate' } as IfxListEvents,
+    defineCustomElement: defineIfxList
 });
 
-export type IfxListEntryEvents = {
-  onIfxListEntryChange: EventName<IfxListEntryCustomEvent<any>>
-};
+export type IfxListEntryEvents = { onIfxListEntryChange: EventName<IfxListEntryCustomEvent<any>> };
 
 export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEntryEvents, Components.IfxListEntry> = /*@__PURE__*/ createComponent<IfxListEntryElement, IfxListEntryEvents, Components.IfxListEntry>({
     tagName: 'ifx-list-entry',
     elementClass: IfxListEntryElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxListEntryChange: 'ifxListEntryChange'
-    } as IfxListEntryEvents,
-    defineCustomElement: defineIfxListEntry,
+    events: { onIfxListEntryChange: 'ifxListEntryChange' } as IfxListEntryEvents,
+    defineCustomElement: defineIfxListEntry
 });
 
 export type IfxModalEvents = {
-  onIfxOpen: EventName<IfxModalCustomEvent<any>>,
-  onIfxClose: EventName<IfxModalCustomEvent<any>>,
-  onIfxOpenedChange: EventName<IfxModalCustomEvent<{ opened: boolean }>>
+    onIfxOpen: EventName<IfxModalCustomEvent<any>>,
+    onIfxClose: EventName<IfxModalCustomEvent<any>>,
+    onIfxOpenedChange: EventName<IfxModalCustomEvent<{ opened: boolean }>>
 };
 
 export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents, Components.IfxModal> = /*@__PURE__*/ createComponent<IfxModalElement, IfxModalEvents, Components.IfxModal>({
@@ -773,17 +710,17 @@ export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents, Co
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxOpen: 'ifxOpen',
-      onIfxClose: 'ifxClose',
-      onIfxOpenedChange: 'ifxOpenedChange'
+        onIfxOpen: 'ifxOpen',
+        onIfxClose: 'ifxClose',
+        onIfxOpenedChange: 'ifxOpenedChange'
     } as IfxModalEvents,
-    defineCustomElement: defineIfxModal,
+    defineCustomElement: defineIfxModal
 });
 
 export type IfxMultiselectEvents = {
-  onIfxSelect: EventName<IfxMultiselectCustomEvent<any>>,
-  onIfxOpen: EventName<IfxMultiselectCustomEvent<any>>,
-  onIfxClear: EventName<IfxMultiselectCustomEvent<void>>
+    onIfxSelect: EventName<IfxMultiselectCustomEvent<any>>,
+    onIfxOpen: EventName<IfxMultiselectCustomEvent<any>>,
+    onIfxClear: EventName<IfxMultiselectCustomEvent<void>>
 };
 
 export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMultiselectEvents, Components.IfxMultiselect> = /*@__PURE__*/ createComponent<IfxMultiselectElement, IfxMultiselectEvents, Components.IfxMultiselect>({
@@ -792,11 +729,11 @@ export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMul
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxSelect: 'ifxSelect',
-      onIfxOpen: 'ifxOpen',
-      onIfxClear: 'ifxClear'
+        onIfxSelect: 'ifxSelect',
+        onIfxOpen: 'ifxOpen',
+        onIfxClear: 'ifxClear'
     } as IfxMultiselectEvents,
-    defineCustomElement: defineIfxMultiselect,
+    defineCustomElement: defineIfxMultiselect
 });
 
 export type IfxMultiselectGroupEvents = NonNullable<unknown>;
@@ -807,7 +744,7 @@ export const IfxMultiselectGroup: StencilReactComponent<IfxMultiselectGroupEleme
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxMultiselectGroupEvents,
-    defineCustomElement: defineIfxMultiselectGroup,
+    defineCustomElement: defineIfxMultiselectGroup
 });
 
 export type IfxMultiselectOptionEvents = NonNullable<unknown>;
@@ -818,7 +755,7 @@ export const IfxMultiselectOption: StencilReactComponent<IfxMultiselectOptionEle
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxMultiselectOptionEvents,
-    defineCustomElement: defineIfxMultiselectOption,
+    defineCustomElement: defineIfxMultiselectOption
 });
 
 export type IfxMultiselectSeparatorEvents = NonNullable<unknown>;
@@ -829,26 +766,23 @@ export const IfxMultiselectSeparator: StencilReactComponent<IfxMultiselectSepara
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxMultiselectSeparatorEvents,
-    defineCustomElement: defineIfxMultiselectSeparator,
+    defineCustomElement: defineIfxMultiselectSeparator
 });
 
-export type IfxNavbarEvents = {
-  onIfxNavbarMobileMenuIsOpen: EventName<IfxNavbarCustomEvent<any>>
-};
+export type IfxNavbarEvents = { onIfxNavbarMobileMenuIsOpen: EventName<IfxNavbarCustomEvent<any>> };
 
 export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents, Components.IfxNavbar> = /*@__PURE__*/ createComponent<IfxNavbarElement, IfxNavbarEvents, Components.IfxNavbar>({
     tagName: 'ifx-navbar',
     elementClass: IfxNavbarElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxNavbarMobileMenuIsOpen: 'ifxNavbarMobileMenuIsOpen'
-    } as IfxNavbarEvents,
-    defineCustomElement: defineIfxNavbar,
+    events: { onIfxNavbarMobileMenuIsOpen: 'ifxNavbarMobileMenuIsOpen' } as IfxNavbarEvents,
+    defineCustomElement: defineIfxNavbar
 });
 
 export type IfxNavbarItemEvents = {
-  onIfxNavItem: EventName<IfxNavbarItemCustomEvent<any>>
+    onIfxNavItem: EventName<IfxNavbarItemCustomEvent<any>>,
+    onIfxNavbarNavigationItem: EventName<IfxNavbarItemCustomEvent<any>>
 };
 
 export const IfxNavbarItem: StencilReactComponent<IfxNavbarItemElement, IfxNavbarItemEvents, Components.IfxNavbarItem> = /*@__PURE__*/ createComponent<IfxNavbarItemElement, IfxNavbarItemEvents, Components.IfxNavbarItem>({
@@ -857,9 +791,10 @@ export const IfxNavbarItem: StencilReactComponent<IfxNavbarItemElement, IfxNavba
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxNavItem: 'ifxNavItem'
+        onIfxNavItem: 'ifxNavItem',
+        onIfxNavbarNavigationItem: 'ifxNavbarNavigationItem'
     } as IfxNavbarItemEvents,
-    defineCustomElement: defineIfxNavbarItem,
+    defineCustomElement: defineIfxNavbarItem
 });
 
 export type IfxNavbarProfileEvents = NonNullable<unknown>;
@@ -870,22 +805,18 @@ export const IfxNavbarProfile: StencilReactComponent<IfxNavbarProfileElement, If
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxNavbarProfileEvents,
-    defineCustomElement: defineIfxNavbarProfile,
+    defineCustomElement: defineIfxNavbarProfile
 });
 
-export type IfxNotificationEvents = {
-  onIfxClose: EventName<IfxNotificationCustomEvent<any>>
-};
+export type IfxNotificationEvents = { onIfxClose: EventName<IfxNotificationCustomEvent<any>> };
 
 export const IfxNotification: StencilReactComponent<IfxNotificationElement, IfxNotificationEvents, Components.IfxNotification> = /*@__PURE__*/ createComponent<IfxNotificationElement, IfxNotificationEvents, Components.IfxNotification>({
     tagName: 'ifx-notification',
     elementClass: IfxNotificationElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxClose: 'ifxClose'
-    } as IfxNotificationEvents,
-    defineCustomElement: defineIfxNotification,
+    events: { onIfxClose: 'ifxClose' } as IfxNotificationEvents,
+    defineCustomElement: defineIfxNotification
 });
 
 export type IfxOverviewTableEvents = NonNullable<unknown>;
@@ -896,12 +827,12 @@ export const IfxOverviewTable: StencilReactComponent<IfxOverviewTableElement, If
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxOverviewTableEvents,
-    defineCustomElement: defineIfxOverviewTable,
+    defineCustomElement: defineIfxOverviewTable
 });
 
 export type IfxPaginationEvents = {
-  onIfxPageChange: EventName<IfxPaginationCustomEvent<any>>,
-  onIfxItemsPerPageChange: EventName<IfxPaginationCustomEvent<any>>
+    onIfxPageChange: EventName<IfxPaginationCustomEvent<any>>,
+    onIfxItemsPerPageChange: EventName<IfxPaginationCustomEvent<any>>
 };
 
 export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPaginationEvents, Components.IfxPagination> = /*@__PURE__*/ createComponent<IfxPaginationElement, IfxPaginationEvents, Components.IfxPagination>({
@@ -910,15 +841,15 @@ export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPagin
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxPageChange: 'ifxPageChange',
-      onIfxItemsPerPageChange: 'ifxItemsPerPageChange'
+        onIfxPageChange: 'ifxPageChange',
+        onIfxItemsPerPageChange: 'ifxItemsPerPageChange'
     } as IfxPaginationEvents,
-    defineCustomElement: defineIfxPagination,
+    defineCustomElement: defineIfxPagination
 });
 
 export type IfxPopoverEvents = {
-  onIfxOpen: EventName<IfxPopoverCustomEvent<{ trigger: HTMLElement | null }>>,
-  onIfxClose: EventName<IfxPopoverCustomEvent<any>>
+    onIfxOpen: EventName<IfxPopoverCustomEvent<{ trigger: HTMLElement | null }>>,
+    onIfxClose: EventName<IfxPopoverCustomEvent<any>>
 };
 
 export const IfxPopover: StencilReactComponent<IfxPopoverElement, IfxPopoverEvents, Components.IfxPopover> = /*@__PURE__*/ createComponent<IfxPopoverElement, IfxPopoverEvents, Components.IfxPopover>({
@@ -927,10 +858,10 @@ export const IfxPopover: StencilReactComponent<IfxPopoverElement, IfxPopoverEven
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxOpen: 'ifxOpen',
-      onIfxClose: 'ifxClose'
+        onIfxOpen: 'ifxOpen',
+        onIfxClose: 'ifxClose'
     } as IfxPopoverEvents,
-    defineCustomElement: defineIfxPopover,
+    defineCustomElement: defineIfxPopover
 });
 
 export type IfxProgressBarEvents = NonNullable<unknown>;
@@ -941,12 +872,12 @@ export const IfxProgressBar: StencilReactComponent<IfxProgressBarElement, IfxPro
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxProgressBarEvents,
-    defineCustomElement: defineIfxProgressBar,
+    defineCustomElement: defineIfxProgressBar
 });
 
 export type IfxRadioButtonEvents = {
-  onIfxChange: EventName<IfxRadioButtonCustomEvent<boolean>>,
-  onIfxError: EventName<IfxRadioButtonCustomEvent<boolean>>
+    onIfxChange: EventName<IfxRadioButtonCustomEvent<boolean>>,
+    onIfxError: EventName<IfxRadioButtonCustomEvent<boolean>>
 };
 
 export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRadioButtonEvents, Components.IfxRadioButton> = /*@__PURE__*/ createComponent<IfxRadioButtonElement, IfxRadioButtonEvents, Components.IfxRadioButton>({
@@ -955,10 +886,10 @@ export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRad
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxChange: 'ifxChange',
-      onIfxError: 'ifxError'
+        onIfxChange: 'ifxChange',
+        onIfxError: 'ifxError'
     } as IfxRadioButtonEvents,
-    defineCustomElement: defineIfxRadioButton,
+    defineCustomElement: defineIfxRadioButton
 });
 
 export type IfxRadioButtonGroupEvents = NonNullable<unknown>;
@@ -969,12 +900,12 @@ export const IfxRadioButtonGroup: StencilReactComponent<IfxRadioButtonGroupEleme
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxRadioButtonGroupEvents,
-    defineCustomElement: defineIfxRadioButtonGroup,
+    defineCustomElement: defineIfxRadioButtonGroup
 });
 
 export type IfxSearchBarEvents = {
-  onIfxInput: EventName<IfxSearchBarCustomEvent<any>>,
-  onIfxOpen: EventName<IfxSearchBarCustomEvent<any>>
+    onIfxInput: EventName<IfxSearchBarCustomEvent<any>>,
+    onIfxOpen: EventName<IfxSearchBarCustomEvent<any>>
 };
 
 export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchBarEvents, Components.IfxSearchBar> = /*@__PURE__*/ createComponent<IfxSearchBarElement, IfxSearchBarEvents, Components.IfxSearchBar>({
@@ -983,18 +914,18 @@ export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchB
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxInput: 'ifxInput',
-      onIfxOpen: 'ifxOpen'
+        onIfxInput: 'ifxInput',
+        onIfxOpen: 'ifxOpen'
     } as IfxSearchBarEvents,
-    defineCustomElement: defineIfxSearchBar,
+    defineCustomElement: defineIfxSearchBar
 });
 
 export type IfxSearchFieldEvents = {
-  onIfxInput: EventName<IfxSearchFieldCustomEvent<string>>,
-  onIfxSuggestionRequested: EventName<IfxSearchFieldCustomEvent<string>>,
-  onIfxSuggestionSelected: EventName<IfxSearchFieldCustomEvent<SuggestionItem>>,
-  onIfxFocus: EventName<IfxSearchFieldCustomEvent<void>>,
-  onIfxBlur: EventName<IfxSearchFieldCustomEvent<void>>
+    onIfxInput: EventName<IfxSearchFieldCustomEvent<string>>,
+    onIfxSuggestionRequested: EventName<IfxSearchFieldCustomEvent<string>>,
+    onIfxSuggestionSelected: EventName<IfxSearchFieldCustomEvent<SuggestionItem>>,
+    onIfxFocus: EventName<IfxSearchFieldCustomEvent<void>>,
+    onIfxBlur: EventName<IfxSearchFieldCustomEvent<void>>
 };
 
 export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSearchFieldEvents, Components.IfxSearchField> = /*@__PURE__*/ createComponent<IfxSearchFieldElement, IfxSearchFieldEvents, Components.IfxSearchField>({
@@ -1003,50 +934,42 @@ export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSea
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxInput: 'ifxInput',
-      onIfxSuggestionRequested: 'ifxSuggestionRequested',
-      onIfxSuggestionSelected: 'ifxSuggestionSelected',
-      onIfxFocus: 'ifxFocus',
-      onIfxBlur: 'ifxBlur'
+        onIfxInput: 'ifxInput',
+        onIfxSuggestionRequested: 'ifxSuggestionRequested',
+        onIfxSuggestionSelected: 'ifxSuggestionSelected',
+        onIfxFocus: 'ifxFocus',
+        onIfxBlur: 'ifxBlur'
     } as IfxSearchFieldEvents,
-    defineCustomElement: defineIfxSearchField,
+    defineCustomElement: defineIfxSearchField
 });
 
-export type IfxSegmentEvents = {
-  onSegmentSelect: EventName<IfxSegmentCustomEvent<number>>
-};
+export type IfxSegmentEvents = { onSegmentSelect: EventName<IfxSegmentCustomEvent<number>> };
 
 export const IfxSegment: StencilReactComponent<IfxSegmentElement, IfxSegmentEvents, Components.IfxSegment, 'value'> = /*@__PURE__*/ createComponent<IfxSegmentElement, IfxSegmentEvents, Components.IfxSegment, 'value'>({
     tagName: 'ifx-segment',
     elementClass: IfxSegmentElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onSegmentSelect: 'segmentSelect'
-    } as IfxSegmentEvents,
-    defineCustomElement: defineIfxSegment,
+    events: { onSegmentSelect: 'segmentSelect' } as IfxSegmentEvents,
+    defineCustomElement: defineIfxSegment
 });
 
-export type IfxSegmentedControlEvents = {
-  onIfxChange: EventName<IfxSegmentedControlCustomEvent<{ previousValue: string; selectedValue: string; }>>
-};
+export type IfxSegmentedControlEvents = { onIfxChange: EventName<IfxSegmentedControlCustomEvent<{ previousValue: string; selectedValue: string; }>> };
 
 export const IfxSegmentedControl: StencilReactComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents, Components.IfxSegmentedControl> = /*@__PURE__*/ createComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents, Components.IfxSegmentedControl>({
     tagName: 'ifx-segmented-control',
     elementClass: IfxSegmentedControlElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxChange: 'ifxChange'
-    } as IfxSegmentedControlEvents,
-    defineCustomElement: defineIfxSegmentedControl,
+    events: { onIfxChange: 'ifxChange' } as IfxSegmentedControlEvents,
+    defineCustomElement: defineIfxSegmentedControl
 });
 
 export type IfxSelectEvents = {
-  onIfxSelect: EventName<IfxSelectCustomEvent<SelectChangeDetail | null>>,
-  onIfxClear: EventName<IfxSelectCustomEvent<void>>,
-  onIfxInput: EventName<IfxSelectCustomEvent<string>>,
-  onIfxOpen: EventName<IfxSelectCustomEvent<boolean>>
+    onIfxSelect: EventName<IfxSelectCustomEvent<SelectChangeDetail | null>>,
+    onIfxClear: EventName<IfxSelectCustomEvent<void>>,
+    onIfxInput: EventName<IfxSelectCustomEvent<string>>,
+    onIfxOpen: EventName<IfxSelectCustomEvent<boolean>>
 };
 
 export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents, Components.IfxSelect> = /*@__PURE__*/ createComponent<IfxSelectElement, IfxSelectEvents, Components.IfxSelect>({
@@ -1055,12 +978,12 @@ export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxSelect: 'ifxSelect',
-      onIfxClear: 'ifxClear',
-      onIfxInput: 'ifxInput',
-      onIfxOpen: 'ifxOpen'
+        onIfxSelect: 'ifxSelect',
+        onIfxClear: 'ifxClear',
+        onIfxInput: 'ifxInput',
+        onIfxOpen: 'ifxOpen'
     } as IfxSelectEvents,
-    defineCustomElement: defineIfxSelect,
+    defineCustomElement: defineIfxSelect
 });
 
 export type IfxSelectGroupEvents = NonNullable<unknown>;
@@ -1071,7 +994,7 @@ export const IfxSelectGroup: StencilReactComponent<IfxSelectGroupElement, IfxSel
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxSelectGroupEvents,
-    defineCustomElement: defineIfxSelectGroup,
+    defineCustomElement: defineIfxSelectGroup
 });
 
 export type IfxSelectOptionEvents = NonNullable<unknown>;
@@ -1082,7 +1005,7 @@ export const IfxSelectOption: StencilReactComponent<IfxSelectOptionElement, IfxS
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxSelectOptionEvents,
-    defineCustomElement: defineIfxSelectOption,
+    defineCustomElement: defineIfxSelectOption
 });
 
 export type IfxSelectSeparatorEvents = NonNullable<unknown>;
@@ -1093,27 +1016,23 @@ export const IfxSelectSeparator: StencilReactComponent<IfxSelectSeparatorElement
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxSelectSeparatorEvents,
-    defineCustomElement: defineIfxSelectSeparator,
+    defineCustomElement: defineIfxSelectSeparator
 });
 
-export type IfxSetFilterEvents = {
-  onIfxFilterSelect: EventName<IfxSetFilterCustomEvent<any>>
-};
+export type IfxSetFilterEvents = { onIfxFilterSelect: EventName<IfxSetFilterCustomEvent<any>> };
 
 export const IfxSetFilter: StencilReactComponent<IfxSetFilterElement, IfxSetFilterEvents, Components.IfxSetFilter> = /*@__PURE__*/ createComponent<IfxSetFilterElement, IfxSetFilterEvents, Components.IfxSetFilter>({
     tagName: 'ifx-set-filter',
     elementClass: IfxSetFilterElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxFilterSelect: 'ifxFilterSelect'
-    } as IfxSetFilterEvents,
-    defineCustomElement: defineIfxSetFilter,
+    events: { onIfxFilterSelect: 'ifxFilterSelect' } as IfxSetFilterEvents,
+    defineCustomElement: defineIfxSetFilter
 });
 
 export type IfxSidebarEvents = {
-  onIfxSidebarCollapseChange: EventName<IfxSidebarCustomEvent<{ collapsed: boolean }>>,
-  onIfxSidebarLogoClick: EventName<IfxSidebarCustomEvent<any>>
+    onIfxSidebarCollapseChange: EventName<IfxSidebarCustomEvent<{ collapsed: boolean }>>,
+    onIfxSidebarLogoClick: EventName<IfxSidebarCustomEvent<any>>
 };
 
 export const IfxSidebar: StencilReactComponent<IfxSidebarElement, IfxSidebarEvents, Components.IfxSidebar> = /*@__PURE__*/ createComponent<IfxSidebarElement, IfxSidebarEvents, Components.IfxSidebar>({
@@ -1122,16 +1041,16 @@ export const IfxSidebar: StencilReactComponent<IfxSidebarElement, IfxSidebarEven
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxSidebarCollapseChange: 'ifxSidebarCollapseChange',
-      onIfxSidebarLogoClick: 'ifxSidebarLogoClick'
+        onIfxSidebarCollapseChange: 'ifxSidebarCollapseChange',
+        onIfxSidebarLogoClick: 'ifxSidebarLogoClick'
     } as IfxSidebarEvents,
-    defineCustomElement: defineIfxSidebar,
+    defineCustomElement: defineIfxSidebar
 });
 
 export type IfxSidebarItemEvents = {
-  onIfxSidebarMenu: EventName<IfxSidebarItemCustomEvent<any>>,
-  onIfxSidebarNavigationItem: EventName<IfxSidebarItemCustomEvent<any>>,
-  onIfxSidebarActionItem: EventName<IfxSidebarItemCustomEvent<any>>
+    onIfxSidebarMenu: EventName<IfxSidebarItemCustomEvent<any>>,
+    onIfxSidebarNavigationItem: EventName<IfxSidebarItemCustomEvent<any>>,
+    onIfxSidebarActionItem: EventName<IfxSidebarItemCustomEvent<any>>
 };
 
 export const IfxSidebarItem: StencilReactComponent<IfxSidebarItemElement, IfxSidebarItemEvents, Components.IfxSidebarItem> = /*@__PURE__*/ createComponent<IfxSidebarItemElement, IfxSidebarItemEvents, Components.IfxSidebarItem>({
@@ -1140,11 +1059,11 @@ export const IfxSidebarItem: StencilReactComponent<IfxSidebarItemElement, IfxSid
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxSidebarMenu: 'ifxSidebarMenu',
-      onIfxSidebarNavigationItem: 'ifxSidebarNavigationItem',
-      onIfxSidebarActionItem: 'ifxSidebarActionItem'
+        onIfxSidebarMenu: 'ifxSidebarMenu',
+        onIfxSidebarNavigationItem: 'ifxSidebarNavigationItem',
+        onIfxSidebarActionItem: 'ifxSidebarActionItem'
     } as IfxSidebarItemEvents,
-    defineCustomElement: defineIfxSidebarItem,
+    defineCustomElement: defineIfxSidebarItem
 });
 
 export type IfxSidebarSeparatorEvents = NonNullable<unknown>;
@@ -1155,7 +1074,7 @@ export const IfxSidebarSeparator: StencilReactComponent<IfxSidebarSeparatorEleme
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxSidebarSeparatorEvents,
-    defineCustomElement: defineIfxSidebarSeparator,
+    defineCustomElement: defineIfxSidebarSeparator
 });
 
 export type IfxSidebarTitleEvents = NonNullable<unknown>;
@@ -1166,22 +1085,18 @@ export const IfxSidebarTitle: StencilReactComponent<IfxSidebarTitleElement, IfxS
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxSidebarTitleEvents,
-    defineCustomElement: defineIfxSidebarTitle,
+    defineCustomElement: defineIfxSidebarTitle
 });
 
-export type IfxSliderEvents = {
-  onIfxChange: EventName<IfxSliderCustomEvent<any>>
-};
+export type IfxSliderEvents = { onIfxChange: EventName<IfxSliderCustomEvent<any>> };
 
 export const IfxSlider: StencilReactComponent<IfxSliderElement, IfxSliderEvents, Components.IfxSlider> = /*@__PURE__*/ createComponent<IfxSliderElement, IfxSliderEvents, Components.IfxSlider>({
     tagName: 'ifx-slider',
     elementClass: IfxSliderElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxChange: 'ifxChange'
-    } as IfxSliderEvents,
-    defineCustomElement: defineIfxSlider,
+    events: { onIfxChange: 'ifxChange' } as IfxSliderEvents,
+    defineCustomElement: defineIfxSlider
 });
 
 export type IfxSpinnerEvents = NonNullable<unknown>;
@@ -1192,7 +1107,7 @@ export const IfxSpinner: StencilReactComponent<IfxSpinnerElement, IfxSpinnerEven
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxSpinnerEvents,
-    defineCustomElement: defineIfxSpinner,
+    defineCustomElement: defineIfxSpinner
 });
 
 export type IfxStatusEvents = NonNullable<unknown>;
@@ -1203,7 +1118,7 @@ export const IfxStatus: StencilReactComponent<IfxStatusElement, IfxStatusEvents,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxStatusEvents,
-    defineCustomElement: defineIfxStatus,
+    defineCustomElement: defineIfxStatus
 });
 
 export type IfxStepEvents = NonNullable<unknown>;
@@ -1214,87 +1129,67 @@ export const IfxStep: StencilReactComponent<IfxStepElement, IfxStepEvents, Compo
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxStepEvents,
-    defineCustomElement: defineIfxStep,
+    defineCustomElement: defineIfxStep
 });
 
-export type IfxStepperEvents = {
-  onIfxChange: EventName<IfxStepperCustomEvent<any>>
-};
+export type IfxStepperEvents = { onIfxChange: EventName<IfxStepperCustomEvent<any>> };
 
 export const IfxStepper: StencilReactComponent<IfxStepperElement, IfxStepperEvents, Components.IfxStepper> = /*@__PURE__*/ createComponent<IfxStepperElement, IfxStepperEvents, Components.IfxStepper>({
     tagName: 'ifx-stepper',
     elementClass: IfxStepperElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxChange: 'ifxChange'
-    } as IfxStepperEvents,
-    defineCustomElement: defineIfxStepper,
+    events: { onIfxChange: 'ifxChange' } as IfxStepperEvents,
+    defineCustomElement: defineIfxStepper
 });
 
-export type IfxSwitchEvents = {
-  onIfxChange: EventName<IfxSwitchCustomEvent<boolean>>
-};
+export type IfxSwitchEvents = { onIfxChange: EventName<IfxSwitchCustomEvent<boolean>> };
 
 export const IfxSwitch: StencilReactComponent<IfxSwitchElement, IfxSwitchEvents, Components.IfxSwitch> = /*@__PURE__*/ createComponent<IfxSwitchElement, IfxSwitchEvents, Components.IfxSwitch>({
     tagName: 'ifx-switch',
     elementClass: IfxSwitchElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxChange: 'ifxChange'
-    } as IfxSwitchEvents,
-    defineCustomElement: defineIfxSwitch,
+    events: { onIfxChange: 'ifxChange' } as IfxSwitchEvents,
+    defineCustomElement: defineIfxSwitch
 });
 
-export type IfxTabEvents = {
-  onTabHeaderChange: EventName<IfxTabCustomEvent<any>>
-};
+export type IfxTabEvents = { onTabHeaderChange: EventName<IfxTabCustomEvent<any>> };
 
 export const IfxTab: StencilReactComponent<IfxTabElement, IfxTabEvents, Components.IfxTab> = /*@__PURE__*/ createComponent<IfxTabElement, IfxTabEvents, Components.IfxTab>({
     tagName: 'ifx-tab',
     elementClass: IfxTabElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onTabHeaderChange: 'tabHeaderChange'
-    } as IfxTabEvents,
-    defineCustomElement: defineIfxTab,
+    events: { onTabHeaderChange: 'tabHeaderChange' } as IfxTabEvents,
+    defineCustomElement: defineIfxTab
 });
 
-export type IfxTableEvents = {
-  onIfxSortChange: EventName<IfxTableCustomEvent<any>>
-};
+export type IfxTableEvents = { onIfxSortChange: EventName<IfxTableCustomEvent<any>> };
 
 export const IfxTable: StencilReactComponent<IfxTableElement, IfxTableEvents, Components.IfxTable> = /*@__PURE__*/ createComponent<IfxTableElement, IfxTableEvents, Components.IfxTable>({
     tagName: 'ifx-table',
     elementClass: IfxTableElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxSortChange: 'ifxSortChange'
-    } as IfxTableEvents,
-    defineCustomElement: defineIfxTable,
+    events: { onIfxSortChange: 'ifxSortChange' } as IfxTableEvents,
+    defineCustomElement: defineIfxTable
 });
 
-export type IfxTabsEvents = {
-  onIfxChange: EventName<IfxTabsCustomEvent<any>>
-};
+export type IfxTabsEvents = { onIfxChange: EventName<IfxTabsCustomEvent<any>> };
 
 export const IfxTabs: StencilReactComponent<IfxTabsElement, IfxTabsEvents, Components.IfxTabs> = /*@__PURE__*/ createComponent<IfxTabsElement, IfxTabsEvents, Components.IfxTabs>({
     tagName: 'ifx-tabs',
     elementClass: IfxTabsElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxChange: 'ifxChange'
-    } as IfxTabsEvents,
-    defineCustomElement: defineIfxTabs,
+    events: { onIfxChange: 'ifxChange' } as IfxTabsEvents,
+    defineCustomElement: defineIfxTabs
 });
 
 export type IfxTemplateEvents = {
-  onToggleTemplates: EventName<IfxTemplateCustomEvent<any>>,
-  onFieldError: EventName<IfxTemplateCustomEvent<any>>
+    onToggleTemplates: EventName<IfxTemplateCustomEvent<any>>,
+    onFieldError: EventName<IfxTemplateCustomEvent<any>>
 };
 
 export const IfxTemplate: StencilReactComponent<IfxTemplateElement, IfxTemplateEvents, Components.IfxTemplate> = /*@__PURE__*/ createComponent<IfxTemplateElement, IfxTemplateEvents, Components.IfxTemplate>({
@@ -1303,10 +1198,10 @@ export const IfxTemplate: StencilReactComponent<IfxTemplateElement, IfxTemplateE
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onToggleTemplates: 'toggleTemplates',
-      onFieldError: 'fieldError'
+        onToggleTemplates: 'toggleTemplates',
+        onFieldError: 'fieldError'
     } as IfxTemplateEvents,
-    defineCustomElement: defineIfxTemplate,
+    defineCustomElement: defineIfxTemplate
 });
 
 export type IfxTemplatesUiEvents = NonNullable<unknown>;
@@ -1317,43 +1212,35 @@ export const IfxTemplatesUi: StencilReactComponent<IfxTemplatesUiElement, IfxTem
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxTemplatesUiEvents,
-    defineCustomElement: defineIfxTemplatesUi,
+    defineCustomElement: defineIfxTemplatesUi
 });
 
-export type IfxTextFieldEvents = {
-  onIfxInput: EventName<IfxTextFieldCustomEvent<string>>
-};
+export type IfxTextFieldEvents = { onIfxInput: EventName<IfxTextFieldCustomEvent<string>> };
 
 export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFieldEvents, Components.IfxTextField> = /*@__PURE__*/ createComponent<IfxTextFieldElement, IfxTextFieldEvents, Components.IfxTextField>({
     tagName: 'ifx-text-field',
     elementClass: IfxTextFieldElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxInput: 'ifxInput'
-    } as IfxTextFieldEvents,
-    defineCustomElement: defineIfxTextField,
+    events: { onIfxInput: 'ifxInput' } as IfxTextFieldEvents,
+    defineCustomElement: defineIfxTextField
 });
 
-export type IfxTextareaEvents = {
-  onIfxInput: EventName<IfxTextareaCustomEvent<string>>
-};
+export type IfxTextareaEvents = { onIfxInput: EventName<IfxTextareaCustomEvent<string>> };
 
 export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaEvents, Components.IfxTextarea> = /*@__PURE__*/ createComponent<IfxTextareaElement, IfxTextareaEvents, Components.IfxTextarea>({
     tagName: 'ifx-textarea',
     elementClass: IfxTextareaElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {
-      onIfxInput: 'ifxInput'
-    } as IfxTextareaEvents,
-    defineCustomElement: defineIfxTextarea,
+    events: { onIfxInput: 'ifxInput' } as IfxTextareaEvents,
+    defineCustomElement: defineIfxTextarea
 });
 
 export type IfxToastEvents = {
-  onIfxToastOpen: EventName<IfxToastCustomEvent<ToastEventDetail>>,
-  onIfxToastClose: EventName<IfxToastCustomEvent<ToastCloseEventDetail>>,
-  onIfxToastAction: EventName<IfxToastCustomEvent<ToastEventDetail>>
+    onIfxToastOpen: EventName<IfxToastCustomEvent<ToastEventDetail>>,
+    onIfxToastClose: EventName<IfxToastCustomEvent<ToastCloseEventDetail>>,
+    onIfxToastAction: EventName<IfxToastCustomEvent<ToastEventDetail>>
 };
 
 export const IfxToast: StencilReactComponent<IfxToastElement, IfxToastEvents, Components.IfxToast> = /*@__PURE__*/ createComponent<IfxToastElement, IfxToastEvents, Components.IfxToast>({
@@ -1362,11 +1249,11 @@ export const IfxToast: StencilReactComponent<IfxToastElement, IfxToastEvents, Co
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxToastOpen: 'ifxToastOpen',
-      onIfxToastClose: 'ifxToastClose',
-      onIfxToastAction: 'ifxToastAction'
+        onIfxToastOpen: 'ifxToastOpen',
+        onIfxToastClose: 'ifxToastClose',
+        onIfxToastAction: 'ifxToastAction'
     } as IfxToastEvents,
-    defineCustomElement: defineIfxToast,
+    defineCustomElement: defineIfxToast
 });
 
 export type IfxToastContainerEvents = NonNullable<unknown>;
@@ -1377,7 +1264,7 @@ export const IfxToastContainer: StencilReactComponent<IfxToastContainerElement, 
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxToastContainerEvents,
-    defineCustomElement: defineIfxToastContainer,
+    defineCustomElement: defineIfxToastContainer
 });
 
 export type IfxTooltipEvents = NonNullable<unknown>;
@@ -1388,12 +1275,12 @@ export const IfxTooltip: StencilReactComponent<IfxTooltipElement, IfxTooltipEven
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as IfxTooltipEvents,
-    defineCustomElement: defineIfxTooltip,
+    defineCustomElement: defineIfxTooltip
 });
 
 export type IfxTreeViewEvents = {
-  onIfxTreeViewExpandAllChange: EventName<IfxTreeViewCustomEvent<boolean>>,
-  onIfxTreeViewDisableAllChange: EventName<IfxTreeViewCustomEvent<boolean>>
+    onIfxTreeViewExpandAllChange: EventName<IfxTreeViewCustomEvent<boolean>>,
+    onIfxTreeViewDisableAllChange: EventName<IfxTreeViewCustomEvent<boolean>>
 };
 
 export const IfxTreeView: StencilReactComponent<IfxTreeViewElement, IfxTreeViewEvents, Components.IfxTreeView> = /*@__PURE__*/ createComponent<IfxTreeViewElement, IfxTreeViewEvents, Components.IfxTreeView>({
@@ -1402,16 +1289,16 @@ export const IfxTreeView: StencilReactComponent<IfxTreeViewElement, IfxTreeViewE
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxTreeViewExpandAllChange: 'ifxTreeViewExpandAllChange',
-      onIfxTreeViewDisableAllChange: 'ifxTreeViewDisableAllChange'
+        onIfxTreeViewExpandAllChange: 'ifxTreeViewExpandAllChange',
+        onIfxTreeViewDisableAllChange: 'ifxTreeViewDisableAllChange'
     } as IfxTreeViewEvents,
-    defineCustomElement: defineIfxTreeView,
+    defineCustomElement: defineIfxTreeView
 });
 
 export type IfxTreeViewItemEvents = {
-  onIfxTreeViewItemExpandChange: EventName<IfxTreeViewItemCustomEvent<TreeViewExpandChangeEvent>>,
-  onIfxTreeViewItemCheckChange: EventName<IfxTreeViewItemCustomEvent<TreeViewCheckChangeEvent>>,
-  onIfxTreeViewItemDisableChange: EventName<IfxTreeViewItemCustomEvent<TreeViewDisableChangeEvent>>
+    onIfxTreeViewItemExpandChange: EventName<IfxTreeViewItemCustomEvent<TreeViewExpandChangeEvent>>,
+    onIfxTreeViewItemCheckChange: EventName<IfxTreeViewItemCustomEvent<TreeViewCheckChangeEvent>>,
+    onIfxTreeViewItemDisableChange: EventName<IfxTreeViewItemCustomEvent<TreeViewDisableChangeEvent>>
 };
 
 export const IfxTreeViewItem: StencilReactComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents, Components.IfxTreeViewItem> = /*@__PURE__*/ createComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents, Components.IfxTreeViewItem>({
@@ -1420,9 +1307,9 @@ export const IfxTreeViewItem: StencilReactComponent<IfxTreeViewItemElement, IfxT
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxTreeViewItemExpandChange: 'ifxTreeViewItemExpandChange',
-      onIfxTreeViewItemCheckChange: 'ifxTreeViewItemCheckChange',
-      onIfxTreeViewItemDisableChange: 'ifxTreeViewItemDisableChange'
+        onIfxTreeViewItemExpandChange: 'ifxTreeViewItemExpandChange',
+        onIfxTreeViewItemCheckChange: 'ifxTreeViewItemCheckChange',
+        onIfxTreeViewItemDisableChange: 'ifxTreeViewItemDisableChange'
     } as IfxTreeViewItemEvents,
-    defineCustomElement: defineIfxTreeViewItem,
+    defineCustomElement: defineIfxTreeViewItem
 });
