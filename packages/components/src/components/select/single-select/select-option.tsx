@@ -36,14 +36,14 @@ export class SelectOption {
 		this.notifySelect("registered");
 		this.el.addEventListener(
 			"ifx-search-filter",
-			this.handleSearchFilter as EventListener
+			this.handleSearchFilter as EventListener,
 		);
 	}
 
 	disconnectedCallback() {
 		this.el.removeEventListener(
 			"ifx-search-filter",
-			this.handleSearchFilter as EventListener
+			this.handleSearchFilter as EventListener,
 		);
 		this.notifySelect("removed");
 	}
@@ -78,7 +78,7 @@ export class SelectOption {
 				bubbles: true,
 				composed: true,
 				detail: { value: this.value, selected: this.selected, reason },
-			})
+			}),
 		);
 	}
 
@@ -102,6 +102,7 @@ export class SelectOption {
 		optionDiv.classList.remove("search-hidden", "search-match");
 
 		if (!this.isSearchActive) {
+			this.el.tabIndex = this.disabled ? -1 : 0;
 			this.removeHighlighting();
 			return;
 		}
@@ -109,6 +110,7 @@ export class SelectOption {
 		const matches = this.getTextContent()
 			.toLowerCase()
 			.includes(this.searchTerm);
+		this.el.tabIndex = this.disabled || !matches ? -1 : 0;
 		if (matches) {
 			optionDiv.classList.add("search-match");
 			this.highlightSearchTerm();
@@ -160,7 +162,7 @@ export class SelectOption {
 
 	render() {
 		return (
-			<Host tabIndex={-1}>
+			<Host tabIndex={this.disabled ? -1 : 0}>
 				<div
 					class={{
 						option: true,

@@ -8,8 +8,6 @@ export default {
     label: 'Dropdown',
     disabled: false,
     defaultOpen: false,
-    noCloseOnOutsideClick: false,
-    noCloseOnMenuClick: false,
     noAppendToBody: true,
     variant: 'primary',
     placement: 'bottom-start',
@@ -154,26 +152,6 @@ export default {
         }
       }
     },
-    noCloseOnOutsideClick: {
-      description: 'Determines if the dropdown should not close when a click outside the dropdown happens.',
-      control: 'boolean',
-      table: {
-        category: 'ifx-dropdown props',
-        defaultValue: {
-          summary: false
-        }
-      }
-    },
-    noCloseOnMenuClick: {
-      description: 'Determines if the dropdown should not close when a click inside the dropdown menu happens.',
-      control: 'boolean',
-      table: {
-        category: 'ifx-dropdown props',
-        defaultValue: {
-          summary: false
-        }
-      }
-    },
     noAppendToBody: {
       description: 'Determines if the dropdown should not be appended to the body.',
       control: 'boolean',
@@ -236,8 +214,6 @@ const DefaultTemplate = (args:any) => {
 	wrapper.innerHTML = `<ifx-dropdown placement="${args.placement}" 
   ${args.disabled ? "disabled" : ""}
   default-open="${args.defaultOpen}"
-  no-close-on-outside-click="${args.noCloseOnOutsideClick}"
-  no-close-on-menu-click="${args.noCloseOnOutsideClick}"
   no-append-to-body="${args.noAppendToBody}">
 
     <ifx-dropdown-trigger-button variant="${args.variant}">
@@ -273,8 +249,6 @@ const LabelTriggerTemplate = (args:any) => {
 	wrapper.innerHTML = `<ifx-dropdown
     placement="${args.placement}"
     default-open="${args.defaultOpen}"
-    no-close-on-outside-click="${args.noCloseOnOutsideClick}"
-    no-close-on-menu-click="${args.noCloseOnOutsideClick}"
     disabled="${args.disabled}"
     no-append-to-body="${args.noAppendToBody}"
   >
@@ -324,8 +298,6 @@ const HeaderTemplate = (args:any) => {
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
   default-open="${args.defaultOpen}"
-  no-close-on-outside-click="${args.noCloseOnOutsideClick}"
-  no-close-on-menu-click="${args.noCloseOnOutsideClick}"
   no-append-to-body="${args.noAppendToBody}">
   <ifx-dropdown-header>Dropdown Header</ifx-dropdown-header>
    <ifx-dropdown-trigger-button variant="${args.variant}">
@@ -373,14 +345,12 @@ const SearchTemplate = (args:any) => {
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
   default-open="${args.defaultOpen}"
-  no-close-on-outside-click="${args.noCloseOnOutsideClick}"
-  no-close-on-menu-click="${args.noCloseOnOutsideClick}"
   no-append-to-body="${args.noAppendToBody}">
    <ifx-dropdown-trigger-button variant="${args.variant}">
       ${args.label}
     </ifx-dropdown-trigger-button>
      <ifx-dropdown-menu size="${args.size}">
-    <ifx-search-field show-delete-icon="false"></ifx-search-field>
+    <ifx-search-field show-delete-icon="true" enable-history="false"></ifx-search-field>
     <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
     <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
     <ifx-dropdown-item ${dropdownItemAttributes(args)}>Menu Item</ifx-dropdown-item>
@@ -409,8 +379,6 @@ const SeparatorTemplate = (args:any) => {
 	wrapper.innerHTML = `<ifx-dropdown
   placement="${args.placement}"
   default-open="${args.defaultOpen}"
-   no-close-on-outside-click="${args.noCloseOnOutsideClick}"
-  no-close-on-menu-click="${args.noCloseOnOutsideClick}"
   no-append-to-body="${args.noAppendToBody}">
    <ifx-dropdown-trigger-button variant="${args.variant}">
       ${args.label}

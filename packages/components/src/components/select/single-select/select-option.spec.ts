@@ -18,9 +18,7 @@ describe("ifx-select-option", () => {
 			html: `<ifx-select-option value="a" selected="true">Apple</ifx-select-option>`,
 		});
 		expect(page.root.getAttribute("selected")).not.toBeNull();
-		expect(
-			page.root.shadowRoot.querySelector(".option-check"),
-		).toBeTruthy();
+		expect(page.root.shadowRoot.querySelector(".option-check")).toBeTruthy();
 		expect(
 			page.root.shadowRoot
 				.querySelector(".option")
@@ -89,6 +87,7 @@ describe("ifx-select-option", () => {
 			const option = page.root.shadowRoot.querySelector(".option");
 			expect(option.classList.contains("search-match")).toBe(true);
 			expect(option.classList.contains("search-hidden")).toBe(false);
+			expect(page.root.tabIndex).toBe(0);
 		});
 
 		it("does NOT fuzzy-match a different number (2026 must not match 2020)", async () => {
@@ -101,6 +100,7 @@ describe("ifx-select-option", () => {
 			const option = page.root.shadowRoot.querySelector(".option");
 			expect(option.classList.contains("search-hidden")).toBe(true);
 			expect(option.classList.contains("search-match")).toBe(false);
+			expect(page.root.tabIndex).toBe(-1);
 		});
 
 		it("matches a numeric substring (202 matches 2020)", async () => {
@@ -126,6 +126,7 @@ describe("ifx-select-option", () => {
 			const option = page.root.shadowRoot.querySelector(".option");
 			expect(option.classList.contains("search-hidden")).toBe(false);
 			expect(option.classList.contains("search-match")).toBe(false);
+			expect(page.root.tabIndex).toBe(0);
 		});
 	});
 });

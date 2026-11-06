@@ -49,8 +49,6 @@ export class IfxDropdownExample {
   protected readonly htmlCode = `  &lt;ifx-dropdown
     placement=&quot;bottom-start&quot;
     [defaultOpen]=&quot;false&quot;
-    [noCloseOnOutsideClick]=&quot;false&quot;
-    [noCloseOnMenuClick]=&quot;false&quot;
     [noAppendToBody]=&quot;true&quot;
     [disabled]=&quot;false&quot;
     (ifxClose)=&quot;handleClose(\$any(\$event))&quot;

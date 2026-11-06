@@ -254,9 +254,11 @@ describe("ifx-multiselect", () => {
 			el: { shadowRoot: { querySelector: () => null } },
 			getAllOptionElements: () => [],
 			updateGroupVisibility: jest.fn(),
+			showSeparators: jest.fn(),
 		};
 		(Multiselect.prototype as any).resetSearch.call(resetContext);
 		expect(resetContext.updateGroupVisibility).toHaveBeenCalledWith(false);
+		expect(resetContext.showSeparators).toHaveBeenCalled();
 	});
 
 	it("select all changes only enabled leaves", async () => {
