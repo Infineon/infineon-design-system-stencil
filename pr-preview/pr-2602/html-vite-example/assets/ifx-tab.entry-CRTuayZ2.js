@@ -1,0 +1,2 @@
+import{r as t,c as s,g as a,h as i}from"./index-CibQlmK3.js";const n=()=>":host{display:block}",r=class{constructor(e){t(this,e),this.tabHeaderChange=s(this,"tabHeaderChange",7)}get el(){return a(this)}header;disabled;icon="";iconPosition="left";subline;sublinePosition="left";label;number=0;positionSticky=!1;tabHeaderChange;componentWillUpdate(){this.tabHeaderChange.emit(this.header)}render(){return i("slot",{key:"74d762b359e2e9c930e39e6bf72be809dbfc24f9"})}};r.style=n();export{r as ifx_tab};
+//# sourceMappingURL=ifx-tab.entry-CRTuayZ2.js.map
