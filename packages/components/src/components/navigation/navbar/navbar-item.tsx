@@ -385,7 +385,9 @@ export class NavbarItem {
 		const mobileMenuItem = this.el.closest(
 			'[slot="mobile-menu-top"], [slot="mobile-menu-bottom"], [slot="second__layer"]',
 		);
-		this.ifxNavbarNavigationItem.emit(this.el);
+		if (!this.hasChildNavItems) {
+			this.ifxNavbarNavigationItem.emit(this.el);
+		}
 		if (mobileMenuItem && this.hasChildNavItems) {
 			this.handleClassList(this.getSubLayerBackButton(), "add", "show");
 			this.handleClassList(this.getNavBarItem(), "add", "layer__item-parent");

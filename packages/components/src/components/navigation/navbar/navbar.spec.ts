@@ -151,6 +151,14 @@ describe("ifx-navbar", () => {
             const nestedItem = items[1];
             const otherItem = items[2];
 
+            parentItem.shadowRoot
+                .querySelector(".navbar__item")
+                .dispatchEvent(new MouseEvent("click", { bubbles: true }));
+            await page.waitForChanges();
+
+            expect(parentItem.active).toBe(false);
+            expect(parentItem.shadowRoot.querySelector(".navbar__item").classList.contains("active")).toBe(false);
+
             nestedItem.shadowRoot
                 .querySelector(".navbar__item")
                 .dispatchEvent(new MouseEvent("click", { bubbles: true }));
