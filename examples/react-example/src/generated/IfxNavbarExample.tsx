@@ -6,6 +6,11 @@ export function IfxNavbarExample() {
     // Add your handler logic here
   };
 
+  const handleNavbarNavigationItem = (event: CustomEvent) => {
+    console.log('ifxNavbarNavigationItem:', event);
+    // Add your handler logic here
+  };
+
   const handleNavItem = (event: CustomEvent) => {
     console.log('ifxNavItem:', event);
     // Add your handler logic here
@@ -37,6 +42,7 @@ export function IfxNavbarExample() {
           target="_self"
           href=""
           hideOnMobile={true}
+          onIfxNavbarNavigationItem={handleNavbarNavigationItem}
           onIfxNavItem={handleNavItem}>
           <IfxNavbarItem icon="">
             <IfxNavbarItem>
@@ -145,6 +151,11 @@ export function IfxNavbarExample() {
     // Add your handler logic here
   };
 
+  const handleNavbarNavigationItem = (event: CustomEvent) => {
+    console.log('ifxNavbarNavigationItem:', event);
+    // Add your handler logic here
+  };
+
   const handleNavItem = (event: CustomEvent) => {
     console.log('ifxNavItem:', event);
     // Add your handler logic here
@@ -175,6 +186,7 @@ export function IfxNavbarExample() {
           target="_self"
           href=""
           hideOnMobile={true}
+          onIfxNavbarNavigationItem={handleNavbarNavigationItem}
           onIfxNavItem={handleNavItem}>
           <IfxNavbarItem icon="">
             <IfxNavbarItem>
