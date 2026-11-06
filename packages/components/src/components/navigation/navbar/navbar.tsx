@@ -37,6 +37,8 @@ export class Navbar {
 	@State() internalLogoHref: string | undefined;
 	/** Where to open the logo link (same tab, new tab, etc.). */
 	@Prop() readonly logoHrefTarget: string = "_self";
+  /** Accessible label for the logo link. */
+  @Prop() readonly logoAriaLabel: string = "Go to application home";
 	@State() internalLogoHrefTarget: string = "_self";
 	/** Fired when the mobile navbar menu is opened or closed. */
 	@Event() ifxNavbarMobileMenuIsOpen: EventEmitter | undefined;
@@ -953,7 +955,8 @@ export class Navbar {
 					class="navbar__logo-link"
 					href={sanitizeHref(this.internalLogoHref)}
 					target={this.internalLogoHrefTarget}
-					aria-label="Go to application home"
+					aria-label={this.logoAriaLabel}
+          title={this.logoAriaLabel}
 				>
 					<svg
 						class="navbar__logo-image"

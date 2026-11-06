@@ -57,6 +57,7 @@ import { defineCustomElement as defineIfxModal } from '@infineon/design-system/c
 import { defineCustomElement as defineIfxMultiselect } from '@infineon/design-system/components/ifx-multiselect.js';
 import { defineCustomElement as defineIfxMultiselectGroup } from '@infineon/design-system/components/ifx-multiselect-group.js';
 import { defineCustomElement as defineIfxMultiselectOption } from '@infineon/design-system/components/ifx-multiselect-option.js';
+import { defineCustomElement as defineIfxMultiselectSeparator } from '@infineon/design-system/components/ifx-multiselect-separator.js';
 import { defineCustomElement as defineIfxNavbar } from '@infineon/design-system/components/ifx-navbar.js';
 import { defineCustomElement as defineIfxNavbarItem } from '@infineon/design-system/components/ifx-navbar-item.js';
 import { defineCustomElement as defineIfxNavbarProfile } from '@infineon/design-system/components/ifx-navbar-profile.js';
@@ -74,6 +75,7 @@ import { defineCustomElement as defineIfxSegmentedControl } from '@infineon/desi
 import { defineCustomElement as defineIfxSelect } from '@infineon/design-system/components/ifx-select.js';
 import { defineCustomElement as defineIfxSelectGroup } from '@infineon/design-system/components/ifx-select-group.js';
 import { defineCustomElement as defineIfxSelectOption } from '@infineon/design-system/components/ifx-select-option.js';
+import { defineCustomElement as defineIfxSelectSeparator } from '@infineon/design-system/components/ifx-select-separator.js';
 import { defineCustomElement as defineIfxSetFilter } from '@infineon/design-system/components/ifx-set-filter.js';
 import { defineCustomElement as defineIfxSidebar } from '@infineon/design-system/components/ifx-sidebar.js';
 import { defineCustomElement as defineIfxSidebarItem } from '@infineon/design-system/components/ifx-sidebar-item.js';
@@ -335,8 +337,6 @@ export const IfxDropdown: StencilVueComponent<JSX.IfxDropdown> = /*@__PURE__*/ d
   'defaultOpen',
   'noAppendToBody',
   'disabled',
-  'noCloseOnOutsideClick',
-  'noCloseOnMenuClick',
   'ifxOpen',
   'ifxClose',
   'ifxDropdown'
@@ -651,12 +651,16 @@ export const IfxMultiselectOption: StencilVueComponent<JSX.IfxMultiselectOption>
 ]);
 
 
+export const IfxMultiselectSeparator: StencilVueComponent<JSX.IfxMultiselectSeparator> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselectSeparator>('ifx-multiselect-separator', defineIfxMultiselectSeparator);
+
+
 export const IfxNavbar: StencilVueComponent<JSX.IfxNavbar> = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', defineIfxNavbar, [
   'applicationName',
   'fixed',
   'showLogoAndAppname',
   'logoHref',
   'logoHrefTarget',
+  'logoAriaLabel',
   'ifxNavbarMobileMenuIsOpen'
 ], [
   'ifxNavbarMobileMenuIsOpen'
@@ -896,6 +900,9 @@ export const IfxSelectOption: StencilVueComponent<JSX.IfxSelectOption> = /*@__PU
   'selected',
   'disabled'
 ]);
+
+
+export const IfxSelectSeparator: StencilVueComponent<JSX.IfxSelectSeparator> = /*@__PURE__*/ defineContainer<JSX.IfxSelectSeparator>('ifx-select-separator', defineIfxSelectSeparator);
 
 
 export const IfxSetFilter: StencilVueComponent<JSX.IfxSetFilter> = /*@__PURE__*/ defineContainer<JSX.IfxSetFilter>('ifx-set-filter', defineIfxSetFilter, [

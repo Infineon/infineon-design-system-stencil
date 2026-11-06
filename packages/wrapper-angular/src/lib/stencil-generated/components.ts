@@ -718,7 +718,7 @@ export declare interface IfxDownload extends Components.IfxDownload {}
 
 
 @ProxyCmp({
-  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'noCloseOnMenuClick', 'noCloseOnOutsideClick', 'placement'],
+  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'placement'],
   methods: ['isOpen', 'closeDropdown', 'openDropdown']
 })
 @Component({
@@ -726,7 +726,7 @@ export declare interface IfxDownload extends Components.IfxDownload {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'noCloseOnMenuClick', 'noCloseOnOutsideClick', 'placement'],
+  inputs: ['defaultOpen', 'disabled', 'noAppendToBody', 'placement'],
   outputs: ['ifxOpen', 'ifxClose', 'ifxDropdown'],
   standalone: false
 })
@@ -1542,14 +1542,36 @@ export declare interface IfxMultiselectOption extends Components.IfxMultiselectO
 
 
 @ProxyCmp({
-  inputs: ['applicationName', 'fixed', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname']
+})
+@Component({
+  selector: 'ifx-multiselect-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IfxMultiselectSeparator {
+  protected el: HTMLIfxMultiselectSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxMultiselectSeparator extends Components.IfxMultiselectSeparator {}
+
+
+@ProxyCmp({
+  inputs: ['applicationName', 'fixed', 'logoAriaLabel', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname']
 })
 @Component({
   selector: 'ifx-navbar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationName', 'fixed', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname'],
+  inputs: ['applicationName', 'fixed', 'logoAriaLabel', 'logoHref', 'logoHrefTarget', 'showLogoAndAppname'],
   outputs: ['ifxNavbarMobileMenuIsOpen'],
   standalone: false
 })
@@ -2100,6 +2122,28 @@ export class IfxSelectOption {
 
 
 export declare interface IfxSelectOption extends Components.IfxSelectOption {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ifx-select-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IfxSelectSeparator {
+  protected el: HTMLIfxSelectSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxSelectSeparator extends Components.IfxSelectSeparator {}
 
 
 @ProxyCmp({

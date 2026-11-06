@@ -62,6 +62,7 @@ ${'</'}script>
       :fixed="false"
       logo-href="http://google.com"
       logo-href-target="_self"
+      logo-aria-label="Go to application home"
       @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen">
       <ifx-navbar-item
         icon=""
@@ -175,6 +176,7 @@ ${'</'}template>`;
       :fixed="false"
       logo-href="http://google.com"
       logo-href-target="_self"
+      logo-aria-label="Go to application home"
       @ifxNavbarMobileMenuIsOpen="handleNavbarMobileMenuIsOpen">
       <ifx-navbar-item
         icon=""

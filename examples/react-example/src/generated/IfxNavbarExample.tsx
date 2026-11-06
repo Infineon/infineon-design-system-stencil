@@ -34,6 +34,7 @@ export function IfxNavbarExample() {
         fixed={false}
         logoHref="http://google.com"
         logoHrefTarget="_self"
+        logoAriaLabel="Go to application home"
         onIfxNavbarMobileMenuIsOpen={handleNavbarMobileMenuIsOpen}>
         <IfxNavbarItem
           icon=""
@@ -177,6 +178,7 @@ export function IfxNavbarExample() {
         fixed={false}
         logoHref="http://google.com"
         logoHrefTarget="_self"
+        logoAriaLabel="Go to application home"
         onIfxNavbarMobileMenuIsOpen={handleNavbarMobileMenuIsOpen}>
         <IfxNavbarItem
           icon=""
