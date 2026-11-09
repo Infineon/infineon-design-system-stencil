@@ -1337,6 +1337,11 @@ export namespace Components {
     }
     interface IfxNavbarItem {
         /**
+          * Marks this navigation item as active. Icon-only item clicks do not change the navbar's active selection.
+          * @default false
+         */
+        "active": boolean;
+        /**
           * Marks this item as a menu entry and shows the right-arrow icon if needed.
          */
         "addMenuItemClass": () => Promise<void>;
@@ -3838,6 +3843,7 @@ declare global {
     };
     interface HTMLIfxNavbarItemElementEventMap {
         "ifxNavItem": any;
+        "ifxNavbarNavigationItem": any;
     }
     interface HTMLIfxNavbarItemElement extends Components.IfxNavbarItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxNavbarItemElementEventMap>(type: K, listener: (this: HTMLIfxNavbarItemElement, ev: IfxNavbarItemCustomEvent<HTMLIfxNavbarItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5976,6 +5982,11 @@ declare namespace LocalJSX {
     }
     interface IfxNavbarItem {
         /**
+          * Marks this navigation item as active. Icon-only item clicks do not change the navbar's active selection.
+          * @default false
+         */
+        "active"?: boolean;
+        /**
           * If true, shows a simple dot indicator instead of a number.
           * @default false
          */
@@ -6003,6 +6014,10 @@ declare namespace LocalJSX {
           * Fired when the navigation item is activated or clicked.
          */
         "onIfxNavItem"?: (event: IfxNavbarItemCustomEvent<any>) => void;
+        /**
+          * Fired when a leaf navigation item becomes active.
+         */
+        "onIfxNavbarNavigationItem"?: (event: IfxNavbarItemCustomEvent<any>) => void;
         /**
           * Whether to show the label text next to the icon.
           * @default true
@@ -7978,6 +7993,7 @@ declare namespace LocalJSX {
         "href": string;
         "target": string;
         "hideOnMobile": boolean;
+        "active": boolean;
         "numberIndicator": number;
         "dotIndicator": boolean;
     }

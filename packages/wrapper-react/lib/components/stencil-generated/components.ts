@@ -848,7 +848,8 @@ export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents,
 });
 
 export type IfxNavbarItemEvents = {
-  onIfxNavItem: EventName<IfxNavbarItemCustomEvent<any>>
+  onIfxNavItem: EventName<IfxNavbarItemCustomEvent<any>>,
+  onIfxNavbarNavigationItem: EventName<IfxNavbarItemCustomEvent<any>>
 };
 
 export const IfxNavbarItem: StencilReactComponent<IfxNavbarItemElement, IfxNavbarItemEvents, Components.IfxNavbarItem> = /*@__PURE__*/ createComponent<IfxNavbarItemElement, IfxNavbarItemEvents, Components.IfxNavbarItem>({
@@ -857,7 +858,8 @@ export const IfxNavbarItem: StencilReactComponent<IfxNavbarItemElement, IfxNavba
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxNavItem: 'ifxNavItem'
+      onIfxNavItem: 'ifxNavItem',
+      onIfxNavbarNavigationItem: 'ifxNavbarNavigationItem'
     } as IfxNavbarItemEvents,
     defineCustomElement: defineIfxNavbarItem,
 });
