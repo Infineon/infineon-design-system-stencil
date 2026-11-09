@@ -73,11 +73,6 @@
 			background-color: tokens.$ifxColorEngineering200;
 		}
 
-		&:active:not(.read-only) {
-			//border-color: tokens.$ifxColorEngineering500;
-			background-color: tokens.$ifxColorEngineering300;
-		}
-
 		&.chip__wrapper--opened {
 			//border: 1px solid tokens.$ifxColorOcean500;
 		}
@@ -95,14 +90,6 @@
 				//outline-color: tokens.$ifxColorOcean600;
 			}
 
-			&.read-only {
-				outline: none;
-				//border: 1px solid black;
-
-				&.disabled {
-					border: 1px solid tokens.$ifxColorEngineering300;
-				}
-			}
 		}
 
 		&.disabled {
@@ -114,8 +101,21 @@
 		}
 
 		&.read-only {
-			border: 1px solid tokens.$ifxColorEngineering400;
+			border: 1px solid tokens.$ifxColorBaseBlack;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering200;
+			}
+
+			&:focus-visible {
+				border: 1px solid tokens.$ifxColorEngineering400;
+				outline: 2px solid tokens.$ifxColorOcean500;
+				outline-offset: 2px;
+			}
+
 			&.disabled {
+				background: tokens.$ifxColorBaseWhite;
+				color: tokens.$ifxColorEngineering300;
 				border: 1px solid tokens.$ifxColorEngineering300;
 			}
 		}
@@ -148,7 +148,24 @@
 		}
 
 		&.read-only {
-			//border: 1px solid tokens.$ifxColorEngineering400;
+			border: 1px solid tokens.$ifxColorBaseBlack;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering500;
+				border: none;
+			}
+
+			&:focus-visible {
+				border: tokens.$ifxColorBaseWhite;
+				outline: 2px solid tokens.$ifxColorOcean500;
+				outline-offset: 2px;
+			}
+
+			&.disabled {
+				color: tokens.$ifxColorEngineering300;
+				background-color: tokens.$ifxColorEngineering600;
+				border: none;
+			}
 		}
 	}
 
@@ -179,8 +196,21 @@
 		}
 
 		&.read-only {
-			//border: 1px solid black;
+			border: 1px solid tokens.$ifxColorBaseBlack;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering300;
+				border: none;
+			}
+
+			&:focus-visible {
+				border: tokens.$ifxColorBaseWhite;
+				outline: 2px solid tokens.$ifxColorOcean500;
+				outline-offset: 2px;
+			}
+
 			&.disabled {
+				color: tokens.$ifxColorEngineering300;
 				border: none;
 			}
 		}
