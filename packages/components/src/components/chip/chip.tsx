@@ -13,6 +13,7 @@ import {
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
+import { sanitizeHref } from "../../shared/utils/url-utils";
 import type { ChipItemSelectEvent } from "./interfaces";
 
 @Component({
@@ -29,6 +30,7 @@ export class Chip {
 		currentSelection: Array<ChipItemSelectEvent>;
 		name: string;
 	}>;
+	@Event() ifxClick: EventEmitter<MouseEvent>;
 	/** Placeholder text */
 	@Prop() readonly placeholder: string = "";
 	/** Component size */
@@ -37,6 +39,10 @@ export class Chip {
 	@Prop({ mutable: true }) value: Array<string> | string = undefined;
 	/** Selection mode */
 	@Prop() readonly variant: "single" | "multi" = "single";
+	/** URL navigated to. When set, the chip renders as a link. */
+	@Prop() readonly href: string;
+	/** Browsing context used for navigation. */
+	@Prop() readonly target: "_self" | "_blank" | "_parent" = "_blank";
 	/** Visual theme */
 	@Prop() readonly theme: "outlined" | "filled-light" | "filled-dark" = "outlined";
 	/** Read-only state */
@@ -55,12 +61,29 @@ export class Chip {
 
 	@Watch("value")
 	handleValueChange(newValue: Array<string> | string) {
-		this.syncSelectedOptionsWithProp(newValue);
+		if (!this.isActionable()) {
+			this.syncSelectedOptionsWithProp(newValue);
+		}
+	}
+
+	private isActionable() {
+		return (
+			this.href !== undefined ||
+			this.chip.hasAttribute("href") ||
+			(this.variant === "single" && this.hideDropdownIcon)
+		);
 	}
 
 	@Watch("readOnly")
 	handleReadOnlyChange(newValue: boolean) {
 		if (newValue) {
+			this.opened = false;
+		}
+	}
+
+	@Watch("hideDropdownIcon")
+	handleHideDropdownIconChange(newValue: boolean) {
+		if (newValue && this.variant === "single") {
 			this.opened = false;
 		}
 	}
@@ -164,7 +187,11 @@ export class Chip {
 	}
 
 	private toggleDropdownMenu() {
-		if (this.readOnly) return;
+		if (
+			this.readOnly ||
+			(this.variant === "single" && this.hideDropdownIcon)
+		)
+			return;
 		this.opened = !this.opened;
 	}
 
@@ -242,7 +269,11 @@ export class Chip {
 
 	private handleWrapperKeyDown(event: KeyboardEvent) {
 		// Keymap oriented at https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboard_interaction
-		if (this.readOnly) return;
+		if (
+			this.readOnly ||
+			(this.variant === "single" && this.hideDropdownIcon)
+		)
+			return;
 
 		if (!this.opened) {
 			switch (event.code) {
@@ -350,8 +381,14 @@ export class Chip {
 		this.syncChipState();
 	}
 
+	private handleActionClick = (event: MouseEvent) => {
+		this.ifxClick.emit(event);
+	};
+
 	componentWillLoad() {
-		this.syncSelectedOptionsWithProp(this.value);
+		if (!this.isActionable()) {
+			this.syncSelectedOptionsWithProp(this.value);
+		}
 	}
 
 	async componentDidLoad() {
@@ -362,9 +399,57 @@ export class Chip {
 	}
 
 	render() {
+		const wrapperClass = `chip__wrapper chip__wrapper--${this.size ? this.size : "medium"}
+			chip__wrapper--${this.variant === "multi" ? "multi" : "single"}
+			${this.theme ? this.theme : "outlined"}
+			${this.readOnly ? "read-only" : ""}
+			${this.disabled ? "disabled" : ""}`;
+
 		return (
-			<Host onKeyDown={(event: KeyboardEvent) => this.handleKeyDown(event)}>
+			<Host onKeyDown={!this.isActionable() ? (event: KeyboardEvent) => this.handleKeyDown(event) : undefined}>
 			<div class="chip" part="chip">
+				{this.isActionable() ? (
+					this.href ? (
+						<a
+							class={`${wrapperClass} chip__wrapper--action`}
+							href={sanitizeHref(this.href)}
+							target={this.target}
+							rel={this.target === "_blank" ? "noopener noreferrer" : undefined}
+							tabIndex={this.disabled ? -1 : 0}
+							aria-label={this.ariaLabelText || undefined}
+							aria-disabled={this.disabled ? "true" : undefined}
+							part="label-wrapper"
+						>
+							{this.icon && (
+								<span class="icon__wrapper">
+									<ifx-icon icon={this.icon}></ifx-icon>
+								</span>
+							)}
+							<span class="wrapper__label" part="label">
+								{this.placeholder}
+							</span>
+						</a>
+					) : (
+						<button
+							type="button"
+							class={`${wrapperClass} chip__wrapper--action`}
+							onClick={this.handleActionClick}
+							tabIndex={this.disabled ? -1 : 0}
+							aria-label={this.ariaLabelText || undefined}
+							disabled={this.disabled}
+							part="label-wrapper"
+						>
+							{this.icon && (
+								<span class="icon__wrapper">
+									<ifx-icon icon={this.icon}></ifx-icon>
+								</span>
+							)}
+							<span class="wrapper__label" part="label">
+								{this.placeholder}
+							</span>
+						</button>
+					)
+				) : (
 				<div
 					class={`chip__wrapper chip__wrapper--${this.size ? this.size : "medium"}
                   chip__wrapper--${this.variant === "multi" ? "multi" : "single"}
@@ -446,8 +531,9 @@ export class Chip {
 						</div>
 					)}
 				</div>
+				)}
 
-				{this.opened && !this.readOnly && (
+				{!this.isActionable() && this.opened && !this.readOnly && (
 					<div id="dropdown" role="listbox" class="chip__dropdown">
 						<slot />
 					</div>
