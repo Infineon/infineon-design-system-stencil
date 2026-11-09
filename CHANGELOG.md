@@ -1,3 +1,15 @@
+# v42.3.2 (Mon Nov 09 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: Fixes selection via checkbox bug, and improves keyboard navigation [#2604](https://github.com/Infineon/infineon-design-system-stencil/pull/2604) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.3.1 (Thu Nov 05 2026)
 
 #### 🐛 Bug Fix
