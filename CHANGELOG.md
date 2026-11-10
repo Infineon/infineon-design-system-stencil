@@ -1,3 +1,66 @@
+# v42.3.2 (Mon Nov 09 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: Fixes selection via checkbox bug, and improves keyboard navigation [#2604](https://github.com/Infineon/infineon-design-system-stencil/pull/2604) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.3.1 (Thu Nov 05 2026)
+
+#### 🐛 Bug Fix
+
+- Updates Chip component documentation, and Stencil documentation link in GitHub repository [#2597](https://github.com/Infineon/infineon-design-system-stencil/pull/2597) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.3.0 (Thu Nov 05 2026)
+
+#### 🚀 Enhancement
+
+- Navbar: adds logoAriaLabel prop for customization of the Logo aria label [#2598](https://github.com/Infineon/infineon-design-system-stencil/pull/2598) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+#### Authors: 1
+
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+
+---
+
+# v42.2.1 (Thu Nov 05 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: Renders related label as selected item instead of Value attribute [#2600](https://github.com/Infineon/infineon-design-system-stencil/pull/2600) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.2.0 (Wed Nov 04 2026)
+
+#### 🚀 Enhancement
+
+- Adds a separator option to Single and Multi select components [#2307](https://github.com/Infineon/infineon-design-system-stencil/pull/2307) ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- João Araújo ([@joaoaraujo-pt](https://github.com/joaoaraujo-pt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.1.0 (Tue Nov 03 2026)
 
 #### 🚀 Enhancement

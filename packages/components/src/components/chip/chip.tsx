@@ -38,7 +38,8 @@ export class Chip {
 	/** Selection mode */
 	@Prop() readonly variant: "single" | "multi" = "single";
 	/** Visual theme */
-	@Prop() readonly theme: "outlined" | "filled-light" | "filled-dark" = "outlined";
+	@Prop() readonly theme: "outlined" | "filled-light" | "filled-dark" =
+		"outlined";
 	/** Read-only state */
 	@Prop() readonly readOnly: boolean = false;
 	/** ARIA Label text */
@@ -50,6 +51,8 @@ export class Chip {
 
 	@State() opened: boolean = false;
 	@State() selectedOptions: Array<ChipItemSelectEvent> = [];
+
+	private observer?: MutationObserver;
 
 	@Watch("value")
 	handleValueChange(newValue: Array<string> | string) {
@@ -125,14 +128,14 @@ export class Chip {
 				// Prevent duplicate entries
 				if (
 					!this.selectedOptions.find(
-						(option) => option.value === eventDetail.value,
+						(option) => option.value === eventDetail.value
 					)
 				) {
 					this.selectedOptions = [...this.selectedOptions, eventDetail];
 				}
 			} else {
 				this.selectedOptions = this.selectedOptions.filter(
-					(option) => option.value !== eventDetail.value,
+					(option) => option.value !== eventDetail.value
 				);
 			}
 			this.value = this.selectedOptions.map((option) => option.value);
@@ -185,7 +188,7 @@ export class Chip {
 		}
 
 		const shadowItem = item.shadowRoot.querySelector(
-			".chip-item",
+			".chip-item"
 		) as HTMLDivElement;
 		if (shadowItem) {
 			// Delay needed for the shadow item to be rendered.
@@ -201,7 +204,16 @@ export class Chip {
 		chipWrapper.focus();
 	}
 
-	private handleUnselectButtonClick(event: MouseEvent) {
+	private handleUnselectKeyDown(event: KeyboardEvent) {
+    if (event.code === "Enter" || event.code === "Space") {
+        event.stopPropagation();
+        event.preventDefault();
+        this.handleUnselectButtonClick(event);
+        this.focusChip();
+    }
+}
+
+	private handleUnselectButtonClick(event: Event) {
 		event.stopPropagation();
 		this.opened = false;
 
@@ -267,7 +279,7 @@ export class Chip {
 		const chipitems = this.getChipItems();
 
 		const targetIndex = Array.from(chipitems).indexOf(
-			event.target as HTMLIfxChipItemElement,
+			event.target as HTMLIfxChipItemElement
 		);
 		if (targetIndex === -1) {
 			console.error("Target not found in chip items");
@@ -316,19 +328,34 @@ export class Chip {
 		});
 	}
 
-	private syncSelectedOptionsWithProp(newValue: Array<string> | string) {
-		// Clear old selected options
-		this.selectedOptions = [];
+	private getLabelForValue(value: string): string {
+		const item = (
+			Array.from(this.getChipItems()) as HTMLIfxChipItemElement[]
+		).find((chipItem) => chipItem.value === value);
+		return item?.textContent?.trim() || value;
+	}
 
+	private refreshLabels() {
+		let changed = false;
+		const updated = this.selectedOptions.map((option) => {
+			const label = this.getLabelForValue(option.value);
+			if (label === option.label) return option;
+			changed = true;
+			return { ...option, label };
+		});
+		if (changed) this.selectedOptions = updated;
+	}
+
+	private syncSelectedOptionsWithProp(newValue: Array<string> | string) {
+		this.selectedOptions = [];
 		const generateKey = (() => {
 			let count = 0;
 			return () => count++;
 		})();
-
 		if (Array.isArray(newValue)) {
 			this.selectedOptions = newValue.map((value) => ({
 				value,
-				label: value,
+				label: this.getLabelForValue(value),
 				selected: true,
 				key: generateKey(),
 				emitIfxChange: true,
@@ -337,14 +364,13 @@ export class Chip {
 			this.selectedOptions = [
 				{
 					value: newValue,
-					label: newValue,
+					label: this.getLabelForValue(newValue),
 					selected: true,
 					key: generateKey(),
 					emitIfxChange: true,
 				},
 			];
 		}
-
 		this.syncChipState();
 	}
 
@@ -352,103 +378,133 @@ export class Chip {
 		this.syncSelectedOptionsWithProp(this.value);
 	}
 
-	async componentDidLoad() {
-		if (!isNestedInIfxComponent(this.chip)) {
-			const framework = detectFramework();
-			trackComponent("ifx-chip", await framework);
-		}
+async componentDidLoad() {
+    this.refreshLabels();
+    if (typeof MutationObserver !== "undefined") {
+        this.observer = new MutationObserver(() => {
+            this.syncChipState();
+            this.refreshLabels();
+        });
+        this.observer.observe(this.chip, {
+            childList: true,
+            subtree: true,
+            characterData: true,
+        });
+    }
+    if (!isNestedInIfxComponent(this.chip)) {
+        const framework = detectFramework();
+        trackComponent("ifx-chip", await framework);
+    }
+}
+
+	disconnectedCallback() {
+		this.observer?.disconnect();
 	}
 
 	render() {
 		return (
 			<Host onKeyDown={(event: KeyboardEvent) => this.handleKeyDown(event)}>
-			<div class="chip" part="chip">
-				<div
-					class={`chip__wrapper chip__wrapper--${this.size ? this.size : "medium"}
-                  chip__wrapper--${this.variant === "multi" ? "multi" : "single"}
-                  ${this.opened && !this.readOnly ? "chip__wrapper--opened" : ""}
-                  ${this.selectedOptions.length ? "chip__wrapper--selected" : ""}
+				<div class="chip" part="chip">
+					<div
+						class={`chip__wrapper chip__wrapper--${
+							this.size ? this.size : "medium"
+						}
+                  chip__wrapper--${
+										this.variant === "multi" ? "multi" : "single"
+									}
+                  ${
+										this.opened && !this.readOnly ? "chip__wrapper--opened" : ""
+									}
+                  ${
+										this.selectedOptions.length ? "chip__wrapper--selected" : ""
+									}
                   ${this.theme ? this.theme : "outlined"}
                   ${this.disabled ? "disabled" : ""}
                   ${this.readOnly ? "read-only" : ""}`}
-					tabIndex={0}
-					onClick={
-						!this.readOnly && !this.disabled
-							? () => {
-									this.handleWrapperClick();
-								}
-							: undefined
-					}
-					role="combobox"
-					aria-label-text={this.ariaLabelText}	
-					aria-value={this.getSelectedOptions()}
-					aria-haspopup={!this.readOnly ? "listbox" : undefined}
-					aria-expanded={!this.readOnly ? this.opened.toString() : undefined}
-					aria-controls={!this.readOnly ? "dropdown" : undefined}
-					aria-readonly={this.readOnly ? "true" : undefined}
-					aria-multiselectable={this.variant === "multi" ? "true" : undefined}
-					part="label-wrapper"
-				>
-					{this.icon && (
-						<div class="icon__wrapper">
-							<ifx-icon icon={this.icon}></ifx-icon>
-						</div>
-					)}
-
-					<div class="wrapper__label" part="label">
-						{this.selectedOptions.length === 0 && `${this.placeholder}`}
-
-						{this.selectedOptions.length !== 0 &&
-							this.variant === "multi" &&
-							this.placeholder !== "" &&
-							`${this.placeholder}:`}
-
-						{this.selectedOptions.length !== 0 && (
-							<div class="label__selected-options">
-								{this.getSelectedOptions()}
+						tabIndex={0}
+						onClick={
+							!this.readOnly && !this.disabled
+								? () => {
+										this.handleWrapperClick();
+								  }
+								: undefined
+						}
+						role="combobox"
+						aria-label-text={this.ariaLabelText}
+						aria-value={this.getSelectedOptions()}
+						aria-haspopup={!this.readOnly ? "listbox" : undefined}
+						aria-expanded={!this.readOnly ? this.opened.toString() : undefined}
+						aria-controls={!this.readOnly ? "dropdown" : undefined}
+						aria-readonly={this.readOnly ? "true" : undefined}
+						aria-multiselectable={this.variant === "multi" ? "true" : undefined}
+						part="label-wrapper"
+					>
+						{this.icon && (
+							<div class="icon__wrapper">
+								<ifx-icon icon={this.icon}></ifx-icon>
 							</div>
 						)}
 
-						{this.selectedOptions.length > 2 && this.variant === "multi" && (
-							<ifx-indicator
-								variant="number"
-								inverted={this.theme === "outlined" ? false : true}
-								number={this.selectedOptions.length - 2}
-							></ifx-indicator>
+						<div class="wrapper__label" part="label">
+							{this.selectedOptions.length === 0 && `${this.placeholder}`}
+
+							{this.selectedOptions.length !== 0 &&
+								this.variant === "multi" &&
+								this.placeholder !== "" &&
+								`${this.placeholder}:`}
+
+							{this.selectedOptions.length !== 0 && (
+								<div class="label__selected-options">
+									{this.getSelectedOptions()}
+								</div>
+							)}
+
+							{this.selectedOptions.length > 2 && this.variant === "multi" && (
+								<ifx-indicator
+									variant="number"
+									inverted={this.theme === "outlined" ? false : true}
+									number={this.selectedOptions.length - 2}
+								></ifx-indicator>
+							)}
+						</div>
+
+						{!this.readOnly &&
+							(this.variant !== "multi" ||
+								(this.variant === "multi" &&
+									this.selectedOptions.length === 0)) && (
+								<div class="wrapper__open-button">
+									<ifx-icon key={1} icon={`chevron-down-16`} />
+								</div>
+							)}
+
+						{this.selectedOptions.length >= 1 && this.variant === "multi" && (
+								<div
+										class="wrapper__unselect-button"
+										role="button"
+										aria-label="Clear selection"
+										tabIndex={!this.readOnly && !this.disabled ? 0 : -1}
+										onClick={
+												!this.readOnly && !this.disabled
+														? (e) => this.handleUnselectButtonClick(e)
+														: undefined
+										}
+										onKeyDown={
+												!this.readOnly && !this.disabled
+														? (e) => this.handleUnselectKeyDown(e)
+														: undefined
+										}
+								>
+										<ifx-icon key={2} icon={`cross16`} />
+								</div>
 						)}
 					</div>
 
-					{!this.readOnly &&
-						(this.variant !== "multi" ||
-							(this.variant === "multi" &&
-								this.selectedOptions.length === 0)) && (
-							<div class="wrapper__open-button">
-								<ifx-icon key={1} icon={`chevron-down-16`} />
-							</div>
-						)}
-
-					{this.selectedOptions.length >= 1 && this.variant === "multi" && (
-						<div
-							class="wrapper__unselect-button"
-							onClick={
-								!this.readOnly && !this.disabled
-									? (e) => {
-											this.handleUnselectButtonClick(e);
-										}
-									: undefined
-							}
-						>
-							<ifx-icon key={2} icon={`cross16`} />
+					{this.opened && !this.readOnly && (
+						<div id="dropdown" role="listbox" class="chip__dropdown">
+							<slot />
 						</div>
 					)}
 				</div>
-
-				{this.opened && !this.readOnly && (
-					<div id="dropdown" role="listbox" class="chip__dropdown">
-						<slot />
-					</div>
-				)}
-			</div>
 			</Host>
 		);
 	}

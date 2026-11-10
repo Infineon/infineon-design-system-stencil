@@ -320,6 +320,23 @@ export class Multiselect {
 		return leafOptions;
 	}
 
+	// Set separators hidden or visible based on search state
+	private setSeparatorsHidden(hidden: boolean) {
+		const separators = this.el.querySelectorAll("ifx-multiselect-separator");
+
+		separators.forEach((separator) => {
+			(separator as HTMLElement).hidden = hidden;
+		});
+	}
+
+	private hideSeparators(){
+		this.setSeparatorsHidden(true);
+	}
+
+	private showSeparators() {
+		this.setSeparatorsHidden(false);
+	}
+
 	private handleSearch = debounce((targetElement: HTMLInputElement) => {
 		if (this.isEffectivelyDisabled()) return;
 		const searchTerm = targetElement.value.toLowerCase();
@@ -355,7 +372,7 @@ export class Multiselect {
 				optionsContainer.classList.remove("has-search-filter");
 			}
 		}
-
+		
 		requestAnimationFrame(() => {
 			const allOptions = this.getAllOptionElements();
 			allOptions.forEach((option) => {
@@ -374,7 +391,7 @@ export class Multiselect {
 					allOptions.forEach((option) => {
 						const style = window.getComputedStyle(option);
 						const rect = option.getBoundingClientRect();
-
+						
 						if (
 							style.display !== "none" &&
 							style.visibility !== "hidden" &&
@@ -384,7 +401,7 @@ export class Multiselect {
 							visibleCount++;
 						}
 					});
-
+					
 					const optionsContainer = this.el.shadowRoot.querySelector(
 						".ifx-multiselect-options",
 					);
@@ -393,8 +410,10 @@ export class Multiselect {
 							optionsContainer.classList.add("show-no-results");
 						} else {
 							optionsContainer.classList.remove("show-no-results");
-						}
+						}		
 					}
+
+					this.hideSeparators();
 				}, 200);
 			} else {
 				this.updateGroupVisibility(false);
@@ -404,6 +423,8 @@ export class Multiselect {
 				if (optionsContainer) {
 					optionsContainer.classList.remove("show-no-results");
 				}
+				
+				this.showSeparators();
 			}
 		});
 	}, 150);
@@ -696,6 +717,7 @@ export class Multiselect {
 			option.dispatchEvent(searchEvent);
 		});
 		this.updateGroupVisibility(false);
+		this.showSeparators();
 	}
 
 	private applySelectedOptionsFilter() {
