@@ -68,9 +68,40 @@
 
 	&.outlined {
 		border: 1px solid tokens.$ifxColorEngineering400;
-		&:hover:not(.read-only) {
+
+		&.chip__wrapper--action {
+			color: tokens.$ifxColorBaseBlack;
+			text-decoration: none;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering200;
+				border: 1px solid tokens.$ifxColorEngineering300;
+			}
+
+			&:focus-visible {
+				background-color: tokens.$ifxColorBaseWhite;
+			}
+
+			&:active {
+				background-color: tokens.$ifxColorEngineering400;
+				border: 1px solid tokens.$ifxColorEngineering300;
+			}
+
+			&.disabled {
+				background-color: tokens.$ifxColorBaseWhite;
+				border: 1px solid tokens.$ifxColorEngineering300;
+				color: tokens.$ifxColorEngineering300;
+			}
+		}
+
+		&:hover:not(.read-only, .chip__wrapper--action) {
 			//border-color: tokens.$ifxColorEngineering500;
 			background-color: tokens.$ifxColorEngineering200;
+		}
+
+		&:active:not(.read-only, .chip__wrapper--action) {
+			//border-color: tokens.$ifxColorEngineering500;
+			background-color: tokens.$ifxColorEngineering300;
 		}
 
 		&.chip__wrapper--opened {
@@ -125,11 +156,34 @@
 		background-color: tokens.$ifxColorEngineering600;
 		color: white;
 
-		&:hover:not(.chip__wrapper--selected, .disabled, .read-only) {
+		&.chip__wrapper--action {
+			text-decoration: none;
+			border: none;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering500;
+			}
+
+			&:focus-visible {
+				border: 1px solid tokens.$ifxColorBaseWhite;
+			}
+
+			&:active {
+				background-color: tokens.$ifxColorEngineering400;
+				color: tokens.$ifxColorBaseBlack;
+			}
+
+			&.disabled {
+				background-color: tokens.$ifxColorEngineering600;
+				color: tokens.$ifxColorEngineering300;
+			}
+		}
+
+		&:hover:not(.chip__wrapper--selected, .disabled, .read-only, .chip__wrapper--action) {
 			background-color: tokens.$ifxColorEngineering500;
 		}
 
-		&:active:not(.chip__wrapper--selected, .disabled, .read-only) {
+		&:active:not(.chip__wrapper--selected, .disabled, .read-only, .chip__wrapper--action) {
 			background-color: tokens.$ifxColorEngineering400;
 			color: black;
 		}
@@ -172,11 +226,34 @@
 	&.filled-light {
 		background-color: tokens.$ifxColorEngineering200;
 
-		&:hover:not(.read-only) {
+		&.chip__wrapper--action {
+			color: tokens.$ifxColorBaseBlack;
+			text-decoration: none;
+			border: none;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering300;
+			}
+
+			&:focus-visible {
+				border: 1px solid tokens.$ifxColorBaseWhite;
+			}
+
+			&:active {
+				background-color: tokens.$ifxColorEngineering400;
+			}
+
+			&.disabled {
+				background-color: tokens.$ifxColorEngineering200;
+				color: tokens.$ifxColorEngineering300;
+			}
+		}
+
+		&:hover:not(.read-only, .chip__wrapper--action) {
 			background-color: tokens.$ifxColorEngineering300;
 		}
 
-		&:active:not(.read-only) {
+		&:active:not(.read-only, .chip__wrapper--action) {
 			background-color: tokens.$ifxColorEngineering400;
 		}
 
