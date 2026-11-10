@@ -8,6 +8,15 @@
   
 
   &.disabled {
+    &,
+    * {
+      cursor: default !important;
+    }
+
+    .ifx-multiselect-input ifx-chip.ifx-multiselect-chip::part(label-wrapper) {
+      cursor: default !important;
+    }
+
     & .ifx-label-wrapper {
       color: tokens.$ifxColorEngineering300;
     }
@@ -28,10 +37,11 @@
 
     .ifx-multiselect-wrapper {
       border: none;
-      border-bottom: 1px solid tokens.$ifxColorEngineering300;
+      border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering300;
       border-radius: tokens.$ifxBorderRadius12;
       pointer-events: none;
       padding-left: 0;
+      cursor: default;
 
       .ifx-clear-button {
         display: none;
@@ -57,7 +67,7 @@
     max-width: 100%;
 
     & .required {
-      margin-left: 4px;
+      margin-left: tokens.$ifxSpace50;
 
       &.error {
         color: tokens.$ifxColorRed500;
@@ -90,14 +100,14 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    border: 1px solid tokens.$ifxColorEngineering400;
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering400;
     border-radius: tokens.$ifxBorderRadius12;
     width: 100%;
-    font-weight: 400;
+    font-weight: tokens.$ifxFontWeightRegular;
     font-style: normal;
-    height: 40px;
+    height: tokens.$ifxSize500;
     line-height: 24px;
-    padding: tokens.$ifxSpace50 tokens.$ifxSpace200;
+    padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
     font-size: tokens.$ifxFontSizeM;
     line-height: tokens.$ifxLineHeightM;
 
@@ -111,13 +121,13 @@
       &::before {
         content: '';
         position: absolute;
-        width: calc(100% + 4px);
-        height: calc(100% + 4px);
+        width: calc(100% + #{tokens.$ifxSpace50});
+        height: calc(100% + #{tokens.$ifxSpace50});
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid tokens.$ifxColorOcean500;
-        border-radius: 2px;
+        border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorOcean500;
+        border-radius: tokens.$ifxBorderRadius25;
       }
     }
 
@@ -182,6 +192,11 @@
     }
   }
 
+  &.disabled .ifx-multiselect-input.placeholder {
+    color: tokens.$ifxColorBaseWhite;
+    font-weight: tokens.$ifxFontWeightRegular;
+  }
+
   .ifx-multiselect-measurement {
     position: absolute;
     top: 0;
@@ -195,7 +210,7 @@
     white-space: nowrap;
   }
 
-  .ifx-multiselect-chip {
+  span.ifx-multiselect-chip {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -242,7 +257,7 @@
         height: 12px;  
       }
 
-    &:hover {
+    &:hover:not(:disabled) {
       color: tokens.$ifxColorOcean600;
     }
 
@@ -272,6 +287,12 @@
     font-style: normal;
     font-weight: 600;
     line-height: 16px; /* 114.286% */
+
+    &.disabled {
+      background-color: tokens.$ifxColorEngineering300;
+      cursor: default;
+      pointer-events: none;
+    }
   }
 
   .ifx-multiselect-icon-container {
@@ -307,7 +328,7 @@
     cursor: pointer;
 
     &:focus-visible {
-      outline: 2px solid tokens.$ifxColorOcean500;
+      border: 2px solid tokens.$ifxColorOcean500;
       outline-offset: 1px;
     }
 
@@ -324,7 +345,7 @@
     width: 100%;
     margin-top: tokens.$ifxSpace50;
     padding-bottom: tokens.$ifxSpace100;
-    border: 1px solid tokens.$ifxColorEngineering200;
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
     background-color: tokens.$ifxColorBaseWhite;
     box-shadow: tokens.$ifxShadow100;
     max-height: 300px;
@@ -333,14 +354,15 @@
     flex-direction: column;
   }
 
-   &:not(.disabled) .ifx-multiselect-wrapper:hover:not(.focus, :focus) {
+  &:not(.readOnly):not(.disabled)
+    .ifx-multiselect-wrapper:hover:not(.active, :focus) {
     border-color: tokens.$ifxColorEngineering500;
   }
 }
 
 .ifx-multiselect-dropdown-functions {
   padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
-  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+  border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
   flex-shrink: 0;
 }
 
@@ -359,6 +381,10 @@
     flex: 1 1 auto;
     min-width: 0;
 
+    &.disabled {
+      pointer-events: none;
+    }
+
     ifx-checkbox {
       width: 100%;
     }
@@ -375,6 +401,10 @@
 
     &:hover {
       color: tokens.$ifxColorOcean500;
+    }
+
+    &[aria-disabled="true"] {
+      color: tokens.$ifxColorEngineering300;
     }
 
     &:active {
