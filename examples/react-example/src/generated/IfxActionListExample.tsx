@@ -1,4 +1,4 @@
-import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-react';
+import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/design-system-react';
 
 export function IfxActionListExample() {
   const handleActionListItemClick = (event: CustomEvent) => {
@@ -61,7 +61,7 @@ export function IfxActionListExample() {
   );
 }
 
-const codeString = `import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/design-system-react';
 
 export function IfxActionListExample() {
   const handleActionListItemClick = (event: CustomEvent) => {

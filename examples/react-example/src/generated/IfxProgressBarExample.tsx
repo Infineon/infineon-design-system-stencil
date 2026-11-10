@@ -1,4 +1,4 @@
-import { IfxProgressBar } from '@infineon/infineon-design-system-react';
+import { IfxProgressBar } from '@infineon/design-system-react';
 
 export function IfxProgressBarExample() {
   return (
@@ -15,7 +15,7 @@ export function IfxProgressBarExample() {
   );
 }
 
-const codeString = `import { IfxProgressBar } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxProgressBar } from '@infineon/design-system-react';
 
 export function IfxProgressBarExample() {
   return (

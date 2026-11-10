@@ -105,6 +105,7 @@
 .navbar__right {
   gap: tokens.$ifxSpace100;
   flex: none;
+  margin-left: auto;
   justify-content: flex-end;
 }
 

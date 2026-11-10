@@ -1,4 +1,4 @@
-import { icons } from "@infineon/infineon-icons";
+import { icons } from "@infineon/design-system-icons";
 import { html } from "lit";
 export default {
 	title: "Components/Navigation/Navbar",
@@ -13,6 +13,7 @@ export default {
 		showLogoAndAppname: true,
 		logoHref: "http://google.com",
 		logoHrefTarget: "_self",
+		logoAriaLabel: "Go to application home",
 		searchBarPosition: "left",
 		hideOnMobile: true,
 		profileImageUrl: "",
@@ -74,6 +75,14 @@ export default {
 				type: {
 					summary: "_self | _blank | _parent",
 				},
+			},
+		},
+		logoAriaLabel: {
+			control: { type: "text" },
+			description: "Accessible label for the logo link.",
+			table: {
+				defaultValue: { summary: "Go to application home" },
+				category: "ifx-navbar props",
 			},
 		},
 		showLabelOfNavbarItem: {
@@ -227,7 +236,7 @@ export default {
 };
 
 const DefaultTemplate = (args:any) =>
-	html`<ifx-navbar  show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}" logo-href="${args.logoHref}" logo-href-target="${args.logoHrefTarget}">
+	html`<ifx-navbar  show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}" logo-href="${args.logoHref}" logo-href-target="${args.logoHrefTarget}" logo-aria-label="${args.logoAriaLabel}">
   <ifx-navbar-item icon="${args.iconOfNavbarItem}" slot="left-item" target="${args.targetOfnavbarItem}" href="${args.hrefOfNavbarItem}" hide-on-mobile="${args.hideOnMobile}">
     Menu Item
     <ifx-navbar-item icon="">

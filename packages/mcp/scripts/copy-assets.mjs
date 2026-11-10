@@ -46,7 +46,7 @@ async function main() {
 
 	if (!(await exists(docsSrc))) {
 		throw new Error(
-			`Missing ${docsSrc}. Build the Stencil package first (e.g. \`pnpm --filter @infineon/infineon-design-system-stencil run build\`).`,
+			`Missing ${docsSrc}. Build the Stencil package first (e.g. \`pnpm --filter @infineon/design-system run build\`).`,
 		);
 	}
 

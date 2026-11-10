@@ -1,4 +1,4 @@
-import { IfxSwitch } from '@infineon/infineon-design-system-react';
+import { IfxSwitch } from '@infineon/design-system-react';
 
 export function IfxSwitchExample() {
   const handleChange = (event: CustomEvent) => {
@@ -25,7 +25,7 @@ export function IfxSwitchExample() {
   );
 }
 
-const codeString = `import { IfxSwitch } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxSwitch } from '@infineon/design-system-react';
 
 export function IfxSwitchExample() {
   const handleChange = (event: CustomEvent) => {

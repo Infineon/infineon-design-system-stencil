@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxCheckbox } from '@infineon/infineon-design-system-vue';
+import { IfxCheckbox } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);

@@ -1,4 +1,4 @@
-import { IfxChip, IfxChipItem } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxChip, IfxChipItem } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-chip-example.scss'
 })
 export class IfxChipExample {
-  protected readonly tsCode = `import { IfxChip, IfxChipItem } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxChip, IfxChipItem } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -37,10 +37,10 @@ export class IfxChipExample {
     aria-label=&quot;Chip&quot;
     [readOnly]=&quot;false&quot;
     value=&quot;Item Value&quot;
-    [disabled]=&quot;false&quot;&gt;
+    [disabled]=&quot;false&quot;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;
-      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
       (ifxChipItemSelect)=&quot;handleChipItemSelect(\$any(\$event))&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;
     &lt;ifx-chip-item value=&quot;Item Value 2&quot;&gt;Item Label 2&lt;/ifx-chip-item&gt;
     &lt;ifx-chip-item value=&quot;Item Value 3&quot;&gt;Item Label 3&lt;/ifx-chip-item&gt;

@@ -80,7 +80,7 @@ export class Sidebar {
 	/** Emitted when logo image is clicked */
 	@Event({ bubbles: true, composed: true }) ifxSidebarLogoClick: EventEmitter;
 
-	private expandActiveItems() {
+	private async expandActiveItems() {
 		const expandRecursively = async (parent) => {
 			if ((await parent.isItemExpandable()) !== true) {
 				if (parent.active) return 1;
@@ -93,9 +93,9 @@ export class Sidebar {
 			}
 			if (currRes > 0) {
 				if (currRes == 1) {
-					parent.expandMenu(false);
+					await parent.expandMenu(false);
 				} else {
-					parent.expandMenu(true);
+					await parent.expandMenu(true);
 				}
 			}
 
@@ -104,151 +104,52 @@ export class Sidebar {
 
 		const topLevelItems = this.getSidebarMenuItems(this.el);
 		for (let i = 0; i < topLevelItems.length; i++) {
-			expandRecursively(topLevelItems[i]);
+			await expandRecursively(topLevelItems[i]);
 		}
 	}
 
-	private adjustTopBorder() {
-		const children = this.el.children;
-		if (!children.length) return;
-		if (children[0].tagName === "IFX-SIDEBAR-TITLE") {
-			children[0].shadowRoot
-				.querySelector(".sidebar__title")
-				.classList.add("no-top-border");
-		}
-
-		if (
-			children[0].tagName === "IFX-SIDEBAR-ITEM" &&
-			children[0].shadowRoot
-				.querySelector("div > a")
-				.classList.contains("header__section")
-		) {
-			children[0].shadowRoot
-				.querySelector("div > a")
-				.classList.add("no-top-border");
-		}
-
-		const allIfxTitles = this.el.querySelectorAll("ifx-sidebar-title");
-		allIfxTitles.forEach((element) => {
-			const nextSibling = element.nextElementSibling;
-			if (
-				nextSibling &&
-				nextSibling.tagName === "IFX-SIDEBAR-ITEM" &&
-				nextSibling.shadowRoot
-					.querySelector("div > a")
-					.classList.contains("header__section")
-			) {
-				nextSibling.shadowRoot
-					.querySelector("div > a")
-					.classList.add("no-top-border");
-			}
-		});
-	}
-
-	private async addPaddingToTheLastItem(sidebarItem) {
-		const sidebarChildItems = this.getSidebarMenuItems(sidebarItem);
-
-		for (let i = 0; i < sidebarChildItems.length; i++) {
-			const childItem = sidebarChildItems[i];
-			const childNavItem = this.getNavItem(childItem.shadowRoot);
-			const isChildItemExpandable = await childItem.isItemExpandable();
-
-			if (isChildItemExpandable) {
-				this.addPaddingToTheLastItem(childItem);
-			}
-
-			if (i === sidebarChildItems.length - 1) {
-				this.handleClassList(childNavItem, "add", "extra-padding__bottom");
-			}
-		}
-	}
-
-	private async adjustItemsPadding() {
+	private adjustItemsPadding() {
 		const sidebarItems = this.el.children;
 
-		if (sidebarItems.length === 0) return;
+		for (let index = 0; index < sidebarItems.length - 1; index++) {
+			const sidebarItem = sidebarItems[index];
+			const nextSidebarItem = sidebarItems[index + 1];
 
-		// Processing first item
-		if (sidebarItems[0].tagName.toUpperCase() === "IFX-SIDEBAR-ITEM") {
-			const firstItem = sidebarItems[0];
-			if (this.isSidebarItem(firstItem)) {
-				const isFirstSidebarItemExpandable = await firstItem.isItemExpandable();
-				if (isFirstSidebarItemExpandable) {
-					this.addPaddingToTheLastItem(firstItem);
-				}
+			if (sidebarItem.tagName.toUpperCase() !== "IFX-SIDEBAR-ITEM") {
+				continue;
+			}
+
+			const sidebarNavItem = this.getNavItem(sidebarItem.shadowRoot);
+			if (
+				!sidebarNavItem ||
+				this.handleClassList(sidebarNavItem, "contains", "header__section")
+			) {
+				continue;
+			}
+
+			const nextIsTitle =
+				nextSidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-TITLE";
+			const nextIsHeader =
+				nextSidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-ITEM" &&
+				nextSidebarItem.shadowRoot &&
+				this.handleClassList(
+					this.getNavItem(nextSidebarItem.shadowRoot),
+					"contains",
+					"header__section",
+				);
+
+			if (nextIsTitle || nextIsHeader) {
+				this.handleClassList(sidebarNavItem, "add", "extra-padding__bottom");
 			}
 		}
-
-		// Processing remaining items
-		for (let i = 1; i < sidebarItems.length; i++) {
-			const sidebarItem = sidebarItems[i];
-			const previousSidebarItem = sidebarItems[i - 1];
-			const previousSidebarNavItem = this.getNavItem(
-				previousSidebarItem.shadowRoot,
-			);
-
-			if (sidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-TITLE") {
-				if (
-					previousSidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-ITEM" &&
-					previousSidebarNavItem &&
-					!this.handleClassList(
-						previousSidebarNavItem,
-						"contains",
-						"header__section",
-					)
-				) {
-					this.handleClassList(
-						previousSidebarNavItem,
-						"add",
-						"extra-padding__bottom",
-					);
-				}
-			} else if (sidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-ITEM") {
-				const sidebarNavItem = this.getNavItem(sidebarItem.shadowRoot);
-
-				if (
-					previousSidebarItem.tagName.toUpperCase() === "IFX-SIDEBAR-ITEM" &&
-					previousSidebarNavItem &&
-					!this.handleClassList(
-						previousSidebarNavItem,
-						"contains",
-						"header__section",
-					) &&
-					this.handleClassList(sidebarNavItem, "contains", "header__section")
-				) {
-					this.handleClassList(
-						previousSidebarNavItem,
-						"add",
-						"extra-padding__bottom",
-					);
-				}
-
-				if (this.isSidebarItem(sidebarItem)) {
-					const isSidebarItemExpandable = await sidebarItem.isItemExpandable();
-					if (isSidebarItemExpandable) {
-						this.addPaddingToTheLastItem(sidebarItem);
-					}
-				}
-			}
-		}
-	}
-
-	private isSidebarItem(
-		element: Element,
-	): element is HTMLIfxSidebarItemElement {
-		return (
-			typeof (element as HTMLIfxSidebarItemElement).isItemExpandable ===
-			"function"
-		);
 	}
 
 	async componentDidLoad() {
 		const framework = detectFramework();
 		trackComponent("ifx-sidebar", await framework);
-		this.adjustTopBorder();
 		this.setInitialActiveItem();
 		if (!this.initialCollapse) {
-			this.expandActiveItems();
+			await this.expandActiveItems();
 		}
 		this.adjustItemsPadding();
 		this.applyActiveSectionToParent(this.el);
@@ -282,7 +183,7 @@ export class Sidebar {
 					item.setAttribute("active", "false"); // Set the 'active' attribute to 'false'
 				}
 
-				// If the clicked item is a menu and doesn't have any active children
+				// Remove the indicator from sections without an active child.
 				if (
 					this.hasChildren(item.shadowRoot) &&
 					!this.hasActiveChild(item.shadowRoot)
@@ -290,16 +191,6 @@ export class Sidebar {
 					const clickedItemSection = this.getActiveItemSection(item);
 					this.handleClassList(clickedItemSection, "remove", "active-section");
 				}
-				// If clickedItem is an opened menu and it contains another menu with 'active-section'
-				if (
-					this.hasChildren(item.shadowRoot) &&
-					this.isOpen(item.shadowRoot) &&
-					this.containsActiveSection(item)
-				) {
-					const clickedItemSection = this.getActiveItemSection(item);
-					this.handleClassList(clickedItemSection, "remove", "active-section");
-				}
-
 				// Recursive call for child items
 				if (this.hasChildren(item.shadowRoot)) {
 					handleItem(item.shadowRoot);
@@ -409,62 +300,63 @@ export class Sidebar {
 			this.handleBorderIndicatorDisplacement(clickedItem);
 		}
 
-		// If the clicked item is a menu and doesn't have any active children
 		if (
 			this.hasChildren(clickedItem.shadowRoot) &&
-			!this.hasActiveChild(clickedItem.shadowRoot)
+			this.getNavItem(clickedItem.shadowRoot).classList.contains(
+				"header__section",
+			)
 		) {
 			const clickedItemSection = this.getActiveItemSection(clickedItem);
-			this.handleClassList(clickedItemSection, "remove", "active-section");
-		}
-
-		// If clickedItem is an opened menu and it contains another menu with 'active-section'
-		if (
-			this.hasChildren(clickedItem.shadowRoot) &&
-			this.isOpen(clickedItem.shadowRoot) &&
-			this.containsActiveSection(clickedItem)
-		) {
-			const clickedItemSection = this.getActiveItemSection(clickedItem);
-			this.handleClassList(clickedItemSection, "remove", "active-section");
-		}
-	}
-
-	private isOpen(menuItem) {
-		return this.getNavItem(menuItem).classList.contains("open") ? true : false;
-	}
-
-	private containsActiveSection(menuItem) {
-		const children = this.getSidebarMenuItems(menuItem);
-		for (let i = 0; i < children.length; i++) {
-			const child = children[i];
-			if (
-				this.getNavItem(child.shadowRoot).classList.contains(
-					"active-section",
-				) ||
-				(this.hasChildren(child.shadowRoot) &&
-					this.containsActiveSection(child.shadowRoot))
-			) {
-				this.handleClassList(child, "add", "active-section");
-				return true;
+			if (!this.hasActiveChild(clickedItem.shadowRoot)) {
+				this.handleClassList(clickedItemSection, "remove", "active-section");
 			}
 		}
-		return false;
+
+		this.applyActiveSectionToParent(this.el);
 	}
 
-	private applyActiveSectionToParent(el) {
-		// Get all submenus of the given element
+	private applyActiveSectionToParent(el): boolean {
+		this.clearActiveSectionIndicators(el);
+		return this.updateActiveSectionToParent(el);
+	}
+
+	private clearActiveSectionIndicators(el) {
 		const subMenus = this.getSidebarMenuItems(el);
 
 		subMenus?.forEach((menu) => {
-			// If this submenu has an active child, add active-section class to it
-			if (this.hasActiveChild(menu.shadowRoot)) {
-				const menuItemSection = this.getActiveItemSection(menu);
-				this.handleClassList(menuItemSection, "add", "active-section");
+			const menuItemSection = this.getActiveItemSection(menu);
+			this.handleClassList(menuItemSection, "remove", ACTIVE_SECTION);
+			this.clearActiveSectionIndicators(menu.shadowRoot);
+		});
+	}
+
+	private updateActiveSectionToParent(el): boolean {
+		const subMenus = this.getSidebarMenuItems(el);
+		let hasActiveSectionIndicator = false;
+
+		subMenus?.forEach((menu) => {
+			const menuItemSection = this.getActiveItemSection(menu);
+
+			if (!this.hasActiveChild(menu.shadowRoot)) {
+				return;
 			}
 
-			// Apply to submenu's children
-			this.applyActiveSectionToParent(menu.shadowRoot);
+			const isOpen = menuItemSection.classList.contains("open");
+			if (isOpen) {
+				const hasActiveSectionInSubmenu = this.updateActiveSectionToParent(
+					menu.shadowRoot,
+				);
+				if (hasActiveSectionInSubmenu) {
+					hasActiveSectionIndicator = true;
+					return;
+				}
+			}
+
+			this.handleClassList(menuItemSection, "add", ACTIVE_SECTION);
+			hasActiveSectionIndicator = true;
 		});
+
+		return hasActiveSectionIndicator;
 	}
 
 	private querySidebarItems(el) {
@@ -479,6 +371,7 @@ export class Sidebar {
 
 	@Listen("ifxSidebarNavigationItem")
 	handleSidebarItemActivated(event: CustomEvent) {
+		if (this.activeItem === event.detail) return;
 		this.removeActiveClassesRecursively();
 
 		this.activeItem = event.detail;

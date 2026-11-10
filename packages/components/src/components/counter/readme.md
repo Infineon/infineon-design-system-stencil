@@ -9,6 +9,7 @@
 
 | Property | Attribute | Description                                                      | Type     | Default |
 | -------- | --------- | ---------------------------------------------------------------- | -------- | ------- |
+| `name`   | `name`    | Used as the form field name when the counter is in a form.       | `string` | `""`    |
 | `value`  | `value`   | The current value of the counter. Must be a non-negative number. | `number` | `0`     |
 
 

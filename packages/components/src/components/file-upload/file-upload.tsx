@@ -249,6 +249,7 @@ export class FileUpload {
 		xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 		ppt: "application/vnd.ms-powerpoint",
 		pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+		tsv: "text/tab-separated-values",
 		txt: "text/plain",
 		csv: "text/csv",
 		json: "application/json",
@@ -316,7 +317,18 @@ export class FileUpload {
 
 		// If allowedFileTypes is not set and no allowedFileExtensions, use defaults
 		if (!this.allowedFileTypes) {
-			return ["jpg", "jpeg", "png", "pdf", "mov", "mp3", "mp4"];
+			return [
+				"jpg",
+				"jpeg",
+				"png",
+				"pdf",
+				"xls",
+				"xlsx",
+				"tsv",
+				"mov",
+				"mp3",
+				"mp4",
+			];
 		}
 
 		if (Array.isArray(this.allowedFileTypes)) {
@@ -367,6 +379,15 @@ export class FileUpload {
 			.filter(Boolean);
 
 		if (allowedMimes.includes(file.type)) {
+			return true;
+		}
+
+		if (
+			fileExtension &&
+			normalizedTypes.some(
+				(ext) => ext.replace(/^\./, "").toLowerCase() === fileExtension,
+			)
+		) {
 			return true;
 		}
 

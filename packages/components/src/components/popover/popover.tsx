@@ -128,7 +128,7 @@ export class Popover {
 
     let position = this.position;
     if (position === 'auto') {
-      position = this.getBestPosition(popoverRect, space);
+      position = this.getBestPosition(triggerRect, popoverRect, space);
     } else {
       position = this.validateAndAdjustPosition(position, popoverRect, space);
     }
@@ -143,21 +143,23 @@ export class Popover {
     this.popoverEl.setAttribute('data-placement', position);
   }
 
-  private getBestPosition(popoverRect: DOMRect, space: any): 'top' | 'bottom' | 'left' | 'right' {
-    const gap = Popover.GAP;
+private getBestPosition(triggerRect: DOMRect, popoverRect: DOMRect, space: any): any {
+  const gap = Popover.GAP;
+  const fitsV = (s: number) => s >= popoverRect.height + gap;
+  const fitsH = (s: number) => s >= popoverRect.width + gap;
 
-    if (space.above >= popoverRect.height + gap) {
-      return 'top';
-    } else if (space.below >= popoverRect.height + gap) {
-      return 'bottom';
-    } else if (space.right >= popoverRect.width + gap) {
-      return 'right';
-    } else if (space.left >= popoverRect.width + gap) {
-      return 'left';
-    }
+  const overhang = (popoverRect.width - triggerRect.width) / 2;
+  const canCenter = triggerRect.left - overhang >= 0 && triggerRect.right + overhang <= window.innerWidth;
+  const canStart = triggerRect.left + popoverRect.width <= window.innerWidth;
+  const align = (side: 'top' | 'bottom') =>
+    canCenter ? side : canStart ? `${side}-start` : `${side}-end`;
 
-    return 'bottom';
-  }
+  if (fitsV(space.above)) return align('top');
+  if (fitsV(space.below)) return align('bottom');
+  if (fitsH(space.right)) return 'right';
+  if (fitsH(space.left)) return 'left';
+  return space.below >= space.above ? align('bottom') : align('top');
+}
 
   private validateAndAdjustPosition(desiredPosition: string, popoverRect: DOMRect, space: any): 'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' {
     const gap = Popover.GAP;

@@ -1,4 +1,4 @@
-import { IfxAccordion, IfxAccordionItem } from '@infineon/infineon-design-system-react';
+import { IfxAccordion, IfxAccordionItem } from '@infineon/design-system-react';
 
 export function IfxAccordionExample() {
   const handleClose = (event: CustomEvent) => {
@@ -52,7 +52,7 @@ export function IfxAccordionExample() {
   );
 }
 
-const codeString = `import { IfxAccordion, IfxAccordionItem } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxAccordion, IfxAccordionItem } from '@infineon/design-system-react';
 
 export function IfxAccordionExample() {
   const handleClose = (event: CustomEvent) => {

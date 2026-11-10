@@ -6,8 +6,8 @@ import {
 	Listen,
 	Prop,
 	State,
-	Watch
 } from "@stencil/core";
+import type { SelectOptionChangeReason } from "./select-option-events";
 
 /**
  * A single selectable option inside an `ifx-select`. Provided as a slotted child
@@ -27,7 +27,7 @@ export class SelectOption {
 	/** Whether this option is currently selected. */
 	@Prop({ reflect: true, mutable: true }) selected: boolean = false;
 	/** Whether this option is disabled and not interactive. */
-	@Prop({ reflect: true, mutable: true }) disabled: boolean = false;
+	@Prop({ reflect: true }) readonly disabled: boolean = false;
 
 	@State() private searchTerm: string = "";
 	@State() private isSearchActive: boolean = false;
@@ -36,14 +36,14 @@ export class SelectOption {
 		this.notifySelect("registered");
 		this.el.addEventListener(
 			"ifx-search-filter",
-			this.handleSearchFilter as EventListener
+			this.handleSearchFilter as EventListener,
 		);
 	}
 
 	disconnectedCallback() {
 		this.el.removeEventListener(
 			"ifx-search-filter",
-			this.handleSearchFilter as EventListener
+			this.handleSearchFilter as EventListener,
 		);
 		this.notifySelect("removed");
 	}
@@ -65,13 +65,6 @@ export class SelectOption {
 		}
 	}
 
-	@Watch("selected")
-	selectedChanged(newVal: boolean) {
-		if (newVal) {
-			this.notifySelect("selected");
-		}
-	}
-
 	private select() {
 		// Single-select: selecting is not a toggle. The parent deselects the others.
 		this.selected = true;
@@ -79,13 +72,13 @@ export class SelectOption {
 	}
 
 	/** Bubbles a lifecycle/selection notification to the parent `ifx-select`. */
-	private notifySelect(reason: "registered" | "removed" | "selected") {
+	private notifySelect(reason: SelectOptionChangeReason) {
 		this.el.dispatchEvent(
 			new CustomEvent("ifx-option-changed", {
 				bubbles: true,
 				composed: true,
 				detail: { value: this.value, selected: this.selected, reason },
-			})
+			}),
 		);
 	}
 
@@ -109,6 +102,7 @@ export class SelectOption {
 		optionDiv.classList.remove("search-hidden", "search-match");
 
 		if (!this.isSearchActive) {
+			this.el.tabIndex = this.disabled ? -1 : 0;
 			this.removeHighlighting();
 			return;
 		}
@@ -116,6 +110,7 @@ export class SelectOption {
 		const matches = this.getTextContent()
 			.toLowerCase()
 			.includes(this.searchTerm);
+		this.el.tabIndex = this.disabled || !matches ? -1 : 0;
 		if (matches) {
 			optionDiv.classList.add("search-match");
 			this.highlightSearchTerm();
@@ -167,7 +162,7 @@ export class SelectOption {
 
 	render() {
 		return (
-			<Host tabIndex={-1}>
+			<Host tabIndex={this.disabled ? -1 : 0}>
 				<div
 					class={{
 						option: true,

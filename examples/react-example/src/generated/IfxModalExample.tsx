@@ -1,4 +1,4 @@
-import { IfxButton, IfxModal } from "@infineon/infineon-design-system-react";
+import { IfxButton, IfxModal } from "@infineon/design-system-react";
 
 export function IfxModalExample() {
 	const handleOpen = (event: CustomEvent) => {
@@ -43,7 +43,7 @@ export function IfxModalExample() {
 	);
 }
 
-const codeString = `import { IfxButton, IfxModal } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxButton, IfxModal } from '@infineon/design-system-react';
 
 export function IfxModalExample() {
   const handleOpen = (event: CustomEvent) => {

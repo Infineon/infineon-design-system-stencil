@@ -134,7 +134,7 @@ const baseTemplate = (args: any, slot: unknown) => {
 	wireActions();
 	return html`<ifx-select
 		size="${args.size}"
-		?placeholder="${args.placeholder}"
+		placeholder="${args.placeholder}"
 		?show-clear-button="${args.showClearButton}"
 		?show-search="${args.showSearch}"
 		search-placeholder-value="${args.searchPlaceholderValue}"
@@ -174,7 +174,17 @@ const groupedOptions = html`
 	</ifx-select-group>
 `;
 
+const separatorOptions = html`
+	<ifx-select-option value="a">Option A</ifx-select-option>
+	<ifx-select-separator></ifx-select-separator>
+	<ifx-select-option value="b">Option B</ifx-select-option>
+	<ifx-select-option value="c">Option C</ifx-select-option>
+	<ifx-select-option value="d" disabled>Option D (disabled)</ifx-select-option>
+`;
+
 export const Default: any = (args: any) => baseTemplate(args, flatOptions);
 
 export const WithGroups: any = (args: any) => baseTemplate(args, groupedOptions);
 WithGroups.args = { label: "KPI", showSearch: true };
+
+export const Separator: any = (args: any) => baseTemplate(args, separatorOptions);
