@@ -746,7 +746,7 @@ SingleLevel.parameters = {
 const SeparatorDefaultTemplate = (args:any) => {
 	const template = html`<ifx-multiselect
   name='${args.name}'
-  ?disabled='${args.disabled}'
+	?disabled=${args.disabled}
   ?required='${args.required}'
   ?error='${args.error}'
   caption='${args.caption}'
@@ -882,7 +882,7 @@ export const SeparatorDefault = SeparatorDefaultTemplate.bind({});
 const SeparatorSingleLevelTemplate = (args:any) => {
 	const template = html`<ifx-multiselect
       name='multiselect'
-      ?disabled='false'
+	?disabled=${args.disabled}
       ?error='false'
       caption=''
       label='Single Level Selection'
