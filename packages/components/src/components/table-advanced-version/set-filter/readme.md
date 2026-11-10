@@ -47,8 +47,6 @@ graph TD;
   ifx-search-field --> ifx-icon
   ifx-select-option --> ifx-icon
   ifx-multiselect --> ifx-checkbox
-
-
   ifx-multiselect --> ifx-chip
   ifx-multiselect --> ifx-icon
   ifx-multiselect --> ifx-search-field
