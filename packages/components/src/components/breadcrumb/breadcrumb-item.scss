@@ -20,8 +20,20 @@
     padding: 0px;
     gap: tokens.$ifxSpace100;
     position: relative;
+    --ifx-breadcrumb-text-decoration: none;
+    outline: 2px solid transparent;
+
+    &:focus-visible {
+			outline: 2px solid tokens.$ifxColorOcean500;
+			outline-offset: 2px;
+		}
+
+    &.underline {
+      --ifx-breadcrumb-text-decoration: underline;
+    }
 
     & .dropdown-menu {
+      text-decoration: none;
       display: none;
       position: absolute;
       top: 20px;

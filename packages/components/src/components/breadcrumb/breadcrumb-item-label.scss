@@ -6,6 +6,18 @@
   gap: tokens.$ifxSpace100;
   text-decoration: none;
   color: tokens.$ifxColorBaseBlack;
+  text-decoration: var(--ifx-breadcrumb-text-decoration, none);
+  text-underline-offset: 2px;
+  outline: 2px solid transparent;
+
+    &:focus-visible {
+    outline: 2px solid tokens.$ifxColorOcean500;
+    outline-offset: 2px;
+  }
+  
+  &:hover {
+   color: tokens.$ifxColorOcean500;
+  }
 
   &.margin {
     margin-left: 16px;

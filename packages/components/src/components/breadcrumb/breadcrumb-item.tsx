@@ -134,7 +134,7 @@ export class BreadcrumbItem {
 				<li
 					role="button"
 					tabindex={this.hasDropdownMenu ? 0 : -1}
-					class="breadcrumb-wrapper"
+					class={`breadcrumb-wrapper ${!this.isLastItem ? "underline" : ""}`}
 					onClick={() => this.toggleDropdownMenu()}
 					aria-controls={this.uniqueId}
 					aria-haspopup="menu"
