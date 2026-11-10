@@ -919,7 +919,6 @@ const SeparatorSingleLevelTemplate = (args:any) => {
       <ifx-multiselect-option value="option-9">Option 9</ifx-multiselect-option>
       <ifx-multiselect-option value="option-10">Option 10</ifx-multiselect-option>
       </ifx-multiselect>
-    </ifx-multiselect>
 `;
 
 	setTimeout(() => {
