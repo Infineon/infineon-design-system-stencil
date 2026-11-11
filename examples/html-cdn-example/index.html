@@ -1401,6 +1401,12 @@
         // Add your custom handler logic here
       });
 
+      // Fired when this item becomes selected, so the parent switcher can deselect the others.
+      document.querySelector('#ifx-content-switcher-example ifx-content-switcher')?.addEventListener('itemSelected', (event) => {
+        console.log('itemSelected:', event);
+        // Add your custom handler logic here
+      });
+
       // Emitted when the provided icon name is invalid and the component fails to render an icon.
       // The event detail contains a boolean value `true` indicating an error occurred.
       document.querySelector('#ifx-content-switcher-example ifx-content-switcher')?.addEventListener('consoleError', (event) => {

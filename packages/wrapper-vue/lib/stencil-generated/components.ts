@@ -292,7 +292,10 @@ export const IfxContentSwitcher: StencilVueComponent<JSX.IfxContentSwitcher> = /
 
 export const IfxContentSwitcherItem: StencilVueComponent<JSX.IfxContentSwitcherItem> = /*@__PURE__*/ defineContainer<JSX.IfxContentSwitcherItem>('ifx-content-switcher-item', defineIfxContentSwitcherItem, [
   'selected',
-  'value'
+  'value',
+  'itemSelected'
+], [
+  'itemSelected'
 ]);
 
 
