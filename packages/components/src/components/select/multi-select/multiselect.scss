@@ -17,6 +17,11 @@
       cursor: default !important;
     }
 
+    .ifx-multiselect-input ifx-chip.ifx-multiselect-chip,
+    .ifx-clear-button {
+      pointer-events: none;
+    }
+
     & .ifx-label-wrapper {
       color: tokens.$ifxColorEngineering300;
     }

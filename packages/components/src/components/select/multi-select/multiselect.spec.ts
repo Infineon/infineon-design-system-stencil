@@ -114,6 +114,9 @@ describe("ifx-multiselect", () => {
 		page.root.disabled = true;
 		await page.waitForChanges();
 		const selectedChip = page.root.shadowRoot.querySelector("ifx-chip");
+		const clearButton = page.root.shadowRoot.querySelector(
+			".ifx-clear-button",
+		) as HTMLButtonElement;
 
 		const wrapper = page.root.shadowRoot.querySelector(
 			".ifx-multiselect-wrapper",
@@ -129,6 +132,7 @@ describe("ifx-multiselect", () => {
 		selectedChip.shadowRoot
 			.querySelector(".wrapper__unselect-button")
 			.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+		clearButton.dispatchEvent(new MouseEvent("click", { bubbles: true }));
 
 		component.selectAll();
 		component.expandAll();
