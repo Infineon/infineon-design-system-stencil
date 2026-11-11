@@ -1,3 +1,16 @@
+# v42.3.3 (Wed Nov 11 2026)
+
+#### 🐛 Bug Fix
+
+- Breadcrumb: adds underline, hover and focus states, and improves keyboard navigation [#2608](https://github.com/Infineon/infineon-design-system-stencil/pull/2608) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.3.2 (Mon Nov 09 2026)
 
 #### 🐛 Bug Fix
