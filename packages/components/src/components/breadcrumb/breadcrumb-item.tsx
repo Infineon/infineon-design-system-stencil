@@ -7,9 +7,9 @@ import { Component, Element, h, Listen, State } from "@stencil/core";
 })
 export class BreadcrumbItem {
 	@State() isLastItem: boolean = false;
-	@Element() el: HTMLIfxBreadcrumbItemElement;
-	private emittedElement: HTMLElement;
-	@State() uniqueId: string;
+	@Element() el!: HTMLIfxBreadcrumbItemElement;
+	private emittedElement?: HTMLElement;
+	@State() uniqueId?: string;
 	@State() hasDropdownMenu: boolean = false;
 
 	@Listen("mousedown", { target: "document" })
@@ -20,17 +20,19 @@ export class BreadcrumbItem {
 		}
 	}
 
-	@Listen("keydown")
-	handleKeyDown(ev: KeyboardEvent) {
+	private handleKeyDown = (ev: KeyboardEvent) => {
+		if (ev.key === "Escape") {
+			this.closeDropdownMenu();
+			return;
+		}
+		if ((ev.target as HTMLElement).closest("ifx-dropdown-menu")) return;
 		if (ev.key === "Enter" || ev.key === " ") {
 			this.toggleDropdownMenu();
-		} else if (ev.key === "Escape") {
-			this.closeDropdownMenu();
 		}
-	}
+	};
 
 	private getDropdownMenu() {
-		const dropdownMenu = this.el.shadowRoot.querySelector(".dropdown-menu");
+		const dropdownMenu = this.el.shadowRoot!.querySelector(".dropdown-menu");
 		return dropdownMenu;
 	}
 
@@ -43,8 +45,8 @@ export class BreadcrumbItem {
 		return this.emittedElement;
 	}
 
-	private handleClassList(el, type, className) {
-		el.classList[type](className);
+	private handleClassList(el: Element | null | undefined, type: "add" | "remove" | "toggle", className: string) {
+		el?.classList[type](className);
 	}
 
 	private closeDropdownMenu() {
@@ -66,18 +68,13 @@ export class BreadcrumbItem {
 	}
 
 	private isDropdownMenuOpen(): boolean {
-		const dropdownMenu = this.getDropdownMenu();
-		return (
-			this.hasDropdownMenu &&
-			dropdownMenu &&
-			dropdownMenu.classList.contains("open")
-		);
+			const dropdownMenu = this.getDropdownMenu();
+			return this.hasDropdownMenu && !!dropdownMenu?.classList.contains("open");
 	}
 
 	private handleLastItem() {
-		const breadcrumbItems = this.el
-			.closest("ifx-breadcrumb")
-			.querySelectorAll("ifx-breadcrumb-item");
+		const breadcrumbItems = this.el.closest("ifx-breadcrumb")?.querySelectorAll("ifx-breadcrumb-item");
+		if (!breadcrumbItems?.length) return;
 		if (this.el === breadcrumbItems[breadcrumbItems.length - 1]) {
 			this.isLastItem = true;
 		} else this.isLastItem = false;
@@ -120,9 +117,9 @@ export class BreadcrumbItem {
 		if (!this.hasDropdownMenu) {
 			const iconMenuWrapper = this.getMenuIconWrapper();
 			this.handleClassList(iconMenuWrapper, "toggle", "hide");
-		} else {
-			dropdownMenu.isOpen = true;
-		}
+		} else if (dropdownMenu) {
+        dropdownMenu.isOpen = true;
+    }
 	}
 
 	render() {
@@ -134,7 +131,8 @@ export class BreadcrumbItem {
 				<li
 					role="button"
 					tabindex={this.hasDropdownMenu ? 0 : -1}
-					class="breadcrumb-wrapper"
+					class={`breadcrumb-wrapper ${!this.isLastItem ? "underline" : ""}`}
+					onKeyDown={this.handleKeyDown}
 					onClick={() => this.toggleDropdownMenu()}
 					aria-controls={this.uniqueId}
 					aria-haspopup="menu"
