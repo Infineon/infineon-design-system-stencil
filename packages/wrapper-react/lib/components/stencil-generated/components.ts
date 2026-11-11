@@ -104,7 +104,7 @@ import { IfxToastContainer as IfxToastContainerElement, defineCustomElement as d
 import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from '@infineon/design-system/dist/components/ifx-tooltip.js';
 import { IfxTreeView as IfxTreeViewElement, defineCustomElement as defineIfxTreeView } from '@infineon/design-system/dist/components/ifx-tree-view.js';
 import { IfxTreeViewItem as IfxTreeViewItemElement, defineCustomElement as defineIfxTreeViewItem } from '@infineon/design-system/dist/components/ifx-tree-view-item.js';
-import type { IfxAccordionItemCustomEvent, ActionListItemClickEvent, IfxActionListItemCustomEvent, IfxAlertCustomEvent, IfxBreadcrumbItemLabelCustomEvent, IfxCardImageCustomEvent, IfxCheckboxCustomEvent, ChipItemSelectEvent, IfxChipCustomEvent, IfxChipItemCustomEvent, ChangeEvent, IfxContentSwitcherCustomEvent, IfxCounterCustomEvent, IfxDatePickerCustomEvent, IfxDropdownCustomEvent, IfxDropdownItemCustomEvent, IfxDropdownMenuCustomEvent, IfxFileUploadCustomEvent, IfxFilterAccordionCustomEvent, IfxFilterBarCustomEvent, IfxFilterSearchCustomEvent, IfxFilterTypeGroupCustomEvent, IfxIconCustomEvent, IfxListCustomEvent, IfxListEntryCustomEvent, IfxModalCustomEvent, IfxMultiselectCustomEvent, IfxNavbarCustomEvent, IfxNavbarItemCustomEvent, IfxNotificationCustomEvent, IfxPaginationCustomEvent, IfxPopoverCustomEvent, IfxRadioButtonCustomEvent, IfxSearchBarCustomEvent, SuggestionItem, IfxSearchFieldCustomEvent, IfxSegmentCustomEvent, IfxSegmentedControlCustomEvent, SelectChangeDetail, IfxSelectCustomEvent, IfxSetFilterCustomEvent, IfxSidebarCustomEvent, IfxSidebarItemCustomEvent, IfxSliderCustomEvent, IfxStepperCustomEvent, IfxSwitchCustomEvent, IfxTabCustomEvent, IfxTableCustomEvent, IfxTabsCustomEvent, IfxTemplateCustomEvent, IfxTextFieldCustomEvent, IfxTextareaCustomEvent, ToastEventDetail, ToastCloseEventDetail, IfxToastCustomEvent, IfxTreeViewCustomEvent, TreeViewExpandChangeEvent, TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, IfxTreeViewItemCustomEvent } from '@infineon/design-system';
+import type { IfxAccordionItemCustomEvent, ActionListItemClickEvent, IfxActionListItemCustomEvent, IfxAlertCustomEvent, IfxBreadcrumbItemLabelCustomEvent, IfxCardImageCustomEvent, IfxCheckboxCustomEvent, ChipItemSelectEvent, IfxChipCustomEvent, IfxChipItemCustomEvent, ChangeEvent, IfxContentSwitcherCustomEvent, IfxContentSwitcherItemCustomEvent, IfxCounterCustomEvent, IfxDatePickerCustomEvent, IfxDropdownCustomEvent, IfxDropdownItemCustomEvent, IfxDropdownMenuCustomEvent, IfxFileUploadCustomEvent, IfxFilterAccordionCustomEvent, IfxFilterBarCustomEvent, IfxFilterSearchCustomEvent, IfxFilterTypeGroupCustomEvent, IfxIconCustomEvent, IfxListCustomEvent, IfxListEntryCustomEvent, IfxModalCustomEvent, IfxMultiselectCustomEvent, IfxNavbarCustomEvent, IfxNavbarItemCustomEvent, IfxNotificationCustomEvent, IfxPaginationCustomEvent, IfxPopoverCustomEvent, IfxRadioButtonCustomEvent, IfxSearchBarCustomEvent, SuggestionItem, IfxSearchFieldCustomEvent, IfxSegmentCustomEvent, IfxSegmentedControlCustomEvent, SelectChangeDetail, IfxSelectCustomEvent, IfxSetFilterCustomEvent, IfxSidebarCustomEvent, IfxSidebarItemCustomEvent, IfxSliderCustomEvent, IfxStepperCustomEvent, IfxSwitchCustomEvent, IfxTabCustomEvent, IfxTableCustomEvent, IfxTabsCustomEvent, IfxTemplateCustomEvent, IfxTextFieldCustomEvent, IfxTextareaCustomEvent, ToastEventDetail, ToastCloseEventDetail, IfxToastCustomEvent, IfxTreeViewCustomEvent, TreeViewExpandChangeEvent, TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, IfxTreeViewItemCustomEvent } from '@infineon/design-system';
 import type { StencilReactComponent, EventName } from '@stencil/react-output-target/runtime';
 
 export type IfxAccordionEvents = NonNullable<unknown>;
@@ -389,14 +389,18 @@ export const IfxContentSwitcher: StencilReactComponent<IfxContentSwitcherElement
     defineCustomElement: defineIfxContentSwitcher,
 });
 
-export type IfxContentSwitcherItemEvents = NonNullable<unknown>;
+export type IfxContentSwitcherItemEvents = {
+  onItemSelected: EventName<IfxContentSwitcherItemCustomEvent<any>>
+};
 
-export const IfxContentSwitcherItem: StencilReactComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents, Components.IfxContentSwitcherItem> = /*@__PURE__*/ createComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents, Components.IfxContentSwitcherItem>({
+export const IfxContentSwitcherItem: StencilReactComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents, Components.IfxContentSwitcherItem, 'value'> = /*@__PURE__*/ createComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents, Components.IfxContentSwitcherItem, 'value'>({
     tagName: 'ifx-content-switcher-item',
     elementClass: IfxContentSwitcherItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {} as IfxContentSwitcherItemEvents,
+    events: {
+      onItemSelected: 'itemSelected'
+    } as IfxContentSwitcherItemEvents,
     defineCustomElement: defineIfxContentSwitcherItem,
 });
 

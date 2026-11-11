@@ -1,5 +1,7 @@
   <ifx-content-switcher (ifxChange)="handleChange($any($event))">
-    <ifx-content-switcher-item value="item 1">
+    <ifx-content-switcher-item
+      value="item 1"
+      (itemSelected)="handleItemSelected($any($event))">
       <ifx-icon
         icon="applications-16"
         (consoleError)="handleConsoleError($any($event))"></ifx-icon>
