@@ -1,1 +1,0 @@
-const e=e=>{let t=e.parentNode;for(;t;)if(t instanceof ShadowRoot)t=t.host;else{if(t instanceof HTMLElement&&t.tagName.toLowerCase().startsWith("ifx"))return!0;t=t.parentNode}return!1};export{e as i}
