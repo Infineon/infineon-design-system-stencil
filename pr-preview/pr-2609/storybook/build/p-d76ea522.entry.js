@@ -1,0 +1,1 @@
+import{r as e,h as r}from"./p-DlAp0uRx.js";const s=class{constructor(r){e(this,r)}render(){return r("div",{key:"fd17901cd2d699b4c76559bad99369ffe8f34e3f",class:"select-separator"})}};s.style=".select-separator{height:1px;background-color:#eeeded;margin:8px 16px}";export{s as ifx_select_separator}
