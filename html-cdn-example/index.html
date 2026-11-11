@@ -53,8 +53,8 @@
   
   
   
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system@42.3.3/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/design-system@42.3.3/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system@42.4.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/design-system@42.4.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -1395,6 +1395,12 @@
           // Fired when the selected option changes.
       document.querySelector('#ifx-content-switcher-example ifx-content-switcher')?.addEventListener('ifxChange', (event) => {
         console.log('ifxChange:', event);
+        // Add your custom handler logic here
+      });
+
+      // Fired when this item becomes selected, so the parent switcher can deselect the others.
+      document.querySelector('#ifx-content-switcher-example ifx-content-switcher')?.addEventListener('itemSelected', (event) => {
+        console.log('itemSelected:', event);
         // Add your custom handler logic here
       });
 
