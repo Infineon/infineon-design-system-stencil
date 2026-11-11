@@ -741,6 +741,10 @@ export class Multiselect {
 	private handleSelectedIndicatorClick = (event: Event) => {
 		if (this.isEffectivelyDisabled()) return;
 		event.stopPropagation();
+		if (this.dropdownOpen && this.selectedOnlyFilter) {
+			this.toggleDropdown();
+			return;
+		}
 		this.selectedOnlyFilter = true;
 		this.searchTerm = "";
 
@@ -1023,6 +1027,7 @@ export class Multiselect {
 		);
 		const hiddenOptionsCount =
 			this.persistentSelectedOptions.length - visibleOptions.length;
+		const hiddenOptionsLabel = hiddenOptionsCount === 1 ? "option" : "options";
 
 		return [
 			...visibleOptions.map((option) => {
@@ -1053,7 +1058,7 @@ export class Multiselect {
 			hiddenOptionsCount > 0 && (
 				<span
 					class={`ifx-multiselect-indicator ${this.isEffectivelyDisabled() ? "disabled" : ""}`}
-					aria-label={`+${hiddenOptionsCount} more selections`}
+					aria-label={`Show ${hiddenOptionsCount} more selected ${hiddenOptionsLabel}`}
 					role="button"
 					tabIndex={this.isEffectivelyDisabled() ? -1 : 0}
 					aria-disabled={this.isEffectivelyDisabled() ? "true" : undefined}

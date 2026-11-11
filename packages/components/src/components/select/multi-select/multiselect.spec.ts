@@ -391,6 +391,46 @@ describe("ifx-multiselect", () => {
 		expect(groups[1].classList.contains("empty-group")).toBe(true);
 	});
 
+	it("closes the selected-only dropdown when the overflow indicator is activated again", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-option value="first" selected>First</ifx-multiselect-option>
+					<ifx-multiselect-option value="second" selected>Second</ifx-multiselect-option>
+				</ifx-multiselect>
+			`,
+		});
+		const component = page.rootInstance as any;
+		component.persistentSelectedOptions = [
+			{ value: "first", label: "First", selected: true },
+			{ value: "second", label: "Second", selected: true },
+		];
+		component.visibleSelectedCount = 1;
+		await page.waitForChanges();
+
+		const activateIndicator = () => {
+			const indicator = page.root.shadowRoot.querySelector(
+				".ifx-multiselect-indicator[role='button']",
+			) as HTMLElement;
+			indicator.dispatchEvent(
+				new KeyboardEvent("keydown", {
+					key: "Enter",
+					bubbles: true,
+				}),
+			);
+		};
+
+		activateIndicator();
+		await page.waitForChanges();
+		expect(component.dropdownOpen).toBe(true);
+		expect(component.selectedOnlyFilter).toBe(true);
+
+		activateIndicator();
+		await page.waitForChanges();
+		expect(component.dropdownOpen).toBe(false);
+	});
+
 	it("shows only groups containing visible search results and restores them on reset", () => {
 		const revenueGroup = document.createElement("ifx-multiselect-group");
 		const costsGroup = document.createElement("ifx-multiselect-group");
@@ -626,6 +666,9 @@ describe("ifx-multiselect", () => {
 
 		expect(getVisibleChips(page)).toHaveLength(1);
 		expect(getVisibleIndicators(page)[0]?.textContent).toBe("+2");
+		expect(getVisibleIndicators(page)[0]?.getAttribute("aria-label")).toBe(
+			"Show 2 more selected options",
+		);
 	});
 
 	it("renders the remaining count indicator in disabled mode", async () => {
