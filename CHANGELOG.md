@@ -1,3 +1,15 @@
+# v42.4.0 (Wed Nov 11 2026)
+
+#### 🚀 Enhancement
+
+- Content-switcher: fixes bug when programmatically selecting items [#2609](https://github.com/Infineon/infineon-design-system-stencil/pull/2609) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.3.3 (Wed Nov 11 2026)
 
 #### 🐛 Bug Fix
