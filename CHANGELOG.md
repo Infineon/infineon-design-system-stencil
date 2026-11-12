@@ -1,3 +1,15 @@
+# v42.4.1 (Thu Nov 12 2026)
+
+#### 🐛 Bug Fix
+
+- Aligns placeholder text style in Search Field and Multi Select components [#2610](https://github.com/Infineon/infineon-design-system-stencil/pull/2610) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.4.0 (Wed Nov 11 2026)
 
 #### 🚀 Enhancement
