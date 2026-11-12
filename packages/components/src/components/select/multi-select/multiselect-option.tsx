@@ -31,12 +31,17 @@ export class MultiselectOption {
 	@State() private searchTerm: string = "";
 	@State() private isSearchActive: boolean = false;
 	@State() private isSearchDisabled: boolean = false;
+	@State() private isSelectedFilterActive: boolean = false;
 	@State() private disabledByGroup: boolean = false;
+	@State() private disabledByMultiselect: boolean = false;
 
 	componentWillLoad() {
 		this.hasChildren = this.el.children.length > 0;
 		this.depth = this.calculateDepth();
-		this.disabledByGroup = this.el.closest("ifx-multiselect-group")?.disabled ?? false;
+		this.disabledByGroup =
+			this.el.closest("ifx-multiselect-group")?.disabled ?? false;
+		this.disabledByMultiselect =
+			this.el.closest("ifx-multiselect")?.disabled ?? false;
 
 		this.el.setAttribute("data-level", this.depth.toString());
 
@@ -48,28 +53,52 @@ export class MultiselectOption {
 		}
 	}
 
-  componentDidLoad() {
-    (this.el as any)['__stencil_instance'] = this;
-    this.notifyMultiselect();
-    this.el.addEventListener('ifx-search-filter', this.handleSearchFilter);
-		this.el.addEventListener('ifx-group-disabled-change', this.handleGroupDisabledChange);
-  }
+	componentDidLoad() {
+		(this.el as any)["__stencil_instance"] = this;
+		this.notifyMultiselect();
+		this.el.addEventListener("ifx-search-filter", this.handleSearchFilter);
+		this.el.addEventListener(
+			"ifx-group-disabled-change",
+			this.handleGroupDisabledChange,
+		);
+		this.el.addEventListener(
+			"ifx-multiselect-disabled-change",
+			this.handleMultiselectDisabledChange,
+		);
+		this.el.addEventListener("ifx-selected-filter", this.handleSelectedFilter);
+	}
 
 	disconnectedCallback() {
 		this.el.removeEventListener("ifx-search-filter", this.handleSearchFilter);
-		this.el.removeEventListener("ifx-group-disabled-change", this.handleGroupDisabledChange);
+		this.el.removeEventListener(
+			"ifx-group-disabled-change",
+			this.handleGroupDisabledChange,
+		);
+		this.el.removeEventListener(
+			"ifx-multiselect-disabled-change",
+			this.handleMultiselectDisabledChange,
+		);
+		this.el.removeEventListener(
+			"ifx-selected-filter",
+			this.handleSelectedFilter,
+		);
 	}
 
 	private handleGroupDisabledChange = (event: CustomEvent) => {
 		this.disabledByGroup = event.detail.disabled;
 	};
 
+	private handleMultiselectDisabledChange = (event: CustomEvent) => {
+		this.disabledByMultiselect = event.detail.disabled;
+	};
+
 	private isEffectivelyDisabled(): boolean {
-		return this.disabled || this.disabledByGroup;
+		return this.disabled || this.disabledByGroup || this.disabledByMultiselect;
 	}
 
 	private handleSearchFilter = (event: CustomEvent) => {
 		const { searchTerm, isActive } = event.detail;
+		this.isSelectedFilterActive = false;
 		this.searchTerm = searchTerm.toLowerCase();
 		this.isSearchActive = isActive;
 
@@ -78,9 +107,58 @@ export class MultiselectOption {
 		});
 	};
 
+	private handleSelectedFilter = (event: CustomEvent) => {
+		this.isSelectedFilterActive = event.detail.isActive;
+		this.searchTerm = "";
+		this.isSearchActive = event.detail.isActive;
+
+		requestAnimationFrame(() => {
+			this.updateSearchClasses();
+		});
+	};
+
+	private hasSelectedDescendant(): boolean {
+		if (!this.hasChildren) return false;
+
+		const childOptions = Array.from(this.el.children).filter(
+			(child) => child.tagName === "IFX-MULTISELECT-OPTION",
+		) as HTMLElement[];
+
+		return childOptions.some((child) => {
+			const childInstance = (child as any)["__stencil_instance"];
+			return (
+				childInstance &&
+				(childInstance.selected || childInstance.hasSelectedDescendant())
+			);
+		});
+	}
+
 	private updateSearchClasses() {
 		const optionDiv = this.el.shadowRoot?.querySelector(".option");
 		if (!optionDiv) return;
+
+		if (this.isSelectedFilterActive) {
+			const hasSelectedDescendant = this.hasSelectedDescendant();
+			optionDiv.classList.remove(
+				"search-hidden",
+				"search-parent",
+				"search-match",
+			);
+			this.removeHighlighting();
+
+			if (this.selected && !this.hasChildren) {
+				optionDiv.classList.add("search-match");
+				this.isSearchDisabled = false;
+			} else if (hasSelectedDescendant) {
+				optionDiv.classList.add("search-parent");
+				this.isExpanded = true;
+				this.isSearchDisabled = true;
+			} else {
+				optionDiv.classList.add("search-hidden");
+				this.isSearchDisabled = false;
+			}
+			return;
+		}
 
 		if (!this.isSearchActive) {
 			optionDiv.classList.remove(
@@ -256,7 +334,11 @@ export class MultiselectOption {
 
 	@Listen("click")
 	handleClick(event: Event) {
-		if (this.isEffectivelyDisabled() || (this.isSearchActive && this.isSearchDisabled)) return;
+		if (
+			this.isEffectivelyDisabled() ||
+			(this.isSearchActive && this.isSearchDisabled)
+		)
+			return;
 
 		event.stopPropagation();
 
@@ -294,7 +376,11 @@ export class MultiselectOption {
 
 	@Listen("keydown")
 	handleKeyDown(event: KeyboardEvent) {
-		if (this.isEffectivelyDisabled() || (this.isSearchActive && this.isSearchDisabled)) return;
+		if (
+			this.isEffectivelyDisabled() ||
+			(this.isSearchActive && this.isSearchDisabled)
+		)
+			return;
 
 		const target = event.target as HTMLElement;
 
@@ -408,7 +494,11 @@ export class MultiselectOption {
 	}
 
 	private handleCheckboxClick = (event: Event) => {
-		if (this.isEffectivelyDisabled() || (this.isSearchActive && this.isSearchDisabled)) return;
+		if (
+			this.isEffectivelyDisabled() ||
+			(this.isSearchActive && this.isSearchDisabled)
+		)
+			return;
 		event.preventDefault();
 		event.stopPropagation();
 
@@ -438,7 +528,10 @@ export class MultiselectOption {
 
 	private handleHeaderClick = (event: Event) => {
 		event.stopPropagation();
-		if (!this.isEffectivelyDisabled() && !(this.isSearchActive && this.isSearchDisabled)) {
+		if (
+			!this.isEffectivelyDisabled() &&
+			!(this.isSearchActive && this.isSearchDisabled)
+		) {
 			this.handleClick(event);
 		}
 	};
@@ -512,8 +605,9 @@ export class MultiselectOption {
 					<div class="option-item" style={optionItemStyle}>
 						<div
 							class="chevron-wrapper"
-							tabIndex={this.hasChildren ? 0 : -1}
+							tabIndex={this.hasChildren && !effectivelyDisabled ? 0 : -1}
 							role={this.hasChildren ? "button" : undefined}
+							aria-disabled={effectivelyDisabled ? "true" : undefined}
 							aria-label={
 								this.hasChildren
 									? this.isExpanded
@@ -521,17 +615,25 @@ export class MultiselectOption {
 										: "Expand"
 									: undefined
 							}
-							onClick={(e) => {
-								e.stopPropagation();
-								this.toggleExpansion();
-							}}
-							onKeyDown={(e) => {
-								if (e.key === "Enter" || e.key === " ") {
-									e.preventDefault();
-									e.stopPropagation();
-									this.toggleExpansion();
-								}
-							}}
+							onClick={
+								effectivelyDisabled
+									? undefined
+									: (e) => {
+											e.stopPropagation();
+											this.toggleExpansion();
+										}
+							}
+							onKeyDown={
+								effectivelyDisabled
+									? undefined
+									: (e) => {
+											if (e.key === "Enter" || e.key === " ") {
+												e.preventDefault();
+												e.stopPropagation();
+												this.toggleExpansion();
+											}
+										}
+							}
 						>
 							{this.hasChildren && (
 								<ifx-icon
@@ -562,6 +664,7 @@ export class MultiselectOption {
 									(this.isSearchActive && this.isSearchDisabled)
 								}
 								onKeyDown={(e) => {
+									if (effectivelyDisabled) return;
 									if (e.key === "Enter" || e.key === " ") {
 										e.preventDefault();
 										e.stopPropagation();

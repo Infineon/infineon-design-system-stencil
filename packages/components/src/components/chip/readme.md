@@ -47,6 +47,7 @@
 
 ### Used by
 
+ - [ifx-multiselect](../select/multi-select)
  - [ifx-table](../table-advanced-version)
  - [ifx-tabs](../tabs)
 
@@ -60,6 +61,7 @@
 graph TD;
   ifx-chip --> ifx-icon
   ifx-chip --> ifx-indicator
+  ifx-multiselect --> ifx-chip
   ifx-table --> ifx-chip
   ifx-tabs --> ifx-chip
   style ifx-chip fill:#f9f,stroke:#333,stroke-width:4px

@@ -38,7 +38,7 @@ export class Multiselect {
 	@Prop() readonly name: string;
 
 	/** If true, the multi-select is disabled and not interactive. */
-	@Prop() readonly disabled: boolean = false;
+	@Prop({ reflect: true }) readonly disabled: boolean = false;
 	/** If true, the multi-select is read-only. */
 	@Prop() readonly readOnly: boolean = false;
 
@@ -120,6 +120,7 @@ export class Multiselect {
 	@State() dropdownFlipped: boolean;
 	@State() searchTerm: string = "";
 	@State() visibleSelectedCount = 0;
+	@State() selectedOnlyFilter = false;
 
 	/** Fired when an option is selected in the multi-select. */
 	@Event() ifxSelect!: EventEmitter;
@@ -137,6 +138,24 @@ export class Multiselect {
 	private dropdownElement!: HTMLElement;
 	private resizeObserver?: ResizeObserver;
 	private measurementScheduled = false;
+
+	private isEffectivelyDisabled(): boolean {
+		return this.disabled && !this.internalError;
+	}
+
+	private interactionsDisabled(): boolean {
+		return this.isEffectivelyDisabled() || this.readOnly;
+	}
+
+	private dispatchDisabledState() {
+		this.getAllOptionElements().forEach((option) => {
+			option.dispatchEvent(
+				new CustomEvent("ifx-multiselect-disabled-change", {
+					detail: { disabled: this.isEffectivelyDisabled() },
+				}),
+			);
+		});
+	}
 
 	@AttachInternals() internals!: ElementInternals;
 
@@ -319,9 +338,11 @@ export class Multiselect {
 	}
 
 	private handleSearch = debounce((targetElement: HTMLInputElement) => {
+		if (this.isEffectivelyDisabled()) return;
 		const searchTerm = targetElement.value.toLowerCase();
 		const isSearchActive = searchTerm !== "";
 
+		this.selectedOnlyFilter = false;
 		this.searchTerm = searchTerm;
 
 		const wrapper = this.el.shadowRoot.querySelector(
@@ -409,6 +430,7 @@ export class Multiselect {
 	}, 150);
 
 	private handleSearchFocus(hasFocus: boolean) {
+		if (this.isEffectivelyDisabled()) return;
 		const wrapper = this.el.shadowRoot.querySelector(
 			".ifx-multiselect-wrapper",
 		);
@@ -507,6 +529,7 @@ export class Multiselect {
 	}
 
 	async componentDidLoad() {
+		this.dispatchDisabledState();
 		if (!isNestedInIfxComponent(this.el)) {
 			const framework = detectFramework();
 			trackComponent("ifx-multiselect", await framework);
@@ -519,6 +542,9 @@ export class Multiselect {
 			const optionInstance = (event.target as any)?.__stencil_instance;
 			if (optionInstance && !optionInstance.hasChildren) {
 				this.updateSlotBasedSelections(true);
+				if (this.selectedOnlyFilter) {
+					this.applySelectedOptionsFilter();
+				}
 			}
 		});
 
@@ -552,9 +578,26 @@ export class Multiselect {
 		this.loadInitialOptions();
 	}
 
+	private syncDisabledState() {
+		if (this.isEffectivelyDisabled()) {
+			const wasOpen = this.dropdownOpen;
+			this.dropdownOpen = false;
+			document.removeEventListener("click", this.handleDocumentClick);
+			this.resetSearch();
+			if (wasOpen) this.ifxOpen.emit(false);
+		}
+		this.dispatchDisabledState();
+	}
+
+	@Watch("disabled")
+	handleDisabledChange() {
+		this.syncDisabledState();
+	}
+
 	@Watch("error")
 	updateInternalError() {
 		this.internalError = this.error;
+		this.syncDisabledState();
 	}
 
 	@Watch("persistentSelectedOptions")
@@ -564,6 +607,7 @@ export class Multiselect {
 		//this.internals.setFormValue(formData);
 	}
 	private collapseAll() {
+		if (this.isEffectivelyDisabled()) return;
 		this.getAllOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance && instance.hasChildren) {
@@ -573,6 +617,7 @@ export class Multiselect {
 	}
 
 	private expandAll() {
+		if (this.isEffectivelyDisabled()) return;
 		this.getAllOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance && instance.hasChildren) {
@@ -582,6 +627,7 @@ export class Multiselect {
 	}
 
 	private selectAll() {
+		if (this.isEffectivelyDisabled()) return;
 		this.resetSearch();
 		this.expandAll();
 
@@ -602,6 +648,7 @@ export class Multiselect {
 	/** Clears all selected options in the multi-select and resets their state. */
 	@Method()
 	async clearSelection() {
+		if (this.isEffectivelyDisabled()) return;
 		this.getAllOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance) {
@@ -632,6 +679,7 @@ export class Multiselect {
 	};
 
 	private toggleDropdown() {
+		if (this.interactionsDisabled()) return;
 		this.dropdownOpen = !this.dropdownOpen;
 		setTimeout(() => {
 			if (this.dropdownOpen) {
@@ -644,6 +692,7 @@ export class Multiselect {
 	}
 
 	private resetSearch() {
+		this.selectedOnlyFilter = false;
 		this.searchTerm = "";
 
 		const searchField = this.el.shadowRoot.querySelector(
@@ -671,7 +720,61 @@ export class Multiselect {
 		this.showSeparators();
 	}
 
+	private applySelectedOptionsFilter() {
+		this.getAllOptionElements().forEach((option) => {
+			option.dispatchEvent(
+				new CustomEvent("ifx-selected-filter", {
+					detail: { isActive: this.selectedOnlyFilter },
+				}),
+			);
+		});
+		const filterIsActive = this.selectedOnlyFilter;
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				if (this.selectedOnlyFilter === filterIsActive) {
+					this.updateGroupVisibility(filterIsActive);
+				}
+			});
+		});
+	}
+
+	private handleSelectedIndicatorClick = (event: Event) => {
+		if (this.isEffectivelyDisabled()) return;
+		event.stopPropagation();
+		if (this.dropdownOpen && this.selectedOnlyFilter) {
+			this.toggleDropdown();
+			return;
+		}
+		this.selectedOnlyFilter = true;
+		this.searchTerm = "";
+
+		const searchField = this.el.shadowRoot.querySelector(
+			"ifx-search-field",
+		) as any;
+		if (searchField) {
+			searchField.value = "";
+		}
+
+		const optionsContainer = this.el.shadowRoot.querySelector(
+			".ifx-multiselect-options",
+		);
+		optionsContainer?.classList.remove("has-search-filter", "show-no-results");
+
+		this.applySelectedOptionsFilter();
+		if (!this.dropdownOpen) {
+			this.toggleDropdown();
+		}
+	};
+
+	private handleSelectedIndicatorKeyDown = (event: KeyboardEvent) => {
+		if (event.key === "Enter" || event.key === " ") {
+			event.preventDefault();
+			this.handleSelectedIndicatorClick(event);
+		}
+	};
+
 	private clearEnabledSelection() {
+		if (this.isEffectivelyDisabled()) return;
 		this.getEnabledLeafOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance) {
@@ -688,6 +791,7 @@ export class Multiselect {
 	}
 
 	private handleWrapperClick(event: MouseEvent) {
+		if (this.isEffectivelyDisabled()) return;
 		this.positionDropdown();
 
 		if (event.currentTarget === event.target) {
@@ -696,6 +800,7 @@ export class Multiselect {
 	}
 
 	private handleClearButtonClick = (event: MouseEvent) => {
+		if (this.interactionsDisabled()) return;
 		event.stopPropagation();
 
 		const clearEvent = this.ifxClear.emit();
@@ -705,7 +810,7 @@ export class Multiselect {
 	};
 
 	private handleKeyDown(event: KeyboardEvent) {
-		if (this.readOnly || (this.disabled && !this.error)) return;
+		if (this.readOnly || this.isEffectivelyDisabled()) return;
 		if (
 			event
 				.composedPath()
@@ -772,6 +877,7 @@ export class Multiselect {
 			enabledLeafOptions.every((option) => option.selected);
 
 		const toggleSelectAll = (event?: Event) => {
+			if (this.isEffectivelyDisabled()) return;
 			if (event) {
 				event.preventDefault();
 				event.stopPropagation();
@@ -785,11 +891,14 @@ export class Multiselect {
 		};
 
 		return (
-			<div class="select-all-wrapper">
+			<div
+				class={`select-all-wrapper ${this.isEffectivelyDisabled() ? "disabled" : ""}`}
+			>
 				<ifx-checkbox
 					id="selectAll"
 					checked={allSelected}
 					size="s"
+					disabled={this.isEffectivelyDisabled()}
 					aria-label={this.ariaSelectAllLabel}
 					onClick={toggleSelectAll}
 					onKeyDown={(e) => {
@@ -817,6 +926,7 @@ export class Multiselect {
 	}
 
 	private removeSelection(optionToRemove: Option, event: MouseEvent) {
+		if (this.isEffectivelyDisabled()) return;
 		event.stopPropagation();
 
 		const optionElement = Array.from(
@@ -894,6 +1004,22 @@ export class Multiselect {
 		});
 	};
 
+	private renderDisabledSelectedChip(option: Option, key: string) {
+		const label = (option as any).label || option.value;
+		return (
+			<ifx-chip
+				class="ifx-multiselect-chip"
+				key={key}
+				size="medium"
+				value={[label]}
+				variant="multi"
+				theme="outlined"
+				placeholder=""
+				disabled={this.isEffectivelyDisabled()}
+			/>
+		);
+	}
+
 	private renderSelectedOptions() {
 		const visibleOptions = this.persistentSelectedOptions.slice(
 			0,
@@ -901,19 +1027,28 @@ export class Multiselect {
 		);
 		const hiddenOptionsCount =
 			this.persistentSelectedOptions.length - visibleOptions.length;
+		const hiddenOptionsLabel = hiddenOptionsCount === 1 ? "option" : "options";
 
 		return [
 			...visibleOptions.map((option) => {
 				const label = (option as any).label || option.value;
+				if (this.isEffectivelyDisabled()) {
+					return this.renderDisabledSelectedChip(option, option.value);
+				}
 				return (
 					<span class="ifx-multiselect-chip" key={option.value}>
 						<span class="ifx-multiselect-chip-label">{label}</span>
 						<button
 							type="button"
 							class="ifx-multiselect-chip-remove"
-							tabIndex={0}
+							tabIndex={this.isEffectivelyDisabled() ? -1 : 0}
+							disabled={this.isEffectivelyDisabled()}
 							aria-label={`Remove ${label}`}
-							onClick={(event) => this.removeSelection(option, event)}
+							onClick={
+								this.isEffectivelyDisabled()
+									? undefined
+									: (event) => this.removeSelection(option, event)
+							}
 						>
 							<ifx-icon icon="cross16"></ifx-icon>
 						</button>
@@ -922,8 +1057,17 @@ export class Multiselect {
 			}),
 			hiddenOptionsCount > 0 && (
 				<span
-					class="ifx-multiselect-indicator"
-					aria-label={`+${hiddenOptionsCount} more selections`}
+					class={`ifx-multiselect-indicator ${this.isEffectivelyDisabled() ? "disabled" : ""}`}
+					aria-label={`Show ${hiddenOptionsCount} more selected ${hiddenOptionsLabel}`}
+					role="button"
+					tabIndex={this.isEffectivelyDisabled() ? -1 : 0}
+					aria-disabled={this.isEffectivelyDisabled() ? "true" : undefined}
+					onClick={this.handleSelectedIndicatorClick}
+					onKeyDown={
+						this.isEffectivelyDisabled()
+							? undefined
+							: this.handleSelectedIndicatorKeyDown
+					}
 				>
 					+{hiddenOptionsCount}
 				</span>
@@ -936,6 +1080,9 @@ export class Multiselect {
 			<div class="ifx-multiselect-measurement" aria-hidden="true">
 				{this.persistentSelectedOptions.map((option) => {
 					const label = (option as any).label || option.value;
+					if (this.isEffectivelyDisabled()) {
+						return this.renderDisabledSelectedChip(option, option.value);
+					}
 					return (
 						<span class="ifx-multiselect-chip" key={option.value}>
 							<span class="ifx-multiselect-chip-label">{label}</span>
@@ -962,6 +1109,13 @@ export class Multiselect {
 
 	render() {
 		const hasSelections = this.persistentSelectedOptions.length > 0;
+		const stateClass = this.readOnly
+			? "readOnly"
+			: this.internalError
+				? "error"
+				: this.isEffectivelyDisabled()
+					? "disabled"
+					: "";
 
 		let isFlatMultiselect = false;
 		const allOptionElements = this.getAllOptionElements();
@@ -973,7 +1127,7 @@ export class Multiselect {
 
 		return (
 			<div
-				class={`ifx-multiselect-container ${this.readOnly ? "readOnly" : this.internalError ? "" : this.disabled ? "disabled" : ""}`}
+				class={`ifx-multiselect-container ${stateClass}`}
 				ref={(el) => (this.dropdownElement = el as HTMLElement)}
 			>
 				{
@@ -996,22 +1150,24 @@ export class Multiselect {
 					class={`ifx-multiselect-wrapper
         ${this.dropdownOpen ? "active" : ""}
         ${this.dropdownFlipped ? "is-flipped" : ""}
-        ${this.readOnly ? "" : this.internalError ? "error" : this.disabled ? "disabled" : ""}`}
+	${stateClass}`}
 					role="combobox"
 					aria-label={this.ariaMultiSelectLabel}
 					aria-labelledby={this.ariaMultiSelectLabelledBy || undefined}
 					aria-describedby={this.ariaMultiSelectDescribedBy || undefined}
 					aria-expanded={this.dropdownOpen}
 					aria-haspopup="listbox"
-					aria-disabled={!this.readOnly && !this.internalError && this.disabled}
-					tabindex="0"
+					aria-disabled={
+						!this.readOnly && this.isEffectivelyDisabled() ? "true" : undefined
+					}
+					tabindex={this.interactionsDisabled() ? undefined : 0}
 					onClick={
-						(this.disabled && !this.internalError) || this.readOnly
+						this.interactionsDisabled()
 							? undefined
 							: (event) => this.handleWrapperClick(event)
 					}
 					onKeyDown={
-						(this.disabled && !this.internalError) || this.readOnly
+						this.interactionsDisabled()
 							? undefined
 							: (event) => this.handleKeyDown(event)
 					}
@@ -1022,7 +1178,7 @@ export class Multiselect {
           ${hasSelections ? "" : "placeholder"}
           `}
 						onClick={
-							(this.disabled && !this.internalError) || this.readOnly
+							this.interactionsDisabled()
 								? undefined
 								: () => this.toggleDropdown()
 						}
@@ -1047,6 +1203,7 @@ export class Multiselect {
 												size="s"
 												show-delete-icon="true"
 												aria-label={this.ariaSearchLabel}
+												disabled={this.interactionsDisabled()}
 												onKeyDown={(e) => {
 													e.stopPropagation();
 												}}
@@ -1064,14 +1221,19 @@ export class Multiselect {
 												<span
 													class="control-item"
 													role="button"
-													tabIndex={0}
+													tabIndex={this.interactionsDisabled() ? -1 : 0}
 													aria-label={this.ariaExpandAllLabel}
+													aria-disabled={
+														this.interactionsDisabled() ? "true" : undefined
+													}
 													onClick={(e) => {
+														if (this.interactionsDisabled()) return;
 														e.stopPropagation();
 														this.expandAll();
 													}}
 													onKeyDown={(e) => {
 														if (e.key === "Enter" || e.key === " ") {
+															if (this.interactionsDisabled()) return;
 															e.preventDefault();
 															e.stopPropagation();
 															this.expandAll();
@@ -1083,14 +1245,19 @@ export class Multiselect {
 												<span
 													class="control-item"
 													role="button"
-													tabIndex={0}
+													tabIndex={this.interactionsDisabled() ? -1 : 0}
 													aria-label={this.ariaCollapseAllLabel}
+													aria-disabled={
+														this.interactionsDisabled() ? "true" : undefined
+													}
 													onClick={(e) => {
+														if (this.interactionsDisabled()) return;
 														e.stopPropagation();
 														this.collapseAll();
 													}}
 													onKeyDown={(e) => {
 														if (e.key === "Enter" || e.key === " ") {
+															if (this.interactionsDisabled()) return;
 															e.preventDefault();
 															e.stopPropagation();
 															this.collapseAll();
@@ -1123,14 +1290,10 @@ export class Multiselect {
 							<button
 								type="button"
 								class={`ifx-clear-button ${!this.showClearButton ? "hide" : ""}`}
-								tabIndex={0}
+								tabIndex={this.interactionsDisabled() ? -1 : 0}
 								aria-label="Clear selection"
-								disabled={(this.disabled && !this.error) || this.readOnly}
-								onClick={
-									this.disabled && !this.error
-										? undefined
-										: this.handleClearButtonClick
-								}
+								disabled={this.interactionsDisabled()}
+								onClick={this.handleClearButtonClick}
 							>
 								<ifx-icon icon="cRemove16"></ifx-icon>
 							</button>
@@ -1138,7 +1301,7 @@ export class Multiselect {
 						<div
 							class="icon-wrapper-up"
 							onClick={
-								this.disabled && !this.error
+								this.interactionsDisabled()
 									? undefined
 									: () => this.toggleDropdown()
 							}
@@ -1148,7 +1311,7 @@ export class Multiselect {
 						<div
 							class="icon-wrapper-down"
 							onClick={
-								this.disabled && !this.error
+								this.interactionsDisabled()
 									? undefined
 									: () => this.toggleDropdown()
 							}
@@ -1158,9 +1321,7 @@ export class Multiselect {
 					</div>
 				</div>
 				{this.caption && (
-					<div
-						class={`multi__select-caption ${this.readOnly ? "" : this.internalError ? "error" : this.disabled ? "disabled" : ""}`}
-					>
+					<div class={`multi__select-caption ${stateClass}`}>
 						{this.caption}
 					</div>
 				)}
