@@ -92,6 +92,12 @@
       //height: 100%;
       height: 16px;
 
+        &::placeholder {
+          color: tokens.$ifxColorEngineering400;
+          font-size: 16px;
+          opacity: 1;
+        }
+
       &::-webkit-search-decoration,
       &::-webkit-search-cancel-button,
       &::-webkit-search-results-button,
@@ -111,10 +117,6 @@
       &:disabled {
         background: tokens.$ifxColorEngineering200;
         color: tokens.$ifxColorBaseWhite;
-
-        &::placeholder {
-          color: tokens.$ifxColorEngineering500;
-        }
       }
     }
 
