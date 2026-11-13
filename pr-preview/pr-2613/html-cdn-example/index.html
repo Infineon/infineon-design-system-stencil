@@ -53,8 +53,8 @@
   
   
   
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system@42.4.2--canary.2613.43437775625.1.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/design-system@42.4.2--canary.2613.43437775625.1.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system@42.4.2--canary.2613.43444258458.1.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@infineon/design-system@42.4.2--canary.2613.43444258458.1.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   
 
   <!-- Prism.js for syntax highlighting -->
@@ -518,6 +518,19 @@
         &lt;ifx-icon icon=&quot;applications-16&quot;&gt;&lt;/ifx-icon&gt;
       &lt;/ifx-content-switcher-item&gt;
     &lt;/ifx-content-switcher&gt;</code></pre>
+          </details>
+        </section>
+
+
+        <!-- IFX-COUNTER Example -->
+        <section id="ifx-counter-example" class="component-example">
+          <h2>Counter</h2>
+          <div class="demo">
+            <ifx-counter name="" value="0"></ifx-counter>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-counter name=&quot;&quot; value=&quot;0&quot;&gt;&lt;/ifx-counter&gt;</code></pre>
           </details>
         </section>
 
@@ -1173,6 +1186,19 @@
         </section>
 
 
+        <!-- IFX-TOAST Example -->
+        <section id="ifx-toast-example" class="component-example">
+          <h2>Toast</h2>
+          <div class="demo">
+            <ifx-toast toast-id="" status="success" message="Insert information text here" action-text="Dismiss" duration="0"></ifx-toast>
+          </div>
+          <details class="code-details">
+            <summary>View Code</summary>
+            <pre><code class="language-markup">&lt;ifx-toast toast-id=&quot;&quot; status=&quot;success&quot; message=&quot;Insert information text here&quot; action-text=&quot;Dismiss&quot; duration=&quot;0&quot;&gt;&lt;/ifx-toast&gt;</code></pre>
+          </details>
+        </section>
+
+
         <!-- IFX-TOOLTIP Example -->
         <section id="ifx-tooltip-example" class="component-example">
           <h2>Tooltip</h2>
@@ -1492,6 +1518,12 @@
         // Add your custom handler logic here
       });
 
+          // Emitted when the counter value changes. Returns the new value as a number.
+      document.querySelector('#ifx-counter-example ifx-counter')?.addEventListener('ifxChange', (event) => {
+        console.log('ifxChange:', event);
+        // Add your custom handler logic here
+      });
+
           // Event emitted when date value changes
       document.querySelector('#ifx-date-picker-example ifx-date-picker')?.addEventListener('ifxDate', (event) => {
         console.log('ifxDate:', event);
@@ -1782,6 +1814,24 @@
           // Fired when the textarea value changes.
       document.querySelector('#ifx-textarea-example ifx-textarea')?.addEventListener('ifxInput', (event) => {
         console.log('ifxInput:', event);
+        // Add your custom handler logic here
+      });
+
+          // Emitted when the action is activated (before the toast dismisses).
+      document.querySelector('#ifx-toast-example ifx-toast')?.addEventListener('ifxToastAction', (event) => {
+        console.log('ifxToastAction:', event);
+        // Add your custom handler logic here
+      });
+
+      // Emitted after the toast finished dismissing (animation complete).
+      document.querySelector('#ifx-toast-example ifx-toast')?.addEventListener('ifxToastClose', (event) => {
+        console.log('ifxToastClose:', event);
+        // Add your custom handler logic here
+      });
+
+      // Emitted once the toast has been shown (mounted and rendered).
+      document.querySelector('#ifx-toast-example ifx-toast')?.addEventListener('ifxToastOpen', (event) => {
+        console.log('ifxToastOpen:', event);
         // Add your custom handler logic here
       });
     /* </AUTO-GENERATED-SCRIPTS> */
