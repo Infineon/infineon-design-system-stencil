@@ -19,6 +19,7 @@ import IfxAccordionExample from './generated/IfxAccordionExample.vue';
 import IfxActionListExample from './generated/IfxActionListExample.vue';
 import IfxAlertExample from './generated/IfxAlertExample.vue';
 import IfxAiLabelExample from './generated/IfxAiLabelExample.vue';
+import IfxBreadcrumbExample from './generated/IfxBreadcrumbExample.vue';
 import IfxButtonExample from './generated/IfxButtonExample.vue';
 import IfxCardExample from './generated/IfxCardExample.vue';
 import IfxCheckboxExample from './generated/IfxCheckboxExample.vue';
@@ -105,6 +106,13 @@ onMounted(() => {
           <h2>AI Label</h2>
           <div class="demo">
             <IfxAiLabelExample />
+          </div>
+        </section>
+
+        <section id="ifx-breadcrumb-example" class="component-example">
+          <h2>Breadcrumb</h2>
+          <div class="demo">
+            <IfxBreadcrumbExample />
           </div>
         </section>
 

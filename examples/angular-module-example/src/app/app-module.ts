@@ -15,6 +15,7 @@ import { IfxAccordionExample } from './generated/ifx-accordion-example/ifx-accor
 import { IfxActionListExample } from './generated/ifx-action-list-example/ifx-action-list-example';
 import { IfxAlertExample } from './generated/ifx-alert-example/ifx-alert-example';
 import { IfxAiLabelExample } from './generated/ifx-ai-label-example/ifx-ai-label-example';
+import { IfxBreadcrumbExample } from './generated/ifx-breadcrumb-example/ifx-breadcrumb-example';
 import { IfxButtonExample } from './generated/ifx-button-example/ifx-button-example';
 import { IfxCardExample } from './generated/ifx-card-example/ifx-card-example';
 import { IfxCheckboxExample } from './generated/ifx-checkbox-example/ifx-checkbox-example';
@@ -65,6 +66,7 @@ IfxAccordionExample,
 		    IfxActionListExample,
 		    IfxAlertExample,
 		    IfxAiLabelExample,
+		    IfxBreadcrumbExample,
 		    IfxButtonExample,
 		    IfxCardExample,
 		    IfxCheckboxExample,

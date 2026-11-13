@@ -19,6 +19,7 @@ import { IfxAccordionExample } from './generated/IfxAccordionExample';
 import { IfxActionListExample } from './generated/IfxActionListExample';
 import { IfxAlertExample } from './generated/IfxAlertExample';
 import { IfxAiLabelExample } from './generated/IfxAiLabelExample';
+import { IfxBreadcrumbExample } from './generated/IfxBreadcrumbExample';
 import { IfxButtonExample } from './generated/IfxButtonExample';
 import { IfxCardExample } from './generated/IfxCardExample';
 import { IfxCheckboxExample } from './generated/IfxCheckboxExample';
@@ -110,6 +111,13 @@ function App() {
 					  <h2>AI Label</h2>
 					  <div className="demo">
 					    <IfxAiLabelExample />
+					  </div>
+					</section>
+
+					<section id="ifx-breadcrumb-example" className="component-example">
+					  <h2>Breadcrumb</h2>
+					  <div className="demo">
+					    <IfxBreadcrumbExample />
 					  </div>
 					</section>
 

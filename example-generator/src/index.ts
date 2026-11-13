@@ -31,7 +31,7 @@ const componentStories = [
     name: "AI Label",
     stories: ["Default"],
   },
-  // { path: '../packages/components/src/components/breadcrumb/breadcrumb.stories.ts', name: 'Breadcrumb', stories: ['Default'] }, // Story has invalid structure (href + dropdown on same item)
+  { path: '../packages/components/src/components/breadcrumb/breadcrumb.stories.ts', name: 'Breadcrumb', stories: ['Default'] }, 
   {
     path: "../packages/components/src/components/button/button.stories.ts",
     name: "Button",
