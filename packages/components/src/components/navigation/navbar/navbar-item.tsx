@@ -33,6 +33,8 @@ export class NavbarItem {
 	@State() hasChildNavItems: boolean = false;
 	@State() isSidebarMenuItem: boolean = false;
 	@State() itemPosition: string;
+	private isHandlingUserActivation = false;
+	private hasEmittedNavItem = false;
 	/** Fired when the navigation item is activated or clicked. */
 	@Event() ifxNavItem: EventEmitter;
 	/** Number badge shown as an indicator on the item. */
@@ -98,7 +100,7 @@ export class NavbarItem {
 				const subLayerBackButton = this.getSubLayerBackButton();
 				this.handleClassList(navbarItem, "add", "layer__item-parent");
 				this.handleClassList(subLayerBackButton, "add", "show");
-				this.ifxNavItem.emit({ component: this.el, action: "hideFirstLayer" });
+				this.emitNavItem({ component: this.el, action: "hideFirstLayer" });
 			}
 		}
 
@@ -154,7 +156,7 @@ export class NavbarItem {
 		this.handleClassList(navbarItem, "remove", "layer__item-parent");
 		this.handleClassList(secondLayerMenu, "remove", "remove__margin");
 
-		this.ifxNavItem.emit({ component: this.el, action: "show" });
+		this.emitNavItem({ component: this.el, action: "show" });
 
 		const navItems = this.el.querySelectorAll('[slot="second__layer"]');
 		this.isSidebarMenuItem = false;
@@ -169,6 +171,36 @@ export class NavbarItem {
 				navItem.addMenuItemClass();
 				navItem.returnToFirstLayer();
 			}
+		}
+	}
+
+	private emitNavItem(detail: {
+		component: HTMLIfxNavbarItemElement;
+		action: string;
+		parent?: Element | null;
+	}) {
+		if (!this.isHandlingUserActivation) {
+			return;
+		}
+
+		this.hasEmittedNavItem = true;
+		this.ifxNavItem.emit(detail);
+	}
+
+	private handleUserActivation(action: () => void) {
+		const wasHandlingUserActivation = this.isHandlingUserActivation;
+		const hadEmittedNavItem = this.hasEmittedNavItem;
+		this.isHandlingUserActivation = true;
+		this.hasEmittedNavItem = false;
+
+		try {
+			action();
+			if (!this.hasEmittedNavItem) {
+				this.emitNavItem({ component: this.el, action: "click" });
+			}
+		} finally {
+			this.isHandlingUserActivation = wasHandlingUserActivation;
+			this.hasEmittedNavItem = hadEmittedNavItem;
 		}
 	}
 
@@ -201,14 +233,14 @@ export class NavbarItem {
 		}
 
 		if (slotName.toLowerCase() === "second__layer") {
-			this.ifxNavItem.emit({
+			this.emitNavItem({
 				component: this.el,
 				parent: this.el.parentElement,
 				action: "returnToSecondLayer",
 			});
 			this.handleClassList(navbarItem, "add", "menuItem");
 		} else {
-			this.ifxNavItem.emit({ component: this.el, action: "return" });
+			this.emitNavItem({ component: this.el, action: "return" });
 		}
 	}
 
@@ -370,7 +402,7 @@ export class NavbarItem {
 			this.handleClassList(this.getSubLayerBackButton(), "add", "show");
 			this.handleClassList(this.getNavBarItem(), "add", "layer__item-parent");
 			this.handleClassList(this.getSubLayerMenu(), "add", "open");
-			this.ifxNavItem.emit({
+			this.emitNavItem({
 				component: this.el,
 				parent: this.el.parentElement,
 				action:
@@ -382,12 +414,12 @@ export class NavbarItem {
 		}
 
 		if (mobileMenuItem) {
-			this.ifxNavItem.emit({ component: this.el, action: "closeMobileSidebar" });
+			this.emitNavItem({ component: this.el, action: "closeMobileSidebar" });
 			return;
 		}
 
 		if (this.isMenuItem && !this.hasChildNavItems) {
-			this.ifxNavItem.emit({
+			this.emitNavItem({
 				component: this.el,
 				action: "closeDesktopDropdown",
 			});
@@ -424,10 +456,12 @@ export class NavbarItem {
 	}
 
 	private handleItemClick = () => {
-		this.toggleItemMenu();
-		if (this.internalHref || !this.hasChildNavItems) {
-			this.closeParentProfileMenu();
-		}
+		this.handleUserActivation(() => {
+			this.toggleItemMenu();
+			if (this.internalHref || !this.hasChildNavItems) {
+				this.closeParentProfileMenu();
+			}
+		});
 	};
 
 	private handleNestedLayerMenu(e) {
@@ -522,9 +556,13 @@ export class NavbarItem {
 		if (event.key === "Enter") {
 			event.stopPropagation();
 			event.preventDefault();
-			this.toggleItemMenu();
+			this.handleItemClick();
 		}
 	}
+
+	private handleBackButtonClick = () => {
+		this.handleUserActivation(() => this.returnToFirstLayer());
+	};
 
 	render() {
 		return (
@@ -538,7 +576,7 @@ export class NavbarItem {
 				<div class="sub__layer-back-button">
 					<div
 						class="back__button-wrapper"
-						onClick={() => this.returnToFirstLayer()}
+						onClick={this.handleBackButtonClick}
 					>
 						<ifx-icon icon="arrow-left-16" />
 						<span>Back</span>
