@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-tsx";
 
-// @ts-expect-error
 import packageJson from "../package.json";
 
 const declaredVersion = (packageJson.dependencies as Record<string, string>)[
@@ -19,12 +18,14 @@ import { IfxAccordionExample } from './generated/IfxAccordionExample';
 import { IfxActionListExample } from './generated/IfxActionListExample';
 import { IfxAlertExample } from './generated/IfxAlertExample';
 import { IfxAiLabelExample } from './generated/IfxAiLabelExample';
+import { IfxBreadcrumbExample } from './generated/IfxBreadcrumbExample';
 import { IfxButtonExample } from './generated/IfxButtonExample';
 import { IfxCardExample } from './generated/IfxCardExample';
 import { IfxCheckboxExample } from './generated/IfxCheckboxExample';
 import { IfxCheckboxGroupExample } from './generated/IfxCheckboxGroupExample';
 import { IfxChipExample } from './generated/IfxChipExample';
 import { IfxContentSwitcherExample } from './generated/IfxContentSwitcherExample';
+import { IfxCounterExample } from './generated/IfxCounterExample';
 import { IfxDatePickerExample } from './generated/IfxDatePickerExample';
 import { IfxDropdownExample } from './generated/IfxDropdownExample';
 import { IfxErrorPageExample } from './generated/IfxErrorPageExample';
@@ -54,6 +55,7 @@ import { IfxTableDefaultStateExample } from './generated/IfxTableDefaultStateExa
 import { IfxTabsExample } from './generated/IfxTabsExample';
 import { IfxTextFieldExample } from './generated/IfxTextFieldExample';
 import { IfxTextareaExample } from './generated/IfxTextareaExample';
+import { IfxToastExample } from './generated/IfxToastExample';
 import { IfxTooltipExample } from './generated/IfxTooltipExample';
 /* </AUTO-GENERATED-IMPORTS> */
 
@@ -113,6 +115,13 @@ function App() {
 					  </div>
 					</section>
 
+					<section id="ifx-breadcrumb-example" className="component-example">
+					  <h2>Breadcrumb</h2>
+					  <div className="demo">
+					    <IfxBreadcrumbExample />
+					  </div>
+					</section>
+
 					<section id="ifx-button-example" className="component-example">
 					  <h2>Button</h2>
 					  <div className="demo">
@@ -152,6 +161,13 @@ function App() {
 					  <h2>Content Switcher</h2>
 					  <div className="demo">
 					    <IfxContentSwitcherExample />
+					  </div>
+					</section>
+
+					<section id="ifx-counter-example" className="component-example">
+					  <h2>Counter</h2>
+					  <div className="demo">
+					    <IfxCounterExample />
 					  </div>
 					</section>
 
@@ -355,6 +371,13 @@ function App() {
 					  <h2>Textarea</h2>
 					  <div className="demo">
 					    <IfxTextareaExample />
+					  </div>
+					</section>
+
+					<section id="ifx-toast-example" className="component-example">
+					  <h2>Toast</h2>
+					  <div className="demo">
+					    <IfxToastExample />
 					  </div>
 					</section>
 

@@ -119,6 +119,63 @@
           </section>
 
 
+          <!-- IFX-BREADCRUMB Example -->
+          <section id="ifx-breadcrumb-example" class="component-example">
+            <h2>Breadcrumb</h2>
+            <div class="demo">
+              <ifx-breadcrumb>
+                <ifx-breadcrumb-item>
+                  <ifx-breadcrumb-item-label slot="label" icon="" target="_self">Breadcrumb 1</ifx-breadcrumb-item-label>
+                  <ifx-dropdown-menu>
+                    <ifx-dropdown-item href="http://google.com">Google</ifx-dropdown-item>
+                    <ifx-dropdown-item href="http://bing.com">Bing</ifx-dropdown-item>
+                    <ifx-dropdown-item href="http://yahoo.com">Yahoo</ifx-dropdown-item>
+                    <ifx-dropdown-item href="http://naver.com">Naver</ifx-dropdown-item>
+                  </ifx-dropdown-menu>
+                </ifx-breadcrumb-item>
+                <ifx-breadcrumb-item>
+                  <ifx-breadcrumb-item-label slot="label" icon="" target="_self">Breadcrumb 2</ifx-breadcrumb-item-label>
+                  <ifx-dropdown-menu>
+                    <ifx-dropdown-item href="http://google.com">Google</ifx-dropdown-item>
+                    <ifx-dropdown-item href="http://bing.com">Bing</ifx-dropdown-item>
+                    <ifx-dropdown-item href="http://yahoo.com">Yahoo</ifx-dropdown-item>
+                    <ifx-dropdown-item href="http://naver.com">Naver</ifx-dropdown-item>
+                  </ifx-dropdown-menu>
+                </ifx-breadcrumb-item>
+                <ifx-breadcrumb-item>
+                  <ifx-breadcrumb-item-label slot="label" icon="" href="http://yahoo.com" target="_self">Breadcrumb 3</ifx-breadcrumb-item-label>
+                </ifx-breadcrumb-item>
+              </ifx-breadcrumb>
+            </div>
+            <details class="code-details">
+              <summary>View Code</summary>
+              <pre><code class="language-markup">&lt;ifx-breadcrumb&gt;
+        &lt;ifx-breadcrumb-item&gt;
+          &lt;ifx-breadcrumb-item-label slot=&quot;label&quot; icon=&quot;&quot; target=&quot;_self&quot;&gt;Breadcrumb 1&lt;/ifx-breadcrumb-item-label&gt;
+          &lt;ifx-dropdown-menu&gt;
+            &lt;ifx-dropdown-item href=&quot;http://google.com&quot;&gt;Google&lt;/ifx-dropdown-item&gt;
+            &lt;ifx-dropdown-item href=&quot;http://bing.com&quot;&gt;Bing&lt;/ifx-dropdown-item&gt;
+            &lt;ifx-dropdown-item href=&quot;http://yahoo.com&quot;&gt;Yahoo&lt;/ifx-dropdown-item&gt;
+            &lt;ifx-dropdown-item href=&quot;http://naver.com&quot;&gt;Naver&lt;/ifx-dropdown-item&gt;
+          &lt;/ifx-dropdown-menu&gt;
+        &lt;/ifx-breadcrumb-item&gt;
+        &lt;ifx-breadcrumb-item&gt;
+          &lt;ifx-breadcrumb-item-label slot=&quot;label&quot; icon=&quot;&quot; target=&quot;_self&quot;&gt;Breadcrumb 2&lt;/ifx-breadcrumb-item-label&gt;
+          &lt;ifx-dropdown-menu&gt;
+            &lt;ifx-dropdown-item href=&quot;http://google.com&quot;&gt;Google&lt;/ifx-dropdown-item&gt;
+            &lt;ifx-dropdown-item href=&quot;http://bing.com&quot;&gt;Bing&lt;/ifx-dropdown-item&gt;
+            &lt;ifx-dropdown-item href=&quot;http://yahoo.com&quot;&gt;Yahoo&lt;/ifx-dropdown-item&gt;
+            &lt;ifx-dropdown-item href=&quot;http://naver.com&quot;&gt;Naver&lt;/ifx-dropdown-item&gt;
+          &lt;/ifx-dropdown-menu&gt;
+        &lt;/ifx-breadcrumb-item&gt;
+        &lt;ifx-breadcrumb-item&gt;
+          &lt;ifx-breadcrumb-item-label slot=&quot;label&quot; icon=&quot;&quot; href=&quot;http://yahoo.com&quot; target=&quot;_self&quot;&gt;Breadcrumb 3&lt;/ifx-breadcrumb-item-label&gt;
+        &lt;/ifx-breadcrumb-item&gt;
+      &lt;/ifx-breadcrumb&gt;</code></pre>
+            </details>
+          </section>
+
+
           <!-- IFX-BUTTON Example -->
           <section id="ifx-button-example" class="component-example">
             <h2>Button</h2>
@@ -255,6 +312,19 @@
           &lt;ifx-icon icon=&quot;applications-16&quot;&gt;&lt;/ifx-icon&gt;
         &lt;/ifx-content-switcher-item&gt;
       &lt;/ifx-content-switcher&gt;</code></pre>
+            </details>
+          </section>
+
+
+          <!-- IFX-COUNTER Example -->
+          <section id="ifx-counter-example" class="component-example">
+            <h2>Counter</h2>
+            <div class="demo">
+              <ifx-counter name="" value="0"></ifx-counter>
+            </div>
+            <details class="code-details">
+              <summary>View Code</summary>
+              <pre><code class="language-markup">&lt;ifx-counter name=&quot;&quot; value=&quot;0&quot;&gt;&lt;/ifx-counter&gt;</code></pre>
             </details>
           </section>
 
@@ -910,6 +980,19 @@
           </section>
 
 
+          <!-- IFX-TOAST Example -->
+          <section id="ifx-toast-example" class="component-example">
+            <h2>Toast</h2>
+            <div class="demo">
+              <ifx-toast toast-id="" status="success" message="Insert information text here" action-text="Dismiss" duration="0"></ifx-toast>
+            </div>
+            <details class="code-details">
+              <summary>View Code</summary>
+              <pre><code class="language-markup">&lt;ifx-toast toast-id=&quot;&quot; status=&quot;success&quot; message=&quot;Insert information text here&quot; action-text=&quot;Dismiss&quot; duration=&quot;0&quot;&gt;&lt;/ifx-toast&gt;</code></pre>
+            </details>
+          </section>
+
+
           <!-- IFX-TOOLTIP Example -->
           <section id="ifx-tooltip-example" class="component-example">
             <h2>Tooltip</h2>
@@ -1140,6 +1223,30 @@
           // Add your custom handler logic here
         });
 
+            // Fires with the icon wrapper element when it's ready.
+        document.querySelector('#ifx-breadcrumb-example ifx-breadcrumb')?.addEventListener('breadcrumbMenuIconWrapper', (event) => {
+          console.log('breadcrumbMenuIconWrapper:', event);
+          // Add your custom handler logic here
+        });
+
+        // Fired when a dropdown menu item is selected
+        document.querySelector('#ifx-breadcrumb-example ifx-breadcrumb')?.addEventListener('ifxDropdownMenuItem', (event) => {
+          console.log('ifxDropdownMenuItem:', event);
+          // Add your custom handler logic here
+        });
+
+        // Emits the calculated size of the menu
+        document.querySelector('#ifx-breadcrumb-example ifx-breadcrumb')?.addEventListener('menuSize', (event) => {
+          console.log('menuSize:', event);
+          // Add your custom handler logic here
+        });
+
+        // Fired when the dropdown item is clicked or selected.
+        document.querySelector('#ifx-breadcrumb-example ifx-breadcrumb')?.addEventListener('ifxDropdownItem', (event) => {
+          console.log('ifxDropdownItem:', event);
+          // Add your custom handler logic here
+        });
+
             // Emits the image position when it changes or is set.
         document.querySelector('#ifx-card-example ifx-card')?.addEventListener('imgPosition', (event) => {
           console.log('imgPosition:', event);
@@ -1202,6 +1309,12 @@
         // The event detail contains a boolean value `true` indicating an error occurred.
         document.querySelector('#ifx-content-switcher-example ifx-content-switcher')?.addEventListener('consoleError', (event) => {
           console.log('consoleError:', event);
+          // Add your custom handler logic here
+        });
+
+            // Emitted when the counter value changes. Returns the new value as a number.
+        document.querySelector('#ifx-counter-example ifx-counter')?.addEventListener('ifxChange', (event) => {
+          console.log('ifxChange:', event);
           // Add your custom handler logic here
         });
 
@@ -1495,6 +1608,24 @@
             // Fired when the textarea value changes.
         document.querySelector('#ifx-textarea-example ifx-textarea')?.addEventListener('ifxInput', (event) => {
           console.log('ifxInput:', event);
+          // Add your custom handler logic here
+        });
+
+            // Emitted when the action is activated (before the toast dismisses).
+        document.querySelector('#ifx-toast-example ifx-toast')?.addEventListener('ifxToastAction', (event) => {
+          console.log('ifxToastAction:', event);
+          // Add your custom handler logic here
+        });
+
+        // Emitted after the toast finished dismissing (animation complete).
+        document.querySelector('#ifx-toast-example ifx-toast')?.addEventListener('ifxToastClose', (event) => {
+          console.log('ifxToastClose:', event);
+          // Add your custom handler logic here
+        });
+
+        // Emitted once the toast has been shown (mounted and rendered).
+        document.querySelector('#ifx-toast-example ifx-toast')?.addEventListener('ifxToastOpen', (event) => {
+          console.log('ifxToastOpen:', event);
           // Add your custom handler logic here
         });
       /* </AUTO-GENERATED-SCRIPTS> */

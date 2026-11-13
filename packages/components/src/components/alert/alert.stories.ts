@@ -10,7 +10,7 @@ export default {
 		variant: "primary",
 		closable: true,
 		icon: "c-info-16",
-		AriaLiveText: "assertive",
+		ariaLiveText: "assertive",
 	},
 
 	argTypes: {
@@ -69,7 +69,7 @@ export default {
 			},
 		},
 
-		AriaLiveText: {
+		ariaLiveText: {
 			options: ["off", "polite", "assertive"],
 			control: "radio",
 			description: "The aria-live-text attribute to indicate a dynamic content.",
@@ -84,7 +84,7 @@ export default {
 };
 
 const DefaultTemplate = (args:any) =>
-	html`<ifx-alert aria-live-text="${args.AriaLiveText}" variant="${args.variant}" icon="${args.icon === "none" ? "" : args.icon}" closable="${args.closable}">${args.label}</ifx-alert>`;
+	html`<ifx-alert aria-live-text="${args.ariaLiveText}" variant="${args.variant}" icon="${args.icon === "none" ? "" : args.icon}" closable="${args.closable}">${args.label}</ifx-alert>`;
 
 export const Default = DefaultTemplate.bind({});
 

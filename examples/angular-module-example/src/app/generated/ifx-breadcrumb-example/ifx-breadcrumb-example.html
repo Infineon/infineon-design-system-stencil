@@ -1,0 +1,49 @@
+  <ifx-breadcrumb>
+    <ifx-breadcrumb-item>
+      <ifx-breadcrumb-item-label
+        slot="label"
+        icon=""
+        target="_self"
+        (breadcrumbMenuIconWrapper)="handleBreadcrumbMenuIconWrapper($any($event))">Breadcrumb 1</ifx-breadcrumb-item-label>
+      <ifx-dropdown-menu
+        (ifxDropdownMenuItem)="handleDropdownMenuItem($any($event))"
+        (menuSize)="handleMenuSize($any($event))">
+        <ifx-dropdown-item
+          href="http://google.com"
+          (ifxDropdownItem)="handleDropdownItem($any($event))">Google</ifx-dropdown-item>
+        <ifx-dropdown-item href="http://bing.com">Bing</ifx-dropdown-item>
+        <ifx-dropdown-item href="http://yahoo.com">Yahoo</ifx-dropdown-item>
+        <ifx-dropdown-item href="http://naver.com">Naver</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+    </ifx-breadcrumb-item>
+    <ifx-breadcrumb-item>
+      <ifx-breadcrumb-item-label
+        slot="label"
+        icon=""
+        target="_self">Breadcrumb 2</ifx-breadcrumb-item-label>
+      <ifx-dropdown-menu>
+        <ifx-dropdown-item href="http://google.com">Google</ifx-dropdown-item>
+        <ifx-dropdown-item href="http://bing.com">Bing</ifx-dropdown-item>
+        <ifx-dropdown-item href="http://yahoo.com">Yahoo</ifx-dropdown-item>
+        <ifx-dropdown-item href="http://naver.com">Naver</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+    </ifx-breadcrumb-item>
+    <ifx-breadcrumb-item>
+      <ifx-breadcrumb-item-label
+        slot="label"
+        icon=""
+        href="http://yahoo.com"
+        target="_self">Breadcrumb 3</ifx-breadcrumb-item-label>
+    </ifx-breadcrumb-item>
+  </ifx-breadcrumb>
+
+<details class="code-details">
+  <summary>View Code</summary>
+  <div class="code-blocks">
+    <h3>ifx-breadcrumb-example.ts</h3>
+    <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
+    
+    <h3>ifx-breadcrumb-example.html</h3>
+    <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
+  </div>
+</details>

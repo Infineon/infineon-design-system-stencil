@@ -19,12 +19,14 @@ import IfxAccordionExample from './generated/IfxAccordionExample.vue';
 import IfxActionListExample from './generated/IfxActionListExample.vue';
 import IfxAlertExample from './generated/IfxAlertExample.vue';
 import IfxAiLabelExample from './generated/IfxAiLabelExample.vue';
+import IfxBreadcrumbExample from './generated/IfxBreadcrumbExample.vue';
 import IfxButtonExample from './generated/IfxButtonExample.vue';
 import IfxCardExample from './generated/IfxCardExample.vue';
 import IfxCheckboxExample from './generated/IfxCheckboxExample.vue';
 import IfxCheckboxGroupExample from './generated/IfxCheckboxGroupExample.vue';
 import IfxChipExample from './generated/IfxChipExample.vue';
 import IfxContentSwitcherExample from './generated/IfxContentSwitcherExample.vue';
+import IfxCounterExample from './generated/IfxCounterExample.vue';
 import IfxDatePickerExample from './generated/IfxDatePickerExample.vue';
 import IfxDropdownExample from './generated/IfxDropdownExample.vue';
 import IfxErrorPageExample from './generated/IfxErrorPageExample.vue';
@@ -54,6 +56,7 @@ import IfxTableDefaultStateExample from './generated/IfxTableDefaultStateExample
 import IfxTabsExample from './generated/IfxTabsExample.vue';
 import IfxTextFieldExample from './generated/IfxTextFieldExample.vue';
 import IfxTextareaExample from './generated/IfxTextareaExample.vue';
+import IfxToastExample from './generated/IfxToastExample.vue';
 import IfxTooltipExample from './generated/IfxTooltipExample.vue';
 /* </AUTO-GENERATED-IMPORTS> */
 
@@ -108,6 +111,13 @@ onMounted(() => {
           </div>
         </section>
 
+        <section id="ifx-breadcrumb-example" class="component-example">
+          <h2>Breadcrumb</h2>
+          <div class="demo">
+            <IfxBreadcrumbExample />
+          </div>
+        </section>
+
         <section id="ifx-button-example" class="component-example">
           <h2>Button</h2>
           <div class="demo">
@@ -147,6 +157,13 @@ onMounted(() => {
           <h2>Content Switcher</h2>
           <div class="demo">
             <IfxContentSwitcherExample />
+          </div>
+        </section>
+
+        <section id="ifx-counter-example" class="component-example">
+          <h2>Counter</h2>
+          <div class="demo">
+            <IfxCounterExample />
           </div>
         </section>
 
@@ -350,6 +367,13 @@ onMounted(() => {
           <h2>Textarea</h2>
           <div class="demo">
             <IfxTextareaExample />
+          </div>
+        </section>
+
+        <section id="ifx-toast-example" class="component-example">
+          <h2>Toast</h2>
+          <div class="demo">
+            <IfxToastExample />
           </div>
         </section>
 

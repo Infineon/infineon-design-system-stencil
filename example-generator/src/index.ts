@@ -31,7 +31,7 @@ const componentStories = [
     name: "AI Label",
     stories: ["Default"],
   },
-  // { path: '../packages/components/src/components/breadcrumb/breadcrumb.stories.ts', name: 'Breadcrumb', stories: ['Default'] }, // Story has invalid structure (href + dropdown on same item)
+  { path: '../packages/components/src/components/breadcrumb/breadcrumb.stories.ts', name: 'Breadcrumb', stories: ['Default'] }, 
   {
     path: "../packages/components/src/components/button/button.stories.ts",
     name: "Button",
@@ -60,6 +60,11 @@ const componentStories = [
   {
     path: "../packages/components/src/components/content-switcher/content-switcher.stories.ts",
     name: "Content Switcher",
+    stories: ["Default"],
+  },
+  {
+    path: "../packages/components/src/components/counter/counter.stories.ts",
+    name: "Counter",
     stories: ["Default"],
   },
   {
@@ -201,6 +206,11 @@ const componentStories = [
   {
     path: "../packages/components/src/components/textarea/textarea.stories.ts",
     name: "Textarea",
+    stories: ["Default"],
+  },
+  {
+    path: "../packages/components/src/components/toast/toast.stories.ts",
+    name: "Toast",
     stories: ["Default"],
   },
   {
