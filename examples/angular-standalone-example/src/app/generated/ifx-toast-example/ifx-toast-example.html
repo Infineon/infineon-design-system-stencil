@@ -1,0 +1,20 @@
+  <ifx-toast
+    toast-id=""
+    status="success"
+    message="Insert information text here"
+    action-text="Dismiss"
+    duration="0"
+    (ifxToastAction)="handleToastAction($any($event))"
+    (ifxToastClose)="handleToastClose($any($event))"
+    (ifxToastOpen)="handleToastOpen($any($event))"></ifx-toast>
+
+<details class="code-details">
+  <summary>View Code</summary>
+  <div class="code-blocks">
+    <h3>ifx-toast-example.ts</h3>
+    <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
+    
+    <h3>ifx-toast-example.html</h3>
+    <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
+  </div>
+</details>

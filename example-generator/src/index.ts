@@ -63,6 +63,11 @@ const componentStories = [
     stories: ["Default"],
   },
   {
+    path: "../packages/components/src/components/counter/counter.stories.ts",
+    name: "Counter",
+    stories: ["Default"],
+  },
+  {
     path: "../packages/components/src/components/date-picker/date-picker.stories.ts",
     name: "Date Picker",
     stories: ["Default"],
@@ -201,6 +206,11 @@ const componentStories = [
   {
     path: "../packages/components/src/components/textarea/textarea.stories.ts",
     name: "Textarea",
+    stories: ["Default"],
+  },
+  {
+    path: "../packages/components/src/components/toast/toast.stories.ts",
+    name: "Toast",
     stories: ["Default"],
   },
   {

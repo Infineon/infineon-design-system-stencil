@@ -22,6 +22,7 @@ import { IfxCheckboxExample } from './generated/ifx-checkbox-example/ifx-checkbo
 import { IfxCheckboxGroupExample } from './generated/ifx-checkbox-group-example/ifx-checkbox-group-example';
 import { IfxChipExample } from './generated/ifx-chip-example/ifx-chip-example';
 import { IfxContentSwitcherExample } from './generated/ifx-content-switcher-example/ifx-content-switcher-example';
+import { IfxCounterExample } from './generated/ifx-counter-example/ifx-counter-example';
 import { IfxDatePickerExample } from './generated/ifx-date-picker-example/ifx-date-picker-example';
 import { IfxDropdownExample } from './generated/ifx-dropdown-example/ifx-dropdown-example';
 import { IfxErrorPageExample } from './generated/ifx-error-page-example/ifx-error-page-example';
@@ -51,6 +52,7 @@ import { IfxTableDefaultStateExample } from './generated/ifx-table-example-defau
 import { IfxTabsExample } from './generated/ifx-tabs-example/ifx-tabs-example';
 import { IfxTextFieldExample } from './generated/ifx-text-field-example/ifx-text-field-example';
 import { IfxTextareaExample } from './generated/ifx-textarea-example/ifx-textarea-example';
+import { IfxToastExample } from './generated/ifx-toast-example/ifx-toast-example';
 import { IfxTooltipExample } from './generated/ifx-tooltip-example/ifx-tooltip-example';
 /* </AUTO-GENERATED-IMPORTS> */
 import { IfxModal } from "@infineon/design-system-angular";
@@ -73,6 +75,7 @@ IfxAccordionExample,
 		    IfxCheckboxGroupExample,
 		    IfxChipExample,
 		    IfxContentSwitcherExample,
+		    IfxCounterExample,
 		    IfxDatePickerExample,
 		    IfxDropdownExample,
 		    IfxErrorPageExample,
@@ -102,6 +105,7 @@ IfxAccordionExample,
 		    IfxTabsExample,
 		    IfxTextFieldExample,
 		    IfxTextareaExample,
+		    IfxToastExample,
 		    IfxTooltipExample
 		/* </AUTO-GENERATED-COMPONENTS> */
 			,

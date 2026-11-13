@@ -148,7 +148,7 @@ export const IfxAlert: StencilVueComponent<JSX.IfxAlert> = /*@__PURE__*/ defineC
   'variant',
   'icon',
   'closable',
-  'AriaLiveText',
+  'ariaLiveText',
   'ifxClose'
 ], [
   'ifxClose'
