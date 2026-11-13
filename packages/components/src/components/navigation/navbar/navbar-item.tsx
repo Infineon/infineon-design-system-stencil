@@ -556,7 +556,7 @@ export class NavbarItem {
 		if (event.key === "Enter") {
 			event.stopPropagation();
 			event.preventDefault();
-			this.toggleItemMenu();
+			this.handleItemClick();
 		}
 	}
 

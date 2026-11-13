@@ -106,6 +106,66 @@ describe("ifx-navbar", () => {
         );
         expect(rightItemSlot).toBeTruthy();
     });
+    it("uses Enter to open and close a menu and emits the same activation event as click", async () => {
+        const page = await newSpecPage({
+            components: [NavbarItem],
+            html: `
+        <ifx-navbar-item>
+          <ifx-navbar-item>Nested item</ifx-navbar-item>
+        </ifx-navbar-item>
+      `,
+        });
+        const item = page.root as HTMLIfxNavbarItemElement;
+        const container = item.shadowRoot.querySelector(".container");
+        const itemMenu = item.shadowRoot.querySelector(".navbar-menu");
+        const emittedEvents: CustomEvent[] = [];
+        item.addEventListener("ifxNavItem", (event) =>
+            emittedEvents.push(event as CustomEvent),
+        );
+
+        container.dispatchEvent(
+            new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
+        );
+        await page.waitForChanges();
+
+        expect(itemMenu.classList.contains("open")).toBe(true);
+        expect(emittedEvents).toHaveLength(1);
+        expect(emittedEvents[0].detail.action).toBe("click");
+
+        container.dispatchEvent(
+            new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
+        );
+        await page.waitForChanges();
+
+        expect(itemMenu.classList.contains("open")).toBe(false);
+        expect(emittedEvents).toHaveLength(2);
+    });
+    it("emits the selection event when a nested leaf item is activated with Enter", async () => {
+        const page = await newSpecPage({
+            components: [NavbarItem],
+            html: `
+        <ifx-navbar-item>
+          <ifx-navbar-item>Nested leaf</ifx-navbar-item>
+        </ifx-navbar-item>
+      `,
+        });
+        const nestedItem = page.root.querySelector(
+            "ifx-navbar-item",
+        ) as HTMLIfxNavbarItemElement;
+        const container = nestedItem.shadowRoot.querySelector(".container");
+        const emittedEvents: CustomEvent[] = [];
+        nestedItem.addEventListener("ifxNavItem", (event) =>
+            emittedEvents.push(event as CustomEvent),
+        );
+
+        container.dispatchEvent(
+            new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
+        );
+        await page.waitForChanges();
+
+        expect(emittedEvents).toHaveLength(1);
+        expect(emittedEvents[0].detail.action).toBe("closeDesktopDropdown");
+    });
     it("renders with search bar slot", async () => {
         const page = await newSpecPage({
             components: [Navbar],
