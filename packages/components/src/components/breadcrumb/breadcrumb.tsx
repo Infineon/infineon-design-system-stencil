@@ -9,7 +9,7 @@ import { trackComponent } from "../../shared/utils/tracking";
 	shadow: true,
 })
 export class Breadcrumb {
-	@Element() el: HTMLIfxBreadcrumbElement;
+	@Element() el!: HTMLIfxBreadcrumbElement;
 
 	async componentDidLoad() {
 		if (!isNestedInIfxComponent(this.el)) {
@@ -41,7 +41,7 @@ export class Breadcrumb {
 					);
 					const breadcrumbDropdown =
 						breadcrumbItem.querySelector("ifx-dropdown-menu");
-					if (breadcrumbItemLabel.hasAttribute("href") && breadcrumbDropdown) {
+					if (breadcrumbItemLabel?.hasAttribute("href") && breadcrumbDropdown) {
 						throw new Error(
 							"ifx-breadcrumb-item cannot have both a href and a dropdown menu.",
 						);

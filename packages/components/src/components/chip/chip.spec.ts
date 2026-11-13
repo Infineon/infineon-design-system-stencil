@@ -268,7 +268,7 @@ describe("ifx-chip", () => {
     const selectedOptions = page.root.shadowRoot.querySelector(
       ".label__selected-options",
     );
-    expect(selectedOptions.textContent.trim()).toBe("option1, option2");
+    expect(selectedOptions.textContent.trim()).toBe("Option 1, Option 2");
     // Add a third option
     chip.updateSelectedOptions(
       new CustomEvent("ifxChipItemSelect", {
@@ -286,7 +286,7 @@ describe("ifx-chip", () => {
 
     // UI should still show just first two options and indicator appears
     expect(chip.selectedOptions.length).toBe(3);
-    expect(selectedOptions.textContent.trim()).toBe("option1, option2");
+    expect(selectedOptions.textContent.trim()).toBe("Option 1, Option 2");
     const indicator = page.root.shadowRoot.querySelector("ifx-indicator");
     expect(indicator).not.toBeNull();
     expect(indicator.getAttribute("number")).toBe("1"); // Shows 1 more item

@@ -577,16 +577,6 @@ export namespace Components {
          */
         "noAppendToBody": boolean;
         /**
-          * Id true, clicking inside the menu will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnMenuClick": boolean;
-        /**
-          * If true, clicking outside will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnOutsideClick": boolean;
-        /**
           * Opens the dropdown and sets up the popper positioning.
          */
         "openDropdown": () => Promise<void>;
@@ -1311,6 +1301,8 @@ export namespace Components {
          */
         "value": string;
     }
+    interface IfxMultiselectSeparator {
+    }
     interface IfxNavbar {
         /**
           * Name of the application shown in the navbar.
@@ -1322,6 +1314,11 @@ export namespace Components {
           * @default true
          */
         "fixed": boolean;
+        /**
+          * Accessible label for the logo link.
+          * @default "Go to application home"
+         */
+        "logoAriaLabel": string;
         /**
           * Link URL for the logo click action.
           * @default ""
@@ -2033,6 +2030,8 @@ export namespace Components {
          */
         "value": string;
     }
+    interface IfxSelectSeparator {
+    }
     interface IfxSetFilter {
         /**
           * User-visible label for the filter control
@@ -2157,7 +2156,7 @@ export namespace Components {
          */
         "active": boolean;
         /**
-          * Expand submenu (adds 'open'); if ac=true, remove 'active-section'
+          * Expand submenu and keep the active section indicator visible.
          */
         "expandMenu": (ac: boolean) => Promise<void>;
         /**
@@ -3024,6 +3023,10 @@ export interface IfxContentSwitcherCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxContentSwitcherElement;
 }
+export interface IfxContentSwitcherItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxContentSwitcherItemElement;
+}
 export interface IfxCounterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxCounterElement;
@@ -3426,7 +3429,18 @@ declare global {
         prototype: HTMLIfxContentSwitcherElement;
         new (): HTMLIfxContentSwitcherElement;
     };
+    interface HTMLIfxContentSwitcherItemElementEventMap {
+        "itemSelected": any;
+    }
     interface HTMLIfxContentSwitcherItemElement extends Components.IfxContentSwitcherItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxContentSwitcherItemElementEventMap>(type: K, listener: (this: HTMLIfxContentSwitcherItemElement, ev: IfxContentSwitcherItemCustomEvent<HTMLIfxContentSwitcherItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxContentSwitcherItemElementEventMap>(type: K, listener: (this: HTMLIfxContentSwitcherItemElement, ev: IfxContentSwitcherItemCustomEvent<HTMLIfxContentSwitcherItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIfxContentSwitcherItemElement: {
         prototype: HTMLIfxContentSwitcherItemElement;
@@ -3814,6 +3828,12 @@ declare global {
         prototype: HTMLIfxMultiselectOptionElement;
         new (): HTMLIfxMultiselectOptionElement;
     };
+    interface HTMLIfxMultiselectSeparatorElement extends Components.IfxMultiselectSeparator, HTMLStencilElement {
+    }
+    var HTMLIfxMultiselectSeparatorElement: {
+        prototype: HTMLIfxMultiselectSeparatorElement;
+        new (): HTMLIfxMultiselectSeparatorElement;
+    };
     interface HTMLIfxNavbarElementEventMap {
         "ifxNavbarMobileMenuIsOpen": any;
     }
@@ -4065,6 +4085,12 @@ declare global {
     var HTMLIfxSelectOptionElement: {
         prototype: HTMLIfxSelectOptionElement;
         new (): HTMLIfxSelectOptionElement;
+    };
+    interface HTMLIfxSelectSeparatorElement extends Components.IfxSelectSeparator, HTMLStencilElement {
+    }
+    var HTMLIfxSelectSeparatorElement: {
+        prototype: HTMLIfxSelectSeparatorElement;
+        new (): HTMLIfxSelectSeparatorElement;
     };
     interface HTMLIfxSetFilterElementEventMap {
         "ifxFilterSelect": any;
@@ -4460,6 +4486,7 @@ declare global {
         "ifx-multiselect": HTMLIfxMultiselectElement;
         "ifx-multiselect-group": HTMLIfxMultiselectGroupElement;
         "ifx-multiselect-option": HTMLIfxMultiselectOptionElement;
+        "ifx-multiselect-separator": HTMLIfxMultiselectSeparatorElement;
         "ifx-navbar": HTMLIfxNavbarElement;
         "ifx-navbar-item": HTMLIfxNavbarItemElement;
         "ifx-navbar-profile": HTMLIfxNavbarProfileElement;
@@ -4477,6 +4504,7 @@ declare global {
         "ifx-select": HTMLIfxSelectElement;
         "ifx-select-group": HTMLIfxSelectGroupElement;
         "ifx-select-option": HTMLIfxSelectOptionElement;
+        "ifx-select-separator": HTMLIfxSelectSeparatorElement;
         "ifx-set-filter": HTMLIfxSetFilterElement;
         "ifx-sidebar": HTMLIfxSidebarElement;
         "ifx-sidebar-item": HTMLIfxSidebarItemElement;
@@ -4953,6 +4981,10 @@ declare namespace LocalJSX {
     }
     interface IfxContentSwitcherItem {
         /**
+          * Fired when this item becomes selected, so the parent switcher can deselect the others.
+         */
+        "onItemSelected"?: (event: IfxContentSwitcherItemCustomEvent<any>) => void;
+        /**
           * Wether this option is currently selected.
           * @default false
          */
@@ -4960,7 +4992,7 @@ declare namespace LocalJSX {
         /**
           * Value associated with this option.
          */
-        "value"?: string;
+        "value": string;
     }
     interface IfxCounter {
         /**
@@ -5079,16 +5111,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "noAppendToBody"?: boolean;
-        /**
-          * Id true, clicking inside the menu will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnMenuClick"?: boolean;
-        /**
-          * If true, clicking outside will not close the dropdown.
-          * @default false
-         */
-        "noCloseOnOutsideClick"?: boolean;
         /**
           * Fired when dropdown closed.
          */
@@ -5933,6 +5955,8 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface IfxMultiselectSeparator {
+    }
     interface IfxNavbar {
         /**
           * Name of the application shown in the navbar.
@@ -5944,6 +5968,11 @@ declare namespace LocalJSX {
           * @default true
          */
         "fixed"?: boolean;
+        /**
+          * Accessible label for the logo link.
+          * @default "Go to application home"
+         */
+        "logoAriaLabel"?: string;
         /**
           * Link URL for the logo click action.
           * @default ""
@@ -6649,6 +6678,8 @@ declare namespace LocalJSX {
           * Value associated with this option (used for selection and events).
          */
         "value"?: string;
+    }
+    interface IfxSelectSeparator {
     }
     interface IfxSetFilter {
         /**
@@ -7777,8 +7808,6 @@ declare namespace LocalJSX {
         "defaultOpen": boolean;
         "noAppendToBody": boolean;
         "disabled": boolean;
-        "noCloseOnOutsideClick": boolean;
-        "noCloseOnMenuClick": boolean;
     }
     interface IfxDropdownItemAttributes {
         "icon": string;
@@ -7960,6 +7989,7 @@ declare namespace LocalJSX {
         "showLogoAndAppname": boolean;
         "logoHref": string;
         "logoHrefTarget": string;
+        "logoAriaLabel": string;
     }
     interface IfxNavbarItemAttributes {
         "showLabel": boolean;
@@ -8331,7 +8361,7 @@ declare namespace LocalJSX {
         "ifx-chip": Omit<IfxChip, keyof IfxChipAttributes> & { [K in keyof IfxChip & keyof IfxChipAttributes]?: IfxChip[K] } & { [K in keyof IfxChip & keyof IfxChipAttributes as `attr:${K}`]?: IfxChipAttributes[K] } & { [K in keyof IfxChip & keyof IfxChipAttributes as `prop:${K}`]?: IfxChip[K] };
         "ifx-chip-item": Omit<IfxChipItem, keyof IfxChipItemAttributes> & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes]?: IfxChipItem[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `attr:${K}`]?: IfxChipItemAttributes[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `prop:${K}`]?: IfxChipItem[K] };
         "ifx-content-switcher": IfxContentSwitcher;
-        "ifx-content-switcher-item": Omit<IfxContentSwitcherItem, keyof IfxContentSwitcherItemAttributes> & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes]?: IfxContentSwitcherItem[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `attr:${K}`]?: IfxContentSwitcherItemAttributes[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `prop:${K}`]?: IfxContentSwitcherItem[K] };
+        "ifx-content-switcher-item": Omit<IfxContentSwitcherItem, keyof IfxContentSwitcherItemAttributes> & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes]?: IfxContentSwitcherItem[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `attr:${K}`]?: IfxContentSwitcherItemAttributes[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `prop:${K}`]?: IfxContentSwitcherItem[K] } & OneOf<"value", IfxContentSwitcherItem["value"], IfxContentSwitcherItemAttributes["value"]>;
         "ifx-counter": Omit<IfxCounter, keyof IfxCounterAttributes> & { [K in keyof IfxCounter & keyof IfxCounterAttributes]?: IfxCounter[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `attr:${K}`]?: IfxCounterAttributes[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `prop:${K}`]?: IfxCounter[K] };
         "ifx-date-picker": Omit<IfxDatePicker, keyof IfxDatePickerAttributes> & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes]?: IfxDatePicker[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `attr:${K}`]?: IfxDatePickerAttributes[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `prop:${K}`]?: IfxDatePicker[K] };
         "ifx-download": Omit<IfxDownload, keyof IfxDownloadAttributes> & { [K in keyof IfxDownload & keyof IfxDownloadAttributes]?: IfxDownload[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `attr:${K}`]?: IfxDownloadAttributes[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `prop:${K}`]?: IfxDownload[K] };
@@ -8361,6 +8391,7 @@ declare namespace LocalJSX {
         "ifx-multiselect": Omit<IfxMultiselect, keyof IfxMultiselectAttributes> & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes]?: IfxMultiselect[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `attr:${K}`]?: IfxMultiselectAttributes[K] } & { [K in keyof IfxMultiselect & keyof IfxMultiselectAttributes as `prop:${K}`]?: IfxMultiselect[K] };
         "ifx-multiselect-group": Omit<IfxMultiselectGroup, keyof IfxMultiselectGroupAttributes> & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes]?: IfxMultiselectGroup[K] } & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes as `attr:${K}`]?: IfxMultiselectGroupAttributes[K] } & { [K in keyof IfxMultiselectGroup & keyof IfxMultiselectGroupAttributes as `prop:${K}`]?: IfxMultiselectGroup[K] };
         "ifx-multiselect-option": Omit<IfxMultiselectOption, keyof IfxMultiselectOptionAttributes> & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes]?: IfxMultiselectOption[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `attr:${K}`]?: IfxMultiselectOptionAttributes[K] } & { [K in keyof IfxMultiselectOption & keyof IfxMultiselectOptionAttributes as `prop:${K}`]?: IfxMultiselectOption[K] };
+        "ifx-multiselect-separator": IfxMultiselectSeparator;
         "ifx-navbar": Omit<IfxNavbar, keyof IfxNavbarAttributes> & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes]?: IfxNavbar[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `attr:${K}`]?: IfxNavbarAttributes[K] } & { [K in keyof IfxNavbar & keyof IfxNavbarAttributes as `prop:${K}`]?: IfxNavbar[K] };
         "ifx-navbar-item": Omit<IfxNavbarItem, keyof IfxNavbarItemAttributes> & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes]?: IfxNavbarItem[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `attr:${K}`]?: IfxNavbarItemAttributes[K] } & { [K in keyof IfxNavbarItem & keyof IfxNavbarItemAttributes as `prop:${K}`]?: IfxNavbarItem[K] };
         "ifx-navbar-profile": Omit<IfxNavbarProfile, keyof IfxNavbarProfileAttributes> & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes]?: IfxNavbarProfile[K] } & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes as `attr:${K}`]?: IfxNavbarProfileAttributes[K] } & { [K in keyof IfxNavbarProfile & keyof IfxNavbarProfileAttributes as `prop:${K}`]?: IfxNavbarProfile[K] };
@@ -8378,6 +8409,7 @@ declare namespace LocalJSX {
         "ifx-select": Omit<IfxSelect, keyof IfxSelectAttributes> & { [K in keyof IfxSelect & keyof IfxSelectAttributes]?: IfxSelect[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `attr:${K}`]?: IfxSelectAttributes[K] } & { [K in keyof IfxSelect & keyof IfxSelectAttributes as `prop:${K}`]?: IfxSelect[K] };
         "ifx-select-group": Omit<IfxSelectGroup, keyof IfxSelectGroupAttributes> & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes]?: IfxSelectGroup[K] } & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes as `attr:${K}`]?: IfxSelectGroupAttributes[K] } & { [K in keyof IfxSelectGroup & keyof IfxSelectGroupAttributes as `prop:${K}`]?: IfxSelectGroup[K] };
         "ifx-select-option": Omit<IfxSelectOption, keyof IfxSelectOptionAttributes> & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes]?: IfxSelectOption[K] } & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes as `attr:${K}`]?: IfxSelectOptionAttributes[K] } & { [K in keyof IfxSelectOption & keyof IfxSelectOptionAttributes as `prop:${K}`]?: IfxSelectOption[K] };
+        "ifx-select-separator": IfxSelectSeparator;
         "ifx-set-filter": Omit<IfxSetFilter, keyof IfxSetFilterAttributes> & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes]?: IfxSetFilter[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `attr:${K}`]?: IfxSetFilterAttributes[K] } & { [K in keyof IfxSetFilter & keyof IfxSetFilterAttributes as `prop:${K}`]?: IfxSetFilter[K] };
         "ifx-sidebar": Omit<IfxSidebar, keyof IfxSidebarAttributes> & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes]?: IfxSidebar[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `attr:${K}`]?: IfxSidebarAttributes[K] } & { [K in keyof IfxSidebar & keyof IfxSidebarAttributes as `prop:${K}`]?: IfxSidebar[K] };
         "ifx-sidebar-item": Omit<IfxSidebarItem, keyof IfxSidebarItemAttributes> & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes]?: IfxSidebarItem[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `attr:${K}`]?: IfxSidebarItemAttributes[K] } & { [K in keyof IfxSidebarItem & keyof IfxSidebarItemAttributes as `prop:${K}`]?: IfxSidebarItem[K] };
@@ -8463,6 +8495,7 @@ declare module "@stencil/core" {
              */
             "ifx-multiselect-group": LocalJSX.IntrinsicElements["ifx-multiselect-group"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectGroupElement>;
             "ifx-multiselect-option": LocalJSX.IntrinsicElements["ifx-multiselect-option"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectOptionElement>;
+            "ifx-multiselect-separator": LocalJSX.IntrinsicElements["ifx-multiselect-separator"] & JSXBase.HTMLAttributes<HTMLIfxMultiselectSeparatorElement>;
             "ifx-navbar": LocalJSX.IntrinsicElements["ifx-navbar"] & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
             "ifx-navbar-item": LocalJSX.IntrinsicElements["ifx-navbar-item"] & JSXBase.HTMLAttributes<HTMLIfxNavbarItemElement>;
             "ifx-navbar-profile": LocalJSX.IntrinsicElements["ifx-navbar-profile"] & JSXBase.HTMLAttributes<HTMLIfxNavbarProfileElement>;
@@ -8495,6 +8528,7 @@ declare module "@stencil/core" {
              * pattern but simplified for single selection — no checkbox, nesting or chevron.
              */
             "ifx-select-option": LocalJSX.IntrinsicElements["ifx-select-option"] & JSXBase.HTMLAttributes<HTMLIfxSelectOptionElement>;
+            "ifx-select-separator": LocalJSX.IntrinsicElements["ifx-select-separator"] & JSXBase.HTMLAttributes<HTMLIfxSelectSeparatorElement>;
             "ifx-set-filter": LocalJSX.IntrinsicElements["ifx-set-filter"] & JSXBase.HTMLAttributes<HTMLIfxSetFilterElement>;
             "ifx-sidebar": LocalJSX.IntrinsicElements["ifx-sidebar"] & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
             "ifx-sidebar-item": LocalJSX.IntrinsicElements["ifx-sidebar-item"] & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;

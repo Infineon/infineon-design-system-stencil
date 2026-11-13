@@ -22,13 +22,13 @@ export class DropdownMenu {
 	 * @default "l"
 	 */
 	@Prop() readonly size: "s" | "l" = "l";
-	@State() hideTopPadding: boolean = false;
-	@Element() el: HTMLIfxDropdownMenuElement;
+	@State() hasTopContent: boolean = false;
+	@Element() el!: HTMLIfxDropdownMenuElement;
 	/** Emits the calculated size of the menu */
-	@Event() menuSize: EventEmitter;
+	@Event() menuSize!: EventEmitter;
 	@State() filteredItems: HTMLIfxDropdownItemElement[] = [];
 	/** Fired when a dropdown menu item is selected */
-	@Event() ifxDropdownMenuItem: EventEmitter<CustomEvent>;
+	@Event() ifxDropdownMenuItem!: EventEmitter<CustomEvent>;
 
 	@Listen("ifxInput")
 	handleMenuFilter(event: CustomEvent) {
@@ -42,20 +42,13 @@ export class DropdownMenu {
 	}
 
 	private filterDropdownItems(searchValue: string) {
-		const allItems = Array.from(this.el.querySelectorAll("ifx-dropdown-item"));
-		let dropdownItem, txtValue;
-		const query = searchValue.toUpperCase();
+			const allItems = Array.from(this.el.querySelectorAll("ifx-dropdown-item"));
+			const query = searchValue.toUpperCase();
 
-		for (let i = 0; i < allItems.length; i++) {
-			dropdownItem = allItems[i];
-			txtValue = dropdownItem.textContent || dropdownItem.innerText;
-
-			if (txtValue.toUpperCase().indexOf(query) > -1) {
-				dropdownItem.setAttribute("hide", false);
-			} else {
-				dropdownItem.setAttribute("hide", true);
+			for (const dropdownItem of allItems) {
+					const txtValue = dropdownItem.textContent || dropdownItem.innerText;
+					dropdownItem.hide = !txtValue.toUpperCase().includes(query);
 			}
-		}
 	}
 
 	componentWillUpdate() {
@@ -66,12 +59,9 @@ export class DropdownMenu {
 		this.filteredItems = Array.from(
 			this.el.querySelectorAll("ifx-dropdown-item"),
 		) as HTMLIfxDropdownItemElement[];
-		const searchField = this.el.querySelector("ifx-search-field");
-		const dropdownHeader = this.el.querySelector("ifx-dropdown-header");
-
-		if (searchField || dropdownHeader) {
-			this.hideTopPadding = true;
-		} else this.hideTopPadding = false;
+		this.hasTopContent = Boolean(
+			this.el.querySelector("ifx-search-field, ifx-dropdown-header"),
+		);
 	}
 
 	render() {
@@ -79,7 +69,7 @@ export class DropdownMenu {
 			<div
 				class={`dropdown-menu 
       ${this.isOpen ? "show" : ""} 
-      ${this.hideTopPadding ? "hideTopPadding" : ""}
+	  ${this.hasTopContent ? "has-top-content" : ""}
       ${this.size === "s" ? "small" : ""}`}
 			>
 				<slot />
