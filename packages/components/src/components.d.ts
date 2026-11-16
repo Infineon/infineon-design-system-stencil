@@ -113,7 +113,7 @@ export namespace Components {
           * Aria live region setting for accessibility announcements.
           * @default "assertive"
          */
-        "AriaLiveText": "assertive";
+        "ariaLiveText": "off" | "polite" | "assertive";
         /**
           * Wether the component can be closed by the user.
           * @default true
@@ -4628,7 +4628,7 @@ declare namespace LocalJSX {
           * Aria live region setting for accessibility announcements.
           * @default "assertive"
          */
-        "AriaLiveText"?: "assertive";
+        "ariaLiveText"?: "off" | "polite" | "assertive";
         /**
           * Wether the component can be closed by the user.
           * @default true
@@ -7701,7 +7701,7 @@ declare namespace LocalJSX {
         "variant": "primary" | "success" | "danger" | "warning" | "info";
         "icon": string;
         "closable": boolean;
-        "AriaLiveText": "assertive";
+        "ariaLiveText": "off" | "polite" | "assertive";
     }
     interface IfxBasicTableAttributes {
         "cols": any[] | string;
