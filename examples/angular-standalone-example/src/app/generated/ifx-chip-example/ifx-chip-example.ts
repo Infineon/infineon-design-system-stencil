@@ -23,6 +23,11 @@ export class IfxChipExample {
     // Add your handler logic here
   }
 
+  protected handleClick(event: CustomEvent) {
+    console.log(&#039;ifxClick:&#039;, event);
+    // Add your handler logic here
+  }
+
   protected handleChipItemSelect(event: CustomEvent) {
     console.log(&#039;ifxChipItemSelect:&#039;, event);
     // Add your handler logic here
@@ -35,11 +40,16 @@ export class IfxChipExample {
     theme=&quot;outlined&quot;
     icon=&quot;&quot;
     aria-label=&quot;Chip&quot;
+    href=&quot;&quot;
+    target=&quot;_blank&quot;
     [readOnly]=&quot;false&quot;
+    [selected]=&quot;false&quot;
     value=&quot;Item Value&quot;
     [disabled]=&quot;false&quot;
+    [hideDropdownIcon]=&quot;false&quot;
+    [selectable]=&quot;true&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
-    [hideDropdownIcon]=&quot;false&quot;&gt;
+    (ifxClick)=&quot;handleClick(\$any(\$event))&quot;&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;
       (ifxChipItemSelect)=&quot;handleChipItemSelect(\$any(\$event))&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;
@@ -50,6 +60,11 @@ export class IfxChipExample {
 
   protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handleClick(event: CustomEvent) {
+    console.log('ifxClick:', event);
     // Add your handler logic here
   }
 

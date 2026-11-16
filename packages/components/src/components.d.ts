@@ -403,6 +403,10 @@ export namespace Components {
          */
         "hideDropdownIcon": boolean;
         /**
+          * URL navigated to. When set, the chip renders as a link.
+         */
+        "href": string;
+        /**
           * Sets Icon
           * @default ""
          */
@@ -418,10 +422,25 @@ export namespace Components {
          */
         "readOnly": boolean;
         /**
+          * Makes an action chip toggle its selected state when activated.
+          * @default false
+         */
+        "selectable": boolean;
+        /**
+          * Whether a selectable action chip is selected.
+          * @default false
+         */
+        "selected": boolean;
+        /**
           * Component size
           * @default "medium"
          */
         "size": "small" | "medium" | "large";
+        /**
+          * Browsing context used for navigation.
+          * @default "_blank"
+         */
+        "target": "_self" | "_blank" | "_parent";
         /**
           * Visual theme
           * @default "outlined"
@@ -3385,6 +3404,7 @@ declare global {
 		currentSelection: Array<ChipItemSelectEvent>;
 		name: string;
 	};
+        "ifxClick": MouseEvent;
     }
     interface HTMLIfxChipElement extends Components.IfxChip, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxChipElementEventMap>(type: K, listener: (this: HTMLIfxChipElement, ev: IfxChipCustomEvent<HTMLIfxChipElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4919,6 +4939,10 @@ declare namespace LocalJSX {
          */
         "hideDropdownIcon"?: boolean;
         /**
+          * URL navigated to. When set, the chip renders as a link.
+         */
+        "href"?: string;
+        /**
           * Sets Icon
           * @default ""
          */
@@ -4931,6 +4955,7 @@ declare namespace LocalJSX {
 		currentSelection: Array<ChipItemSelectEvent>;
 		name: string;
 	}>) => void;
+        "onIfxClick"?: (event: IfxChipCustomEvent<MouseEvent>) => void;
         /**
           * Placeholder text
           * @default ""
@@ -4942,10 +4967,25 @@ declare namespace LocalJSX {
          */
         "readOnly"?: boolean;
         /**
+          * Makes an action chip toggle its selected state when activated.
+          * @default false
+         */
+        "selectable"?: boolean;
+        /**
+          * Whether a selectable action chip is selected.
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
           * Component size
           * @default "medium"
          */
         "size"?: "small" | "medium" | "large";
+        /**
+          * Browsing context used for navigation.
+          * @default "_blank"
+         */
+        "target"?: "_self" | "_blank" | "_parent";
         /**
           * Visual theme
           * @default "outlined"
@@ -7776,12 +7816,16 @@ declare namespace LocalJSX {
         "size": "small" | "medium" | "large";
         "value": Array<string> | string;
         "variant": "single" | "multi";
+        "href": string;
+        "target": "_self" | "_blank" | "_parent";
         "theme": "outlined" | "filled-light" | "filled-dark";
         "readOnly": boolean;
         "ariaLabelText": string | null;
         "disabled": boolean;
         "icon": string;
         "hideDropdownIcon": boolean;
+        "selectable": boolean;
+        "selected": boolean;
     }
     interface IfxChipItemAttributes {
         "value": string;

@@ -7,18 +7,22 @@
 
 ## Properties
 
-| Property           | Attribute            | Description                 | Type                                            | Default      |
-| ------------------ | -------------------- | --------------------------- | ----------------------------------------------- | ------------ |
-| `ariaLabelText`    | `aria-label-text`    | ARIA Label text             | `string`                                        | `undefined`  |
-| `disabled`         | `disabled`           | Disabeled state             | `boolean`                                       | `false`      |
-| `hideDropdownIcon` | `hide-dropdown-icon` | Displays the chevron icon   | `boolean`                                       | `false`      |
-| `icon`             | `icon`               | Sets Icon                   | `string`                                        | `""`         |
-| `placeholder`      | `placeholder`        | Placeholder text            | `string`                                        | `""`         |
-| `readOnly`         | `read-only`          | Read-only state             | `boolean`                                       | `false`      |
-| `size`             | `size`               | Component size              | `"large" \| "medium" \| "small"`                | `"medium"`   |
-| `theme`            | `theme`              | Visual theme                | `"filled-dark" \| "filled-light" \| "outlined"` | `"outlined"` |
-| `value`            | `value`              | Current selection (mutable) | `string \| string[]`                            | `undefined`  |
-| `variant`          | `variant`            | Selection mode              | `"multi" \| "single"`                           | `"single"`   |
+| Property           | Attribute            | Description                                                    | Type                                            | Default      |
+| ------------------ | -------------------- | -------------------------------------------------------------- | ----------------------------------------------- | ------------ |
+| `ariaLabelText`    | `aria-label-text`    | ARIA Label text                                                | `string`                                        | `undefined`  |
+| `disabled`         | `disabled`           | Disabeled state                                                | `boolean`                                       | `false`      |
+| `hideDropdownIcon` | `hide-dropdown-icon` | Displays the chevron icon                                      | `boolean`                                       | `false`      |
+| `href`             | `href`               | URL navigated to. When set, the chip renders as a link.        | `string`                                        | `undefined`  |
+| `icon`             | `icon`               | Sets Icon                                                      | `string`                                        | `""`         |
+| `placeholder`      | `placeholder`        | Placeholder text                                               | `string`                                        | `""`         |
+| `readOnly`         | `read-only`          | Read-only state                                                | `boolean`                                       | `false`      |
+| `selectable`       | `selectable`         | Makes an action chip toggle its selected state when activated. | `boolean`                                       | `false`      |
+| `selected`         | `selected`           | Whether a selectable action chip is selected.                  | `boolean`                                       | `false`      |
+| `size`             | `size`               | Component size                                                 | `"large" \| "medium" \| "small"`                | `"medium"`   |
+| `target`           | `target`             | Browsing context used for navigation.                          | `"_blank" \| "_parent" \| "_self"`              | `"_blank"`   |
+| `theme`            | `theme`              | Visual theme                                                   | `"filled-dark" \| "filled-light" \| "outlined"` | `"outlined"` |
+| `value`            | `value`              | Current selection (mutable)                                    | `string \| string[]`                            | `undefined`  |
+| `variant`          | `variant`            | Selection mode                                                 | `"multi" \| "single"`                           | `"single"`   |
 
 
 ## Events
@@ -26,6 +30,7 @@
 | Event       | Description                | Type                                                                                                                |
 | ----------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `ifxChange` | Fires on selection change. | `CustomEvent<{ previousSelection: ChipItemSelectEvent[]; currentSelection: ChipItemSelectEvent[]; name: string; }>` |
+| `ifxClick`  |                            | `CustomEvent<MouseEvent>`                                                                                           |
 
 
 ## Slots

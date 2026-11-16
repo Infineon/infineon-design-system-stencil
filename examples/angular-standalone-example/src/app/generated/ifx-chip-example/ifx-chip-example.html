@@ -5,11 +5,16 @@
     theme="outlined"
     icon=""
     aria-label="Chip"
+    href=""
+    target="_blank"
     [readOnly]="false"
+    [selected]="false"
     value="Item Value"
     [disabled]="false"
     [hideDropdownIcon]="false"
-    (ifxChange)="handleChange($any($event))">
+    [selectable]="true"
+    (ifxChange)="handleChange($any($event))"
+    (ifxClick)="handleClick($any($event))">
     <ifx-chip-item
       value="Item Value 1"
       (ifxChipItemSelect)="handleChipItemSelect($any($event))">Item Label 1</ifx-chip-item>

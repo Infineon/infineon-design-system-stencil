@@ -258,7 +258,7 @@
           <section id="ifx-chip-example" class="component-example">
             <h2>Chip</h2>
             <div class="demo">
-              <ifx-chip placeholder="Label" size="medium" variant="single" theme="outlined" icon="" aria-label="Chip" read-only="false" value="Item Value" disabled="false" hide-dropdown-icon="false">
+              <ifx-chip placeholder="Label" size="medium" variant="single" theme="outlined" icon="" aria-label="Chip" href="" target="_blank" read-only="false" selected="false" value="Item Value" disabled="false" hide-dropdown-icon="false" selectable="true">
                 <ifx-chip-item value="Item Value 1">Item Label 1</ifx-chip-item>
                 <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
                 <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
@@ -267,7 +267,7 @@
             </div>
             <details class="code-details">
               <summary>View Code</summary>
-              <pre><code class="language-markup">&lt;ifx-chip placeholder=&quot;Label&quot; size=&quot;medium&quot; variant=&quot;single&quot; theme=&quot;outlined&quot; icon=&quot;&quot; aria-label=&quot;Chip&quot; read-only=&quot;false&quot; value=&quot;Item Value&quot; disabled=&quot;false&quot; hide-dropdown-icon=&quot;false&quot;&gt;
+              <pre><code class="language-markup">&lt;ifx-chip placeholder=&quot;Label&quot; size=&quot;medium&quot; variant=&quot;single&quot; theme=&quot;outlined&quot; icon=&quot;&quot; aria-label=&quot;Chip&quot; href=&quot;&quot; target=&quot;_blank&quot; read-only=&quot;false&quot; selected=&quot;false&quot; value=&quot;Item Value&quot; disabled=&quot;false&quot; hide-dropdown-icon=&quot;false&quot; selectable=&quot;true&quot;&gt;
         &lt;ifx-chip-item value=&quot;Item Value 1&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;
         &lt;ifx-chip-item value=&quot;Item Value 2&quot;&gt;Item Label 2&lt;/ifx-chip-item&gt;
         &lt;ifx-chip-item value=&quot;Item Value 3&quot;&gt;Item Label 3&lt;/ifx-chip-item&gt;
@@ -1284,6 +1284,12 @@
             // Fires on selection change.
         document.querySelector('#ifx-chip-example ifx-chip')?.addEventListener('ifxChange', (event) => {
           console.log('ifxChange:', event);
+          // Add your custom handler logic here
+        });
+
+        // 
+        document.querySelector('#ifx-chip-example ifx-chip')?.addEventListener('ifxClick', (event) => {
+          console.log('ifxClick:', event);
           // Add your custom handler logic here
         });
 

@@ -6,6 +6,11 @@ export function IfxChipExample() {
     // Add your handler logic here
   };
 
+  const handleClick = (event: CustomEvent) => {
+    console.log('ifxClick:', event);
+    // Add your handler logic here
+  };
+
   const handleChipItemSelect = (event: CustomEvent) => {
     console.log('ifxChipItemSelect:', event);
     // Add your handler logic here
@@ -20,11 +25,16 @@ export function IfxChipExample() {
         theme="outlined"
         icon=""
         ariaLabel="Chip"
+        href=""
+        target="_blank"
         readOnly={false}
+        selected={false}
         value="Item Value"
         disabled={false}
         hideDropdownIcon={false}
-        onIfxChange={handleChange}>
+        selectable={true}
+        onIfxChange={handleChange}
+        onIfxClick={handleClick}>
         <IfxChipItem
           value="Item Value 1"
           onIfxChipItemSelect={handleChipItemSelect}>
@@ -56,6 +66,11 @@ export function IfxChipExample() {
     // Add your handler logic here
   };
 
+  const handleClick = (event: CustomEvent) => {
+    console.log('ifxClick:', event);
+    // Add your handler logic here
+  };
+
   const handleChipItemSelect = (event: CustomEvent) => {
     console.log('ifxChipItemSelect:', event);
     // Add your handler logic here
@@ -69,11 +84,16 @@ export function IfxChipExample() {
         theme="outlined"
         icon=""
         ariaLabel="Chip"
+        href=""
+        target="_blank"
         readOnly={false}
+        selected={false}
         value="Item Value"
         disabled={false}
         hideDropdownIcon={false}
-        onIfxChange={handleChange}>
+        selectable={true}
+        onIfxChange={handleChange}
+        onIfxClick={handleClick}>
         <IfxChipItem
           value="Item Value 1"
           onIfxChipItemSelect={handleChipItemSelect}>

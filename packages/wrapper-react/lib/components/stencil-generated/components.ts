@@ -345,7 +345,8 @@ export const IfxCheckboxGroup: StencilReactComponent<IfxCheckboxGroupElement, If
 });
 
 export type IfxChipEvents = {
-  onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>; currentSelection: Array<ChipItemSelectEvent>; name: string; }>>
+  onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>; currentSelection: Array<ChipItemSelectEvent>; name: string; }>>,
+  onIfxClick: EventName<IfxChipCustomEvent<MouseEvent>>
 };
 
 export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents, Components.IfxChip> = /*@__PURE__*/ createComponent<IfxChipElement, IfxChipEvents, Components.IfxChip>({
@@ -354,7 +355,8 @@ export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents, Compo
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-      onIfxChange: 'ifxChange'
+      onIfxChange: 'ifxChange',
+      onIfxClick: 'ifxClick'
     } as IfxChipEvents,
     defineCustomElement: defineIfxChip,
 });
