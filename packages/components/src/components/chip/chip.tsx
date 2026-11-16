@@ -55,6 +55,10 @@ export class Chip {
 	@Prop() readonly icon: string = "";
 	/** Displays the chevron icon */
 	@Prop() readonly hideDropdownIcon: boolean = false;
+	/** Makes an action chip toggle its selected state when activated. */
+	@Prop() readonly selectable: boolean = false;
+	/** Whether a selectable action chip is selected. */
+	@Prop({ mutable: true, reflect: true }) selected: boolean = false;
 
 	@State() opened: boolean = false;
 	@State() selectedOptions: Array<ChipItemSelectEvent> = [];
@@ -70,6 +74,7 @@ export class Chip {
 		return (
 			this.href !== undefined ||
 			this.chip.hasAttribute("href") ||
+			this.getChipItems().length === 0 ||
 			(this.variant === "single" && this.hideDropdownIcon)
 		);
 	}
@@ -382,6 +387,9 @@ export class Chip {
 	}
 
 	private handleActionClick = (event: MouseEvent) => {
+		if (this.selectable && !this.disabled) {
+			this.selected = !this.selected;
+		}
 		this.ifxClick.emit(event);
 	};
 
@@ -402,6 +410,8 @@ export class Chip {
 		const wrapperClass = `chip__wrapper chip__wrapper--${this.size ? this.size : "medium"}
 			chip__wrapper--${this.variant === "multi" ? "multi" : "single"}
 			${this.theme ? this.theme : "outlined"}
+			${this.selectable ? "chip__wrapper--selectable" : ""}
+			${this.selected ? "chip__wrapper--selected" : ""}
 			${this.readOnly ? "read-only" : ""}
 			${this.disabled ? "disabled" : ""}`;
 
@@ -436,6 +446,7 @@ export class Chip {
 							onClick={this.handleActionClick}
 							tabIndex={this.disabled ? -1 : 0}
 							aria-label={this.ariaLabelText || undefined}
+							aria-pressed={this.selectable ? this.selected.toString() : undefined}
 							disabled={this.disabled}
 							part="label-wrapper"
 						>

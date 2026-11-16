@@ -27,6 +27,7 @@ export default {
 		theme: "outlined",
 		icon: "",
 		hideDropdownIcon: false,
+		selectable: true,
 	},
 	argTypes: {
 		amountOfChipItems: {
@@ -192,6 +193,16 @@ export default {
 				},
 			},
 		},
+		selectable: {
+			description: "Set the selectable prop to make the chip selectable.",
+			control: "boolean",
+			table: {
+				category: "ifx-chip props",
+				defaultValue: {
+					summary: false,
+				},
+			},
+		},
 		ifxChange: {
 			action: "ifxChange",
 			description:
@@ -268,6 +279,7 @@ Single.argTypes = {
 	target: {
 		if: { arg: "hideDropdownIcon", eq: true },
 	},
+	selectable: { control: false, table: { disable: true } },
 };
 
 export const Multi:any = Template.bind({});
@@ -298,6 +310,7 @@ Multi.argTypes = {
 			disable: true,
 		},
 	},
+	selectable: { control: false, table: { disable: true } },
 };
 
 export const ReadOnly:any = Template.bind({});
@@ -323,6 +336,7 @@ ReadOnly.argTypes = {
 			disable: true,
 		},
 	},
+	selectable: { control: false, table: { disable: true } },
 };
 
 const ActionTemplate = (args: any) => {
@@ -363,4 +377,38 @@ Action.argTypes = {
 	selected: { control: false, table: { disable: true } },
 	value: { control: false, table: { disable: true } },
 	hideDropdownIcon: { control: false, table: { disable: true } },
+	selectable: { control: false, table: { disable: true } },
+};
+
+const SelectableActionTemplate = (args: any) => {
+	const wrapper = document.createElement("div");
+	wrapper.innerHTML = `
+		<ifx-chip
+			placeholder="${args.placeholder}"
+			size="${args.size}"
+			read-only="${args.readOnly}"
+			variant="${args.variant}"
+			theme="${args.theme}"
+			aria-label="${args.ariaLabel}"
+			${args.selectable ? 'selectable="true"' : ""}
+			${args.disabled ? "disabled" : ""}>
+		</ifx-chip>`;
+
+		return wrapper.querySelector("ifx-chip");
+};
+
+
+export const SelectableAction: any = SelectableActionTemplate.bind({});
+SelectableAction.args = {
+	selectable: true,
+};
+SelectableAction.argTypes = {
+	variant: { control: false, table: { disable: true } },
+	href: { control: false, table: { disable: true } },
+	target: { control: false, table: { disable: true } },
+	hideDropdownIcon: { control: false, table: { disable: true } },
+	amountOfChipItems: { control: false, table: { disable: true } },
+	chipItemLabel: { control: false, table: { disable: true } },
+	selected: { control: false, table: { disable: true } },
+	value: { control: false, table: { disable: true } },
 };

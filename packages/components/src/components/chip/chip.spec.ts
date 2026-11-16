@@ -48,6 +48,67 @@ describe("ifx-chip", () => {
 `);
   });
 
+  it("renders a native anchor when href is set", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Visit Infineon" href="https://www.infineon.com/" target="_top" value="selected">
+               <ifx-chip-item value="option1">Option 1</ifx-chip-item>
+             </ifx-chip>`,
+    });
+    const root = page.root!;
+    const shadowRoot = root.shadowRoot!;
+    const anchor = shadowRoot.querySelector<HTMLAnchorElement>("a")!;
+
+    expect(anchor.getAttribute("href")).toBe("https://www.infineon.com/");
+    expect(anchor.getAttribute("target")).toBe("_top");
+    expect(shadowRoot.querySelector("button")).toBeNull();
+    expect(shadowRoot.querySelector(".wrapper__open-button")).toBeNull();
+    expect(shadowRoot.querySelector(".chip__dropdown")).toBeNull();
+    expect(shadowRoot.querySelector("ifx-chip-item")).toBeNull();
+    expect(page.rootInstance.selectedOptions).toEqual([]);
+  });
+
+  it("renders an action button when href is present but empty", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" href="" value="selected">
+               <ifx-chip-item value="option1">Option 1</ifx-chip-item>
+             </ifx-chip>`,
+    });
+    const root = page.root!;
+    const shadowRoot = root.shadowRoot!;
+    const button = shadowRoot.querySelector<HTMLButtonElement>("button")!;
+    const clickSpy = jest.fn();
+    const ifxChangeSpy = jest.fn();
+    root.addEventListener("click", clickSpy);
+    root.addEventListener("ifxChange", ifxChangeSpy);
+
+    expect(button.type).toBe("button");
+    expect(button.textContent.trim()).toBe("Run action");
+    expect(shadowRoot.querySelector("a")).toBeNull();
+    expect(shadowRoot.querySelector(".wrapper__open-button")).toBeNull();
+    expect(shadowRoot.querySelector(".chip__dropdown")).toBeNull();
+    expect(shadowRoot.querySelector("ifx-chip-item")).toBeNull();
+    expect(page.rootInstance.selectedOptions).toEqual([]);
+
+    button.click();
+    await page.waitForChanges();
+
+    expect(clickSpy).toHaveBeenCalledTimes(1);
+    expect(ifxChangeSpy).not.toHaveBeenCalled();
+  });
+
+  it("adds safe rel values for blank action targets", async () => {
+    const page = await newSpecPage({
+      components: [Chip, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Visit Infineon" href="https://www.infineon.com/" target="_blank"></ifx-chip>`,
+    });
+
+    expect(
+      page.root!.shadowRoot!.querySelector<HTMLAnchorElement>("a")!.getAttribute("rel"),
+    ).toBe("noopener noreferrer");
+  });
+
   it("should render with small size", async () => {
     const { root } = await newSpecPage({
       components: [Chip, MockInfineonIconStencil, MockInfineonIndicator],
