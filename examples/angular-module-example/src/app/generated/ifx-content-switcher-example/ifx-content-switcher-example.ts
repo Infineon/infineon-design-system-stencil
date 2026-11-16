@@ -21,13 +21,20 @@ export class IfxContentSwitcherExample {
     // Add your handler logic here
   }
 
+  protected handleItemSelected(event: CustomEvent) {
+    console.log(&#039;itemSelected:&#039;, event);
+    // Add your handler logic here
+  }
+
   protected handleConsoleError(event: CustomEvent) {
     console.log(&#039;consoleError:&#039;, event);
     // Add your handler logic here
   }
 }`;
   protected readonly htmlCode = `  &lt;ifx-content-switcher (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
-    &lt;ifx-content-switcher-item value=&quot;item 1&quot;&gt;
+    &lt;ifx-content-switcher-item
+      value=&quot;item 1&quot;
+      (itemSelected)=&quot;handleItemSelected(\$any(\$event))&quot;&gt;
       &lt;ifx-icon
         icon=&quot;applications-16&quot;
         (consoleError)=&quot;handleConsoleError(\$any(\$event))&quot;&gt;&lt;/ifx-icon&gt;
@@ -45,6 +52,11 @@ export class IfxContentSwitcherExample {
 
   protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handleItemSelected(event: CustomEvent) {
+    console.log('itemSelected:', event);
     // Add your handler logic here
   }
 

@@ -7,6 +7,11 @@ const handleChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleItemSelected = (event: CustomEvent) => {
+  console.log('itemSelected:', event);
+  // Add your handler logic here
+};
+
 const handleConsoleError = (event: CustomEvent) => {
   console.log('consoleError:', event);
   // Add your handler logic here
@@ -15,6 +20,11 @@ const handleConsoleError = (event: CustomEvent) => {
 const codeString = `<script setup lang="ts">
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleItemSelected = (event: CustomEvent) => {
+  console.log('itemSelected:', event);
   // Add your handler logic here
 };
 
@@ -27,7 +37,9 @@ ${'</'}script>
 <template>
   <div>
     <ifx-content-switcher @ifxChange="handleChange">
-      <ifx-content-switcher-item value="item 1">
+      <ifx-content-switcher-item
+        value="item 1"
+        @itemSelected="handleItemSelected">
         <ifx-icon
           icon="applications-16"
           @consoleError="handleConsoleError" />
@@ -50,7 +62,9 @@ ${'</'}template>`;
 <template>
   <div>
     <ifx-content-switcher @ifxChange="handleChange">
-      <ifx-content-switcher-item value="item 1">
+      <ifx-content-switcher-item
+        value="item 1"
+        @itemSelected="handleItemSelected">
         <ifx-icon
           icon="applications-16"
           @consoleError="handleConsoleError" />

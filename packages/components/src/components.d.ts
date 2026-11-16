@@ -3023,6 +3023,10 @@ export interface IfxContentSwitcherCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxContentSwitcherElement;
 }
+export interface IfxContentSwitcherItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxContentSwitcherItemElement;
+}
 export interface IfxCounterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxCounterElement;
@@ -3425,7 +3429,18 @@ declare global {
         prototype: HTMLIfxContentSwitcherElement;
         new (): HTMLIfxContentSwitcherElement;
     };
+    interface HTMLIfxContentSwitcherItemElementEventMap {
+        "itemSelected": any;
+    }
     interface HTMLIfxContentSwitcherItemElement extends Components.IfxContentSwitcherItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxContentSwitcherItemElementEventMap>(type: K, listener: (this: HTMLIfxContentSwitcherItemElement, ev: IfxContentSwitcherItemCustomEvent<HTMLIfxContentSwitcherItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxContentSwitcherItemElementEventMap>(type: K, listener: (this: HTMLIfxContentSwitcherItemElement, ev: IfxContentSwitcherItemCustomEvent<HTMLIfxContentSwitcherItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIfxContentSwitcherItemElement: {
         prototype: HTMLIfxContentSwitcherItemElement;
@@ -4966,6 +4981,10 @@ declare namespace LocalJSX {
     }
     interface IfxContentSwitcherItem {
         /**
+          * Fired when this item becomes selected, so the parent switcher can deselect the others.
+         */
+        "onItemSelected"?: (event: IfxContentSwitcherItemCustomEvent<any>) => void;
+        /**
           * Wether this option is currently selected.
           * @default false
          */
@@ -4973,7 +4992,7 @@ declare namespace LocalJSX {
         /**
           * Value associated with this option.
          */
-        "value"?: string;
+        "value": string;
     }
     interface IfxCounter {
         /**
@@ -8342,7 +8361,7 @@ declare namespace LocalJSX {
         "ifx-chip": Omit<IfxChip, keyof IfxChipAttributes> & { [K in keyof IfxChip & keyof IfxChipAttributes]?: IfxChip[K] } & { [K in keyof IfxChip & keyof IfxChipAttributes as `attr:${K}`]?: IfxChipAttributes[K] } & { [K in keyof IfxChip & keyof IfxChipAttributes as `prop:${K}`]?: IfxChip[K] };
         "ifx-chip-item": Omit<IfxChipItem, keyof IfxChipItemAttributes> & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes]?: IfxChipItem[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `attr:${K}`]?: IfxChipItemAttributes[K] } & { [K in keyof IfxChipItem & keyof IfxChipItemAttributes as `prop:${K}`]?: IfxChipItem[K] };
         "ifx-content-switcher": IfxContentSwitcher;
-        "ifx-content-switcher-item": Omit<IfxContentSwitcherItem, keyof IfxContentSwitcherItemAttributes> & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes]?: IfxContentSwitcherItem[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `attr:${K}`]?: IfxContentSwitcherItemAttributes[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `prop:${K}`]?: IfxContentSwitcherItem[K] };
+        "ifx-content-switcher-item": Omit<IfxContentSwitcherItem, keyof IfxContentSwitcherItemAttributes> & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes]?: IfxContentSwitcherItem[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `attr:${K}`]?: IfxContentSwitcherItemAttributes[K] } & { [K in keyof IfxContentSwitcherItem & keyof IfxContentSwitcherItemAttributes as `prop:${K}`]?: IfxContentSwitcherItem[K] } & OneOf<"value", IfxContentSwitcherItem["value"], IfxContentSwitcherItemAttributes["value"]>;
         "ifx-counter": Omit<IfxCounter, keyof IfxCounterAttributes> & { [K in keyof IfxCounter & keyof IfxCounterAttributes]?: IfxCounter[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `attr:${K}`]?: IfxCounterAttributes[K] } & { [K in keyof IfxCounter & keyof IfxCounterAttributes as `prop:${K}`]?: IfxCounter[K] };
         "ifx-date-picker": Omit<IfxDatePicker, keyof IfxDatePickerAttributes> & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes]?: IfxDatePicker[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `attr:${K}`]?: IfxDatePickerAttributes[K] } & { [K in keyof IfxDatePicker & keyof IfxDatePickerAttributes as `prop:${K}`]?: IfxDatePicker[K] };
         "ifx-download": Omit<IfxDownload, keyof IfxDownloadAttributes> & { [K in keyof IfxDownload & keyof IfxDownloadAttributes]?: IfxDownload[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `attr:${K}`]?: IfxDownloadAttributes[K] } & { [K in keyof IfxDownload & keyof IfxDownloadAttributes as `prop:${K}`]?: IfxDownload[K] };

@@ -179,6 +179,7 @@
 
     &.placeholder:not(.disabled) {
       color: tokens.$ifxColorEngineering400;
+      font-size: 16px;
     }
   }
 

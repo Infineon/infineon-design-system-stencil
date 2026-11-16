@@ -237,8 +237,14 @@
 }
 
 .wrapper__unselect-button {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:focus-visible {
+		outline: 2px solid tokens.$ifxColorOcean500;
+    outline-offset: 1px;
+    border-radius: 2px;
+    }
 }
 
 .chip__dropdown {

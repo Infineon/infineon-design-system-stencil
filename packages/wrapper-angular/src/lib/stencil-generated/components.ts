@@ -614,11 +614,13 @@ export declare interface IfxContentSwitcher extends Components.IfxContentSwitche
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['selected', 'value'],
+  inputs: ['selected', { name: 'value', required: true }],
+  outputs: ['itemSelected'],
   standalone: false
 })
 export class IfxContentSwitcherItem {
   protected el: HTMLIfxContentSwitcherItemElement;
+  @Output() itemSelected = new EventEmitter<IfxContentSwitcherItemCustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -626,7 +628,14 @@ export class IfxContentSwitcherItem {
 }
 
 
-export declare interface IfxContentSwitcherItem extends Components.IfxContentSwitcherItem {}
+import type { IfxContentSwitcherItemCustomEvent } from '@infineon/design-system';
+
+export declare interface IfxContentSwitcherItem extends Components.IfxContentSwitcherItem {
+  /**
+   * Fired when this item becomes selected, so the parent switcher can deselect the others.
+   */
+  itemSelected: EventEmitter<IfxContentSwitcherItemCustomEvent<any>>;
+}
 
 
 @ProxyCmp({

@@ -101,7 +101,7 @@ const DefaultTemplate = (args:any) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = `<ifx-breadcrumb>
   <ifx-breadcrumb-item>
-    <ifx-breadcrumb-item-label slot="label" icon="${args.icon ? icon : ""}" href="${args.href}"">Breadcrumb 1</ifx-breadcrumb-item-label>
+    <ifx-breadcrumb-item-label slot="label" icon="${args.icon ? icon : ""}" href="${args.href}">Breadcrumb 1</ifx-breadcrumb-item-label>
     <ifx-dropdown-menu>
       <ifx-dropdown-item href=${args.hrefOfDropdownItem}>Google</ifx-dropdown-item>
       <ifx-dropdown-item href="http://bing.com">Bing</ifx-dropdown-item>
