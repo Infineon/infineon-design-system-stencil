@@ -1,3 +1,15 @@
+# v42.4.2 (Mon Nov 16 2026)
+
+#### 🐛 Bug Fix
+
+- Alert: renames AriaLiveText prop to lowercase ariaLiveText, and adds Breadcrumb, Toast and Counter components to example apps [#2613](https://github.com/Infineon/infineon-design-system-stencil/pull/2613) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.4.1 (Thu Nov 12 2026)
 
 #### 🐛 Bug Fix
