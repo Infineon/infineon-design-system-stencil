@@ -1,0 +1,1 @@
+import{r as e,h as r}from"./p-DlAp0uRx.js";const a=class{constructor(r){e(this,r)}render(){return r("div",{key:"8f385e35d0d0d047485e357b82aaadb4aeaa0cff",class:"multiselect-separator"})}};a.style=".multiselect-separator{height:1px;background-color:#eeeded;margin:8px 16px}";export{a as ifx_multiselect_separator}

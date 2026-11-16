@@ -1,0 +1,1 @@
+import{r,h as e}from"./p-DlAp0uRx.js";const a=class{constructor(e){r(this,e)}render(){return e("div",{key:"19fb34f9e5ff1c0140313668016194a44c089009",class:"sidebar-separator"})}};a.style=".sidebar-separator{height:1px;background-color:#eeeded;margin:8px 0px}";export{a as ifx_sidebar_separator}

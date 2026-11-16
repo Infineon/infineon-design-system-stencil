@@ -1,0 +1,1 @@
+import{r,h as o}from"./p-DlAp0uRx.js";const s=class{constructor(o){r(this,o)}isOpen=!1;render(){return o("slot",{key:"2cdbafe0ebd45ecb5fbb9a7bfb48fbb801c5908c"})}};s.style=":host{display:inline-block;cursor:pointer}";export{s as ifx_dropdown_trigger}
