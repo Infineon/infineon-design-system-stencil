@@ -33,15 +33,11 @@ describe("ifx-chip", () => {
 <ifx-chip placeholder="Select an option">
   <template shadowrootmode="open">
     <div class="chip" part="chip">
-      <div aria-controls="dropdown" aria-expanded="false" aria-haspopup="listbox" aria-value="" class="chip__wrapper chip__wrapper--medium chip__wrapper--single outlined" role="combobox" tabindex="0" part="label-wrapper">
-        <div class="wrapper__label" part="label">
+      <button class="chip__wrapper chip__wrapper--action chip__wrapper--medium chip__wrapper--single outlined" part="label-wrapper" tabindex="0" type="button">
+        <span class="wrapper__label" part="label">
           Select an option
-        </div>
-        <div class="wrapper__open-button">
-          <ifx-icon icon="chevron-down-16">
-          </ifx-icon>
-        </div>
-      </div>
+        </span>
+      </button>
     </div>
   </template>
 </ifx-chip>
@@ -132,7 +128,7 @@ describe("ifx-chip", () => {
   it("should render in readOnly mode", async () => {
     const { root } = await newSpecPage({
       components: [Chip, MockInfineonIconStencil, MockInfineonIndicator],
-      html: `<ifx-chip placeholder="Select an option" read-only="true"></ifx-chip>`,
+      html: `<ifx-chip placeholder="Select an option" read-only="true"><ifx-chip-item value="option1">Option 1</ifx-chip-item></ifx-chip>`,
     });
 
     const wrapper = root.shadowRoot.querySelector(".chip__wrapper");
@@ -149,7 +145,7 @@ describe("ifx-chip", () => {
         MockInfineonIconStencil,
         MockInfineonIndicator,
       ],
-      html: `<ifx-chip placeholder="Select an option" value="option1"></ifx-chip>`,
+      html: `<ifx-chip placeholder="Select an option" value="option1"><ifx-chip-item value="option1">Option 1</ifx-chip-item></ifx-chip>`,
     });
 
     const chip = page.rootInstance;
@@ -168,7 +164,7 @@ describe("ifx-chip", () => {
         MockInfineonIconStencil,
         MockInfineonIndicator,
       ],
-      html: `<ifx-chip placeholder="Select options" variant="multi"></ifx-chip>`,
+      html: `<ifx-chip placeholder="Select options" variant="multi"><ifx-chip-item value="option1">Option 1</ifx-chip-item><ifx-chip-item value="option2">Option 2</ifx-chip-item></ifx-chip>`,
     });
 
     // Set value prop programmatically
@@ -470,7 +466,7 @@ describe("ifx-chip", () => {
         MockInfineonIconStencil,
         MockInfineonIndicator,
       ],
-      html: `<ifx-chip placeholder="Select options"></ifx-chip>`,
+      html: `<ifx-chip placeholder="Select options"><ifx-chip-item value="option1">Option 1</ifx-chip-item><ifx-chip-item value="option2">Option 2</ifx-chip-item><ifx-chip-item value="option3">Option 3</ifx-chip-item></ifx-chip>`,
     });
 
     const chip = page.rootInstance;
