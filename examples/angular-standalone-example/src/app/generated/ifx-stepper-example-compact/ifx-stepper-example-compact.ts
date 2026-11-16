@@ -1,4 +1,4 @@
-import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxStep, IfxStepper } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-stepper-example-compact.scss'
 })
 export class IfxStepperCompactExample {
-  protected readonly tsCode = `import { IfxStep, IfxStepper } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxStep, IfxStepper } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -29,7 +29,8 @@ export class IfxStepperCompactExample {
     aria-current-text=&quot;&quot;
     indicator-position=&quot;left&quot;
     variant=&quot;compact&quot;
-    [showStepNumber]=&quot;false&quot;&gt;
+    [showStepNumber]=&quot;false&quot;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
     &lt;ifx-step&gt;Step Label 1&lt;/ifx-step&gt;
     &lt;ifx-step&gt;Step Label 2&lt;/ifx-step&gt;
     &lt;ifx-step&gt;Step Label 3&lt;/ifx-step&gt;

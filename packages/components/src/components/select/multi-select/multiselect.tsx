@@ -34,85 +34,85 @@ function debounce(func, wait) {
 	// formAssociated: true
 })
 export class Multiselect {
-/** Name of the multi-select field (used in forms). */
-@Prop() readonly name: string;
+	/** Name of the multi-select field (used in forms). */
+	@Prop() readonly name: string;
 
-/** If true, the multi-select is disabled and not interactive. */
-@Prop() readonly disabled: boolean = false;
-/** If true, the multi-select is read-only. */
-@Prop() readonly readOnly: boolean = false;
+	/** If true, the multi-select is disabled and not interactive. */
+	@Prop() readonly disabled: boolean = false;
+	/** If true, the multi-select is read-only. */
+	@Prop() readonly readOnly: boolean = false;
 
-/** Whether at least one option must be selected. */
-@Prop() readonly required: boolean = false;
+	/** Whether at least one option must be selected. */
+	@Prop() readonly required: boolean = false;
 
-/** If true, shows the multi-select in an error state. */
-@Prop() readonly error: boolean = false;
+	/** If true, shows the multi-select in an error state. */
+	@Prop() readonly error: boolean = false;
 
-/** Helper text shown below the multi-select. */
-@Prop() readonly caption: string = "";
+	/** Helper text shown below the multi-select. */
+	@Prop() readonly caption: string = "";
 
-/** Label shown above the multi-select. */
-@Prop() readonly label: string = "";
+	/** Label shown above the multi-select. */
+	@Prop() readonly label: string = "";
 
-/** Placeholder text shown when nothing is selected. */
-@Prop() readonly placeholder: string = "";
+	/** Placeholder text shown when nothing is selected. */
+	@Prop() readonly placeholder: string = "";
 
-/** If true, shows a search box inside the dropdown. */
-@Prop() readonly showSearch: boolean = true;
+	/** If true, shows a search box inside the dropdown. */
+	@Prop() readonly showSearch: boolean = true;
 
-/** If true, shows a “Select all” option. */
-@Prop() readonly showSelectAll: boolean = true;
+	/** If true, shows a “Select all” option. */
+	@Prop() readonly showSelectAll: boolean = true;
 
-/** If true, shows a button to clear all selections. */
-@Prop() readonly showClearButton: boolean = true;
+	/** If true, shows a button to clear all selections. */
+	@Prop() readonly showClearButton: boolean = true;
 
-/** If true, shows expand/collapse controls for nested options. */
-@Prop() readonly showExpandCollapse: boolean = true;
+	/** If true, shows expand/collapse controls for nested options. */
+	@Prop() readonly showExpandCollapse: boolean = true;
 
-/** Message shown when no search results are found. */
-@Prop() readonly noResultsMessage: string = "No results found.";
+	/** Message shown when no search results are found. */
+	@Prop() readonly noResultsMessage: string = "No results found.";
 
-/** If true, displays the “no results” message when nothing matches. */
-@Prop() readonly showNoResultsMessage: boolean = true;
+	/** If true, displays the “no results” message when nothing matches. */
+	@Prop() readonly showNoResultsMessage: boolean = true;
 
-/** Placeholder text for the search input. */
-@Prop() readonly searchPlaceholder: string = "Search";
+	/** Placeholder text for the search input. */
+	@Prop() readonly searchPlaceholder: string = "Search";
 
-/** Label text for the “Select all” option. */
-@Prop() readonly selectAllLabel: string = "Select all";
+	/** Label text for the “Select all” option. */
+	@Prop() readonly selectAllLabel: string = "Select all";
 
-/** Label text for the “Expand all” action. */
-@Prop() readonly expandLabel: string = "Expand";
+	/** Label text for the “Expand all” action. */
+	@Prop() readonly expandLabel: string = "Expand";
 
-/** Label text for the “Collapse all” action. */
-@Prop() readonly collapseLabel: string = "Collapse";
+	/** Label text for the “Collapse all” action. */
+	@Prop() readonly collapseLabel: string = "Collapse";
 
-/** ARIA label for the multi-select dropdown. */
-@Prop() readonly ariaMultiSelectLabel: string = "Multi-select dropdown";
+	/** ARIA label for the multi-select dropdown. */
+	@Prop() readonly ariaMultiSelectLabel: string = "Multi-select dropdown";
 
-/** ID of element that labels the multi-select (aria-labelledby). */
-@Prop() readonly ariaMultiSelectLabelledBy: string = "";
+	/** ID of element that labels the multi-select (aria-labelledby). */
+	@Prop() readonly ariaMultiSelectLabelledBy: string = "";
 
-/** ID of element that describes the multi-select (aria-describedby). */
-@Prop() readonly ariaMultiSelectDescribedBy: string = "";
+	/** ID of element that describes the multi-select (aria-describedby). */
+	@Prop() readonly ariaMultiSelectDescribedBy: string = "";
 
-/** ARIA label for the search input inside the dropdown. */
-@Prop() readonly ariaSearchLabel: string = "Search options";
+	/** ARIA label for the search input inside the dropdown. */
+	@Prop() readonly ariaSearchLabel: string = "Search options";
 
-/** ARIA label for the “Clear all” button. */
-@Prop() readonly ariaClearLabel: string = "Clear all selections";
+	/** ARIA label for the “Clear all” button. */
+	@Prop() readonly ariaClearLabel: string = "Clear all selections";
 
-/** ARIA label for the dropdown toggle button. */
-@Prop() readonly ariaToggleLabel: string = "Toggle dropdown";
+	/** ARIA label for the dropdown toggle button. */
+	@Prop() readonly ariaToggleLabel: string = "Toggle dropdown";
 
-/** ARIA label for the “Select all options” control. */
-@Prop() readonly ariaSelectAllLabel: string = "Select all options";
+	/** ARIA label for the “Select all options” control. */
+	@Prop() readonly ariaSelectAllLabel: string = "Select all options";
 
-/** ARIA label for the “Expand all categories” control. */
-@Prop() readonly ariaExpandAllLabel: string = "Expand all categories";
+	/** ARIA label for the “Expand all categories” control. */
+	@Prop() readonly ariaExpandAllLabel: string = "Expand all categories";
 
-/** ARIA label for the “Collapse all categories” control. */
-@Prop() readonly ariaCollapseAllLabel: string = "Collapse all categories";
+	/** ARIA label for the “Collapse all categories” control. */
+	@Prop() readonly ariaCollapseAllLabel: string = "Collapse all categories";
 
 	@State() internalError: boolean = false;
 	@State() persistentSelectedOptions: Option[] = [];
@@ -122,26 +122,90 @@ export class Multiselect {
 	@State() visibleSelectedCount = 0;
 
 	/** Fired when an option is selected in the multi-select. */
-	@Event() ifxSelect: EventEmitter;
-	/** Fired when the multi-select dropdown is opened. */
-	@Event() ifxOpen: EventEmitter;
+	@Event() ifxSelect!: EventEmitter;
 
-	@Element() el: HTMLIfxMultiselectElement;
+	/** Fired when the multi-select dropdown is opened. */
+	@Event() ifxOpen!: EventEmitter;
+
+	/**
+	 * Fired before selections are cleared.
+	 * Call `event.preventDefault()` to cancel clearing.
+	 */
+	@Event({ cancelable: true }) ifxClear!: EventEmitter<void>;
+
+	@Element() el!: HTMLIfxMultiselectElement;
 	private dropdownElement!: HTMLElement;
 	private resizeObserver?: ResizeObserver;
 	private measurementScheduled = false;
 
-	@AttachInternals() internals: ElementInternals;
+	@AttachInternals() internals!: ElementInternals;
+
+	private getAllOptionElements(): HTMLIfxMultiselectOptionElement[] {
+		return Array.from(this.el.querySelectorAll("ifx-multiselect-option"));
+	}
+
+	private getGroupElements(): HTMLIfxMultiselectGroupElement[] {
+		return Array.from(this.el.querySelectorAll("ifx-multiselect-group"));
+	}
+
+	private isOptionVisible(option: HTMLIfxMultiselectOptionElement): boolean {
+		return !option.shadowRoot
+			?.querySelector(".option")
+			?.classList.contains("search-hidden");
+	}
+
+	private updateGroupVisibility(searchActive: boolean) {
+		this.getGroupElements().forEach((group) => {
+			const hasVisibleOption = Array.from(
+				group.querySelectorAll("ifx-multiselect-option"),
+			).some((option) => this.isOptionVisible(option));
+
+			if (searchActive && !hasVisibleOption) {
+				group.classList.add("empty-group");
+			} else {
+				group.classList.remove("empty-group");
+			}
+		});
+	}
+
+	private getRootOptionElements(): HTMLIfxMultiselectOptionElement[] {
+		return Array.from(this.el.children).flatMap((child) => {
+			if (child.tagName === "IFX-MULTISELECT-OPTION") {
+				return [child as HTMLIfxMultiselectOptionElement];
+			}
+
+			if (child.tagName === "IFX-MULTISELECT-GROUP") {
+				return Array.from(child.children).filter(
+					(groupChild): groupChild is HTMLIfxMultiselectOptionElement =>
+						groupChild.tagName === "IFX-MULTISELECT-OPTION",
+				);
+			}
+
+			return [];
+		});
+	}
+
+	private getLeafOptionElements(): HTMLIfxMultiselectOptionElement[] {
+		return this.getAllOptionElements().filter(
+			(option) => option.children.length === 0,
+		);
+	}
+
+	private getEnabledLeafOptionElements(): HTMLIfxMultiselectOptionElement[] {
+		return this.getLeafOptionElements().filter(
+			(option) =>
+				!option.disabled && !option.closest("ifx-multiselect-group")?.disabled,
+		);
+	}
+
 	private parseChildOptions(): Option[] {
 		const options: Option[] = [];
-		const childElements = Array.from(this.el.children);
+		const childElements = this.getRootOptionElements();
 
 		childElements.forEach((child, index) => {
-			if (child.tagName === "IFX-MULTISELECT-OPTION") {
-				const option = this.parseOptionElement(child as HTMLElement, index);
-				if (option) {
-					options.push(option);
-				}
+			const option = this.parseOptionElement(child, index);
+			if (option) {
+				options.push(option);
 			}
 		});
 
@@ -237,6 +301,23 @@ export class Multiselect {
 		return leafOptions;
 	}
 
+	// Set separators hidden or visible based on search state
+	private setSeparatorsHidden(hidden: boolean) {
+		const separators = this.el.querySelectorAll("ifx-multiselect-separator");
+
+		separators.forEach((separator) => {
+			(separator as HTMLElement).hidden = hidden;
+		});
+	}
+
+	private hideSeparators(){
+		this.setSeparatorsHidden(true);
+	}
+
+	private showSeparators() {
+		this.setSeparatorsHidden(false);
+	}
+
 	private handleSearch = debounce((targetElement: HTMLInputElement) => {
 		const searchTerm = targetElement.value.toLowerCase();
 		const isSearchActive = searchTerm !== "";
@@ -270,9 +351,9 @@ export class Multiselect {
 				optionsContainer.classList.remove("has-search-filter");
 			}
 		}
-
+		
 		requestAnimationFrame(() => {
-			const allOptions = this.el.querySelectorAll("ifx-multiselect-option");
+			const allOptions = this.getAllOptionElements();
 			allOptions.forEach((option) => {
 				const searchEvent = new CustomEvent("ifx-search-filter", {
 					detail: { searchTerm, isActive: isSearchActive },
@@ -282,13 +363,14 @@ export class Multiselect {
 
 			if (isSearchActive) {
 				setTimeout(() => {
-					const allOptions = this.el.querySelectorAll("ifx-multiselect-option");
+					const allOptions = this.getAllOptionElements();
 					let visibleCount = 0;
+					this.updateGroupVisibility(true);
 
 					allOptions.forEach((option) => {
 						const style = window.getComputedStyle(option);
 						const rect = option.getBoundingClientRect();
-
+						
 						if (
 							style.display !== "none" &&
 							style.visibility !== "hidden" &&
@@ -298,7 +380,7 @@ export class Multiselect {
 							visibleCount++;
 						}
 					});
-
+					
 					const optionsContainer = this.el.shadowRoot.querySelector(
 						".ifx-multiselect-options",
 					);
@@ -307,16 +389,21 @@ export class Multiselect {
 							optionsContainer.classList.add("show-no-results");
 						} else {
 							optionsContainer.classList.remove("show-no-results");
-						}
+						}		
 					}
+
+					this.hideSeparators();
 				}, 200);
 			} else {
+				this.updateGroupVisibility(false);
 				const optionsContainer = this.el.shadowRoot.querySelector(
 					".ifx-multiselect-options",
 				);
 				if (optionsContainer) {
 					optionsContainer.classList.remove("show-no-results");
 				}
+				
+				this.showSeparators();
 			}
 		});
 	}, 150);
@@ -353,14 +440,11 @@ export class Multiselect {
 
 	//private pendingSelectionUpdate = false;
 	private updateSlotBasedSelections(emitEvent: boolean = false) {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
 		const selectedLeafOptions: Option[] = [];
 
-		allOptionElements.forEach((optionEl: any) => {
+		this.getLeafOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
-			if (instance && instance.selected && !instance.hasChildren) {
+			if (instance?.selected) {
 				selectedLeafOptions.push({
 					value: instance.value,
 					selected: true,
@@ -378,10 +462,7 @@ export class Multiselect {
 	}
 
 	private updateInitialParentStates() {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-		const optionsByDepth = Array.from(allOptionElements)
+		const optionsByDepth = this.getAllOptionElements()
 			.map((el) => ({
 				element: el,
 				instance: (el as any)["__stencil_instance"],
@@ -483,10 +564,7 @@ export class Multiselect {
 		//this.internals.setFormValue(formData);
 	}
 	private collapseAll() {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-		allOptionElements.forEach((optionEl: any) => {
+		this.getAllOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance && instance.hasChildren) {
 				instance.isExpanded = false;
@@ -495,10 +573,7 @@ export class Multiselect {
 	}
 
 	private expandAll() {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-		allOptionElements.forEach((optionEl: any) => {
+		this.getAllOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance && instance.hasChildren) {
 				instance.isExpanded = true;
@@ -508,19 +583,12 @@ export class Multiselect {
 
 	private selectAll() {
 		this.resetSearch();
+		this.expandAll();
 
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-
-		allOptionElements.forEach((optionEl: any) => {
+		this.getEnabledLeafOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance) {
-				if (instance.hasChildren) {
-					instance.isExpanded = true;
-				} else {
-					instance.selected = true;
-				}
+				instance.selected = true;
 			}
 		});
 
@@ -534,10 +602,7 @@ export class Multiselect {
 	/** Clears all selected options in the multi-select and resets their state. */
 	@Method()
 	async clearSelection() {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-		allOptionElements.forEach((optionEl: any) => {
+		this.getAllOptionElements().forEach((optionEl: any) => {
 			const instance = optionEl["__stencil_instance"];
 			if (instance) {
 				instance.selected = false;
@@ -595,13 +660,31 @@ export class Multiselect {
 			optionsContainer.classList.remove("has-search-filter");
 		}
 
-		const allOptions = this.el.querySelectorAll("ifx-multiselect-option");
+		const allOptions = this.getAllOptionElements();
 		allOptions.forEach((option) => {
 			const searchEvent = new CustomEvent("ifx-search-filter", {
 				detail: { searchTerm: "", isActive: false },
 			});
 			option.dispatchEvent(searchEvent);
 		});
+		this.updateGroupVisibility(false);
+		this.showSeparators();
+	}
+
+	private clearEnabledSelection() {
+		this.getEnabledLeafOptionElements().forEach((optionEl: any) => {
+			const instance = optionEl["__stencil_instance"];
+			if (instance) {
+				instance.selected = false;
+				instance.indeterminate = false;
+			}
+		});
+
+		setTimeout(() => {
+			this.updateInitialParentStates();
+			this.updateSlotBasedSelections(false);
+			this.ifxSelect.emit(this.persistentSelectedOptions);
+		}, 0);
 	}
 
 	private handleWrapperClick(event: MouseEvent) {
@@ -612,8 +695,24 @@ export class Multiselect {
 		}
 	}
 
+	private handleClearButtonClick = (event: MouseEvent) => {
+		event.stopPropagation();
+
+		const clearEvent = this.ifxClear.emit();
+		if (!clearEvent.defaultPrevented) {
+			this.clearSelection();
+		}
+	};
+
 	private handleKeyDown(event: KeyboardEvent) {
 		if (this.readOnly || (this.disabled && !this.error)) return;
+		if (
+			event
+				.composedPath()
+				.some((target) => (target as HTMLElement).tagName === "BUTTON")
+		) {
+			return;
+		}
 
 		// If dropdown is closed, only allow opening
 		if (!this.dropdownOpen) {
@@ -666,19 +765,11 @@ export class Multiselect {
 	}
 
 	private renderSelectAll() {
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
-		const leafOptions = Array.from(allOptionElements).filter(
-			(el: any) => !el.hasChildren,
-		);
-		const selectedLeafOptions = Array.from(allOptionElements).filter(
-			(el: any) => !el.hasChildren && el.selected,
-		);
+		const enabledLeafOptions = this.getEnabledLeafOptionElements();
 
 		const allSelected =
-			leafOptions.length > 0 &&
-			selectedLeafOptions.length === leafOptions.length;
+			enabledLeafOptions.length > 0 &&
+			enabledLeafOptions.every((option) => option.selected);
 
 		const toggleSelectAll = (event?: Event) => {
 			if (event) {
@@ -687,7 +778,7 @@ export class Multiselect {
 			}
 
 			if (allSelected) {
-				this.clearSelection();
+				this.clearEnabledSelection();
 			} else {
 				this.selectAll();
 			}
@@ -820,6 +911,7 @@ export class Multiselect {
 						<button
 							type="button"
 							class="ifx-multiselect-chip-remove"
+							tabIndex={0}
 							aria-label={`Remove ${label}`}
 							onClick={(event) => this.removeSelection(option, event)}
 						>
@@ -872,18 +964,16 @@ export class Multiselect {
 		const hasSelections = this.persistentSelectedOptions.length > 0;
 
 		let isFlatMultiselect = false;
-		const allOptionElements = this.el.querySelectorAll(
-			"ifx-multiselect-option",
-		);
+		const allOptionElements = this.getAllOptionElements();
 		if (allOptionElements.length > 0) {
-			isFlatMultiselect = Array.from(allOptionElements).every(
+			isFlatMultiselect = allOptionElements.every(
 				(option) => option.children.length === 0,
 			);
 		}
 
 		return (
 			<div
-				class={`ifx-multiselect-container ${this.readOnly ? 'readOnly' : this.internalError ? '' : this.disabled ? 'disabled' : ''}`}
+				class={`ifx-multiselect-container ${this.readOnly ? "readOnly" : this.internalError ? "" : this.disabled ? "disabled" : ""}`}
 				ref={(el) => (this.dropdownElement = el as HTMLElement)}
 			>
 				{
@@ -892,7 +982,11 @@ export class Multiselect {
 							<span class="wrapper-label">
 								<span>{this.label}</span>
 								{this.required && (
-									<span class={`required ${!this.readOnly && this.internalError ? "error" : ""}`}>*</span>
+									<span
+										class={`required ${!this.readOnly && this.internalError ? "error" : ""}`}
+									>
+										*
+									</span>
 								)}
 							</span>
 						)}
@@ -1026,16 +1120,20 @@ export class Multiselect {
 					<div class="ifx-multiselect-icon-container">
 						{/* Clear Button - will show only if there's a selection */}
 						{this.persistentSelectedOptions.length > 0 && (
-							<div
+							<button
+								type="button"
 								class={`ifx-clear-button ${!this.showClearButton ? "hide" : ""}`}
+								tabIndex={0}
+								aria-label="Clear selection"
+								disabled={(this.disabled && !this.error) || this.readOnly}
 								onClick={
 									this.disabled && !this.error
 										? undefined
-										: () => this.clearSelection()
+										: this.handleClearButtonClick
 								}
 							>
 								<ifx-icon icon="cRemove16"></ifx-icon>
-							</div>
+							</button>
 						)}
 						<div
 							class="icon-wrapper-up"

@@ -1,4 +1,4 @@
-import { ComponentLibrary } from "@infineon/infineon-design-system-vue";
+import { ComponentLibrary } from "@infineon/design-system-vue";
 import { createApp } from "vue";
 import App from "./App.vue";
 import "prismjs/themes/prism.css";

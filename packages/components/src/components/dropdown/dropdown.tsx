@@ -58,10 +58,6 @@ export class Dropdown {
 	@Event() ifxDropdown!: EventEmitter;
 	/** If true, dropdown is disabled and cannot be opened. */
 	@Prop() readonly disabled: boolean = false;
-	/** If true, clicking outside will not close the dropdown. */
-	@Prop() readonly noCloseOnOutsideClick: boolean = false;
-	/** Id true, clicking inside the menu will not close the dropdown. */
-	@Prop() readonly noCloseOnMenuClick: boolean = false;
 	@Element() el!: HTMLIfxDropdownElement;
 	@State() trigger?: DropdownTrigger;
 	@State() menu?: DropdownMenu;
@@ -73,7 +69,6 @@ export class Dropdown {
 		const target = event.target as HTMLElement;
 
 		if (
-			!this.noCloseOnOutsideClick &&
 			!this.el.contains(target) &&
 			!this.menu?.contains(target)
 		) {
@@ -101,13 +96,14 @@ export class Dropdown {
 	private handleTriggerKeyDown = (e: KeyboardEvent) => {
 		const key = e.key;
 		if (key === "Tab" && this.internalIsOpen && !e.shiftKey) {
-			e.preventDefault();
-			this.focusFirstItem();
+			if (this.focusFirstItem()) {
+				e.preventDefault();
+			}
 		}
 	};
 
 	private handleMenuClick = () => {
-		if (!this.noCloseOnMenuClick) this.closeDropdown();
+		this.closeDropdown();
 	};
 
 	private getItemFocusables(): HTMLElement[] {
@@ -134,9 +130,10 @@ export class Dropdown {
 		const items = this.getItemFocusables();
 		if (!items.length) return;
 
-		const i = items.indexOf(document.activeElement as HTMLElement);
+		const eventPath = e.composedPath();
+		const i = items.findIndex((item) => eventPath.includes(item));
 
-		switch (e.key) {
+		switch (e.code) {
 			case "ArrowDown":
 				e.preventDefault();
 				items[(i + 1) % items.length].focus();
@@ -152,12 +149,6 @@ export class Dropdown {
 			case "End":
 				e.preventDefault();
 				items[items.length - 1].focus();
-				break;
-			case "Enter":
-			case " ":
-			case "Spacebar":
-				e.preventDefault();
-				(document.activeElement as HTMLElement)?.click();
 				break;
 			case "Escape":
 				e.preventDefault();
@@ -210,9 +201,17 @@ export class Dropdown {
 		this.updateSlotContent();
 	}
 
-	private focusFirstItem() {
-		const [first] = this.getItemFocusables();
-		first?.focus();
+	private focusFirstItem(): boolean {
+		const searchField = this.menu?.querySelector("ifx-search-field");
+	
+		if (searchField) {
+			const labelElement = searchField.shadowRoot?.querySelector(
+				"input",
+			);
+			labelElement?.focus();
+		}
+
+		return Boolean(searchField);
 	}
 
 	private updateSlotContent() {
@@ -239,7 +238,7 @@ export class Dropdown {
 
 		if (!this.noAppendToBody) {
 			if (this.menu && this.menu !== newMenu) {
-				this.menu.removeEventListener("click", this.handleMenuClick);
+				this.menu.removeEventListener("ifxDropdownItem",this.handleMenuClick);
 				this.menu.removeEventListener("keydown", this.handleMenuKeyDown);
 				this.menu.remove();
 			}
@@ -252,9 +251,9 @@ export class Dropdown {
 		}
 
 		if (this.menu) {
-			this.menu.removeEventListener("click", this.handleMenuClick);
+			this.menu.removeEventListener("ifxDropdownItem",this.handleMenuClick);
 			this.menu.removeEventListener("keydown", this.handleMenuKeyDown);
-			this.menu.addEventListener("click", this.handleMenuClick);
+			this.menu.addEventListener("ifxDropdownItem",this.handleMenuClick);
 			this.menu.addEventListener("keydown", this.handleMenuKeyDown);
 		}
 	}

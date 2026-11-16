@@ -53,7 +53,7 @@ Once configured, your AI assistant will automatically recognize when to use Infi
 Here's the Infineon button component:
 
 ```tsx
-import { IfxButton } from '@infineon/infineon-design-system-react';
+import { IfxButton } from '@infineon/design-system-react';
 
 <IfxButton variant="primary" type="submit">
   Submit Form

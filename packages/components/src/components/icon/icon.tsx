@@ -1,4 +1,4 @@
-import { getIcon, type IconData } from "@infineon/infineon-icons";
+import { getIcon, type IconData } from "@infineon/design-system-icons";
 import {
 	Component,
 	Element,

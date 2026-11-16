@@ -1,6 +1,6 @@
 [![Built With Stencil](https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsdXN0cmF0b3IgMTkuMi4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0%2BCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiCgkgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRkZGRkZGO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDM3My45YzAsMzcuNi01NS4xLDY4LjYtOTIuNyw2OC42SDE4MC40Yy0zNy45LDAtOTIuNy0zMC43LTkyLjctNjguNnYtMy42aDMzNi45VjM3My45eiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMjkyLjFIMTgwLjRjLTM3LjYsMC05Mi43LTMxLTkyLjctNjguNnYtMy42SDMzMmMzNy42LDAsOTIuNywzMSw5Mi43LDY4LjZWMjkyLjF6Ii8%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywxNDEuN0g4Ny43di0zLjZjMC0zNy42LDU0LjgtNjguNiw5Mi43LTY4LjZIMzMyYzM3LjksMCw5Mi43LDMwLjcsOTIuNyw2OC42VjE0MS43eiIvPgo8L3N2Zz4K&colorA=16161d&style=flat-square)](https://stenciljs.com)
-[![npm version](https://img.shields.io/npm/v/@infineon/infineon-design-system-stencil?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-stencil)
-[![npm downloads](https://img.shields.io/npm/dm/@infineon/infineon-design-system-stencil?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-stencil)
+[![npm version](https://img.shields.io/npm/v/@infineon/design-system?style=flat-square)](https://www.npmjs.com/package/@infineon/design-system)
+[![npm downloads](https://img.shields.io/npm/dm/@infineon/design-system?style=flat-square)](https://www.npmjs.com/package/@infineon/design-system)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/blob/master/LICENSE)
 
 # Infineon Design System
@@ -42,7 +42,7 @@ Action List • Content Switcher • Segmented Control • Stepper • Paginatio
 ## 🚀 Installation
 
 ```bash
-npm install @infineon/infineon-design-system-stencil
+npm install @infineon/design-system
 ```
 
 ## 📖 Usage
@@ -55,8 +55,8 @@ npm install @infineon/infineon-design-system-stencil
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
 </head>
 <body>
   <ifx-button variant="primary">Click Me</ifx-button>
@@ -70,18 +70,18 @@ npm install @infineon/infineon-design-system-stencil
 
 ```javascript
 // Import only the components you need
-import '@infineon/infineon-design-system-stencil/dist/components/ifx-button';
-import '@infineon/infineon-design-system-stencil/dist/components/ifx-switch';
+import '@infineon/design-system/dist/components/ifx-button';
+import '@infineon/design-system/dist/components/ifx-switch';
 ```
 
 ### React
 
 ```bash
-npm install @infineon/infineon-design-system-react
+npm install @infineon/design-system-react
 ```
 
 ```jsx
-import { IfxButton, IfxSwitch } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxSwitch } from '@infineon/design-system-react';
 
 function App() {
   return (
@@ -98,12 +98,12 @@ function App() {
 ### Angular
 
 ```bash
-npm install @infineon/infineon-design-system-angular
+npm install @infineon/design-system-angular
 ```
 
 ```typescript
 // app.module.ts
-import { IfxComponentsModule } from '@infineon/infineon-design-system-angular';
+import { IfxComponentsModule } from '@infineon/design-system-angular';
 
 @NgModule({
   imports: [IfxComponentsModule]
@@ -120,12 +120,12 @@ export class AppModule {}
 ### Vue
 
 ```bash
-npm install @infineon/infineon-design-system-vue
+npm install @infineon/design-system-vue
 ```
 
 ```javascript
 // main.js
-import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
+import { ComponentLibrary } from '@infineon/design-system-vue';
 
 app.use(ComponentLibrary);
 ```
@@ -155,7 +155,7 @@ All design tokens are provided by `@infineon/design-system-tokens`.
 Full TypeScript definitions are included:
 
 ```typescript
-import type { Components } from '@infineon/infineon-design-system-stencil';
+import type { Components } from '@infineon/design-system';
 
 // Get component interface
 type ButtonProps = Components.IfxButton;
@@ -183,7 +183,7 @@ MIT License - see [LICENSE](../../LICENSE) file for details.
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/Infineon/infineon-design-system-stencil)
-- [npm Package](https://www.npmjs.com/package/@infineon/infineon-design-system-stencil)
+- [npm Package](https://www.npmjs.com/package/@infineon/design-system)
 - [Storybook Documentation](https://infineon.github.io/infineon-design-system-stencil/)
 - [Issue Tracker](https://github.com/Infineon/infineon-design-system-stencil/issues)
 - [Stencil Documentation](https://stenciljs.com/)
@@ -196,7 +196,7 @@ MIT License - see [LICENSE](../../LICENSE) file for details.
 Full TypeScript definitions included:
 
 ```typescript
-import type { Components } from '@infineon/infineon-design-system-stencil';
+import type { Components } from '@infineon/design-system';
 
 type ButtonProps = Components.IfxButton;
 ```

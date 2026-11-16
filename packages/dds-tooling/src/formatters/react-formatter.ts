@@ -59,7 +59,7 @@ export class ReactCodeFormatter implements ICodeFormatter {
 			.sort()
 			.join(", ");
 
-		return `import { ${imports} } from '@infineon/infineon-design-system-react';`;
+		return `import { ${imports} } from '@infineon/design-system-react';`;
 	}
 
 	/**

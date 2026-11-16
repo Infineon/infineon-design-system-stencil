@@ -1,4 +1,4 @@
-import { IfxLink } from '@infineon/infineon-design-system-react';
+import { IfxLink } from '@infineon/design-system-react';
 
 export function IfxLinkExample() {
   return (
@@ -21,7 +21,7 @@ export function IfxLinkExample() {
   );
 }
 
-const codeString = `import { IfxLink } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxLink } from '@infineon/design-system-react';
 
 export function IfxLinkExample() {
   return (

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxDatePicker } from '@infineon/infineon-design-system-vue';
+import { IfxDatePicker } from '@infineon/design-system-vue';
 
 const handleDate = (event: CustomEvent) => {
   console.log('ifxDate:', event);

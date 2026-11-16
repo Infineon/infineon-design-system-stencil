@@ -1,4 +1,4 @@
-import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-react';
+import { IfxStep, IfxStepper } from '@infineon/design-system-react';
 
 export function IfxStepperCompactExample() {
   const handleChange = (event: CustomEvent) => {
@@ -40,7 +40,7 @@ export function IfxStepperCompactExample() {
   );
 }
 
-const codeString = `import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxStep, IfxStepper } from '@infineon/design-system-react';
 
 export function IfxStepperExample() {
   const handleChange = (event: CustomEvent) => {

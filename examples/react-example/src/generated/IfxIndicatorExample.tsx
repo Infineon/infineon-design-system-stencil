@@ -1,4 +1,4 @@
-import { IfxIndicator } from '@infineon/infineon-design-system-react';
+import { IfxIndicator } from '@infineon/design-system-react';
 
 export function IfxIndicatorExample() {
   return (
@@ -15,7 +15,7 @@ export function IfxIndicatorExample() {
   );
 }
 
-const codeString = `import { IfxIndicator } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxIndicator } from '@infineon/design-system-react';
 
 export function IfxIndicatorExample() {
   return (

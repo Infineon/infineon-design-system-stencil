@@ -1,4 +1,4 @@
-import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-react';
+import { IfxTab, IfxTabs } from '@infineon/design-system-react';
 
 export function IfxTabsExample() {
   const handleChange = (event: CustomEvent) => {
@@ -70,7 +70,7 @@ export function IfxTabsExample() {
   );
 }
 
-const codeString = `import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxTab, IfxTabs } from '@infineon/design-system-react';
 
 export function IfxTabsExample() {
   const handleChange = (event: CustomEvent) => {

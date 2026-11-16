@@ -1,8 +1,13 @@
-import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/infineon-design-system-react';
+import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/design-system-react';
 
 export function IfxContentSwitcherExample() {
   const handleChange = (event: CustomEvent) => {
     console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleItemSelected = (event: CustomEvent) => {
+    console.log('itemSelected:', event);
     // Add your handler logic here
   };
 
@@ -14,7 +19,9 @@ export function IfxContentSwitcherExample() {
   return (
     <>
       <IfxContentSwitcher onIfxChange={handleChange}>
-        <IfxContentSwitcherItem value="item 1">
+        <IfxContentSwitcherItem
+          value="item 1"
+          onItemSelected={handleItemSelected}>
           <IfxIcon
             icon="applications-16"
             onConsoleError={handleConsoleError} />
@@ -37,11 +44,16 @@ export function IfxContentSwitcherExample() {
   );
 }
 
-const codeString = `import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/design-system-react';
 
 export function IfxContentSwitcherExample() {
   const handleChange = (event: CustomEvent) => {
     console.log('ifxChange:', event);
+    // Add your handler logic here
+  };
+
+  const handleItemSelected = (event: CustomEvent) => {
+    console.log('itemSelected:', event);
     // Add your handler logic here
   };
 
@@ -52,7 +64,9 @@ export function IfxContentSwitcherExample() {
 
   return (
       <IfxContentSwitcher onIfxChange={handleChange}>
-        <IfxContentSwitcherItem value="item 1">
+        <IfxContentSwitcherItem
+          value="item 1"
+          onItemSelected={handleItemSelected}>
           <IfxIcon
             icon="applications-16"
             onConsoleError={handleConsoleError} />

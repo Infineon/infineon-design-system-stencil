@@ -4,15 +4,15 @@ This is an example project demonstrating how to use the Infineon Design System S
 ## Installation and Setup
 First, install the Infineon Design System Stencil components in your project.
 ```bash
-npm install @infineon/infineon-design-system-stencil
+npm install @infineon/design-system
 ```
 
 Then, you can import the components and the styles in a javascript/typescript file.
 
 [index.js](./src/index.ts):
 ```javascript
-import '@infineon/infineon-design-system-stencil';
-import '@infineon/infineon-design-system-stencil/styles.css';
+import '@infineon/design-system';
+import '@infineon/design-system/styles.css';
 ```
 
 > Note, that you also need to include the corresponding script in you HTML file (see [index.html](./src/index.html)):

@@ -1,4 +1,4 @@
-import { IfxPagination } from '@infineon/infineon-design-system-react';
+import { IfxPagination } from '@infineon/design-system-react';
 
 export function IfxPaginationExample() {
   const handleItemsPerPageChange = (event: CustomEvent) => {
@@ -29,7 +29,7 @@ export function IfxPaginationExample() {
   );
 }
 
-const codeString = `import { IfxPagination } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxPagination } from '@infineon/design-system-react';
 
 export function IfxPaginationExample() {
   const handleItemsPerPageChange = (event: CustomEvent) => {

@@ -1,4 +1,4 @@
-import { IfxSpinner } from '@infineon/infineon-design-system-react';
+import { IfxSpinner } from '@infineon/design-system-react';
 
 export function IfxSpinnerExample() {
   return (
@@ -16,7 +16,7 @@ export function IfxSpinnerExample() {
   );
 }
 
-const codeString = `import { IfxSpinner } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxSpinner } from '@infineon/design-system-react';
 
 export function IfxSpinnerExample() {
   return (

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/infineon-design-system-vue';
+import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
@@ -37,7 +37,9 @@ ${'</'}script>
       :required="false">
       <ifx-checkbox
         :value=0
-        size="m">
+        size="m"
+        @ifxChange="handleChange"
+        @ifxError="handleError">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox
@@ -69,7 +71,9 @@ ${'</'}template>`;
       :required="false">
       <ifx-checkbox
         :value=0
-        size="m">
+        size="m"
+        @ifxChange="handleChange"
+        @ifxError="handleError">
         Option 0
       </ifx-checkbox>
       <ifx-checkbox

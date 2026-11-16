@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-vue';
+import { IfxTab, IfxTabs } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
@@ -34,7 +34,8 @@ ${'</'}script>
       subline=""
       subline-position="left"
       label=""
-      :number=0>
+      :number=0
+      @ifxChange="handleChange">
       <ifx-tab
         header="Tab 1"
         icon=""
@@ -42,7 +43,8 @@ ${'</'}script>
         subline=""
         subline-position="left"
         label=""
-        :number=0>
+        :number=0
+        @tabHeaderChange="handleTabHeaderChange">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -88,7 +90,8 @@ ${'</'}template>`;
       subline=""
       subline-position="left"
       label=""
-      :number=0>
+      :number=0
+      @ifxChange="handleChange">
       <ifx-tab
         header="Tab 1"
         icon=""
@@ -96,7 +99,8 @@ ${'</'}template>`;
         subline=""
         subline-position="left"
         label=""
-        :number=0>
+        :number=0
+        @tabHeaderChange="handleTabHeaderChange">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.

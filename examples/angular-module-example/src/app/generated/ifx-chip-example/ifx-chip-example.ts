@@ -36,10 +36,10 @@ export class IfxChipExample {
     [readOnly]=&quot;false&quot;
     value=&quot;Item Value&quot;
     [disabled]=&quot;false&quot;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
     [hideDropdownIcon]=&quot;false&quot;&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;
-      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
       (ifxChipItemSelect)=&quot;handleChipItemSelect(\$any(\$event))&quot;&gt;Item Label 1&lt;/ifx-chip-item&gt;
     &lt;ifx-chip-item value=&quot;Item Value 2&quot;&gt;Item Label 2&lt;/ifx-chip-item&gt;
     &lt;ifx-chip-item value=&quot;Item Value 3&quot;&gt;Item Label 3&lt;/ifx-chip-item&gt;

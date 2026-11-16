@@ -9,7 +9,9 @@
     [required]="false">
     <ifx-checkbox
       value="0"
-      size="m">Option 0</ifx-checkbox>
+      size="m"
+      (ifxChange)="handleChange($any($event))"
+      (ifxError)="handleError($any($event))">Option 0</ifx-checkbox>
     <ifx-checkbox
       value="1"
       size="m">Option 1</ifx-checkbox>

@@ -13,9 +13,11 @@ import "prismjs/components/prism-typescript.js";
 import packageJson from "../../package.json";
 
 const declaredVersion =
-	packageJson.dependencies["@infineon/infineon-design-system-angular"];
+	packageJson.dependencies["@infineon/design-system-angular"];
 
-import { version as installedVersion } from "@infineon/infineon-design-system-angular/package.json";
+import { version as installedVersion } from "@infineon/design-system-angular/package.json";
+
+declare const PACKAGE_VERSION: string | undefined;
 
 @Component({
 	selector: "app-root",
@@ -39,7 +41,9 @@ export class App implements OnInit {
 	ngOnInit() {
 		// Component initialization
 
-		if (declaredVersion.includes("workspace")) {
+		if (typeof PACKAGE_VERSION !== "undefined") {
+			this.version = PACKAGE_VERSION;
+		} else if (declaredVersion.includes("workspace")) {
 			this.version = "workspace";
 		} else {
 			this.version = installedVersion;

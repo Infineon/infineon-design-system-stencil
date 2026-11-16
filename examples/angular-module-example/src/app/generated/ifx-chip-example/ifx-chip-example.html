@@ -8,10 +8,10 @@
     [readOnly]="false"
     value="Item Value"
     [disabled]="false"
-    [hideDropdownIcon]="false">
+    [hideDropdownIcon]="false"
+    (ifxChange)="handleChange($any($event))">
     <ifx-chip-item
       value="Item Value 1"
-      (ifxChange)="handleChange($any($event))"
       (ifxChipItemSelect)="handleChipItemSelect($any($event))">Item Label 1</ifx-chip-item>
     <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
     <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>

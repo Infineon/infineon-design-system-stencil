@@ -1,0 +1,20 @@
+@use "@infineon/design-system-tokens/dist/tokens";
+
+:host {
+	display: block;
+	cursor: default;
+}
+
+:host(.empty-group) {
+	display: none;
+}
+
+.group-heading {
+	box-sizing: border-box;
+	padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
+	font-family: var(--ifx-font-family);
+	font-size: tokens.$ifxFontSizeS;
+	line-height: tokens.$ifxLineHeightS;
+	font-weight: tokens.$ifxFontWeightSemibold;
+	color: tokens.$ifxColorEngineering600;
+}

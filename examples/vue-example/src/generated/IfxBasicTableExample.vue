@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxBasicTable } from '@infineon/infineon-design-system-vue';
+import { IfxBasicTable } from '@infineon/design-system-vue';
 
 const codeString = `<script setup lang="ts">
 ${'</'}script>

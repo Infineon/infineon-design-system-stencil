@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxAiLabel } from '@infineon/infineon-design-system-vue';
+import { IfxAiLabel } from '@infineon/design-system-vue';
 
 const codeString = `<script setup lang="ts">
 ${'</'}script>

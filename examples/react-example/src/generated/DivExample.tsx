@@ -1,4 +1,4 @@
-import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-react';
+import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/design-system-react';
 
 export function DivExample() {
   const handleOpen = (event: CustomEvent) => {
@@ -80,7 +80,7 @@ export function DivExample() {
   );
 }
 
-const codeString = `import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/design-system-react';
 
 export function DivExample() {
   const handleOpen = (event: CustomEvent) => {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxIndicator } from '@infineon/infineon-design-system-vue';
+import { IfxIndicator } from '@infineon/design-system-vue';
 
 const codeString = `<script setup lang="ts">
 ${'</'}script>

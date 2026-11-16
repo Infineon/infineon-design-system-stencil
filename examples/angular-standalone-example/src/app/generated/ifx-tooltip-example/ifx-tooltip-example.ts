@@ -1,4 +1,4 @@
-import { IfxTooltip } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxTooltip } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-tooltip-example.scss'
 })
 export class IfxTooltipExample {
-  protected readonly tsCode = `import { IfxTooltip } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxTooltip } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({

@@ -1,9 +1,14 @@
 <script setup lang="ts">
 
-import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/infineon-design-system-vue';
+import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/design-system-vue';
 
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleItemSelected = (event: CustomEvent) => {
+  console.log('itemSelected:', event);
   // Add your handler logic here
 };
 
@@ -18,6 +23,11 @@ const handleChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleItemSelected = (event: CustomEvent) => {
+  console.log('itemSelected:', event);
+  // Add your handler logic here
+};
+
 const handleConsoleError = (event: CustomEvent) => {
   console.log('consoleError:', event);
   // Add your handler logic here
@@ -26,12 +36,13 @@ ${'</'}script>
 
 <template>
   <div>
-    <ifx-content-switcher>
+    <ifx-content-switcher @ifxChange="handleChange">
       <ifx-content-switcher-item
         value="item 1"
-        @ifxChange="handleChange"
-        @consoleError="handleConsoleError">
-        <ifx-icon icon="applications-16" />
+        @itemSelected="handleItemSelected">
+        <ifx-icon
+          icon="applications-16"
+          @consoleError="handleConsoleError" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
         <ifx-icon icon="applications-16" />
@@ -50,12 +61,13 @@ ${'</'}template>`;
 
 <template>
   <div>
-    <ifx-content-switcher>
+    <ifx-content-switcher @ifxChange="handleChange">
       <ifx-content-switcher-item
         value="item 1"
-        @ifxChange="handleChange"
-        @consoleError="handleConsoleError">
-        <ifx-icon icon="applications-16" />
+        @itemSelected="handleItemSelected">
+        <ifx-icon
+          icon="applications-16"
+          @consoleError="handleConsoleError" />
       </ifx-content-switcher-item>
       <ifx-content-switcher-item value="item 2">
         <ifx-icon icon="applications-16" />

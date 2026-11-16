@@ -7,7 +7,6 @@ import type {
 	ComponentEvent,
 	ComponentInfo,
 	ComponentStructure,
-	ParsedStory,
 	StoryExport,
 	StoryMetadata,
 } from "./types.js";
@@ -209,98 +208,6 @@ export function parseElement(element: Element): ComponentStructure {
 	});
 
 	return structure;
-}
-
-/**
- * Renders a story module to HTML (for MCP server use case)
- * Returns array of rendered stories with their names
- */
-export async function renderStoriesToHTML(
-	storyModule: Record<string, unknown>,
-	options: {
-		preferredStories?: string[];
-		renderAll?: boolean;
-	} = {},
-): Promise<ParsedStory[]> {
-	const renderedStories: ParsedStory[] = [];
-
-	// Get the default export (story metadata)
-	const storyMeta = (storyModule.default as StoryMetadata) || {};
-	const defaultArgs = storyMeta.args || {};
-
-	// Get all exported stories (excluding 'default')
-	const storyExports = Object.keys(storyModule).filter(
-		(key) => key !== "default",
-	);
-
-	if (storyExports.length === 0) {
-		return [];
-	}
-
-	// Fallback story names to prefer
-	const fallbackNames = [
-		"Default",
-		"Single",
-		"Primary",
-		"Basic",
-		"Medium",
-		"DefaultState",
-	];
-
-	// Select which stories to render
-	const storiesToRender = new Set<string>();
-
-	if (options.preferredStories && options.preferredStories.length > 0) {
-		// Use specified stories
-		for (const name of options.preferredStories) {
-			if (storyExports.includes(name)) {
-				storiesToRender.add(name);
-			}
-		}
-	} else if (!options.renderAll) {
-		// Try to find at least one fallback story
-		for (const fallbackName of fallbackNames) {
-			if (storyExports.includes(fallbackName)) {
-				storiesToRender.add(fallbackName);
-				break; // Only use the first matching fallback
-			}
-		}
-	}
-
-	// If no stories selected and renderAll is true, render all
-	if (storiesToRender.size === 0 && options.renderAll) {
-		for (const name of storyExports) {
-			storiesToRender.add(name);
-		}
-	}
-
-	// If still no stories, use the fallback logic from example-generator
-	if (storiesToRender.size === 0) {
-		for (const fallbackName of fallbackNames) {
-			if (storyExports.includes(fallbackName)) {
-				storiesToRender.add(fallbackName);
-				break;
-			}
-		}
-	}
-
-	// Render each selected story
-	for (const storyName of storiesToRender) {
-		const storyExport = storyModule[storyName];
-		const html = renderStoryToHTML(storyExport as StoryExport, defaultArgs);
-
-		if (html) {
-			// Parse to element and unwrap if needed
-			const element = htmlToElement(html, true);
-			if (element) {
-				renderedStories.push({ name: storyName, html: element.outerHTML });
-			} else {
-				renderedStories.push({ name: storyName, html });
-			}
-		}
-	}
-
-	return renderedStories;
 }
 
 /**

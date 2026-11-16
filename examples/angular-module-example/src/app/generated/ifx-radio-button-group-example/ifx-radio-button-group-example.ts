@@ -37,7 +37,9 @@ export class IfxRadioButtonGroupExample {
     [required]=&quot;false&quot;&gt;
     &lt;ifx-radio-button
       value=&quot;0&quot;
-      size=&quot;m&quot;&gt;Option 0&lt;/ifx-radio-button&gt;
+      size=&quot;m&quot;
+      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
+      (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Option 0&lt;/ifx-radio-button&gt;
     &lt;ifx-radio-button
       value=&quot;1&quot;
       size=&quot;m&quot;&gt;Option 1&lt;/ifx-radio-button&gt;

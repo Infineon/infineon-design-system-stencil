@@ -1,4 +1,4 @@
-import { IfxRadioButton } from '@infineon/infineon-design-system-react';
+import { IfxRadioButton } from '@infineon/design-system-react';
 
 export function IfxRadioButtonExample() {
   const handleChange = (event: CustomEvent) => {
@@ -32,7 +32,7 @@ export function IfxRadioButtonExample() {
   );
 }
 
-const codeString = `import { IfxRadioButton } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxRadioButton } from '@infineon/design-system-react';
 
 export function IfxRadioButtonExample() {
   const handleChange = (event: CustomEvent) => {

@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { IfxModal } from '@infineon/infineon-design-system-vue';
+import { IfxModal } from '@infineon/design-system-vue';
 
 import { ref } from 'vue';
 
@@ -73,7 +73,7 @@ const codeExample = `<template>
 </template>
 
 <script setup lang="ts">
-import { IfxModal } from '@infineon/infineon-design-system-vue';
+import { IfxModal } from '@infineon/design-system-vue';
 import { ref } from 'vue';
 
 const opened = ref(false);

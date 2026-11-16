@@ -148,6 +148,89 @@ describe("ifx-file-upload", () => {
 		expect(fileUpload.rejectedTypeFiles[0]).toBe("test-file.exe");
 	});
 
+	it("should accept XLS files by default", async () => {
+		const page = await newSpecPage({
+			components: [FileUpload],
+			html: `<ifx-file-upload></ifx-file-upload>`,
+		});
+
+		const fileUpload = page.rootInstance;
+		const xlsFile = new File(["spreadsheet content"], "report.xls", {
+			type: "application/vnd.ms-excel",
+		});
+
+		const mockFileList = {
+			0: xlsFile,
+			length: 1,
+			item: () => xlsFile,
+			[Symbol.iterator]: function* () {
+				yield xlsFile;
+			},
+		} as unknown as FileList;
+
+		fileUpload.processFiles(mockFileList);
+		await page.waitForChanges();
+
+		expect(fileUpload.files).toHaveLength(1);
+		expect(fileUpload.files[0].name).toBe("report.xls");
+		expect(fileUpload.rejectedTypeFiles).toHaveLength(0);
+	});
+
+	it("should accept XLSX files by default", async () => {
+		const page = await newSpecPage({
+			components: [FileUpload],
+			html: `<ifx-file-upload></ifx-file-upload>`,
+		});
+
+		const fileUpload = page.rootInstance;
+		const xlsxFile = new File(["spreadsheet content"], "report.xlsx", {
+			type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+		});
+
+		const mockFileList = {
+			0: xlsxFile,
+			length: 1,
+			item: () => xlsxFile,
+			[Symbol.iterator]: function* () {
+				yield xlsxFile;
+			},
+		} as unknown as FileList;
+
+		fileUpload.processFiles(mockFileList);
+		await page.waitForChanges();
+
+		expect(fileUpload.files).toHaveLength(1);
+		expect(fileUpload.files[0].name).toBe("report.xlsx");
+		expect(fileUpload.rejectedTypeFiles).toHaveLength(0);
+	});
+
+	it("should accept explicitly allowed TSV files with a generic MIME type", async () => {
+		const page = await newSpecPage({
+			components: [FileUpload],
+			html: `<ifx-file-upload allowed-file-types="tsv"></ifx-file-upload>`,
+		});
+
+		const fileUpload = page.rootInstance;
+		const tsvFile = new File(["tsv content"], "data.tsv", {
+			type: "text/plain",
+		});
+
+		const mockFileList = {
+			0: tsvFile,
+			length: 1,
+			item: () => tsvFile,
+			[Symbol.iterator]: function* () {
+				yield tsvFile;
+			},
+		} as unknown as FileList;
+
+		fileUpload.processFiles(mockFileList);
+		await page.waitForChanges();
+
+		expect(fileUpload.files).toHaveLength(1);
+		expect(fileUpload.rejectedTypeFiles).toHaveLength(0);
+	});
+
 	it("should accept ZIP files with both standard and Windows MIME types", async () => {
 		const page = await newSpecPage({
 			components: [FileUpload],

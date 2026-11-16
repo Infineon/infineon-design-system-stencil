@@ -37,7 +37,9 @@ export class IfxCheckboxGroupExample {
     [required]=&quot;false&quot;&gt;
     &lt;ifx-checkbox
       value=&quot;0&quot;
-      size=&quot;m&quot;&gt;Option 0&lt;/ifx-checkbox&gt;
+      size=&quot;m&quot;
+      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
+      (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;Option 0&lt;/ifx-checkbox&gt;
     &lt;ifx-checkbox
       value=&quot;1&quot;
       size=&quot;m&quot;&gt;Option 1&lt;/ifx-checkbox&gt;

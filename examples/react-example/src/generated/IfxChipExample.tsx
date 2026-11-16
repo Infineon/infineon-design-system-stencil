@@ -1,4 +1,4 @@
-import { IfxChip, IfxChipItem } from '@infineon/infineon-design-system-react';
+import { IfxChip, IfxChipItem } from '@infineon/design-system-react';
 
 export function IfxChipExample() {
   const handleChange = (event: CustomEvent) => {
@@ -48,7 +48,7 @@ export function IfxChipExample() {
   );
 }
 
-const codeString = `import { IfxChip, IfxChipItem } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxChip, IfxChipItem } from '@infineon/design-system-react';
 
 export function IfxChipExample() {
   const handleChange = (event: CustomEvent) => {

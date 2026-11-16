@@ -1,4 +1,4 @@
-import { IfxIconButton } from '@infineon/infineon-design-system-react';
+import { IfxIconButton } from '@infineon/design-system-react';
 
 export function IfxIconButtonExample() {
   return (
@@ -20,7 +20,7 @@ export function IfxIconButtonExample() {
   );
 }
 
-const codeString = `import { IfxIconButton } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxIconButton } from '@infineon/design-system-react';
 
 export function IfxIconButtonExample() {
   return (

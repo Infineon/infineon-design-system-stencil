@@ -1,4 +1,4 @@
-import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-angular/standalone';
+import { IfxTab, IfxTabs } from '@infineon/design-system-angular/standalone';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 	styleUrl: './ifx-tabs-example.scss'
 })
 export class IfxTabsExample {
-  protected readonly tsCode = `import { IfxTab, IfxTabs } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+  protected readonly tsCode = `import { IfxTab, IfxTabs } from &#039;@infineon/design-system-angular/standalone&#039;;
 import { Component } from &#039;@angular/core&#039;;
 
 @Component({
@@ -36,7 +36,8 @@ export class IfxTabsExample {
     subline=&quot;&quot;
     subline-position=&quot;left&quot;
     label=&quot;&quot;
-    number=&quot;0&quot;&gt;
+    number=&quot;0&quot;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
     &lt;ifx-tab
       header=&quot;Tab 1&quot;
       icon=&quot;&quot;
@@ -44,7 +45,8 @@ export class IfxTabsExample {
       subline=&quot;&quot;
       subline-position=&quot;left&quot;
       label=&quot;&quot;
-      number=&quot;0&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
+      number=&quot;0&quot;
+      (tabHeaderChange)=&quot;handleTabHeaderChange(\$any(\$event))&quot;&gt;Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.&lt;/ifx-tab&gt;
     &lt;ifx-tab
       header=&quot;Tab 2&quot;
       [disabled]=&quot;false&quot;

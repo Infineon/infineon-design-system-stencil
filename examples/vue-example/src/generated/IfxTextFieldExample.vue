@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxTextField } from '@infineon/infineon-design-system-vue';
+import { IfxTextField } from '@infineon/design-system-vue';
 
 const handleInput = (event: CustomEvent) => {
   console.log('ifxInput:', event);

@@ -1,4 +1,4 @@
-import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-react';
+import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/design-system-react';
 
 export function IfxNavbarExample() {
   const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
@@ -29,6 +29,7 @@ export function IfxNavbarExample() {
         fixed={false}
         logoHref="http://google.com"
         logoHrefTarget="_self"
+        logoAriaLabel="Go to application home"
         onIfxNavbarMobileMenuIsOpen={handleNavbarMobileMenuIsOpen}>
         <IfxNavbarItem
           icon=""
@@ -136,7 +137,7 @@ export function IfxNavbarExample() {
   );
 }
 
-const codeString = `import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/infineon-design-system-react';
+const codeString = `import { IfxNavbar, IfxNavbarItem, IfxNavbarProfile, IfxSearchBar } from '@infineon/design-system-react';
 
 export function IfxNavbarExample() {
   const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
@@ -166,6 +167,7 @@ export function IfxNavbarExample() {
         fixed={false}
         logoHref="http://google.com"
         logoHrefTarget="_self"
+        logoAriaLabel="Go to application home"
         onIfxNavbarMobileMenuIsOpen={handleNavbarMobileMenuIsOpen}>
         <IfxNavbarItem
           icon=""

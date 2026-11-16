@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxProgressBar } from '@infineon/infineon-design-system-vue';
+import { IfxProgressBar } from '@infineon/design-system-vue';
 
 const codeString = `<script setup lang="ts">
 ${'</'}script>

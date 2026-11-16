@@ -24,10 +24,10 @@ Add the following tags to your HTML `<head>` section:
   <title>Infineon Design System</title>
   
   <!-- Infineon Design System - CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
   
   <!-- Infineon Design System - JavaScript -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/design-system/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
 </head>
 <body>
   <!-- Your content here -->
@@ -76,14 +76,14 @@ The bundler approach gives you more control over versioning, enables tree-shakin
 
 **1. Install the package**
 
-<PackageManagerTabs packageName="@infineon/infineon-design-system-stencil" />
+<PackageManagerTabs packageName="@infineon/design-system" />
 
 **2. Import in your JavaScript entry file**
 
 ```js
 // main.js or index.js
-import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
-import '@infineon/infineon-design-system-stencil/styles.css';
+import { defineCustomElements } from '@infineon/design-system/loader';
+import '@infineon/design-system/styles.css';
 
 // Register all components
 defineCustomElements(window);

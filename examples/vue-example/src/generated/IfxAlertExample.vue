@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { IfxAlert } from '@infineon/infineon-design-system-vue';
+import { IfxAlert } from '@infineon/design-system-vue';
 
 const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event);

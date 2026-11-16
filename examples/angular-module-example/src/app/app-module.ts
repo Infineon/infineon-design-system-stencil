@@ -6,7 +6,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import {
 	InfineonDesignSystemModule,
-} from "@infineon/infineon-design-system-angular";
+} from "@infineon/design-system-angular";
 
 import { App } from "./app";
 
@@ -15,12 +15,14 @@ import { IfxAccordionExample } from './generated/ifx-accordion-example/ifx-accor
 import { IfxActionListExample } from './generated/ifx-action-list-example/ifx-action-list-example';
 import { IfxAlertExample } from './generated/ifx-alert-example/ifx-alert-example';
 import { IfxAiLabelExample } from './generated/ifx-ai-label-example/ifx-ai-label-example';
+import { IfxBreadcrumbExample } from './generated/ifx-breadcrumb-example/ifx-breadcrumb-example';
 import { IfxButtonExample } from './generated/ifx-button-example/ifx-button-example';
 import { IfxCardExample } from './generated/ifx-card-example/ifx-card-example';
 import { IfxCheckboxExample } from './generated/ifx-checkbox-example/ifx-checkbox-example';
 import { IfxCheckboxGroupExample } from './generated/ifx-checkbox-group-example/ifx-checkbox-group-example';
 import { IfxChipExample } from './generated/ifx-chip-example/ifx-chip-example';
 import { IfxContentSwitcherExample } from './generated/ifx-content-switcher-example/ifx-content-switcher-example';
+import { IfxCounterExample } from './generated/ifx-counter-example/ifx-counter-example';
 import { IfxDatePickerExample } from './generated/ifx-date-picker-example/ifx-date-picker-example';
 import { IfxDropdownExample } from './generated/ifx-dropdown-example/ifx-dropdown-example';
 import { IfxErrorPageExample } from './generated/ifx-error-page-example/ifx-error-page-example';
@@ -39,6 +41,7 @@ import { IfxSearchBarExample } from './generated/ifx-search-bar-example/ifx-sear
 import { IfxSearchFieldExample } from './generated/ifx-search-field-example/ifx-search-field-example';
 import { IfxSegmentedControlExample } from './generated/ifx-segmented-control-example/ifx-segmented-control-example';
 import { IfxSelectExample } from './generated/ifx-select-example/ifx-select-example';
+import { IfxMultiselectGroupedExample } from './generated/ifx-multiselect-example-grouped/ifx-multiselect-example-grouped';
 import { IfxSpinnerExample } from './generated/ifx-spinner-example/ifx-spinner-example';
 import { IfxStatusExample } from './generated/ifx-status-example/ifx-status-example';
 import { IfxStepperExample } from './generated/ifx-stepper-example/ifx-stepper-example';
@@ -49,9 +52,10 @@ import { IfxTableDefaultStateExample } from './generated/ifx-table-example-defau
 import { IfxTabsExample } from './generated/ifx-tabs-example/ifx-tabs-example';
 import { IfxTextFieldExample } from './generated/ifx-text-field-example/ifx-text-field-example';
 import { IfxTextareaExample } from './generated/ifx-textarea-example/ifx-textarea-example';
+import { IfxToastExample } from './generated/ifx-toast-example/ifx-toast-example';
 import { IfxTooltipExample } from './generated/ifx-tooltip-example/ifx-tooltip-example';
 /* </AUTO-GENERATED-IMPORTS> */
-import { IfxModal } from "@infineon/infineon-design-system-angular";
+import { IfxModal } from "@infineon/design-system-angular";
 
 import { ModalExample } from "./manual/modal-example/modal-example";
 import { NgModelExample } from "./manual/ng-model-example/ng-model-example";
@@ -64,12 +68,14 @@ IfxAccordionExample,
 		    IfxActionListExample,
 		    IfxAlertExample,
 		    IfxAiLabelExample,
+		    IfxBreadcrumbExample,
 		    IfxButtonExample,
 		    IfxCardExample,
 		    IfxCheckboxExample,
 		    IfxCheckboxGroupExample,
 		    IfxChipExample,
 		    IfxContentSwitcherExample,
+		    IfxCounterExample,
 		    IfxDatePickerExample,
 		    IfxDropdownExample,
 		    IfxErrorPageExample,
@@ -88,6 +94,7 @@ IfxAccordionExample,
 		    IfxSearchFieldExample,
 		    IfxSegmentedControlExample,
 		    IfxSelectExample,
+		    IfxMultiselectGroupedExample,
 		    IfxSpinnerExample,
 		    IfxStatusExample,
 		    IfxStepperExample,
@@ -98,6 +105,7 @@ IfxAccordionExample,
 		    IfxTabsExample,
 		    IfxTextFieldExample,
 		    IfxTextareaExample,
+		    IfxToastExample,
 		    IfxTooltipExample
 		/* </AUTO-GENERATED-COMPONENTS> */
 			,

@@ -20,12 +20,6 @@ on:
         type: string
         description: 'Path to the build output within the example'
         default: 'dist'
-      required-packages:
-        required: false
-        type: string
-        description: 'Comma-separated list of packages that must be available before building'
-        default: '@infineon/infineon-design-system-stencil'
-
 permissions:
   contents: write
   pages: write
@@ -38,19 +32,10 @@ jobs:
       pages: write
     env:
       PACKAGE_VERSION: ${{ inputs.package-version }}
-      PACKAGES: ${{ inputs.required-packages }}
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 1
-
-      - name: Check package availability
-        uses: ./.github/actions/check-package-availability
-        with:
-          packages: ${{ env.PACKAGES }}
-          version: ${{ env.PACKAGE_VERSION }}
-          max-attempts: 30
-          max-delay: 20
 
       - name: Enable corepack and install pnpm
         if: ${{ github.event.action != 'closed' }}
@@ -61,22 +46,27 @@ jobs:
         if: ${{ github.event.action != 'closed' }}
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: '24.11.1'
           cache: 'pnpm'
 
       - uses: google/wireit@setup-github-actions-caching/v2
         if: ${{ github.event.action != 'closed' }}
 
-      - name: Update ${{ inputs.name }} to use published version
+      - name: Install dependencies
         if: ${{ github.event.action != 'closed' }}
+        run: pnpm install --frozen-lockfile
+
+      - name: Prepare CDN library URLs
+        if: ${{ github.event.action != 'closed' && inputs.name == 'html-cdn-example' }}
         working-directory: ${{ inputs.base-path }}
         run: |
           pnpm run cicd-update-version
 
-      - name: Install dependencies
+      - name: Build workspace libraries
         if: ${{ github.event.action != 'closed' }}
-        working-directory: ${{ inputs.base-path }}
-        run: pnpm install --no-frozen-lockfile
+        env:
+          EXAMPLE_NAME: ${{ inputs.name }}
+        run: pnpm --filter "${EXAMPLE_NAME}^..." run build
 
       - name: Build ${{ inputs.name }}
         if: ${{ github.event.action != 'closed' }}

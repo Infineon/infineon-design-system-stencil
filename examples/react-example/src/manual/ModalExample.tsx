@@ -1,4 +1,4 @@
-import { IfxButton, IfxModal } from "@infineon/infineon-design-system-react";
+import { IfxButton, IfxModal } from "@infineon/design-system-react";
 import { useRef } from "react";
 
 export function ModalExample() {
@@ -53,7 +53,7 @@ export function ModalExample() {
 }
 
 const codeString = `import { useRef } from 'react';
-import { IfxButton, IfxModal } from '@infineon/infineon-design-system-react';
+import { IfxButton, IfxModal } from '@infineon/design-system-react';
 
 export function ModalExample() {
   const modalRef = useRef<HTMLIfxModalElement>(null);
