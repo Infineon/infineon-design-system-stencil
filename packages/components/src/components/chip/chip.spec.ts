@@ -103,8 +103,8 @@ describe("ifx-chip", () => {
     const clickSpy = jest.fn();
     page.root!.addEventListener("ifxClick", clickSpy);
 
-    expect(button.disabled).toBe(false);
-    expect(button.tabIndex).toBe(0);
+    expect(button.hasAttribute("disabled")).toBe(false);
+    expect(button.getAttribute("tabindex")).toBe("0");
     expect(button.getAttribute("aria-disabled")).toBe("true");
     button.click();
     button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
