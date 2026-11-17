@@ -302,6 +302,21 @@ export class NavbarItem {
 		}
 	}
 
+	private syncChildItems = () => {
+		const children = Array.from(this.el.children).filter(
+			(c) => c.tagName === "IFX-NAVBAR-ITEM"
+		);
+		this.hasChildNavItems = children.length > 0;
+		children.forEach((c) => {
+			if (!c.hasAttribute("slot")) {
+				c.setAttribute(
+					"slot",
+					this.isSidebarMenuItem ? "second__layer" : "first__layer"
+				);
+			}
+		});
+	};
+
 	private checkIfItemHasChildren() {
 		const sidebarItems = this.getNavbarItems();
 		if (sidebarItems.length !== 0) {
@@ -579,7 +594,7 @@ export class NavbarItem {
 							)}
 
 						<span class="label__wrapper">
-							<slot />
+							<slot onSlotchange={this.syncChildItems} />
 						</span>
 					</div>
 
