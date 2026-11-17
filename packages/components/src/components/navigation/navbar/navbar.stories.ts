@@ -141,7 +141,7 @@ export default {
 		targetOfnavbarItem: {
 			name: "target",
 			control: { type: "radio" },
-			options: ["_self"],
+			options: ["_self", '_blank', '_parent'],
 			description: "The target of the navbar item link.",
 			table: {
 				defaultValue: { summary: "_self" },
@@ -185,7 +185,7 @@ export default {
 		},
 		target: {
 			control: { type: "radio" },
-			options: ["_self"],
+			options: ["_self", '_blank', '_parent'],
 			description: "The target of the link.",
 			table: {
 				defaultValue: { summary: "_self" },
@@ -232,6 +232,38 @@ export default {
 				},
 			},
 		},
+		ifxNavItem: {
+      action: "ifxNavItem",
+      description:
+        "Custom event emitted by ifx-navbar when an navbar item is selected.",
+      table: {
+        category: "custom events",
+        type: {
+          summary: "Framework integration",
+          detail: `
+React: onIfxNavItem={handleAction}
+Vue: @onIfxNavItem="handleAction"
+Angular: (onIfxNavItem)="handleAction()"
+VanillaJs: .addEventListener("ifxNavItem", (event) => {/*handle action*/});`,
+        },
+      },
+    },
+		ifxNavbarMobileMenuIsOpen: {
+      action: "ifxNavbarMobileMenuIsOpen",
+      description:
+        "Custom event emitted by ifx-navbar when mobile sidebar menu is opened.",
+      table: {
+        category: "custom events",
+        type: {
+          summary: "Framework integration",
+          detail: `
+React: onIfxNavbarMobileMenuIsOpen={handleAction}
+Vue: @onIfxNavbarMobileMenuIsOpen="handleAction"
+Angular: (onIfxNavbarMobileMenuIsOpen)="handleAction()"
+VanillaJs: .addEventListener("ifxNavbarMobileMenuIsOpen", (event) => {/*handle action*/});`,
+        },
+      },
+    },
 	},
 };
 
