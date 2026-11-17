@@ -1,0 +1,1 @@
+import{h as r,j as e}from"./chunk-AA2OGX5I.js";var s=()=>".sidebar-separator{height:1px;background-color:#eeeded;margin:8px 0px}",t=class{constructor(a){r(this,a)}render(){return e("div",{key:"19fb34f9e5ff1c0140313668016194a44c089009",class:"sidebar-separator"})}};t.style=s();export{t as ifx_sidebar_separator};
