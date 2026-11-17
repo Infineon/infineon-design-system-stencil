@@ -1,3 +1,15 @@
+# v42.4.3 (Tue Nov 17 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixes bug with the dynamic loading of items [#2615](https://github.com/Infineon/infineon-design-system-stencil/pull/2615) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.4.2 (Mon Nov 16 2026)
 
 #### 🐛 Bug Fix
