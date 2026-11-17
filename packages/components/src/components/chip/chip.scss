@@ -221,7 +221,7 @@
 				border: 1px solid tokens.$ifxColorBaseWhite;
 			}
 
-			&:active {
+			&:active:not(.read-only) {
 				background-color: tokens.$ifxColorEngineering400;
 				color: tokens.$ifxColorBaseBlack;
 			}
@@ -239,7 +239,7 @@
 				background-color: tokens.$ifxColorEngineering500;
 			}
 
-			&:active {
+			&:active:not(.read-only) {
 				background-color: tokens.$ifxColorEngineering400;
 				color: tokens.$ifxColorBaseBlack;
 			}

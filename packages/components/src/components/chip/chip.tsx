@@ -413,7 +413,9 @@ export class Chip {
 	}
 
 	private handleActionClick = (event: MouseEvent) => {
-		if (this.selectable && !this.disabled) {
+		if (this.readOnly || this.disabled) return;
+
+		if (this.selectable) {
 			this.selected = !this.selected;
 		}
 		this.ifxClick.emit(event);
@@ -489,6 +491,7 @@ async componentDidLoad() {
 							tabIndex={this.disabled ? -1 : 0}
 							aria-label={this.ariaLabelText || undefined}
 							aria-pressed={this.selectable ? this.selected.toString() : undefined}
+							aria-disabled={this.disabled || this.readOnly ? "true" : undefined}
 							disabled={this.disabled}
 							part="label-wrapper"
 						>

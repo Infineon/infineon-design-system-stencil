@@ -94,6 +94,26 @@ describe("ifx-chip", () => {
     expect(ifxChangeSpy).not.toHaveBeenCalled();
   });
 
+  it("does not activate a selectable action chip when read-only", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" read-only="true" selectable="true"></ifx-chip>`,
+    });
+    const button = page.root!.shadowRoot!.querySelector<HTMLButtonElement>("button")!;
+    const clickSpy = jest.fn();
+    page.root!.addEventListener("ifxClick", clickSpy);
+
+    expect(button.disabled).toBe(false);
+    expect(button.tabIndex).toBe(0);
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+    button.click();
+    button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    await page.waitForChanges();
+
+    expect(page.rootInstance.selected).toBe(false);
+    expect(clickSpy).not.toHaveBeenCalled();
+  });
+
   it("adds safe rel values for blank action targets", async () => {
     const page = await newSpecPage({
       components: [Chip, MockInfineonIconStencil, MockInfineonIndicator],
