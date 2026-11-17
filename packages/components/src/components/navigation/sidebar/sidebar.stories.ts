@@ -377,7 +377,7 @@ Event Detail: { collapsed: boolean }`,
 const DefaultTemplate = (args: any) => {
   const sidebarElement = document.createElement(
     "ifx-sidebar",
-  ) as HTMLIfxSidebarElement;
+  );
   sidebarElement.setAttribute("application-name", args.applicationName);
   sidebarElement.addEventListener(
     "ifxSidebarNavigationItem",
@@ -450,7 +450,7 @@ export const Default = DefaultTemplate.bind({});
 const SubmenuTemplate = (args: any) => {
   const sidebarElement = document.createElement(
     "ifx-sidebar",
-  ) as HTMLIfxSidebarElement;
+  );
   sidebarElement.setAttribute("application-name", args.applicationName);
   sidebarElement.addEventListener(
     "ifxSidebarNavigationItem",
@@ -530,7 +530,7 @@ export const WithSubmenu = SubmenuTemplate.bind({});
 const NumberIndicatorTemplate = (args: any) => {
   const sidebarElement = document.createElement(
     "ifx-sidebar",
-  ) as HTMLIfxSidebarElement;
+  );
   sidebarElement.setAttribute(
     "application-name",
     args.applicationName || "Application name",
@@ -639,7 +639,7 @@ export const WithNumberIndicator = NumberIndicatorTemplate.bind({});
 const CollapsibleTemplate = (args: any) => {
   const sidebarElement = document.createElement(
     "ifx-sidebar",
-  ) as HTMLIfxSidebarElement;
+  );
   sidebarElement.setAttribute("application-name", args.applicationName);
   sidebarElement.addEventListener(
     "ifxSidebarNavigationItem",
@@ -723,7 +723,7 @@ CollapsibleStartsCollapsed.args = {
 const SeparatorTemplate = (args: any) => {
 	const sidebarElement = document.createElement(
 		"ifx-sidebar",
-	) as HTMLIfxSidebarElement;
+	);
 
 	sidebarElement.setAttribute("application-name", args.applicationName);
 	sidebarElement.addEventListener(
