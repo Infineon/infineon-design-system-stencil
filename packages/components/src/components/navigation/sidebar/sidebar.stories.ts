@@ -182,7 +182,7 @@ export default {
       name: "target",
       description: "The target attribute of the sidebar item link.",
       control: { type: "radio" },
-      options: ["_self"],
+      options: ["_self", "_blank", "_parent"],
       table: {
         category: "ifx-sidebar-item props",
         type: {
