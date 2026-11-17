@@ -25,9 +25,13 @@
   }
 
   &--disabled {
-    cursor: not-allowed;
+    cursor: default;
     pointer-events: none;
     color: tokens.$ifxColorEngineering300;
+
+    * {
+      cursor: default !important;
+    }
   }
 
   &--selected {
@@ -68,6 +72,8 @@
   }
 
   .option--disabled & {
+    color: tokens.$ifxColorEngineering300;
+
     &:hover {
       background-color: transparent;
     }
@@ -142,7 +148,7 @@
   }
 
   .option--disabled & {
-    cursor: not-allowed;
+    cursor: default;
     color: tokens.$ifxColorEngineering300;
   }
 }

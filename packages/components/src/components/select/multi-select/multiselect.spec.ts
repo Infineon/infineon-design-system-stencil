@@ -1,4 +1,7 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { newSpecPage } from "jest-stencil-runner";
+import { Chip } from "../../chip/chip";
 import { Multiselect } from "./multiselect";
 import { MultiselectGroup } from "./multiselect-group";
 import { MultiselectOption } from "./multiselect-option";
@@ -83,6 +86,114 @@ describe("ifx-multiselect", () => {
 		});
 
 		expect(page.root.hasAttribute("disabled")).toBe(true);
+	});
+
+	it("blocks mouse and keyboard interaction and propagates disabled state", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption, Chip],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-group label="Revenue">
+						<ifx-multiselect-option value="parent">
+							Parent
+							<ifx-multiselect-option value="child" selected slot="children">Child</ifx-multiselect-option>
+						</ifx-multiselect-option>
+					</ifx-multiselect-group>
+				</ifx-multiselect>
+			`,
+		});
+		const component = page.rootInstance as any;
+		const option = page.root.querySelector("ifx-multiselect-option");
+		const selectedOption = option.querySelector("ifx-multiselect-option");
+		const optionInstance = (selectedOption as any).__stencil_instance;
+		const initialSelections = [
+			{ value: "kept", label: "Kept", selected: true },
+		];
+		component.persistentSelectedOptions = initialSelections;
+		component.visibleSelectedCount = 1;
+		page.root.disabled = true;
+		await page.waitForChanges();
+		const selectedChip = page.root.shadowRoot.querySelector("ifx-chip");
+		const clearButton = page.root.shadowRoot.querySelector(
+			".ifx-clear-button",
+		) as HTMLButtonElement;
+
+		const wrapper = page.root.shadowRoot.querySelector(
+			".ifx-multiselect-wrapper",
+		) as HTMLElement;
+		wrapper.click();
+		wrapper.dispatchEvent(
+			new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
+		);
+		selectedOption.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+		selectedOption.dispatchEvent(
+			new KeyboardEvent("keydown", { key: "ArrowLeft", bubbles: true }),
+		);
+		selectedChip.shadowRoot
+			.querySelector(".wrapper__unselect-button")
+			.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+		clearButton.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+
+		component.selectAll();
+		component.expandAll();
+		component.collapseAll();
+		await component.clearSelection();
+		await page.waitForChanges();
+
+		expect(component.dropdownOpen).toBe(false);
+		expect(component.persistentSelectedOptions).toEqual(initialSelections);
+		expect(optionInstance.selected).toBe(true);
+		expect(selectedChip.disabled).toBe(true);
+		expect(
+			selectedChip.shadowRoot
+				.querySelector(".chip__wrapper")
+				.classList.contains("disabled"),
+		).toBe(true);
+		expect(
+			selectedOption.shadowRoot
+				.querySelector('[role="option"]')
+				.getAttribute("aria-disabled"),
+		).toBe("true");
+		expect(
+			page.root.shadowRoot
+				.querySelector(".ifx-multiselect-wrapper")
+				.getAttribute("aria-disabled"),
+		).toBe("true");
+		expect(
+			page.root.shadowRoot
+				.querySelector(".ifx-multiselect-wrapper")
+				.getAttribute("tabindex"),
+		).toBeNull();
+	});
+
+	it("allows interaction when disabled with an error, matching single-select", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect],
+			html: `<ifx-multiselect disabled error show-search="false" show-expand-collapse="false"></ifx-multiselect>`,
+		});
+		const wrapper = page.root.shadowRoot.querySelector(
+			".ifx-multiselect-wrapper",
+		) as HTMLElement;
+
+		expect(wrapper.classList.contains("error")).toBe(true);
+		expect(wrapper.classList.contains("disabled")).toBe(false);
+		expect(wrapper.getAttribute("aria-disabled")).toBeNull();
+		expect(wrapper.getAttribute("tabindex")).toBe("0");
+		wrapper.dispatchEvent(
+			new KeyboardEvent("keydown", {
+				key: "Enter",
+				code: "Enter",
+				bubbles: true,
+			}),
+		);
+		await page.waitForChanges();
+
+		expect(page.rootInstance.dropdownOpen).toBe(true);
+		expect(
+			page.root.shadowRoot
+				.querySelector(".select-all-wrapper")
+				.classList.contains("disabled"),
+		).toBe(false);
 	});
 
 	it("handles error state", async () => {
@@ -197,7 +308,9 @@ describe("ifx-multiselect", () => {
 		]);
 
 		expect(option).toMatchObject({ value: "total", selected: true });
-		expect(selectedOptions.map((selected) => selected.value)).toEqual(["total"]);
+		expect(selectedOptions.map((selected) => selected.value)).toEqual([
+			"total",
+		]);
 	});
 
 	it("restores hidden groups when search is cleared through handleSearch", async () => {
@@ -224,6 +337,102 @@ describe("ifx-multiselect", () => {
 		await new Promise((resolve) => setTimeout(resolve, 200));
 
 		expect(group.classList.contains("empty-group")).toBe(false);
+	});
+
+	it("opens the overflow indicator with selected options and their parent context", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectGroup, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-group label="Region">
+						<ifx-multiselect-option value="region">
+							Region
+							<ifx-multiselect-option value="selected" selected slot="children">Selected</ifx-multiselect-option>
+							<ifx-multiselect-option value="sibling" slot="children">Sibling</ifx-multiselect-option>
+						</ifx-multiselect-option>
+					</ifx-multiselect-group>
+					<ifx-multiselect-group label="Unselected">
+						<ifx-multiselect-option value="unselected">Unselected</ifx-multiselect-option>
+					</ifx-multiselect-group>
+					<ifx-multiselect-option value="other" selected>Other</ifx-multiselect-option>
+				</ifx-multiselect>
+			`,
+		});
+		const component = page.rootInstance as any;
+		component.persistentSelectedOptions = [
+			{ value: "selected", label: "Selected", selected: true },
+			{ value: "other", label: "Other", selected: true },
+		];
+		component.visibleSelectedCount = 1;
+		await page.waitForChanges();
+
+		const indicator = page.root.shadowRoot.querySelector(
+			".ifx-multiselect-indicator[role='button']",
+		) as HTMLElement;
+		indicator.click();
+		await new Promise((resolve) => setTimeout(resolve, 0));
+		await new Promise((resolve) =>
+			requestAnimationFrame(() => requestAnimationFrame(resolve)),
+		);
+		await page.waitForChanges();
+
+		const options = Array.from(
+			page.root.querySelectorAll("ifx-multiselect-option"),
+		) as HTMLIfxMultiselectOptionElement[];
+		const optionClass = (option: HTMLIfxMultiselectOptionElement) =>
+			option.shadowRoot.querySelector(".option").classList;
+
+		expect(component.dropdownOpen).toBe(true);
+		expect(optionClass(options[0]).contains("search-parent")).toBe(true);
+		expect(optionClass(options[1]).contains("search-match")).toBe(true);
+		expect(optionClass(options[2]).contains("search-hidden")).toBe(true);
+		expect(optionClass(options[3]).contains("search-hidden")).toBe(true);
+		expect(optionClass(options[4]).contains("search-match")).toBe(true);
+		const groups = Array.from(
+			page.root.querySelectorAll("ifx-multiselect-group"),
+		) as HTMLElement[];
+		expect(groups[0].classList.contains("empty-group")).toBe(false);
+		expect(groups[1].classList.contains("empty-group")).toBe(true);
+	});
+
+	it("closes the selected-only dropdown when the overflow indicator is activated again", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect, MultiselectOption],
+			html: `
+				<ifx-multiselect>
+					<ifx-multiselect-option value="first" selected>First</ifx-multiselect-option>
+					<ifx-multiselect-option value="second" selected>Second</ifx-multiselect-option>
+				</ifx-multiselect>
+			`,
+		});
+		const component = page.rootInstance as any;
+		component.persistentSelectedOptions = [
+			{ value: "first", label: "First", selected: true },
+			{ value: "second", label: "Second", selected: true },
+		];
+		component.visibleSelectedCount = 1;
+		await page.waitForChanges();
+
+		const activateIndicator = () => {
+			const indicator = page.root.shadowRoot.querySelector(
+				".ifx-multiselect-indicator[role='button']",
+			) as HTMLElement;
+			indicator.dispatchEvent(
+				new KeyboardEvent("keydown", {
+					key: "Enter",
+					bubbles: true,
+				}),
+			);
+		};
+
+		activateIndicator();
+		await page.waitForChanges();
+		expect(component.dropdownOpen).toBe(true);
+		expect(component.selectedOnlyFilter).toBe(true);
+
+		activateIndicator();
+		await page.waitForChanges();
+		expect(component.dropdownOpen).toBe(false);
 	});
 
 	it("shows only groups containing visible search results and restores them on reset", () => {
@@ -307,9 +516,9 @@ describe("ifx-multiselect", () => {
 
 		expect(child.selected).toBe(true);
 		expect(
-			parent.shadowRoot.querySelector('[role="option"]').getAttribute(
-				"aria-expanded",
-			),
+			parent.shadowRoot
+				.querySelector('[role="option"]')
+				.getAttribute("aria-expanded"),
 		).toBe("true");
 	});
 
@@ -461,5 +670,36 @@ describe("ifx-multiselect", () => {
 
 		expect(getVisibleChips(page)).toHaveLength(1);
 		expect(getVisibleIndicators(page)[0]?.textContent).toBe("+2");
+		expect(getVisibleIndicators(page)[0]?.getAttribute("aria-label")).toBe(
+			"Show 2 more selected options",
+		);
+	});
+
+	it("renders the remaining count indicator in disabled mode", async () => {
+		const page = await newSpecPage({
+			components: [Multiselect],
+			html: `<ifx-multiselect disabled></ifx-multiselect>`,
+		});
+
+		page.rootInstance.persistentSelectedOptions = [
+			{ value: "one", label: "Option one", selected: true },
+			{ value: "two", label: "Option two", selected: true },
+		];
+		page.rootInstance.visibleSelectedCount = 1;
+		await page.waitForChanges();
+
+		const indicator = page.root.shadowRoot.querySelector(
+			".ifx-multiselect-indicator[role='button']",
+		);
+		expect(indicator.classList.contains("disabled")).toBe(true);
+		expect(indicator.getAttribute("aria-disabled")).toBe("true");
+		expect(indicator.getAttribute("tabindex")).toBe("-1");
+		const multiselectStyles = readFileSync(
+			join(__dirname, "multiselect.scss"),
+			"utf8",
+		);
+		expect(multiselectStyles).toMatch(
+			/\.ifx-multiselect-indicator\s*\{[\s\S]*?&\.disabled\s*\{[\s\S]*?background-color:\s*tokens\.\$ifxColorEngineering300;[\s\S]*?pointer-events:\s*none;/,
+		);
 	});
 });
