@@ -1,3 +1,16 @@
+# v42.4.4 (Tue Nov 17 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixes bug where parent item doesn't emit event, and prevents event emission on mobile migration [#2602](https://github.com/Infineon/infineon-design-system-stencil/pull/2602) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.4.3 (Tue Nov 17 2026)
 
 #### 🐛 Bug Fix
