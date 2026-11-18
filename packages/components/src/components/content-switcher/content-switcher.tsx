@@ -6,6 +6,7 @@ import {
 	Host,
 	h,
 	State,
+	Listen
 } from "@stencil/core";
 import { isNestedInIfxComponent } from "../..//shared/utils/dom-utils";
 import { detectFramework } from "../..//shared/utils/framework-detection";
@@ -23,16 +24,23 @@ type ContentSwitcherItem = Element & {
 	shadow: true,
 })
 export class ContentSwitcher {
-	@Element() el: HTMLIfxContentSwitcherElement;
+	@Element() el!: HTMLIfxContentSwitcherElement;
 
-	@State() items: Element[];
+	@State() items!: Element[];
 	@State() activeIndex = -1;
 	@State() hoverIndex: number = -1;
 	@State() focusIndex: number = -1;
 
 	@State() dividers: Element[] = [];
 	/** Fired when the selected option changes. */
-	@Event() ifxChange: EventEmitter<ChangeEvent>;
+	@Event() ifxChange!: EventEmitter<ChangeEvent>;
+	
+
+	@Listen("itemSelected")
+	handleItemSelected(ev: Event) {
+			const index = this.items.indexOf(ev.target as Element);
+			if (index >= 0) this.selectItem(index);
+	}
 
 	private eventHandlers: Map<Element, { [key: string]: EventListener }> =
 		new Map();
@@ -74,13 +82,13 @@ export class ContentSwitcher {
 	 */
 	private addEventListeners() {
 		this.items.forEach((item, index) => {
-			const handlers = {
+		const handlers: Record<string, EventListener> = {
 				click: () => this.selectItem(index),
 				mouseenter: () => this.handleHover(index, true),
 				mouseleave: () => this.handleHover(index, false),
 				focus: () => this.handleFocus(index, true),
 				blur: () => this.handleFocus(index, false),
-			};
+		};
 
 			Object.keys(handlers).forEach((event) => {
 				item.addEventListener(event, handlers[event]);
@@ -187,6 +195,7 @@ export class ContentSwitcher {
 		const oldIndex = this.activeIndex;
 		if (oldIndex >= 0) {
 			this.items[oldIndex].removeAttribute("selected");
+			(this.items[oldIndex] as ContentSwitcherItem).selected = false;
 		}
 
 		this.activeIndex = itemIndex;

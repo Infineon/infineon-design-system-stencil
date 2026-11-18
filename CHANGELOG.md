@@ -1,3 +1,89 @@
+# v42.4.4 (Tue Nov 17 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixes bug where parent item doesn't emit event, and prevents event emission on mobile migration [#2602](https://github.com/Infineon/infineon-design-system-stencil/pull/2602) ([@bestcatarina](https://github.com/bestcatarina) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@bestcatarina](https://github.com/bestcatarina)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.4.3 (Tue Nov 17 2026)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixes bug with the dynamic loading of items [#2615](https://github.com/Infineon/infineon-design-system-stencil/pull/2615) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.4.2 (Mon Nov 16 2026)
+
+#### 🐛 Bug Fix
+
+- Alert: renames AriaLiveText prop to lowercase ariaLiveText, and adds Breadcrumb, Toast and Counter components to example apps [#2613](https://github.com/Infineon/infineon-design-system-stencil/pull/2613) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.4.1 (Thu Nov 12 2026)
+
+#### 🐛 Bug Fix
+
+- Aligns placeholder text style in Search Field and Multi Select components [#2610](https://github.com/Infineon/infineon-design-system-stencil/pull/2610) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.4.0 (Wed Nov 11 2026)
+
+#### 🚀 Enhancement
+
+- Content-switcher: fixes bug when programmatically selecting items [#2609](https://github.com/Infineon/infineon-design-system-stencil/pull/2609) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.3.3 (Wed Nov 11 2026)
+
+#### 🐛 Bug Fix
+
+- Breadcrumb: adds underline, hover and focus states, and improves keyboard navigation [#2608](https://github.com/Infineon/infineon-design-system-stencil/pull/2608) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v42.3.2 (Mon Nov 09 2026)
+
+#### 🐛 Bug Fix
+
+- Chip: Fixes selection via checkbox bug, and improves keyboard navigation [#2604](https://github.com/Infineon/infineon-design-system-stencil/pull/2604) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.3.1 (Thu Nov 05 2026)
 
 #### 🐛 Bug Fix

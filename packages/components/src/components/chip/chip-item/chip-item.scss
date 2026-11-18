@@ -1,5 +1,9 @@
 @use "@infineon/design-system-tokens/dist/tokens";
 
+ifx-checkbox {
+  pointer-events: none;
+}
+
 .chip-item {
     display: flex;
     align-items: center;

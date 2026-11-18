@@ -23,12 +23,12 @@ export class DropdownMenu {
 	 */
 	@Prop() readonly size: "s" | "l" = "l";
 	@State() hasTopContent: boolean = false;
-	@Element() el: HTMLIfxDropdownMenuElement;
+	@Element() el!: HTMLIfxDropdownMenuElement;
 	/** Emits the calculated size of the menu */
-	@Event() menuSize: EventEmitter;
+	@Event() menuSize!: EventEmitter;
 	@State() filteredItems: HTMLIfxDropdownItemElement[] = [];
 	/** Fired when a dropdown menu item is selected */
-	@Event() ifxDropdownMenuItem: EventEmitter<CustomEvent>;
+	@Event() ifxDropdownMenuItem!: EventEmitter<CustomEvent>;
 
 	@Listen("ifxInput")
 	handleMenuFilter(event: CustomEvent) {
@@ -42,20 +42,13 @@ export class DropdownMenu {
 	}
 
 	private filterDropdownItems(searchValue: string) {
-		const allItems = Array.from(this.el.querySelectorAll("ifx-dropdown-item"));
-		let dropdownItem, txtValue;
-		const query = searchValue.toUpperCase();
+			const allItems = Array.from(this.el.querySelectorAll("ifx-dropdown-item"));
+			const query = searchValue.toUpperCase();
 
-		for (let i = 0; i < allItems.length; i++) {
-			dropdownItem = allItems[i];
-			txtValue = dropdownItem.textContent || dropdownItem.innerText;
-
-			if (txtValue.toUpperCase().indexOf(query) > -1) {
-				dropdownItem.setAttribute("hide", false);
-			} else {
-				dropdownItem.setAttribute("hide", true);
+			for (const dropdownItem of allItems) {
+					const txtValue = dropdownItem.textContent || dropdownItem.innerText;
+					dropdownItem.hide = !txtValue.toUpperCase().includes(query);
 			}
-		}
 	}
 
 	componentWillUpdate() {

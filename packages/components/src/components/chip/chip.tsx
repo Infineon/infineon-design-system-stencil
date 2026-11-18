@@ -204,7 +204,16 @@ export class Chip {
 		chipWrapper.focus();
 	}
 
-	private handleUnselectButtonClick(event: MouseEvent) {
+	private handleUnselectKeyDown(event: KeyboardEvent) {
+    if (event.code === "Enter" || event.code === "Space") {
+        event.stopPropagation();
+        event.preventDefault();
+        this.handleUnselectButtonClick(event);
+        this.focusChip();
+    }
+}
+
+	private handleUnselectButtonClick(event: Event) {
 		event.stopPropagation();
 		this.opened = false;
 
@@ -469,18 +478,24 @@ async componentDidLoad() {
 							)}
 
 						{this.selectedOptions.length >= 1 && this.variant === "multi" && (
-							<div
-								class="wrapper__unselect-button"
-								onClick={
-									!this.readOnly && !this.disabled
-										? (e) => {
-												this.handleUnselectButtonClick(e);
-										  }
-										: undefined
-								}
-							>
-								<ifx-icon key={2} icon={`cross16`} />
-							</div>
+								<div
+										class="wrapper__unselect-button"
+										role="button"
+										aria-label="Clear selection"
+										tabIndex={!this.readOnly && !this.disabled ? 0 : -1}
+										onClick={
+												!this.readOnly && !this.disabled
+														? (e) => this.handleUnselectButtonClick(e)
+														: undefined
+										}
+										onKeyDown={
+												!this.readOnly && !this.disabled
+														? (e) => this.handleUnselectKeyDown(e)
+														: undefined
+										}
+								>
+										<ifx-icon key={2} icon={`cross16`} />
+								</div>
 						)}
 					</div>
 
