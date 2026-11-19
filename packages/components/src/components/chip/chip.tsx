@@ -38,7 +38,7 @@ export class Chip {
 	/** Current selection (mutable) */
 	@Prop({ mutable: true }) value: Array<string> | string = undefined;
 	/** Selection mode */
-	@Prop() readonly variant: "single" | "multi" = "single";
+	@Prop() readonly variant: "single" | "multi" | "action" = "single";
 	/** URL navigated to. When set, the chip renders as a link. */
 	@Prop() readonly href: string;
 	/** Browsing context used for navigation. */
@@ -54,8 +54,6 @@ export class Chip {
 	@Prop() readonly disabled: boolean = false;
 	/** Sets Icon */
 	@Prop() readonly icon: string = "";
-	/** Displays the chevron icon */
-	@Prop() readonly hideDropdownIcon: boolean = false;
 	/** Makes an action chip toggle its selected state when activated. */
 	@Prop() readonly selectable: boolean = false;
 	/** Whether a selectable action chip is selected. */
@@ -75,23 +73,24 @@ export class Chip {
 
 	private isActionable() {
 		return (
+			this.variant === "action" ||
 			this.href !== undefined ||
 			this.chip.hasAttribute("href") ||
-			this.getChipItems().length === 0 ||
-			(this.variant === "single" && this.hideDropdownIcon)
+			this.getChipItems().length === 0
 		);
+	}
+
+	private get isSelectable(): boolean {
+		const selectableAttribute = this.chip.getAttribute("selectable");
+		if (selectableAttribute === "" || selectableAttribute === "false") {
+			return false;
+		}
+		return this.selectable;
 	}
 
 	@Watch("readOnly")
 	handleReadOnlyChange(newValue: boolean) {
 		if (newValue) {
-			this.opened = false;
-		}
-	}
-
-	@Watch("hideDropdownIcon")
-	handleHideDropdownIconChange(newValue: boolean) {
-		if (newValue && this.variant === "single") {
 			this.opened = false;
 		}
 	}
@@ -195,10 +194,7 @@ export class Chip {
 	}
 
 	private toggleDropdownMenu() {
-		if (
-			this.readOnly ||
-			(this.variant === "single" && this.hideDropdownIcon)
-		)
+		if (this.readOnly)
 			return;
 		this.opened = !this.opened;
 	}
@@ -286,10 +282,7 @@ export class Chip {
 
 	private handleWrapperKeyDown(event: KeyboardEvent) {
 		// Keymap oriented at https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboard_interaction
-		if (
-			this.readOnly ||
-			(this.variant === "single" && this.hideDropdownIcon)
-		)
+		if (this.readOnly)
 			return;
 
 		if (!this.opened) {
@@ -415,7 +408,7 @@ export class Chip {
 	private handleActionClick = (event: MouseEvent) => {
 		if (this.readOnly || this.disabled) return;
 
-		if (this.selectable) {
+		if (this.isSelectable) {
 			this.selected = !this.selected;
 		}
 		this.ifxClick.emit(event);
@@ -454,7 +447,7 @@ async componentDidLoad() {
 		const wrapperClass = `chip__wrapper chip__wrapper--${this.size ? this.size : "medium"}
 			chip__wrapper--${this.variant === "multi" ? "multi" : "single"}
 			${this.theme ? this.theme : "outlined"}
-			${this.selectable ? "chip__wrapper--selectable" : ""}
+			${this.isSelectable ? "chip__wrapper--selectable" : ""}
 			${this.selected ? "chip__wrapper--selected" : ""}
 			${this.readOnly ? "read-only" : ""}
 			${this.disabled ? "disabled" : ""}`;
@@ -490,7 +483,7 @@ async componentDidLoad() {
 							onClick={this.handleActionClick}
 							tabIndex={this.disabled ? -1 : 0}
 							aria-label={this.ariaLabelText || undefined}
-							aria-pressed={this.selectable ? this.selected.toString() : undefined}
+							aria-pressed={this.isSelectable ? this.selected.toString() : undefined}
 							aria-disabled={this.disabled || this.readOnly ? "true" : undefined}
 							disabled={this.disabled}
 							part="label-wrapper"
@@ -562,7 +555,7 @@ async componentDidLoad() {
 						</div>
 
 					{(
-						(this.variant === "single" && !this.hideDropdownIcon) ||
+						this.variant === "single" ||
 						(this.variant === "multi" &&
 							this.selectedOptions.length === 0
 						)

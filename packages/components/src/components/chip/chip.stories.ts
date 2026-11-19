@@ -3,7 +3,6 @@ import { action } from "storybook/actions";
 
 export default {
 	title: "Components/Chip",
-	tags: ["autodocs"],
 	parameters: {
 		docs: {
 			story: {
@@ -26,14 +25,13 @@ export default {
 		disabled: false,
 		theme: "outlined",
 		icon: "",
-		hideDropdownIcon: false,
 		selectable: true,
 	},
 	argTypes: {
 		amountOfChipItems: {
 			name: "Amount of Chip Items",
 			control: "number",
-			if: { arg: "hideDropdownIcon", eq: false },
+			if: { arg: "variant", neq: "action" },
 			description: "Control the number of *<ifx-chip-item>* in a Chip.",
 			table: {
 				category: "story controls",
@@ -44,7 +42,7 @@ export default {
 		},
 		chipItemLabel: {
 			name: "Label of Chip Item",
-			if: { arg: "hideDropdownIcon", eq: false },
+			if: { arg: "variant", neq: "action" },
 			description: "Set the label of *<ifx-chip-item>*.",
 			table: {
 				category: "story controls",
@@ -73,14 +71,14 @@ export default {
 		variant: {
 			description: "Switch the variant of Chip.",
 			control: "radio",
-			options: ["single", "multi"],
+			options: ["single", "multi", "action"],
 			table: {
 				category: "ifx-chip props",
 				defaultValue: {
 					summary: "single",
 				},
 				type: {
-					summary: "single | multi",
+					summary: "single | multi | action",
 				},
 			},
 		},
@@ -121,20 +119,6 @@ export default {
 				},
 			},
 		},
-		hideDropdownIcon: {
-			name: "hide-dropdown-icon",
-			description:
-				"Hide the trailing chevron-down icon on the Single variant. When enabled, href and target configure navigation.",
-			control: "boolean",
-			if: { arg: "variant", neq: "multi" },
-			table: {
-				category: "ifx-chip props",
-				defaultValue: {
-					summary: false,
-				},
-			},
-		},
-
 		disabled: {
 			name: "disabled",
 			description: "No dropdown menu. The chip component is disabled.",
@@ -155,7 +139,7 @@ export default {
 			},
 		},
 		selected: {
-			if: { arg: "hideDropdownIcon", eq: false },
+			if: { arg: "variant", neq: "action" },
 			description: "Set the *selected* prop to pre-select the chip item.",
 			table: {
 				category: "ifx-chip-item props",
@@ -165,13 +149,14 @@ export default {
 			},
 		},
 		value: {
-			if: { arg: "hideDropdownIcon", eq: false },
+			if: { arg: "variant", neq: "action" },
 			description: "Set the value of chip item.",
 			table: {
 				category: "ifx-chip-item props",
 			},
 		},
 		href: {
+			if: { arg: "variant", eq: "action" },
 			description: "Specifies the URL of the link.",
 			control: "text",
 			table: {
@@ -182,6 +167,7 @@ export default {
 			},
 		},
 		target: {
+			if: { arg: "variant", eq: "action" },
 			description:
 				"Determines where to open the linked URL when the link is clicked.",
 			control: "radio",
@@ -194,12 +180,13 @@ export default {
 			},
 		},
 		selectable: {
-			description: "Set the selectable prop to make the chip selectable.",
+			description: "When enabled, the action chip toggles its selected state instead of navigating. href and target are only applicable when selectable is false.",
 			control: "boolean",
+			if: { arg: "variant", eq: "action" },
 			table: {
 				category: "ifx-chip props",
 				defaultValue: {
-					summary: false,
+					summary: true,
 				},
 			},
 		},
@@ -231,10 +218,11 @@ variant="${args.variant}"
 theme="${args.theme}"
 icon="${args.icon}"
 aria-label="${args.ariaLabel}"
-${args.hideDropdownIcon || args.href ? `href="${args.href || ""}" target="${args.target || "_blank"}"` : ""}
+${args.variant === "action" && !args.readOnly && !args.selectable ? `href="${args.href || ""}" target="${args.target || "_blank"}"` : ""}
+${args.variant === "action" && args.selectable ? 'selectable="true"' : ""}
 ${args.disabled ? "disabled" : ""}
 ${args.readOnly ? "read-only" : ""}
-	${args.hideDropdownIcon ? 'hide-dropdown-icon="true"' : ""}>${args.href || args.hideDropdownIcon ? "" : (() => {
+	>${args.href || args.variant === "action" ? "" : (() => {
 		return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
 			const chipItem: HTMLIfxChipItemElement =
 				document.createElement("ifx-chip-item");
@@ -274,10 +262,12 @@ Single.argTypes = {
 		},
 	},
 	href: {
-		if: { arg: "hideDropdownIcon", eq: true },
+		control: false,
+		table: { disable: true },
 	},
 	target: {
-		if: { arg: "hideDropdownIcon", eq: true },
+		control: false,
+		table: { disable: true },
 	},
 	selectable: { control: false, table: { disable: true } },
 };
@@ -304,12 +294,6 @@ Multi.argTypes = {
 			disable: true,
 		},
 	},
-	hideDropdownIcon: {
-		control: false,
-		table: {
-			disable: true,
-		},
-	},
 	selectable: { control: false, table: { disable: true } },
 };
 
@@ -319,6 +303,10 @@ ReadOnly.args = {
 	variant: "multi",
 };
 ReadOnly.argTypes = {
+	variant: {
+		control: "radio",
+		options: ["single", "multi", "action"],
+	},
 	readOnly: {
 		table: {
 			disable: true,
@@ -336,7 +324,11 @@ ReadOnly.argTypes = {
 			disable: true,
 		},
 	},
-	selectable: { control: false, table: { disable: true } },
+	selectable: {
+		control: "boolean",
+		if: { arg: "variant", eq: "action" },
+		table: { category: "ifx-chip props" },
+	},
 };
 
 const ActionTemplate = (args: any) => {
@@ -345,7 +337,7 @@ const ActionTemplate = (args: any) => {
 <ifx-chip
 placeholder="${args.placeholder}"
 size="${args.size}"
-variant="single"
+variant="action"
 theme="${args.theme}"
 icon="${args.icon}"
 aria-label="${args.ariaLabel}"
@@ -358,6 +350,7 @@ ${args.disabled ? "disabled" : ""}></ifx-chip>`;
 
 export const Action:any = ActionTemplate.bind({});
 Action.args = {
+	variant: "action",
 	href: "",
 	target: "_blank",
 };
@@ -376,7 +369,6 @@ Action.argTypes = {
 	chipItemLabel: { control: false, table: { disable: true } },
 	selected: { control: false, table: { disable: true } },
 	value: { control: false, table: { disable: true } },
-	hideDropdownIcon: { control: false, table: { disable: true } },
 	selectable: { control: false, table: { disable: true } },
 };
 
@@ -386,8 +378,8 @@ const SelectableActionTemplate = (args: any) => {
 		<ifx-chip
 			placeholder="${args.placeholder}"
 			size="${args.size}"
-			read-only="${args.readOnly}"
-			variant="${args.variant}"
+			${args.readOnly ? 'read-only="true"' : ""}
+			variant="action"
 			theme="${args.theme}"
 			aria-label="${args.ariaLabel}"
 			${args.selectable ? 'selectable="true"' : ""}
@@ -400,13 +392,19 @@ const SelectableActionTemplate = (args: any) => {
 
 export const SelectableAction: any = SelectableActionTemplate.bind({});
 SelectableAction.args = {
+	variant: "action",
 	selectable: true,
 };
 SelectableAction.argTypes = {
 	variant: { control: false, table: { disable: true } },
+	readOnly: {
+		name: "read-only",
+		description: "Prevents activating the selectable action chip.",
+		control: "boolean",
+		table: { category: "ifx-chip props" },
+	},
 	href: { control: false, table: { disable: true } },
 	target: { control: false, table: { disable: true } },
-	hideDropdownIcon: { control: false, table: { disable: true } },
 	amountOfChipItems: { control: false, table: { disable: true } },
 	chipItemLabel: { control: false, table: { disable: true } },
 	selected: { control: false, table: { disable: true } },

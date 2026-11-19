@@ -94,10 +94,65 @@ describe("ifx-chip", () => {
     expect(ifxChangeSpy).not.toHaveBeenCalled();
   });
 
+  it("renders the action variant as a button without a dropdown", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" variant="action"></ifx-chip>`,
+    });
+    const shadowRoot = page.root!.shadowRoot!;
+
+    expect(shadowRoot.querySelector("button")?.textContent?.trim()).toBe("Run action");
+    expect(shadowRoot.querySelector("a")).toBeNull();
+    expect(shadowRoot.querySelector(".wrapper__open-button")).toBeNull();
+    expect(shadowRoot.querySelector(".chip__dropdown")).toBeNull();
+  });
+
+  it("does not toggle selection for an action chip unless selectable is enabled", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" variant="action"></ifx-chip>`,
+    });
+    const button = page.root!.shadowRoot!.querySelector<HTMLButtonElement>("button")!;
+
+    expect(page.rootInstance.selectable).toBe(false);
+    button.click();
+    await page.waitForChanges();
+
+    expect(page.rootInstance.selected).toBe(false);
+  });
+
+  it("does not enable selection when selectable is an empty attribute", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" variant="action" selectable=""></ifx-chip>`,
+    });
+    const button = page.root!.shadowRoot!.querySelector<HTMLButtonElement>("button")!;
+
+    button.click();
+    await page.waitForChanges();
+
+    expect(page.rootInstance.selected).toBe(false);
+    expect(button.getAttribute("aria-pressed")).toBeNull();
+  });
+
+  it("toggles selection when selectable is explicitly true", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" variant="action" selectable="true"></ifx-chip>`,
+    });
+    const button = page.root!.shadowRoot!.querySelector<HTMLButtonElement>("button")!;
+
+    button.click();
+    await page.waitForChanges();
+
+    expect(page.rootInstance.selected).toBe(true);
+    expect(button.getAttribute("aria-pressed")).toBe("true");
+  });
+
   it("does not activate a selectable action chip when read-only", async () => {
     const page = await newSpecPage({
       components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
-      html: `<ifx-chip placeholder="Run action" read-only="true" selectable="true"></ifx-chip>`,
+      html: `<ifx-chip placeholder="Run action" variant="action" read-only="true" selectable="true"></ifx-chip>`,
     });
     const button = page.root!.shadowRoot!.querySelector<HTMLButtonElement>("button")!;
     const clickSpy = jest.fn();
