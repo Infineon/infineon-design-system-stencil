@@ -192,11 +192,20 @@ export class Navbar {
       parentElement = parentElement.parentElement;
     }
 
+    const hasNestedActiveItem = activeItem !== selectedItem;
     const navbarItems = this.el.querySelectorAll("ifx-navbar-item");
     navbarItems.forEach((item) => {
-      const isActive = item === activeItem;
+      const isActive = item === (hasNestedActiveItem ? selectedItem : activeItem);
       item.active = isActive;
-      item.setAttribute("active", String(isActive));
+      if (isActive) {
+        item.setAttribute("active", "true");
+      } else {
+        item.removeAttribute("active");
+      }
+      item.classList.toggle(
+        "has-active-child",
+        hasNestedActiveItem && item === activeItem,
+      );
     });
   }
 

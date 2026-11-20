@@ -131,6 +131,7 @@ describe("ifx-navbar", () => {
         expect(itemMenu.classList.contains("open")).toBe(true);
         expect(emittedEvents).toHaveLength(1);
         expect(emittedEvents[0].detail.action).toBe("click");
+        expect(emittedEvents[0].detail).not.toHaveProperty("active");
 
         container.dispatchEvent(
             new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
@@ -139,6 +140,25 @@ describe("ifx-navbar", () => {
 
         expect(itemMenu.classList.contains("open")).toBe(false);
         expect(emittedEvents).toHaveLength(2);
+    });
+    it("includes the active state for an active standalone item", async () => {
+        const page = await newSpecPage({
+            components: [NavbarItem],
+            html: `<ifx-navbar-item active="true">Standalone item</ifx-navbar-item>`,
+        });
+        const item = page.root as HTMLIfxNavbarItemElement;
+        const container = item.shadowRoot.querySelector(".container");
+        const emittedEvents: CustomEvent[] = [];
+        item.addEventListener("ifxNavItem", (event) =>
+            emittedEvents.push(event as CustomEvent),
+        );
+
+        container.dispatchEvent(
+            new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
+        );
+
+        expect(emittedEvents).toHaveLength(1);
+        expect(emittedEvents[0].detail.active).toBe("true");
     });
     it("emits the selection event when a nested leaf item is activated with Enter", async () => {
         const page = await newSpecPage({

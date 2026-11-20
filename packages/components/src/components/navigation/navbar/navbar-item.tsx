@@ -35,6 +35,7 @@ export class NavbarItem {
 	@State() isMenuItem: boolean = false;
 	@State() hasChildNavItems: boolean = false;
 	@State() isSidebarMenuItem: boolean = false;
+	@State() internalActiveState: boolean = false;
 	@State() itemPosition: string;
 	private isHandlingUserActivation = false;
 	private hasEmittedNavItem = false;
@@ -195,13 +196,22 @@ export class NavbarItem {
 		component: HTMLIfxNavbarItemElement;
 		action: string;
 		parent?: Element | null;
+		active?: "true" | "false";
 	}) {
 		if (!this.isHandlingUserActivation) {
 			return;
 		}
 
 		this.hasEmittedNavItem = true;
-		this.ifxNavItem.emit(detail);
+		const eventDetail = {
+			...detail,
+		};
+		if (this.active) {
+			eventDetail.active = "true";
+		} else {
+			delete eventDetail.active;
+		}
+		this.ifxNavItem.emit(eventDetail);
 	}
 
 	private handleUserActivation(action: () => void) {
@@ -396,7 +406,7 @@ export class NavbarItem {
 	}
 
 	private getParentItemMenu() {
-		return this.el.parentElement?.shadowRoot.querySelector(".navbar-menu");
+		return this.el.parentElement?.shadowRoot?.querySelector(".navbar-menu");
 	}
 
 	private closeItemMenu() {
