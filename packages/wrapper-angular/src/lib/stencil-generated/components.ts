@@ -509,20 +509,21 @@ export declare interface IfxCheckboxGroup extends Components.IfxCheckboxGroup {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelText', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant']
+  inputs: ['actionLabel', 'ariaLabelText', 'disabled', 'href', 'icon', 'placeholder', 'readOnly', 'selectable', 'selected', 'size', 'target', 'theme', 'value', 'variant']
 })
 @Component({
   selector: 'ifx-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelText', 'disabled', 'icon', 'placeholder', 'readOnly', 'size', 'theme', 'value', 'variant'],
-  outputs: ['ifxChange'],
+  inputs: ['actionLabel', 'ariaLabelText', 'disabled', 'href', 'icon', 'placeholder', 'readOnly', 'selectable', 'selected', 'size', 'target', 'theme', 'value', 'variant'],
+  outputs: ['ifxChange', 'ifxClick'],
   standalone: false
 })
 export class IfxChip {
   protected el: HTMLIfxChipElement;
   @Output() ifxChange = new EventEmitter<IfxChipCustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>();
+  @Output() ifxClick = new EventEmitter<IfxChipCustomEvent<MouseEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -538,6 +539,8 @@ export declare interface IfxChip extends Components.IfxChip {
    * Fires on selection change.
    */
   ifxChange: EventEmitter<IfxChipCustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>;
+
+  ifxClick: EventEmitter<IfxChipCustomEvent<MouseEvent>>;
 }
 
 

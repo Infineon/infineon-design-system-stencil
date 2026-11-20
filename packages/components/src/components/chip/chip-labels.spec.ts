@@ -72,7 +72,7 @@ describe("chip selection labels", () => {
 	it("retains the value fallback when there is no matching item", async () => {
 		const page = await newSpecPage({
 			components: [Chip],
-			html: `<ifx-chip value="unlisted"></ifx-chip>`,
+			html: `<ifx-chip value="unlisted"><ifx-chip-item value="listed">Listed option</ifx-chip-item></ifx-chip>`,
 		});
 		expect(
 			page.root.shadowRoot.querySelector(".label__selected-options")

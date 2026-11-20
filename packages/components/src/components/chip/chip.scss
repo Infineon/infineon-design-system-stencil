@@ -53,7 +53,7 @@
 
 	&.filled-dark,
 	&.filled-light {
-		&.chip__wrapper--selected:not(.read-only) {
+		&.chip__wrapper--selected:not(.read-only):not(.chip__wrapper--selectable) {
 			background-color: tokens.$ifxColorOcean500;
 			color: white;
 			&:hover {
@@ -68,12 +68,91 @@
 
 	&.outlined {
 		border: 1px solid tokens.$ifxColorEngineering400;
-		&:hover:not(.read-only) {
+
+		&.chip__wrapper--action {
+			color: tokens.$ifxColorBaseBlack;
+			text-decoration: none;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering200;
+				border: 1px solid tokens.$ifxColorEngineering300;
+			}
+
+			&:focus-visible {
+				background-color: tokens.$ifxColorBaseWhite;
+			}
+
+			&:active {
+				background-color: tokens.$ifxColorEngineering400;
+				border: 1px solid tokens.$ifxColorEngineering300;
+			}
+
+			&.disabled {
+				background-color: tokens.$ifxColorBaseWhite;
+				border: 1px solid tokens.$ifxColorEngineering300;
+				color: tokens.$ifxColorEngineering300;
+			}
+		}
+
+		&.chip__wrapper--selectable {
+			color: tokens.$ifxColorBaseBlack;
+			text-decoration: none;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering200;
+				border: 1px solid tokens.$ifxColorEngineering300;
+			}
+
+			&:focus-visible {
+				background-color: tokens.$ifxColorBaseWhite;
+			}
+
+			&:active {
+				background-color: tokens.$ifxColorEngineering400;
+				border: 1px solid tokens.$ifxColorEngineering300;
+			}
+
+			&.chip__wrapper--selected {
+				background-color: tokens.$ifxColorBaseWhite;
+				border: 2px solid tokens.$ifxColorOcean500;
+				color: tokens.$ifxColorOcean500;
+
+				&:focus-visible {
+					outline: 2px solid tokens.$ifxColorOcean500;
+					outline-offset: 2px;
+				}
+
+				&:hover {
+					color: tokens.$ifxColorOcean600;
+					border: 3px solid tokens.$ifxColorOcean600;
+				}
+			}
+
+			&.disabled {
+				border: 1px solid tokens.$ifxColorEngineering300;
+				color: tokens.$ifxColorEngineering300;
+			}
+
+			&.read-only {
+				border: 1px solid tokens.$ifxColorBaseBlack;
+				color: tokens.$ifxColorBaseBlack;
+
+				&:focus-visible {
+					border: 1px solid tokens.$ifxColorBaseBlack;
+				}
+
+				&:hover {
+					border: 1px solid tokens.$ifxColorEngineering300;
+				}
+			}
+		}
+
+		&:hover:not(.read-only, .chip__wrapper--action, .chip__wrapper--selectable) {
 			//border-color: tokens.$ifxColorEngineering500;
 			background-color: tokens.$ifxColorEngineering200;
 		}
 
-		&:active:not(.read-only) {
+		&:active:not(.read-only, .chip__wrapper--action, .chip__wrapper--selectable) {
 			//border-color: tokens.$ifxColorEngineering500;
 			background-color: tokens.$ifxColorEngineering300;
 		}
@@ -95,30 +174,32 @@
 				//outline-color: tokens.$ifxColorOcean600;
 			}
 
-			&.read-only {
-				outline: none;
-				//border: 1px solid black;
-
-				&.disabled {
-					border: 1px solid tokens.$ifxColorEngineering300;
-				}
-			}
 		}
 
 		&.disabled {
 			outline: none;
 			color: tokens.$ifxColorEngineering300;
-			border: 1px solid tokens.$ifxColorEngineering300;
-			&:hover {
-				outline: none;
-				border-color: tokens.$ifxColorEngineering300;
-				background-color: white;
-			}
+			border: none;
+			background: tokens.$ifxColorEngineering200;
+			pointer-events: none;
 		}
 
 		&.read-only {
-			border: 1px solid tokens.$ifxColorEngineering400;
+			border: 1px solid tokens.$ifxColorBaseBlack;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering200;
+			}
+
+			&:focus-visible {
+				border: 1px solid tokens.$ifxColorEngineering400;
+				outline: 2px solid tokens.$ifxColorOcean500;
+				outline-offset: 2px;
+			}
+
 			&.disabled {
+				background: tokens.$ifxColorBaseWhite;
+				color: tokens.$ifxColorEngineering300;
 				border: 1px solid tokens.$ifxColorEngineering300;
 			}
 		}
@@ -128,11 +209,74 @@
 		background-color: tokens.$ifxColorEngineering600;
 		color: white;
 
-		&:hover:not(.chip__wrapper--selected, .disabled, .read-only) {
+		&.chip__wrapper--action {
+			text-decoration: none;
+			border: none;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering500;
+			}
+
+			&:focus-visible {
+				border: 1px solid tokens.$ifxColorBaseWhite;
+			}
+
+			&:active:not(.read-only) {
+				background-color: tokens.$ifxColorEngineering400;
+				color: tokens.$ifxColorBaseBlack;
+			}
+
+			&.disabled {
+				background-color: tokens.$ifxColorEngineering600;
+				color: tokens.$ifxColorEngineering300;
+			}
+		}
+
+		&.chip__wrapper--selectable {
+			text-decoration: none;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering500;
+			}
+
+			&:active:not(.read-only) {
+				background-color: tokens.$ifxColorEngineering400;
+				color: tokens.$ifxColorBaseBlack;
+			}
+
+			&.chip__wrapper--selected {
+				background-color: tokens.$ifxColorOcean500;
+				color: tokens.$ifxColorBaseWhite;
+
+				&:focus-visible {
+					outline: 2px solid tokens.$ifxColorOcean500;
+					outline-offset: 2px;
+				}
+
+				&:hover {
+					border: 3px solid tokens.$ifxColorOcean600;
+				}
+			}
+
+			&.disabled {
+				color: tokens.$ifxColorEngineering300;
+			}
+
+			&.read-only {
+				border: 1px solid tokens.$ifxColorBaseBlack;
+				color: tokens.$ifxColorBaseWhite;
+
+				&:focus-visible {
+					border: 1px solid tokens.$ifxColorBaseBlack;
+				}
+			}
+		}
+
+		&:hover:not(.disabled, .read-only, .chip__wrapper--action, .chip__wrapper--selectable) {
 			background-color: tokens.$ifxColorEngineering500;
 		}
 
-		&:active:not(.chip__wrapper--selected, .disabled, .read-only) {
+		&:active:not(.disabled, .read-only, .chip__wrapper--action, .chip__wrapper--selectable) {
 			background-color: tokens.$ifxColorEngineering400;
 			color: black;
 		}
@@ -140,9 +284,8 @@
 		&.disabled {
 			outline: none;
 			color: tokens.$ifxColorEngineering300;
-			&:hover:not(.chip__wrapper--selected) {
-				background-color: tokens.$ifxColorEngineering600;
-			}
+			background: tokens.$ifxColorEngineering200;
+			pointer-events: none;
 		}
 
 		&.chip__wrapper--selected {
@@ -152,27 +295,109 @@
 		}
 
 		&.read-only {
-			//border: 1px solid tokens.$ifxColorEngineering400;
+			border: 1px solid tokens.$ifxColorBaseBlack;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering500;
+				border: none;
+			}
+
+			&:focus-visible {
+				border: tokens.$ifxColorBaseWhite;
+				outline: 2px solid tokens.$ifxColorOcean500;
+				outline-offset: 2px;
+			}
+
+			&.disabled {
+				color: tokens.$ifxColorEngineering300;
+				background-color: tokens.$ifxColorEngineering600;
+				border: none;
+			}
 		}
 	}
 
 	&.filled-light {
 		background-color: tokens.$ifxColorEngineering200;
 
-		&:hover:not(.read-only) {
+		&.chip__wrapper--action {
+			color: tokens.$ifxColorBaseBlack;
+			text-decoration: none;
+			border: none;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering300;
+			}
+
+			&:focus-visible {
+				border: 1px solid tokens.$ifxColorBaseWhite;
+			}
+
+			&:active {
+				background-color: tokens.$ifxColorEngineering400;
+			}
+
+			&.disabled {
+				background-color: tokens.$ifxColorEngineering200;
+				color: tokens.$ifxColorEngineering300;
+			}
+		}
+
+		&.chip__wrapper--selectable {
+			color: tokens.$ifxColorBaseBlack;
+			text-decoration: none;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering300;
+			}
+
+			&:focus-visible {
+				background-color: tokens.$ifxColorEngineering200;
+			}
+
+			&:active {
+				background-color: tokens.$ifxColorEngineering400;
+			}
+
+			&.chip__wrapper--selected {
+				background-color: tokens.$ifxColorOcean500;
+				color: tokens.$ifxColorBaseWhite;
+
+				&:focus-visible {
+					outline: 2px solid tokens.$ifxColorOcean500;
+					outline-offset: 2px;
+				}
+
+				&:hover {
+					border: 3px solid tokens.$ifxColorOcean600;
+				}
+			}
+
+			&.disabled {
+				color: tokens.$ifxColorEngineering300;
+			}
+
+			&.read-only {
+				border: 1px solid tokens.$ifxColorBaseBlack;
+				color: tokens.$ifxColorBaseBlack;
+
+				&:focus-visible {
+					border: 1px solid tokens.$ifxColorBaseBlack;
+				}
+			}
+		}
+
+		&:hover:not(.read-only, .chip__wrapper--action, .chip__wrapper--selectable) {
 			background-color: tokens.$ifxColorEngineering300;
 		}
 
-		&:active:not(.read-only) {
+		&:active:not(.read-only, .chip__wrapper--action, .chip__wrapper--selectable) {
 			background-color: tokens.$ifxColorEngineering400;
 		}
 
 		&.disabled {
 			outline: none;
 			color: tokens.$ifxColorEngineering300;
-			&:hover:not(.chip__wrapper--selected) {
-				background-color: tokens.$ifxColorEngineering200;
-			}
+			pointer-events: none;
 		}
 
 		&.chip__wrapper--selected {
@@ -185,8 +410,21 @@
 		}
 
 		&.read-only {
-			//border: 1px solid black;
+			border: 1px solid tokens.$ifxColorBaseBlack;
+
+			&:hover {
+				background-color: tokens.$ifxColorEngineering300;
+				border: none;
+			}
+
+			&:focus-visible {
+				border: tokens.$ifxColorBaseWhite;
+				outline: 2px solid tokens.$ifxColorOcean500;
+				outline-offset: 2px;
+			}
+
 			&.disabled {
+				color: tokens.$ifxColorEngineering300;
 				border: none;
 			}
 		}
