@@ -259,6 +259,7 @@ export const IfxCheckboxGroup: StencilVueComponent<JSX.IfxCheckboxGroup> = /*@__
 
 export const IfxChip: StencilVueComponent<JSX.IfxChip> = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', defineIfxChip, [
   'placeholder',
+  'actionLabel',
   'size',
   'value',
   'variant',
@@ -269,7 +270,6 @@ export const IfxChip: StencilVueComponent<JSX.IfxChip> = /*@__PURE__*/ defineCon
   'ariaLabelText',
   'disabled',
   'icon',
-  'hideDropdownIcon',
   'selectable',
   'selected',
   'ifxChange',

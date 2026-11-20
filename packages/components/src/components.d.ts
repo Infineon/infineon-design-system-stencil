@@ -389,6 +389,11 @@ export namespace Components {
     }
     interface IfxChip {
         /**
+          * Visible label for an action chip (`variant="action"`). Falls back to `placeholder` when not set.
+          * @default ""
+         */
+        "actionLabel": string;
+        /**
           * ARIA Label text
          */
         "ariaLabelText": string | null;
@@ -397,11 +402,6 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
-        /**
-          * Displays the chevron icon
-          * @default false
-         */
-        "hideDropdownIcon": boolean;
         /**
           * URL navigated to. When set, the chip renders as a link.
          */
@@ -455,7 +455,7 @@ export namespace Components {
           * Selection mode
           * @default "single"
          */
-        "variant": "single" | "multi";
+        "variant": "single" | "multi" | "action";
     }
     interface IfxChipItem {
         /**
@@ -4925,6 +4925,11 @@ declare namespace LocalJSX {
     }
     interface IfxChip {
         /**
+          * Visible label for an action chip (`variant="action"`). Falls back to `placeholder` when not set.
+          * @default ""
+         */
+        "actionLabel"?: string;
+        /**
           * ARIA Label text
          */
         "ariaLabelText"?: string | null;
@@ -4933,11 +4938,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "disabled"?: boolean;
-        /**
-          * Displays the chevron icon
-          * @default false
-         */
-        "hideDropdownIcon"?: boolean;
         /**
           * URL navigated to. When set, the chip renders as a link.
          */
@@ -5000,7 +5000,7 @@ declare namespace LocalJSX {
           * Selection mode
           * @default "single"
          */
-        "variant"?: "single" | "multi";
+        "variant"?: "single" | "multi" | "action";
     }
     interface IfxChipItem {
         /**
@@ -7813,9 +7813,10 @@ declare namespace LocalJSX {
     }
     interface IfxChipAttributes {
         "placeholder": string;
+        "actionLabel": string;
         "size": "small" | "medium" | "large";
         "value": Array<string> | string;
-        "variant": "single" | "multi";
+        "variant": "single" | "multi" | "action";
         "href": string;
         "target": "_self" | "_blank" | "_parent";
         "theme": "outlined" | "filled-light" | "filled-dark";
@@ -7823,7 +7824,6 @@ declare namespace LocalJSX {
         "ariaLabelText": string | null;
         "disabled": boolean;
         "icon": string;
-        "hideDropdownIcon": boolean;
         "selectable": boolean;
         "selected": boolean;
     }

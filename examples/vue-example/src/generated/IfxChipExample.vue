@@ -38,6 +38,7 @@ ${'</'}script>
   <div>
     <ifx-chip
       placeholder="Label"
+      action-label=""
       size="medium"
       variant="single"
       theme="outlined"
@@ -49,7 +50,6 @@ ${'</'}script>
       :selected="false"
       value="Item Value"
       :disabled="false"
-      :hide-dropdown-icon="false"
       :selectable="true"
       @ifxChange="handleChange"
       @ifxClick="handleClick">
@@ -77,6 +77,7 @@ ${'</'}template>`;
   <div>
     <ifx-chip
       placeholder="Label"
+      action-label=""
       size="medium"
       variant="single"
       theme="outlined"
@@ -88,7 +89,6 @@ ${'</'}template>`;
       :selected="false"
       value="Item Value"
       :disabled="false"
-      :hide-dropdown-icon="false"
       :selectable="true"
       @ifxChange="handleChange"
       @ifxClick="handleClick">

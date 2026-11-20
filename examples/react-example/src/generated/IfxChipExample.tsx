@@ -20,6 +20,7 @@ export function IfxChipExample() {
     <>
       <IfxChip
         placeholder="Label"
+        actionLabel=""
         size="medium"
         variant="single"
         theme="outlined"
@@ -31,7 +32,6 @@ export function IfxChipExample() {
         selected={false}
         value="Item Value"
         disabled={false}
-        hideDropdownIcon={false}
         selectable={true}
         onIfxChange={handleChange}
         onIfxClick={handleClick}>
@@ -79,6 +79,7 @@ export function IfxChipExample() {
   return (
       <IfxChip
         placeholder="Label"
+        actionLabel=""
         size="medium"
         variant="single"
         theme="outlined"
@@ -90,7 +91,6 @@ export function IfxChipExample() {
         selected={false}
         value="Item Value"
         disabled={false}
-        hideDropdownIcon={false}
         selectable={true}
         onIfxChange={handleChange}
         onIfxClick={handleClick}>

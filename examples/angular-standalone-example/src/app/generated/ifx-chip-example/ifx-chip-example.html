@@ -1,5 +1,6 @@
   <ifx-chip
     placeholder="Label"
+    action-label=""
     size="medium"
     variant="single"
     theme="outlined"
@@ -11,7 +12,6 @@
     [selected]="false"
     value="Item Value"
     [disabled]="false"
-    [hideDropdownIcon]="false"
     [selectable]="true"
     (ifxChange)="handleChange($any($event))"
     (ifxClick)="handleClick($any($event))">

@@ -33,6 +33,7 @@ export class IfxChipExample {
 }`;
   protected readonly htmlCode = `  &lt;ifx-chip
     placeholder=&quot;Label&quot;
+    action-label=&quot;&quot;
     size=&quot;medium&quot;
     variant=&quot;single&quot;
     theme=&quot;outlined&quot;
@@ -44,7 +45,6 @@ export class IfxChipExample {
     [selected]=&quot;false&quot;
     value=&quot;Item Value&quot;
     [disabled]=&quot;false&quot;
-    [hideDropdownIcon]=&quot;false&quot;
     [selectable]=&quot;true&quot;
     (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
     (ifxClick)=&quot;handleClick(\$any(\$event))&quot;&gt;
