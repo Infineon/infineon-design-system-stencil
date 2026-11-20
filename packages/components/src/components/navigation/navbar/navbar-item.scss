@@ -25,7 +25,20 @@
   font-size: tokens.$ifxFontSizeM;
   color: tokens.$ifxColorBaseBlack;
 
-  
+  &.active:not(.menuItem):not(.sidebarMenuItem) {
+    &::after {
+      content: "";
+      position: absolute;
+      right: -6px;
+      bottom: -4px;
+      left: 0;
+      border-bottom: tokens.$ifxBorderWidth25 solid tokens.$ifxColorOcean500;
+    }
+  }
+
+  &.menuItem.active .label__wrapper {
+    color: tokens.$ifxColorOcean500;
+  }
 
   &.hide { 
     display: none;
@@ -161,6 +174,28 @@
       0 0 0 tokens.$ifxBorderWidth25 tokens.$ifxColorBaseWhite,
       0 0 0 tokens.$ifxBorderWidth50 tokens.$ifxColorOcean500;
   }
+}
+
+:host(.has-active-child) .navbar__item:not(.menuItem):not(.sidebarMenuItem)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  left: 0;
+  border-bottom: tokens.$ifxBorderWidth25 solid tokens.$ifxColorOcean500;
+}
+
+.navbar__item.active:not(.menuItem):not(.sidebarMenuItem):hover::after,
+:host(.has-active-child) .navbar__item:not(.menuItem):not(.sidebarMenuItem):hover::after {
+  border-bottom-color: tokens.$ifxColorOcean600;
+}
+
+.navbar__item.active:not(.menuItem):not(.sidebarMenuItem):hover {
+  color: tokens.$ifxColorOcean600;
+}
+
+.navbar__item.menuItem.active:hover .label__wrapper {
+  color: tokens.$ifxColorOcean600;
 }
 
 .container { 
@@ -331,6 +366,7 @@
       background-color: tokens.$ifxColorEngineering300;
     }
   }
+
 }
 
 .sub__layer-menu { 
