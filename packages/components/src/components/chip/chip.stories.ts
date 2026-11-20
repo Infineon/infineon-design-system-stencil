@@ -14,6 +14,7 @@ export default {
 		amountOfChipItems: 4,
 		chipItemLabel: "Item Label",
 		placeholder: "Label",
+		actionLabel: "",
 		size: "medium",
 		variant: "single",
 		href: "",
@@ -50,6 +51,15 @@ export default {
 		},
 		placeholder: {
 			description: "Set the placeholder string.",
+			table: {
+				category: "ifx-chip props",
+			},
+		},
+		actionLabel: {
+			name: "action-label",
+			description: "Set the visible label for an action chip (variant=\"action\"). Falls back to placeholder when not set.",
+			if: { arg: "variant", eq: "action" },
+			control: "text",
 			table: {
 				category: "ifx-chip props",
 			},
@@ -213,6 +223,7 @@ const Template = (args: any) => {
 	wrapper.innerHTML = `
 <ifx-chip
 placeholder="${args.placeholder}"
+action-label="${args.actionLabel}"
 size="${args.size}"
 variant="${args.variant}"
 theme="${args.theme}"
@@ -336,6 +347,7 @@ const ActionTemplate = (args: any) => {
 	wrapper.innerHTML = `
 <ifx-chip
 placeholder="${args.placeholder}"
+action-label="${args.actionLabel}"
 size="${args.size}"
 variant="action"
 theme="${args.theme}"
@@ -351,6 +363,7 @@ ${args.disabled ? "disabled" : ""}></ifx-chip>`;
 export const Action:any = ActionTemplate.bind({});
 Action.args = {
 	variant: "action",
+	actionLabel: "Label",
 	href: "",
 	target: "_blank",
 };
@@ -377,6 +390,7 @@ const SelectableActionTemplate = (args: any) => {
 	wrapper.innerHTML = `
 		<ifx-chip
 			placeholder="${args.placeholder}"
+			action-label="${args.actionLabel}"
 			size="${args.size}"
 			${args.readOnly ? 'read-only="true"' : ""}
 			variant="action"
@@ -393,6 +407,7 @@ const SelectableActionTemplate = (args: any) => {
 export const SelectableAction: any = SelectableActionTemplate.bind({});
 SelectableAction.args = {
 	variant: "action",
+	actionLabel: "Label",
 	selectable: true,
 };
 SelectableAction.argTypes = {

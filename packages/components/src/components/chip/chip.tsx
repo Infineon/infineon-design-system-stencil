@@ -33,6 +33,8 @@ export class Chip {
 	@Event() ifxClick: EventEmitter<MouseEvent>;
 	/** Placeholder text */
 	@Prop() readonly placeholder: string = "";
+	/** Visible label for an action chip (`variant="action"`). Falls back to `placeholder` when not set. */
+	@Prop() readonly actionLabel: string = "";
 	/** Component size */
 	@Prop() readonly size: "small" | "medium" | "large" = "medium";
 	/** Current selection (mutable) */
@@ -451,6 +453,8 @@ async componentDidLoad() {
 			${this.selected ? "chip__wrapper--selected" : ""}
 			${this.readOnly ? "read-only" : ""}
 			${this.disabled ? "disabled" : ""}`;
+			
+		const actionText = this.variant === "action" ? (this.actionLabel || this.placeholder) : this.placeholder;
 
 		return (
 			<Host onKeyDown={!this.isActionable() ? (event: KeyboardEvent) => this.handleKeyDown(event) : undefined}>
@@ -473,7 +477,7 @@ async componentDidLoad() {
 								</span>
 							)}
 							<span class="wrapper__label" part="label">
-								{this.placeholder}
+								{actionText}
 							</span>
 						</a>
 					) : (
@@ -494,7 +498,7 @@ async componentDidLoad() {
 								</span>
 							)}
 							<span class="wrapper__label" part="label">
-								{this.placeholder}
+								{actionText}
 							</span>
 						</button>
 					)

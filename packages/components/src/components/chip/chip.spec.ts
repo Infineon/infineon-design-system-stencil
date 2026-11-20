@@ -97,7 +97,7 @@ describe("ifx-chip", () => {
   it("renders the action variant as a button without a dropdown", async () => {
     const page = await newSpecPage({
       components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
-      html: `<ifx-chip placeholder="Run action" variant="action"></ifx-chip>`,
+      html: `<ifx-chip action-label="Run action" variant="action"></ifx-chip>`,
     });
     const shadowRoot = page.root!.shadowRoot!;
 
@@ -107,10 +107,40 @@ describe("ifx-chip", () => {
     expect(shadowRoot.querySelector(".chip__dropdown")).toBeNull();
   });
 
-  it("does not toggle selection for an action chip unless selectable is enabled", async () => {
+  it("uses action-label, taking precedence over placeholder, as the displayed text for the action variant", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Ignored placeholder" action-label="Run action" variant="action"></ifx-chip>`,
+    });
+    const shadowRoot = page.root!.shadowRoot!;
+
+    expect(shadowRoot.querySelector("button")?.textContent?.trim()).toBe("Run action");
+  });
+
+  it("falls back to placeholder for the action variant when action-label is not set", async () => {
     const page = await newSpecPage({
       components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
       html: `<ifx-chip placeholder="Run action" variant="action"></ifx-chip>`,
+    });
+    const shadowRoot = page.root!.shadowRoot!;
+
+    expect(shadowRoot.querySelector("button")?.textContent?.trim()).toBe("Run action");
+  });
+
+  it("uses action-label as the displayed text for an action variant chip rendered as a link", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip action-label="Visit Infineon" variant="action" href="https://www.infineon.com/"></ifx-chip>`,
+    });
+    const shadowRoot = page.root!.shadowRoot!;
+
+    expect(shadowRoot.querySelector("a")?.textContent?.trim()).toBe("Visit Infineon");
+  });
+
+  it("does not toggle selection for an action chip unless selectable is enabled", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip action-label="Run action" variant="action"></ifx-chip>`,
     });
     const button = page.root!.shadowRoot!.querySelector<HTMLButtonElement>("button")!;
 
