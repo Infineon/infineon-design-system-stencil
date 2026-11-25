@@ -33,19 +33,181 @@ describe("ifx-chip", () => {
 <ifx-chip placeholder="Select an option">
   <template shadowrootmode="open">
     <div class="chip" part="chip">
-      <div aria-controls="dropdown" aria-expanded="false" aria-haspopup="listbox" aria-value="" class="chip__wrapper chip__wrapper--medium chip__wrapper--single outlined" role="combobox" tabindex="0" part="label-wrapper">
-        <div class="wrapper__label" part="label">
+      <button class="chip__wrapper chip__wrapper--action chip__wrapper--medium chip__wrapper--single outlined" part="label-wrapper" tabindex="0" type="button">
+        <span class="wrapper__label" part="label">
           Select an option
-        </div>
-        <div class="wrapper__open-button">
-          <ifx-icon icon="chevron-down-16">
-          </ifx-icon>
-        </div>
-      </div>
+        </span>
+      </button>
     </div>
   </template>
 </ifx-chip>
 `);
+  });
+
+  it("renders a native anchor when href is set", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Visit Infineon" href="https://www.infineon.com/" target="_top" value="selected">
+               <ifx-chip-item value="option1">Option 1</ifx-chip-item>
+             </ifx-chip>`,
+    });
+    const root = page.root!;
+    const shadowRoot = root.shadowRoot!;
+    const anchor = shadowRoot.querySelector<HTMLAnchorElement>("a")!;
+
+    expect(anchor.getAttribute("href")).toBe("https://www.infineon.com/");
+    expect(anchor.getAttribute("target")).toBe("_top");
+    expect(shadowRoot.querySelector("button")).toBeNull();
+    expect(shadowRoot.querySelector(".wrapper__open-button")).toBeNull();
+    expect(shadowRoot.querySelector(".chip__dropdown")).toBeNull();
+    expect(shadowRoot.querySelector("ifx-chip-item")).toBeNull();
+    expect(page.rootInstance.selectedOptions).toEqual([]);
+  });
+
+  it("renders an action button when href is present but empty", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" href="" value="selected">
+               <ifx-chip-item value="option1">Option 1</ifx-chip-item>
+             </ifx-chip>`,
+    });
+    const root = page.root!;
+    const shadowRoot = root.shadowRoot!;
+    const button = shadowRoot.querySelector<HTMLButtonElement>("button")!;
+    const clickSpy = jest.fn();
+    const ifxChangeSpy = jest.fn();
+    root.addEventListener("click", clickSpy);
+    root.addEventListener("ifxChange", ifxChangeSpy);
+
+    expect(button.type).toBe("button");
+    expect(button.textContent.trim()).toBe("Run action");
+    expect(shadowRoot.querySelector("a")).toBeNull();
+    expect(shadowRoot.querySelector(".wrapper__open-button")).toBeNull();
+    expect(shadowRoot.querySelector(".chip__dropdown")).toBeNull();
+    expect(shadowRoot.querySelector("ifx-chip-item")).toBeNull();
+    expect(page.rootInstance.selectedOptions).toEqual([]);
+
+    button.click();
+    await page.waitForChanges();
+
+    expect(clickSpy).toHaveBeenCalledTimes(1);
+    expect(ifxChangeSpy).not.toHaveBeenCalled();
+  });
+
+  it("renders the action variant as a button without a dropdown", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip action-label="Run action" variant="action"></ifx-chip>`,
+    });
+    const shadowRoot = page.root!.shadowRoot!;
+
+    expect(shadowRoot.querySelector("button")?.textContent?.trim()).toBe("Run action");
+    expect(shadowRoot.querySelector("a")).toBeNull();
+    expect(shadowRoot.querySelector(".wrapper__open-button")).toBeNull();
+    expect(shadowRoot.querySelector(".chip__dropdown")).toBeNull();
+  });
+
+  it("uses action-label, taking precedence over placeholder, as the displayed text for the action variant", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Ignored placeholder" action-label="Run action" variant="action"></ifx-chip>`,
+    });
+    const shadowRoot = page.root!.shadowRoot!;
+
+    expect(shadowRoot.querySelector("button")?.textContent?.trim()).toBe("Run action");
+  });
+
+  it("falls back to placeholder for the action variant when action-label is not set", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" variant="action"></ifx-chip>`,
+    });
+    const shadowRoot = page.root!.shadowRoot!;
+
+    expect(shadowRoot.querySelector("button")?.textContent?.trim()).toBe("Run action");
+  });
+
+  it("uses action-label as the displayed text for an action variant chip rendered as a link", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip action-label="Visit Infineon" variant="action" href="https://www.infineon.com/"></ifx-chip>`,
+    });
+    const shadowRoot = page.root!.shadowRoot!;
+
+    expect(shadowRoot.querySelector("a")?.textContent?.trim()).toBe("Visit Infineon");
+  });
+
+  it("does not toggle selection for an action chip unless selectable is enabled", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip action-label="Run action" variant="action"></ifx-chip>`,
+    });
+    const button = page.root!.shadowRoot!.querySelector<HTMLButtonElement>("button")!;
+
+    expect(page.rootInstance.selectable).toBe(false);
+    button.click();
+    await page.waitForChanges();
+
+    expect(page.rootInstance.selected).toBe(false);
+  });
+
+  it("does not enable selection when selectable is an empty attribute", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" variant="action" selectable=""></ifx-chip>`,
+    });
+    const button = page.root!.shadowRoot!.querySelector<HTMLButtonElement>("button")!;
+
+    button.click();
+    await page.waitForChanges();
+
+    expect(page.rootInstance.selected).toBe(false);
+    expect(button.getAttribute("aria-pressed")).toBeNull();
+  });
+
+  it("toggles selection when selectable is explicitly true", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" variant="action" selectable="true"></ifx-chip>`,
+    });
+    const button = page.root!.shadowRoot!.querySelector<HTMLButtonElement>("button")!;
+
+    button.click();
+    await page.waitForChanges();
+
+    expect(page.rootInstance.selected).toBe(true);
+    expect(button.getAttribute("aria-pressed")).toBe("true");
+  });
+
+  it("does not activate a selectable action chip when read-only", async () => {
+    const page = await newSpecPage({
+      components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Run action" variant="action" read-only="true" selectable="true"></ifx-chip>`,
+    });
+    const button = page.root!.shadowRoot!.querySelector<HTMLButtonElement>("button")!;
+    const clickSpy = jest.fn();
+    page.root!.addEventListener("ifxClick", clickSpy);
+
+    expect(button.hasAttribute("disabled")).toBe(false);
+    expect(button.getAttribute("tabindex")).toBe("0");
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+    button.click();
+    button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    await page.waitForChanges();
+
+    expect(page.rootInstance.selected).toBe(false);
+    expect(clickSpy).not.toHaveBeenCalled();
+  });
+
+  it("adds safe rel values for blank action targets", async () => {
+    const page = await newSpecPage({
+      components: [Chip, MockInfineonIconStencil, MockInfineonIndicator],
+      html: `<ifx-chip placeholder="Visit Infineon" href="https://www.infineon.com/" target="_blank"></ifx-chip>`,
+    });
+
+    expect(
+      page.root!.shadowRoot!.querySelector<HTMLAnchorElement>("a")!.getAttribute("rel"),
+    ).toBe("noopener noreferrer");
   });
 
   it("should render with small size", async () => {
@@ -71,7 +233,7 @@ describe("ifx-chip", () => {
   it("should render in readOnly mode", async () => {
     const { root } = await newSpecPage({
       components: [Chip, MockInfineonIconStencil, MockInfineonIndicator],
-      html: `<ifx-chip placeholder="Select an option" read-only="true"></ifx-chip>`,
+      html: `<ifx-chip placeholder="Select an option" read-only="true"><ifx-chip-item value="option1">Option 1</ifx-chip-item></ifx-chip>`,
     });
 
     const wrapper = root.shadowRoot.querySelector(".chip__wrapper");
@@ -88,7 +250,7 @@ describe("ifx-chip", () => {
         MockInfineonIconStencil,
         MockInfineonIndicator,
       ],
-      html: `<ifx-chip placeholder="Select an option" value="option1"></ifx-chip>`,
+      html: `<ifx-chip placeholder="Select an option" value="option1"><ifx-chip-item value="option1">Option 1</ifx-chip-item></ifx-chip>`,
     });
 
     const chip = page.rootInstance;
@@ -107,7 +269,7 @@ describe("ifx-chip", () => {
         MockInfineonIconStencil,
         MockInfineonIndicator,
       ],
-      html: `<ifx-chip placeholder="Select options" variant="multi"></ifx-chip>`,
+      html: `<ifx-chip placeholder="Select options" variant="multi"><ifx-chip-item value="option1">Option 1</ifx-chip-item><ifx-chip-item value="option2">Option 2</ifx-chip-item></ifx-chip>`,
     });
 
     // Set value prop programmatically
@@ -409,7 +571,7 @@ describe("ifx-chip", () => {
         MockInfineonIconStencil,
         MockInfineonIndicator,
       ],
-      html: `<ifx-chip placeholder="Select options"></ifx-chip>`,
+      html: `<ifx-chip placeholder="Select options"><ifx-chip-item value="option1">Option 1</ifx-chip-item><ifx-chip-item value="option2">Option 2</ifx-chip-item><ifx-chip-item value="option3">Option 3</ifx-chip-item></ifx-chip>`,
     });
 
     const chip = page.rootInstance;

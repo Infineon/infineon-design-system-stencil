@@ -7,6 +7,11 @@ const handleChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleClick = (event: CustomEvent) => {
+  console.log('ifxClick:', event);
+  // Add your handler logic here
+};
+
 const handleChipItemSelect = (event: CustomEvent) => {
   console.log('ifxChipItemSelect:', event);
   // Add your handler logic here
@@ -15,6 +20,11 @@ const handleChipItemSelect = (event: CustomEvent) => {
 const codeString = `<script setup lang="ts">
 const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event);
+  // Add your handler logic here
+};
+
+const handleClick = (event: CustomEvent) => {
+  console.log('ifxClick:', event);
   // Add your handler logic here
 };
 
@@ -28,15 +38,21 @@ ${'</'}script>
   <div>
     <ifx-chip
       placeholder="Label"
+      action-label=""
       size="medium"
       variant="single"
       theme="outlined"
       icon=""
       aria-label="Chip"
+      href=""
+      target="_blank"
       :read-only="false"
+      :selected="false"
       value="Item Value"
       :disabled="false"
-      @ifxChange="handleChange">
+      :selectable="true"
+      @ifxChange="handleChange"
+      @ifxClick="handleClick">
       <ifx-chip-item
         value="Item Value 1"
         @ifxChipItemSelect="handleChipItemSelect">
@@ -61,15 +77,21 @@ ${'</'}template>`;
   <div>
     <ifx-chip
       placeholder="Label"
+      action-label=""
       size="medium"
       variant="single"
       theme="outlined"
       icon=""
       aria-label="Chip"
+      href=""
+      target="_blank"
       :read-only="false"
+      :selected="false"
       value="Item Value"
       :disabled="false"
-      @ifxChange="handleChange">
+      :selectable="true"
+      @ifxChange="handleChange"
+      @ifxClick="handleClick">
       <ifx-chip-item
         value="Item Value 1"
         @ifxChipItemSelect="handleChipItemSelect">
