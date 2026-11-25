@@ -7,6 +7,11 @@ const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleNavbarNavigationItem = (event: CustomEvent) => {
+  console.log('ifxNavbarNavigationItem:', event);
+  // Add your handler logic here
+};
+
 const handleNavItem = (event: CustomEvent) => {
   console.log('ifxNavItem:', event);
   // Add your handler logic here
@@ -25,6 +30,11 @@ const handleOpen = (event: CustomEvent) => {
 const codeString = `<script setup lang="ts">
 const handleNavbarMobileMenuIsOpen = (event: CustomEvent) => {
   console.log('ifxNavbarMobileMenuIsOpen:', event);
+  // Add your handler logic here
+};
+
+const handleNavbarNavigationItem = (event: CustomEvent) => {
+  console.log('ifxNavbarNavigationItem:', event);
   // Add your handler logic here
 };
 
@@ -60,6 +70,7 @@ ${'</'}script>
         target="_self"
         href=""
         :hide-on-mobile="true"
+        @ifxNavbarNavigationItem="handleNavbarNavigationItem"
         @ifxNavItem="handleNavItem">
         <ifx-navbar-item icon="">
           <ifx-navbar-item>
@@ -173,6 +184,7 @@ ${'</'}template>`;
         target="_self"
         href=""
         :hide-on-mobile="true"
+        @ifxNavbarNavigationItem="handleNavbarNavigationItem"
         @ifxNavItem="handleNavItem">
         <ifx-navbar-item icon="">
           <ifx-navbar-item>

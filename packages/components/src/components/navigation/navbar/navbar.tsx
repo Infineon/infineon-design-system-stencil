@@ -175,6 +175,40 @@ export class Navbar {
     }
 	}
 
+  @Listen("ifxNavbarNavigationItem")
+  handleNavigationItemActivated(event: CustomEvent<HTMLIfxNavbarItemElement>) {
+    const selectedItem = event.detail;
+    const showLabel =
+      selectedItem.getAttribute("data-navbar-original-show-label") ??
+      String(selectedItem.showLabel);
+    if (selectedItem.icon && showLabel === "false") return;
+
+    let activeItem = selectedItem;
+    let parentElement = selectedItem.parentElement;
+    while (parentElement && parentElement !== this.el) {
+      if (this.isNavbarItem(parentElement)) {
+        activeItem = parentElement;
+      }
+      parentElement = parentElement.parentElement;
+    }
+
+    const hasNestedActiveItem = activeItem !== selectedItem;
+    const navbarItems = this.el.querySelectorAll("ifx-navbar-item");
+    navbarItems.forEach((item) => {
+      const isActive = item === (hasNestedActiveItem ? selectedItem : activeItem);
+      item.active = isActive;
+      if (isActive) {
+        item.setAttribute("active", "true");
+      } else {
+        item.removeAttribute("active");
+      }
+      item.classList.toggle(
+        "has-active-child",
+        hasNestedActiveItem && item === activeItem,
+      );
+    });
+  }
+
 	private isNavbarItem(element: Element): element is HTMLIfxNavbarItemElement {
 		return (
 			typeof (element as HTMLIfxNavbarItemElement).hideComponent === "function"
