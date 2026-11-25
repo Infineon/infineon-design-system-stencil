@@ -1,3 +1,15 @@
+# v42.4.5 (Wed Nov 25 2026)
+
+#### 🐛 Bug Fix
+
+- Accordion: makes height re-sizing dynamic [#2627](https://github.com/Infineon/infineon-design-system-stencil/pull/2627) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.4.4 (Tue Nov 17 2026)
 
 #### 🐛 Bug Fix
