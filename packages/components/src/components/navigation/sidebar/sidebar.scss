@@ -3,7 +3,8 @@
 :host {
   height: 100%;
   display: inline-flex;
-  width: 100%;
+  width: auto;
+  flex-shrink: 0; 
 }
 
 .sidebar__container {
