@@ -71,12 +71,17 @@ export class AccordionItem {
 
 	private openAccordionItem() {
 		if (this.internalOpen) {
-			this.contentEl.style.height = `${this.contentEl.scrollHeight}px`;
+			const inner = this.getInnerContentWrapper() as HTMLElement;
+			this.contentEl.style.height = `${inner.offsetHeight}px`;
 			this.contentEl.style.overflow = "hidden";
 		} else {
 			this.contentEl.style.height = "0";
 			this.contentEl.style.overflow = "hidden";
 		}
+	}
+
+	disconnectedCallback() {
+		this.resizeObserver?.disconnect();
 	}
 
 	private getInnerContentWrapper() {
