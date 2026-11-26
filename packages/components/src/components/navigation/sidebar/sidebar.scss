@@ -1,10 +1,9 @@
 @use "@infineon/design-system-tokens/dist/tokens";
 
 :host {
+  display: flex;
+  flex: none;
   height: 100%;
-  display: inline-flex;
-  width: auto;
-  flex-shrink: 0; 
 }
 
 .sidebar__container {

@@ -248,6 +248,15 @@
   flex-direction: column;
 }
 
+.ifx-select-dropdown-menu--top-layer {
+  position: fixed;
+  inset: auto;
+  margin: 0 !important;
+  padding: 0 0 tokens.$ifxSpace100;
+  overflow: visible;
+  color: tokens.$ifxColorBaseBlack;
+}
+
 .ifx-select-dropdown-search {
   padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
   border-bottom: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;

@@ -1869,6 +1869,11 @@ export namespace Components {
      */
     interface IfxSelect {
         /**
+          * Renders the dropdown in the top layer so parent clipping can't cut it off.
+          * @default false
+         */
+        "appendToBody": boolean;
+        /**
           * ARIA label for the clear button.
           * @default "Clear selection"
          */
@@ -6518,6 +6523,11 @@ declare namespace LocalJSX {
      */
     interface IfxSelect {
         /**
+          * Renders the dropdown in the top layer so parent clipping can't cut it off.
+          * @default false
+         */
+        "appendToBody"?: boolean;
+        /**
           * ARIA label for the clear button.
           * @default "Clear selection"
          */
@@ -8121,6 +8131,7 @@ declare namespace LocalJSX {
         "ariaClearLabel": string;
         "ariaSelectLabelledBy": string;
         "ariaSelectDescribedBy": string;
+        "appendToBody": boolean;
     }
     interface IfxSelectGroupAttributes {
         "label": string;
