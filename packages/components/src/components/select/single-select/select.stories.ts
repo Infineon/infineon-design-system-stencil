@@ -30,6 +30,7 @@ export default {
 		ariaClearLabel: "Clear selection",
 		ariaSelectLabelledBy: "",
 		ariaSelectDescribedBy: "",
+		appendToBody: false,
 	},
 	argTypes: {
 		size: {
@@ -90,6 +91,13 @@ export default {
 			description: "Placeholder text for the search input.",
 			table: { category: "ifx-select props" },
 		},
+		appendToBody: {
+				name: "append-to-body",
+				description:
+						"Renders the dropdown in the top layer so parent clipping (overflow hidden, transform) can't cut it off.",
+				control: "boolean",
+				table: { category: "ifx-select props", defaultValue: { summary: false } },
+		},
 		ariaSelectLabel: {
 			description: "ARIA label for the select (fallback when no visible label is set).",
 			table: { category: "ARIA Labels" },
@@ -137,6 +145,7 @@ const baseTemplate = (args: any, slot: unknown) => {
 		placeholder="${args.placeholder}"
 		?show-clear-button="${args.showClearButton}"
 		?show-search="${args.showSearch}"
+		?append-to-body="${args.appendToBody}"
 		search-placeholder-value="${args.searchPlaceholderValue}"
 		?disabled="${args.disabled}"
 		?read-only="${args.readOnly}"
@@ -188,3 +197,9 @@ export const WithGroups: any = (args: any) => baseTemplate(args, groupedOptions)
 WithGroups.args = { label: "KPI", showSearch: true };
 
 export const Separator: any = (args: any) => baseTemplate(args, separatorOptions);
+
+export const AppendToBody: any = (args: any) =>
+    html`<div style="height: 80px; overflow: hidden; border: 1px dashed red;">
+        ${baseTemplate(args, flatOptions)}
+    </div>`;
+AppendToBody.args = { label: "Inside overflow: hidden", appendToBody: true };
