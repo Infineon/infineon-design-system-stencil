@@ -19,42 +19,11 @@
     </style>
 
     <script>
-      
-      const opensModal = () => { 
-        const mymodal = document.getElementById('mymodal');
-        mymodal.opened = true;
-      }
-
+    
     </script>
   </head>
 
 <body>
-
-  <div>
-  <ifx-modal id="mymodal" caption="Modal Title" caption-aria-label="Additional information for caption"
-    close-button-aria-label="Close modal" variant="default" close-on-overlay-click="false" show-close-button="true"
-    size="s">
-    <div slot="content">
-      <span>Modal content</span>
-      <ifx-select size="m" placeholder="true" show-clear-button="" show-search="" search-placeholder-value="Search..."
-      label="" caption="" placeholder-value="Placeholder" aria-select-label="Select" aria-search-label="Search options"
-      aria-clear-label="Clear selection" aria-select-labelled-by="" aria-select-described-by="">
-
-      <ifx-select-option value="a">Option A</ifx-select-option>
-      <ifx-select-option value="b">Option B</ifx-select-option>
-      <ifx-select-option value="c">Option C</ifx-select-option>
-      <ifx-select-option value="d" disabled="">Option D (disabled)</ifx-select-option>
-
-    </ifx-select>
-    </div>
-    <div slot="buttons">
-      <ifx-button variant="secondary">Cancel</ifx-button>
-      <ifx-button>OK</ifx-button>
-    </div>
-  </ifx-modal>
-  <ifx-button onclick="opensModal()">Open Modal</ifx-button>
-</div>
-
 
 </body>
 </html>
