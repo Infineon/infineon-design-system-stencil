@@ -630,6 +630,7 @@ export const IfxMultiselect: StencilVueComponent<JSX.IfxMultiselect> = /*@__PURE
   'ariaSelectAllLabel',
   'ariaExpandAllLabel',
   'ariaCollapseAllLabel',
+  'appendToBody',
   'ifxSelect',
   'ifxOpen',
   'ifxClear'

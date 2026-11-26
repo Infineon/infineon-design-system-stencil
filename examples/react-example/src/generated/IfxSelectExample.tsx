@@ -41,6 +41,7 @@ export function IfxSelectExample() {
         disabled={false}
         readOnly={false}
         required={false}
+        appendToBody={false}
         onIfxClear={handleClear}
         onIfxInput={handleInput}
         onIfxOpen={handleOpen}
@@ -110,6 +111,7 @@ export function IfxSelectExample() {
         disabled={false}
         readOnly={false}
         required={false}
+        appendToBody={false}
         onIfxClear={handleClear}
         onIfxInput={handleInput}
         onIfxOpen={handleOpen}

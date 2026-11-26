@@ -56,6 +56,7 @@ export class IfxSelectExample {
     [disabled]=&quot;false&quot;
     [readOnly]=&quot;false&quot;
     [required]=&quot;false&quot;
+    [appendToBody]=&quot;false&quot;
     (ifxClear)=&quot;handleClear(\$any(\$event))&quot;
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
     (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;

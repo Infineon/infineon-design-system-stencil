@@ -61,6 +61,7 @@ export class IfxMultiselectGroupedExample {
     aria-select-all-label=&quot;Select all options&quot;
     aria-expand-all-label=&quot;Expand all categories&quot;
     aria-collapse-all-label=&quot;Collapse all categories&quot;
+    [appendToBody]=&quot;false&quot;
     (ifxClear)=&quot;handleClear(\$any(\$event))&quot;
     (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
     (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;&gt;
