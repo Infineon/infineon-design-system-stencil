@@ -876,6 +876,7 @@ export const IfxSelect: StencilVueComponent<JSX.IfxSelect, JSX.IfxSelect["value"
   'ariaSelectLabelledBy',
   'ariaSelectDescribedBy',
   'options',
+  'appendToBody',
   'ifxSelect',
   'ifxClear',
   'ifxInput',
