@@ -1,3 +1,15 @@
+# v42.4.6 (Thu Nov 26 2026)
+
+#### 🐛 Bug Fix
+
+- Sidebar: Fixes overflow in Flex Layout bug [#2628](https://github.com/Infineon/infineon-design-system-stencil/pull/2628) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v42.4.5 (Wed Nov 25 2026)
 
 #### 🐛 Bug Fix
