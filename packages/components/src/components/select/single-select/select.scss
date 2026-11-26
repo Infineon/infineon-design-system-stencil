@@ -249,6 +249,7 @@
 }
 
 .ifx-select-dropdown-menu--top-layer {
+  visibility: hidden;
   position: fixed;
   inset: auto;
   margin: 0 !important;

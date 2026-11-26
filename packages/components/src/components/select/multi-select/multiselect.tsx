@@ -114,6 +114,9 @@ export class Multiselect {
 	/** ARIA label for the “Collapse all categories” control. */
 	@Prop() readonly ariaCollapseAllLabel: string = "Collapse all categories";
 
+	/** Renders the dropdown in the top layer so parent clipping can't cut it off. */
+	@Prop() readonly appendToBody: boolean = false;
+
 	@State() internalError: boolean = false;
 	@State() persistentSelectedOptions: Option[] = [];
 	@State() dropdownOpen = false;
@@ -137,6 +140,7 @@ export class Multiselect {
 	private dropdownElement!: HTMLElement;
 	private resizeObserver?: ResizeObserver;
 	private measurementScheduled = false;
+	private menuEl?: HTMLElement;
 
 	@AttachInternals() internals!: ElementInternals;
 
@@ -152,6 +156,40 @@ export class Multiselect {
 		return !option.shadowRoot
 			?.querySelector(".option")
 			?.classList.contains("search-hidden");
+	}
+
+	private positionTopLayerMenu() {
+			const wrapper = this.el.shadowRoot?.querySelector(".ifx-multiselect-wrapper");
+			if (!wrapper || !this.menuEl) return;
+			const r = wrapper.getBoundingClientRect();
+			const gap = 4;
+			const s = this.menuEl.style;
+			s.left = `${r.left}px`;
+			s.width = `${r.width}px`;
+			if (this.dropdownFlipped) {
+					s.top = "auto";
+					s.bottom = `${window.innerHeight - r.top + gap}px`;
+			} else {
+					s.bottom = "auto";
+					s.top = `${r.bottom + gap}px`;
+			}
+		s.visibility = "visible";
+	}
+
+	private handleViewportChange = () => {
+			this.positionDropdown();
+			this.positionTopLayerMenu();
+	};
+
+	private addViewportListeners() {
+			if (!this.appendToBody) return;
+			window.addEventListener("scroll", this.handleViewportChange, true);
+			window.addEventListener("resize", this.handleViewportChange);
+	}
+
+	private removeViewportListeners() {
+			window.removeEventListener("scroll", this.handleViewportChange, true);
+			window.removeEventListener("resize", this.handleViewportChange);
 	}
 
 	private updateGroupVisibility(searchActive: boolean) {
@@ -541,11 +579,22 @@ export class Multiselect {
 	}
 
 	componentDidRender() {
-		this.scheduleSelectedOptionsMeasurement();
+			this.scheduleSelectedOptionsMeasurement(); // multiselect only
+			if (!this.appendToBody || !this.dropdownOpen || !this.menuEl) return;
+			this.positionTopLayerMenu();
+			if (
+					typeof this.menuEl.showPopover === "function" &&
+					!this.menuEl.matches(":popover-open")
+			) {
+					this.menuEl.setAttribute("popover", "manual");
+					this.menuEl.showPopover();
+			}
 	}
 
 	disconnectedCallback() {
-		this.resizeObserver?.disconnect();
+			this.resizeObserver?.disconnect();
+			document.removeEventListener("click", this.handleDocumentClick);
+			this.removeViewportListeners();
 	}
 
 	componentWillLoad() {
@@ -625,6 +674,7 @@ export class Multiselect {
 		const path = event.composedPath();
 		if (!path.includes(this.dropdownElement)) {
 			this.dropdownOpen = false;
+			this.removeViewportListeners();
 			document.removeEventListener("click", this.handleDocumentClick);
 			this.resetSearch();
 			this.ifxOpen.emit(this.dropdownOpen);
@@ -632,15 +682,17 @@ export class Multiselect {
 	};
 
 	private toggleDropdown() {
-		this.dropdownOpen = !this.dropdownOpen;
-		setTimeout(() => {
-			if (this.dropdownOpen) {
-				document.addEventListener("click", this.handleDocumentClick);
-			} else {
-				this.resetSearch();
-			}
-			this.ifxOpen.emit(this.dropdownOpen);
-		}, 0);
+			this.dropdownOpen = !this.dropdownOpen;
+			setTimeout(() => {
+					if (this.dropdownOpen) {
+							document.addEventListener("click", this.handleDocumentClick);
+							this.addViewportListeners();
+					} else {
+							this.removeViewportListeners();
+							this.resetSearch();
+					}
+					this.ifxOpen.emit(this.dropdownOpen);
+			}, 0);
 	}
 
 	private resetSearch() {
@@ -1031,7 +1083,10 @@ export class Multiselect {
 						{hasSelections && this.renderSelectedOptionsMeasurement()}
 					</div>
 					{this.dropdownOpen && (
-						<div class="ifx-multiselect-dropdown-menu">
+						<div
+									class={`ifx-multiselect-dropdown-menu ${this.appendToBody ? "ifx-multiselect-dropdown-menu--top-layer" : ""}`}
+									ref={(el) => (this.menuEl = el as HTMLElement)}
+							>
 							{(this.showSearch ||
 								this.showSelectAll ||
 								(this.showExpandCollapse && !isFlatMultiselect)) && (

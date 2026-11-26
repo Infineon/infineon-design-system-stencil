@@ -156,15 +156,15 @@ export class Select {
 	}
 
 	componentDidRender() {
-		if (!this.appendToBody || !this.dropdownOpen || !this.menuEl) return;
-		if (
-			typeof this.menuEl.showPopover === "function" &&
-			!this.menuEl.matches(":popover-open")
-		) {
-			this.menuEl.setAttribute("popover", "manual");
-			this.menuEl.showPopover();
-		}
-		this.positionTopLayerMenu();
+			if (!this.appendToBody || !this.dropdownOpen || !this.menuEl) return;
+			this.positionTopLayerMenu();
+			if (
+					typeof this.menuEl.showPopover === "function" &&
+					!this.menuEl.matches(":popover-open")
+			) {
+					this.menuEl.setAttribute("popover", "manual");
+					this.menuEl.showPopover();
+			}
 	}
 
 	disconnectedCallback() {
@@ -237,6 +237,7 @@ export class Select {
 			s.bottom = "auto";
 			s.top = `${r.bottom + gap}px`;
 		}
+		s.visibility = "visible";
 	}
 
 	private handleViewportChange = () => {

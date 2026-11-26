@@ -1127,6 +1127,11 @@ export namespace Components {
     }
     interface IfxMultiselect {
         /**
+          * Renders the dropdown in the top layer so parent clipping can't cut it off.
+          * @default false
+         */
+        "appendToBody": boolean;
+        /**
           * ARIA label for the “Clear all” button.
           * @default "Clear all selections"
          */
@@ -5778,6 +5783,11 @@ declare namespace LocalJSX {
     }
     interface IfxMultiselect {
         /**
+          * Renders the dropdown in the top layer so parent clipping can't cut it off.
+          * @default false
+         */
+        "appendToBody"?: boolean;
+        /**
           * ARIA label for the “Clear all” button.
           * @default "Clear all selections"
          */
@@ -7982,6 +7992,7 @@ declare namespace LocalJSX {
         "ariaSelectAllLabel": string;
         "ariaExpandAllLabel": string;
         "ariaCollapseAllLabel": string;
+        "appendToBody": boolean;
     }
     interface IfxMultiselectGroupAttributes {
         "label": string;
