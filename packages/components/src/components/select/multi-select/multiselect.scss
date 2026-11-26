@@ -334,6 +334,16 @@
     flex-direction: column;
   }
 
+  .ifx-multiselect-dropdown-menu--top-layer {
+    visibility: hidden;
+    position: fixed;
+    inset: auto;
+    margin: 0 !important;
+    padding: 0 0 tokens.$ifxSpace100;
+    overflow: visible;
+    color: tokens.$ifxColorBaseBlack;
+  }
+
    &:not(.disabled) .ifx-multiselect-wrapper:hover:not(.focus, :focus) {
     border-color: tokens.$ifxColorEngineering500;
   }

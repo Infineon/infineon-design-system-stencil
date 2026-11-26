@@ -1127,6 +1127,11 @@ export namespace Components {
     }
     interface IfxMultiselect {
         /**
+          * Renders the dropdown in the top layer so parent clipping can't cut it off.
+          * @default false
+         */
+        "appendToBody": boolean;
+        /**
           * ARIA label for the “Clear all” button.
           * @default "Clear all selections"
          */
@@ -1868,6 +1873,11 @@ export namespace Components {
      * slot-based architecture mirroring `ifx-multiselect`.
      */
     interface IfxSelect {
+        /**
+          * Renders the dropdown in the top layer so parent clipping can't cut it off.
+          * @default false
+         */
+        "appendToBody": boolean;
         /**
           * ARIA label for the clear button.
           * @default "Clear selection"
@@ -5773,6 +5783,11 @@ declare namespace LocalJSX {
     }
     interface IfxMultiselect {
         /**
+          * Renders the dropdown in the top layer so parent clipping can't cut it off.
+          * @default false
+         */
+        "appendToBody"?: boolean;
+        /**
           * ARIA label for the “Clear all” button.
           * @default "Clear all selections"
          */
@@ -6517,6 +6532,11 @@ declare namespace LocalJSX {
      * slot-based architecture mirroring `ifx-multiselect`.
      */
     interface IfxSelect {
+        /**
+          * Renders the dropdown in the top layer so parent clipping can't cut it off.
+          * @default false
+         */
+        "appendToBody"?: boolean;
         /**
           * ARIA label for the clear button.
           * @default "Clear selection"
@@ -7972,6 +7992,7 @@ declare namespace LocalJSX {
         "ariaSelectAllLabel": string;
         "ariaExpandAllLabel": string;
         "ariaCollapseAllLabel": string;
+        "appendToBody": boolean;
     }
     interface IfxMultiselectGroupAttributes {
         "label": string;
@@ -8121,6 +8142,7 @@ declare namespace LocalJSX {
         "ariaClearLabel": string;
         "ariaSelectLabelledBy": string;
         "ariaSelectDescribedBy": string;
+        "appendToBody": boolean;
     }
     interface IfxSelectGroupAttributes {
         "label": string;

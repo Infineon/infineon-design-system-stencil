@@ -96,6 +96,8 @@ export class Select {
 	 * (optionally grouped with `<ifx-select-group>`) instead of an options array.
 	 */
 	@Prop() readonly options: unknown;
+	/** Renders the dropdown in the top layer so parent clipping can't cut it off. */
+	@Prop() readonly appendToBody: boolean = false;
 
 	@State() selectedLabel: string = "";
 	@State() dropdownOpen = false;
@@ -124,6 +126,7 @@ export class Select {
 	private labelId!: string;
 	private captionId!: string;
 	private listboxId!: string;
+	private menuEl?: HTMLElement;
 
 	componentWillLoad() {
 		this.internalError = this.error;
@@ -143,7 +146,7 @@ export class Select {
 		}
 		this.el.addEventListener(
 			"ifx-option-changed",
-			this.handleOptionChanged as EventListener,
+			this.handleOptionChanged as EventListener
 		);
 		// Child options upgrade before the parent's componentDidLoad, so reading their
 		// initial `selected` state here is reliable (and catches static markup).
@@ -152,12 +155,26 @@ export class Select {
 		setTimeout(() => this.positionDropdown(), 500);
 	}
 
+	componentDidRender() {
+			if (!this.appendToBody || !this.dropdownOpen || !this.menuEl) return;
+			this.positionTopLayerMenu();
+			if (
+					typeof this.menuEl.showPopover === "function" &&
+					!this.menuEl.matches(":popover-open")
+			) {
+					this.menuEl.setAttribute("popover", "manual");
+					this.menuEl.showPopover();
+			}
+	}
+
 	disconnectedCallback() {
 		this.el.removeEventListener(
 			"ifx-option-changed",
-			this.handleOptionChanged as EventListener,
+			this.handleOptionChanged as EventListener
 		);
 		document.removeEventListener("click", this.handleDocumentClick);
+		window.removeEventListener("scroll", this.handleViewportChange, true);
+		window.removeEventListener("resize", this.handleViewportChange);
 	}
 
 	@Watch("error")
@@ -184,7 +201,7 @@ export class Select {
 
 	private warnOptionsDeprecated() {
 		console.warn(
-			"[ifx-select] The `options` prop was removed. Provide options as slotted <ifx-select-option> children (optionally grouped with <ifx-select-group>). See the migration guide.",
+			"[ifx-select] The `options` prop was removed. Provide options as slotted <ifx-select-option> children (optionally grouped with <ifx-select-group>). See the migration guide."
 		);
 	}
 
@@ -203,6 +220,29 @@ export class Select {
 		if (!clearEvent.defaultPrevented) {
 			this.clearSelection();
 		}
+	};
+
+	private positionTopLayerMenu() {
+		const wrapper = this.el.shadowRoot?.querySelector(".ifx-select-wrapper");
+		if (!wrapper || !this.menuEl) return;
+		const r = wrapper.getBoundingClientRect();
+		const gap = 4;
+		const s = this.menuEl.style;
+		s.left = `${r.left}px`;
+		s.width = `${r.width}px`;
+		if (this.dropdownFlipped) {
+			s.top = "auto";
+			s.bottom = `${window.innerHeight - r.top + gap}px`;
+		} else {
+			s.bottom = "auto";
+			s.top = `${r.bottom + gap}px`;
+		}
+		s.visibility = "visible";
+	}
+
+	private handleViewportChange = () => {
+		this.positionDropdown();
+		this.positionTopLayerMenu();
 	};
 
 	/** Public API — returns the currently selected value. */
@@ -283,11 +323,11 @@ export class Select {
 			}
 		});
 		this.selectedLabel = label;
-		this.internals?.setFormValue?.(hasValue ? (this.value ?? null) : null);
+		this.internals?.setFormValue?.(hasValue ? this.value ?? null : null);
 		if (this.required && !hasValue && !this.isDisabled()) {
 			this.internals?.setValidity?.(
 				{ valueMissing: true },
-				"Please select an option.",
+				"Please select an option."
 			);
 		} else {
 			this.internals?.setValidity?.({});
@@ -309,7 +349,7 @@ export class Select {
 
 	formStateRestoreCallback(
 		state: string | null,
-		_mode: "restore" | "autocomplete",
+		_mode: "restore" | "autocomplete"
 	) {
 		this.value = state ?? "";
 		this.applyValueToOptions();
@@ -326,6 +366,10 @@ export class Select {
 	private openDropdown() {
 		if ((this.isDisabled() && !this.internalError) || this.readOnly) return;
 		if (this.dropdownOpen) return;
+		if (this.appendToBody) {
+			window.addEventListener("scroll", this.handleViewportChange, true);
+			window.addEventListener("resize", this.handleViewportChange);
+		}
 		this.positionDropdown();
 		this.dropdownOpen = true;
 		this.focusedIndex = -1;
@@ -340,6 +384,8 @@ export class Select {
 		this.dropdownOpen = false;
 		this.focusedIndex = -1;
 		document.removeEventListener("click", this.handleDocumentClick);
+		window.removeEventListener("scroll", this.handleViewportChange, true);
+		window.removeEventListener("resize", this.handleViewportChange);
 		this.resetSearch();
 		this.ifxOpen.emit(false);
 	}
@@ -385,7 +431,7 @@ export class Select {
 				option.dispatchEvent(
 					new CustomEvent("ifx-search-filter", {
 						detail: { searchTerm: term, isActive: active },
-					}),
+					})
 				);
 			});
 			setTimeout(() => this.updateSearchVisibility(active), 200);
@@ -396,13 +442,13 @@ export class Select {
 		// Hide group headers whose options are all filtered out.
 		this.el.querySelectorAll("ifx-select-group").forEach((group) => {
 			const anyVisible = Array.from(
-				group.querySelectorAll("ifx-select-option"),
+				group.querySelectorAll("ifx-select-option")
 			).some((o) => this.isOptionVisible(o as HTMLElement));
 			group.classList.toggle("group--empty", active && !anyVisible);
 		});
 
 		const anyVisible = this.getOptionElements().some((o) =>
-			this.isOptionVisible(o),
+			this.isOptionVisible(o)
 		);
 		const container = this.el.shadowRoot?.querySelector(".ifx-select-options");
 		container?.classList.toggle("show-no-results", active && !anyVisible);
@@ -424,7 +470,7 @@ export class Select {
 	private resetSearch() {
 		this.searchTerm = "";
 		const searchField = this.el.shadowRoot?.querySelector(
-			"ifx-search-field",
+			"ifx-search-field"
 		) as HTMLIfxSearchFieldElement | null;
 		if (searchField) {
 			searchField.value = "";
@@ -439,7 +485,7 @@ export class Select {
 			option.dispatchEvent(
 				new CustomEvent("ifx-search-filter", {
 					detail: { searchTerm: "", isActive: false },
-				}),
+				})
 			);
 		});
 		this.showSeparators();
@@ -457,7 +503,7 @@ export class Select {
 
 	private getNavigableOptions(): HTMLIfxSelectOptionElement[] {
 		return this.getOptionElements().filter(
-			(o) => !o.disabled && !this.isOptionHidden(o),
+			(o) => !o.disabled && !this.isOptionHidden(o)
 		);
 	}
 
@@ -533,7 +579,7 @@ export class Select {
 		});
 	}
 
-	private hideSeparators(){
+	private hideSeparators() {
 		this.setSeparatorsHidden(true);
 	}
 
@@ -546,10 +592,10 @@ export class Select {
 		const stateClass = this.readOnly
 			? "readOnly"
 			: this.internalError
-				? "error"
-				: this.isDisabled()
-					? "disabled"
-					: "";
+			? "error"
+			: this.isDisabled()
+			? "disabled"
+			: "";
 
 		const labelledBy =
 			this.ariaSelectLabelledBy || (this.label ? this.labelId : undefined);
@@ -558,7 +604,9 @@ export class Select {
 
 		return (
 			<div
-				class={`ifx-select-container ${this.size === "s" ? "small-select" : "medium-select"} ${stateClass}`}
+				class={`ifx-select-container ${
+					this.size === "s" ? "small-select" : "medium-select"
+				} ${stateClass}`}
 				ref={(el) => (this.dropdownElement = el as HTMLElement)}
 			>
 				<div class="ifx-label-wrapper">
@@ -567,7 +615,9 @@ export class Select {
 							<span id={this.labelId}>{this.label}</span>
 							{this.required && (
 								<span
-									class={`required ${!this.readOnly && this.internalError ? "error" : ""}`}
+									class={`required ${
+										!this.readOnly && this.internalError ? "error" : ""
+									}`}
 								>
 									*
 								</span>
@@ -577,7 +627,9 @@ export class Select {
 				</div>
 
 				<div
-					class={`ifx-select-wrapper ${this.dropdownOpen ? "active" : ""} ${this.dropdownFlipped ? "is-flipped" : ""} ${stateClass}`}
+					class={`ifx-select-wrapper ${this.dropdownOpen ? "active" : ""} ${
+						this.dropdownFlipped ? "is-flipped" : ""
+					} ${stateClass}`}
 					role="combobox"
 					aria-labelledby={labelledBy}
 					aria-label={labelledBy ? undefined : this.ariaSelectLabel}
@@ -602,12 +654,15 @@ export class Select {
 						{this.hasValue()
 							? this.selectedLabel || this.value
 							: this.placeholder
-								? this.placeholderValue
-								: ""}
+							? this.placeholderValue
+							: ""}
 					</div>
 
 					{this.dropdownOpen && (
-						<div class="ifx-select-dropdown-menu">
+						<div
+							class={`ifx-select-dropdown-menu ${ this.appendToBody ? "ifx-select-dropdown-menu--top-layer" : ""}`}
+							ref={(el) => (this.menuEl = el as HTMLElement)}
+						>
 							{this.showSearch && (
 								<div
 									class="ifx-select-dropdown-search"
@@ -629,7 +684,7 @@ export class Select {
 										}}
 										onIfxInput={(event: CustomEvent) =>
 											this.handleSearch(
-												event.target as HTMLIfxSearchFieldElement,
+												event.target as HTMLIfxSearchFieldElement
 											)
 										}
 									></ifx-search-field>

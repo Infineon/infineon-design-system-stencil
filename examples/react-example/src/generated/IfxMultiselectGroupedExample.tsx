@@ -46,6 +46,7 @@ export function IfxMultiselectGroupedExample() {
         ariaSelectAllLabel="Select all options"
         ariaExpandAllLabel="Expand all categories"
         ariaCollapseAllLabel="Collapse all categories"
+        appendToBody={false}
         onIfxClear={handleClear}
         onIfxOpen={handleOpen}
         onIfxSelect={handleSelect}>
@@ -121,6 +122,7 @@ export function IfxMultiselectExample() {
         ariaSelectAllLabel="Select all options"
         ariaExpandAllLabel="Expand all categories"
         ariaCollapseAllLabel="Collapse all categories"
+        appendToBody={false}
         onIfxClear={handleClear}
         onIfxOpen={handleOpen}
         onIfxSelect={handleSelect}>

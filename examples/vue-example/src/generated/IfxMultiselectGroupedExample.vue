@@ -64,6 +64,7 @@ ${'</'}script>
       aria-select-all-label="Select all options"
       aria-expand-all-label="Expand all categories"
       aria-collapse-all-label="Collapse all categories"
+      :append-to-body="false"
       @ifxClear="handleClear"
       @ifxOpen="handleOpen"
       @ifxSelect="handleSelect">
@@ -119,6 +120,7 @@ ${'</'}template>`;
       aria-select-all-label="Select all options"
       aria-expand-all-label="Expand all categories"
       aria-collapse-all-label="Collapse all categories"
+      :append-to-body="false"
       @ifxClear="handleClear"
       @ifxOpen="handleOpen"
       @ifxSelect="handleSelect">

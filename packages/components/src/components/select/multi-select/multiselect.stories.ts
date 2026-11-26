@@ -37,6 +37,7 @@ export default {
 		ariaSelectAllLabel: "Select all options",
 		ariaExpandAllLabel: "Expand all categories",
 		ariaCollapseAllLabel: "Collapse all categories",
+		appendToBody: false,
 	},
 	argTypes: {
 		// Function
@@ -264,6 +265,22 @@ export default {
 				},
 			},
 		},
+		appendToBody: {
+				name: "append-to-body",
+				description:
+						"Renders the dropdown in the top layer so parent clipping (overflow hidden, transform) can't cut it off.",
+				options: [true, false],
+				control: { type: "boolean" },
+				table: {
+						category: "ifx-multiselect props",
+						defaultValue: {
+								summary: "false",
+						},
+						type: {
+								summary: "boolean",
+						},
+				},
+		},
 		collapseLabel: {
 			description: "Label text for the collapse all control.",
 			control: "text",
@@ -434,6 +451,7 @@ const SlotBasedTemplate = (args:any) => {
   ?error='${args.error}'
   caption='${args.caption}'
   label='${args.label}'
+	?append-to-body='${args.appendToBody}'
   placeholder='${args.placeholder}'
   ?show-search='${args.showSearch}'
   ?show-select-all='${args.showSelectAll}'
@@ -612,6 +630,7 @@ const FlatTemplate = (args:any) => {
   label='${args.label}'
   placeholder='${args.placeholder}'
   ?show-search='${args.showSearch}'
+	?append-to-body='${args.appendToBody}'
   ?show-select-all='${args.showSelectAll}'
   ?show-expand-collapse='${args.showExpandCollapse}'
   ?show-clear-button='${args.showClearButton}'
@@ -667,6 +686,24 @@ SingleLevel.parameters = {
 				"A simple multiselect with single-level options - no nesting or hierarchical structure. Expand/Collapse controls are automatically hidden for single-level option lists.",
 		},
 	},
+};
+
+export const AppendToBody: any = (args: any) =>
+    html`<div style="height: 80px; overflow: hidden; border: 1px dashed red;">
+        ${SlotBasedTemplate(args)}
+    </div>`;
+AppendToBody.args = {
+    label: "Inside overflow: hidden",
+    placeholder: "Select options...",
+    appendToBody: true,
+};
+AppendToBody.parameters = {
+    docs: {
+        description: {
+            story:
+                "With `append-to-body`, the dropdown renders in the top layer and is not clipped by parents with `overflow: hidden` or `transform`. Toggle the control off to see the clipping.",
+        },
+    },
 };
 
 const SeparatorDefaultTemplate = (args:any) => {
